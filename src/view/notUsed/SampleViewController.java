@@ -1,4 +1,4 @@
-package view;
+package view.notUsed;
 
 import java.io.IOException;
 
@@ -8,7 +8,7 @@ import javafx.scene.layout.BorderPane;
 public class SampleViewController extends BorderPane{
 	
 	public SampleViewController() {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SampleView.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/notUsed/SampleView.fxml"));
 		loader.setRoot(this);
 		loader.setController(this);
 		try {

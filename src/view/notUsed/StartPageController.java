@@ -1,4 +1,4 @@
-package view;
+package view.notUsed;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,7 +30,7 @@ public class StartPageController extends BorderPane {
     }
 
     public StartPageController(){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/StartPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/notUsed/StartPage.fxml"));
         loader.setRoot(this);
         loader.setController(this);
         try {

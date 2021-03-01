@@ -1,13 +1,12 @@
 package view.StartView;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
-public class LoginViewController {
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.*;
+
+import java.io.IOException;
+
+public class LoginViewController extends TabPane {
     @FXML
     private TextField pNum;
 
@@ -89,7 +88,17 @@ public class LoginViewController {
     @FXML
     private TextField aFach;
 
+    public LoginViewController() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/StartView/LoginView.fxml"));
+        loader.setRoot(this);
+        loader.setController(this);
+        try {
+            loader.load();
+        } catch (IOException e) {
 
+            e.printStackTrace();
+        }
+    }
 
 
 }
