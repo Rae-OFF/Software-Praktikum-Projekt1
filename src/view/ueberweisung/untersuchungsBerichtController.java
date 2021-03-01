@@ -33,12 +33,14 @@ public class untersuchungsBerichtController extends TitledPane{
 
     @FXML
     private TextFlow Notiz;
+    private Untersuchungsbericht bericht;
     public untersuchungsBerichtController(Untersuchungsbericht u) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("view/ueberweisung/untersuchungBericht.fxml"));
         loader.setRoot(this);
         loader.setController(this);
         try {
             loader.load();
+            bericht=u;
             // load Date, Grund, Symtome, ICD of Untersuchungsbericht
 
         } catch (IOException e) {
@@ -47,4 +49,5 @@ public class untersuchungsBerichtController extends TitledPane{
         }
     }
     private boolean isChecked(){return ChooseButton.isSelected();}
+    public Untersuchungsbericht getBericht(){return bericht;}
 }
