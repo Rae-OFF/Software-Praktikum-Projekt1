@@ -1,4 +1,4 @@
-package view.Review;
+package view.Revision;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 
-public class ReviewController {
+public class RevisionsController {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -22,8 +22,8 @@ public class ReviewController {
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-        assert reviewBackButton != null : "fx:id=\"reviewBackButton\" was not injected: check your FXML file 'Review.fxml'.";
-        assert reviewOutput != null : "fx:id=\"reviewOutput\" was not injected: check your FXML file 'Review.fxml'.";
+        assert reviewBackButton != null : "fx:id=\"reviewBackButton\" was not injected: check your FXML file 'Revision.fxml'.";
+        assert reviewOutput != null : "fx:id=\"reviewOutput\" was not injected: check your FXML file 'Revision.fxml'.";
 
     }
 }
