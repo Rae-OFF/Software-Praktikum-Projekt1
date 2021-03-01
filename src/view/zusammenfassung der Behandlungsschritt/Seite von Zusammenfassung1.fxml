@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.text.TextFlow?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="418.0" prefWidth="601.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1">
+   <content>
+      <FlowPane prefHeight="423.0" prefWidth="603.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@下载.png" />
+               </image>
+            </ImageView>
+            <TextFlow prefHeight="118.0" prefWidth="453.0">
+               <children>
+                  <Label text="Personliche Daten" />
+               </children>
+            </TextFlow>
+            <ScrollPane prefHeight="247.0" prefWidth="590.0">
+               <content>
+                  <TableView prefHeight="246.0" prefWidth="581.0">
+                    <columns>
+                      <TableColumn prefWidth="109.33331370353699" text="Termin" />
+                      <TableColumn prefWidth="107.33334350585938" text="Arzt" />
+                        <TableColumn prefWidth="101.33331298828125" text="Befund" />
+                        <TableColumn prefWidth="104.66668701171875" text="Therapie" />
+                        <TableColumn prefWidth="150.0" text="Links zu Details" />
+                    </columns>
+                  </TableView>
+               </content>
+            </ScrollPane>
+            <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="121.0" text="zurückgehen" />
+         </children>
+      </FlowPane>
+   </content>
+</ScrollPane>
