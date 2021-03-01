@@ -1,8 +1,12 @@
 package view.StartView;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+import view.FunctionView.ArztFunctionViewController;
 
 import java.io.IOException;
 //hi
@@ -87,8 +91,9 @@ public class LoginViewController extends TabPane {
 
     @FXML
     private TextField aFach;
-
-    public LoginViewController() {
+    private Stage mainStage;
+    public LoginViewController(Stage primaryStage) {
+        mainStage= primaryStage;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/StartView/LoginView.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -98,6 +103,11 @@ public class LoginViewController extends TabPane {
 
             e.printStackTrace();
         }
+    }
+     @FXML
+     void showArztFunctionView(ActionEvent event){
+        ArztFunctionViewController aFunction= new ArztFunctionViewController(mainStage);
+        mainStage.setScene(new Scene(aFunction));
     }
 
 
