@@ -8,36 +8,41 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.TextFlow?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="418.0" prefWidth="601.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="439.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <content>
-      <FlowPane prefHeight="423.0" prefWidth="603.0">
+      <FlowPane prefHeight="585.0" prefWidth="635.0">
          <children>
             <ImageView fitHeight="150.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@下载.png" />
                </image>
             </ImageView>
-            <TextFlow prefHeight="118.0" prefWidth="453.0">
+            <TextFlow prefHeight="138.0" prefWidth="491.0">
                <children>
                   <Label text="Personliche Daten" />
                </children>
             </TextFlow>
-            <ScrollPane prefHeight="247.0" prefWidth="590.0">
+            <ScrollPane prefHeight="247.0" prefWidth="626.0">
                <content>
-                  <TableView prefHeight="246.0" prefWidth="581.0">
+                  <TableView prefHeight="246.0" prefWidth="627.0">
                     <columns>
                       <TableColumn prefWidth="109.33331370353699" text="Termin" />
                       <TableColumn prefWidth="107.33334350585938" text="Arzt" />
-                        <TableColumn prefWidth="101.33331298828125" text="Befund" />
-                        <TableColumn prefWidth="104.66668701171875" text="Therapie" />
-                        <TableColumn prefWidth="150.0" text="Links zu Details" />
+                        <TableColumn prefWidth="125.99998474121094" text="Befund" />
+                        <TableColumn prefWidth="123.333251953125" text="Therapie" />
+                        <TableColumn prefWidth="149.33340454101562" text="Links zu Details" />
                     </columns>
                   </TableView>
                </content>
             </ScrollPane>
-            <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="121.0" text="zurückgehen" />
+            <Pane prefHeight="200.0" prefWidth="631.0">
+               <children>
+                  <Button layoutX="255.0" layoutY="6.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="121.0" text="zurückgehen" />
+               </children>
+            </Pane>
          </children>
       </FlowPane>
    </content>
