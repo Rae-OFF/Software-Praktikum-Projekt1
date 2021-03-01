@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -7,7 +8,7 @@ public class Patient {
 
 	private String num;
 
-	private List<Ueberweisung> ueberweisungsList;
+	private ArrayList<Ueberweisung> ueberweisungsList;
 
 	private String name;
 
@@ -17,22 +18,32 @@ public class Patient {
 
 	private String gesburtsDatum;
 
-	private List<String> revision;
+	private ArrayList<String> revision;
 
-	private List<Untersuchungsbericht> untersuchungsList;
+	private ArrayList<Untersuchungsbericht> untersuchungsList;
 
 	private Arzt behandelnderArzt;
 
 	private Collection<Ueberweisung> überweisung;
+	private String passwort;
+
 
 	private Collection<Untersuchungsbericht> untersuchungsbericht;
 
-	public Patient(String num, String name, String Address, String Geschlecht, String Birth) {
-
+	public Patient(String num, String name, String Address, String Geschlecht, String Birth, String pass) {
+		this.passwort=pass;
+        this.name=name;
+        this.num=num;
+        this.address=Address;
+        this.geschlecht=Geschlecht;
+        this.gesburtsDatum=Birth;
+		ueberweisungsList= new ArrayList<Ueberweisung>();
+		revision= new ArrayList<String>();
+		untersuchungsList= new ArrayList<Untersuchungsbericht>();
 	}
 
 	public String getNum() {
-		return null;
+		return num;
 	}
 
 	public void addToRevision(String r) {
@@ -78,9 +89,10 @@ public class Patient {
 	public void behandeldenArztAendern(Arzt artzt) {
 
 	}
-
+    public String getPasswort(){return passwort;}
 	public String getName() {
 		return null;
 	}
+	public void setPasswort(String p){passwort=p;}
 
 }

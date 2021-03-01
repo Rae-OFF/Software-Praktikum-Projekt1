@@ -93,7 +93,7 @@ public class LoginViewController extends TabPane {
     private TextField aTel;
 
     @FXML
-    private Text ArzthiddenText;
+    private Text ArztHiddenText;
     @FXML
     private Text PatientHiddenText;
     @FXML
@@ -117,14 +117,15 @@ public class LoginViewController extends TabPane {
      void showArztFunctionView(ActionEvent event){
         String aID= aNum.getText();
         String aPass=aPasswort.getText();
-        EPA epa= EPAControl.getEPA();
-        if(epa.checkNumArzt(aID)){
-            if(epa.getArzt(aID).getPasswort().equals(aPass)){
-                ArztMainViewController aFunction= new ArztMainViewController(mainStage);
-                mainStage.setScene(new Scene(aFunction));
-            }
-        }
-        ArzthiddenText.setVisible(true);
+         if (aID != null && aPass != null) {
+             EPA epa= EPAControl.getEPA();
+             if(epa.checkNumArzt(aID)){
+                 if(epa.getArzt(aID).getPasswort().equals(aPass)){
+                     mainStage.setScene(new Scene(new ArztMainViewController(mainStage,aID)));
+                 }
+             }
+         }
+        ArztHiddenText.setVisible(true);
      }
     @FXML
     void showPatientFunctionView(ActionEvent event){
@@ -133,8 +134,7 @@ public class LoginViewController extends TabPane {
         EPA epa= EPAControl.getEPA();
         if(epa.checkNumPatient(pID)){
             if(epa.getPatient(pID).getPasswort().equals(pPass)){
-                PatientMainViewController pFunction= new PatientMainViewController(mainStage);
-                mainStage.setScene(new Scene(pFunction));
+                mainStage.setScene(new Scene(new PatientMainViewController(mainStage,pID)));
             }
         }
         PatientHiddenText.setVisible(true);

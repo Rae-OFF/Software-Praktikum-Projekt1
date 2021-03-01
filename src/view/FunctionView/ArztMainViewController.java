@@ -1,10 +1,12 @@
 package view.FunctionView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import view.StartView.LoginViewController;
 
 import java.io.IOException;
 
@@ -40,7 +42,9 @@ public class ArztMainViewController extends AnchorPane {
     @FXML
     private Button aLogout;
     private Stage mainStage;
-    public ArztMainViewController(Stage primaryStage) {
+    private String aID;
+    public ArztMainViewController(Stage primaryStage, String ID) {
+        aID= ID;
         mainStage= primaryStage;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FunctionView/ArztMainView.fxml"));
         loader.setRoot(this);
@@ -51,6 +55,10 @@ public class ArztMainViewController extends AnchorPane {
 
             e.printStackTrace();
         }
+    }
+    @FXML
+    void zumLoginView(){
+        mainStage.setScene(new Scene(new LoginViewController(mainStage)));
     }
 
 }

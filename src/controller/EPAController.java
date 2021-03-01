@@ -49,6 +49,7 @@ public class EPAController {
     private ZusammenfassungsController zusammenfassungsController;
 
     public EPAController() {
+    	this.ePA=new EPA();
     }
 
     /**
@@ -59,7 +60,7 @@ public class EPAController {
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
     public EPA getEPA() throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not Yet Implemented!");
+        return ePA;
     }
 
     /**

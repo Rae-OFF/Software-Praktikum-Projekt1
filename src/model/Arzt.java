@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.lang.UnsupportedOperationException;
 import java.util.List;
@@ -14,17 +15,17 @@ public class Arzt {
     /**
  	 * 
  	 */
-    private List<Patient> patientList;
+    private ArrayList<Patient> patientList;
 
     /**
  	 * 
  	 */
-    private List<Ueberweisung> ueberweisungList;
+    private ArrayList<Ueberweisung> ueberweisungList;
 
     /**
  	 * 
  	 */
-    private List<Untersuchungsbericht> untersuchungsList;
+    private ArrayList<Untersuchungsbericht> untersuchungsList;
 
     /**
  	 * 
@@ -39,7 +40,7 @@ public class Arzt {
     /**
  	 * 
  	 */
-    private List<String> revision;
+    private ArrayList<String> revision;
 
     /**
  	 * 
@@ -55,15 +56,22 @@ public class Arzt {
  	 * 
  	 */
     private Collection<Ueberweisung> ueberweisung;
-
-    public Arzt(String name, String fach, String num) {
+    private String passwort;
+    public Arzt(String name, String fach, String num, String passwort) {
+    	this.passwort= passwort;
+    	this.num=num;
+    	this.name=name;
+    	this.fachrichtung=fach;
+		patientList=new ArrayList<Patient>();
+		ueberweisungList=new ArrayList<Ueberweisung>();
+		untersuchungsList= new ArrayList<Untersuchungsbericht>();
     }
 
     /**
  	 *
  	 * TODO: create JavaDoc. 
  	 * @param patient
- 	 * @throws UnsupportedOperation Exception
+ 	 * @throws UnsupportedOperationException
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
     public void addPatientToList(Patient patient) throws UnsupportedOperationException {
@@ -74,7 +82,7 @@ public class Arzt {
  	 *
  	 * TODO: create JavaDoc. 
  	 * @param patient
- 	 * @throws UnsupportedOperation Exception
+ 	 * @throws UnsupportedOperationException
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
     public void removeFromPatientlist(Patient patient) throws UnsupportedOperationException {
@@ -85,7 +93,7 @@ public class Arzt {
  	 *
  	 * TODO: create JavaDoc. 
  	 * @param u
- 	 * @throws UnsupportedOperation Exception
+ 	 * @throws UnsupportedOperationException
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
     public void addUntersuchungsberichrt(Untersuchungsbericht u) throws UnsupportedOperationException {
@@ -96,7 +104,7 @@ public class Arzt {
  	 *
  	 * TODO: create JavaDoc. 
  	 * @param u
- 	 * @throws UnsupportedOperation Exception
+ 	 * @throws UnsupportedOperationException
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
     public void addÜberweisung(Ueberweisung u) throws UnsupportedOperationException {
@@ -107,7 +115,7 @@ public class Arzt {
  	 *
  	 * TODO: create JavaDoc. 
  	 * @param f
- 	 * @throws UnsupportedOperation Exception
+ 	 * @throws UnsupportedOperationException
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
     public void setFach(String f) throws UnsupportedOperationException {
@@ -118,7 +126,7 @@ public class Arzt {
  	 *
  	 * TODO: create JavaDoc. 
  	 * @param n
- 	 * @throws UnsupportedOperation Exception
+ 	 * @throws UnsupportedOperationException
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
     public void setName(String n) throws UnsupportedOperationException {
@@ -129,7 +137,7 @@ public class Arzt {
  	 *
  	 * TODO: create JavaDoc. 
  	 * @param r
- 	 * @throws UnsupportedOperation Exception
+ 	 * @throws UnsupportedOperationException
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
     public void addToRevision(String r) throws UnsupportedOperationException {
@@ -140,10 +148,10 @@ public class Arzt {
  	 *
  	 * TODO: create JavaDoc. 
  	 * @return List<String>
- 	 * @throws UnsupportedOperation Exception
+ 	 * @throws UnsupportedOperationException
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
-    public List<String> getInfo() throws UnsupportedOperationException {
+    public ArrayList<String> getInfo() throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Not Yet Implemented!");
     }
 
@@ -152,7 +160,7 @@ public class Arzt {
  	 * TODO: create JavaDoc. 
  	 * @param versicherungsnummer
  	 * @return boolean
- 	 * @throws UnsupportedOperation Exception
+ 	 * @throws UnsupportedOperationException
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
     public boolean checkPatientValid(String versicherungsnummer) throws UnsupportedOperationException {
@@ -164,10 +172,10 @@ public class Arzt {
  	 * TODO: create JavaDoc. 
  	 * @param versicherungsnummer
  	 * @return List<Untersuchungsbericht>
- 	 * @throws UnsupportedOperation Exception
+ 	 * @throws UnsupportedOperationException
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
-    public List<Untersuchungsbericht> getUntersuchungsberichte(String versicherungsnummer) throws UnsupportedOperationException {
+    public ArrayList<Untersuchungsbericht> getUntersuchungsberichte(String versicherungsnummer) throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Not Yet Implemented!");
     }
 
@@ -175,21 +183,21 @@ public class Arzt {
  	 *
  	 * TODO: create JavaDoc. 
  	 * @return String
- 	 * @throws UnsupportedOperation Exception
+ 	 * @throws UnsupportedOperationException
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
     public String getNum() throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not Yet Implemented!");
+        return num;
     }
 
     /**
  	 *
  	 * TODO: create JavaDoc. 
  	 * @return List<String>
- 	 * @throws UnsupportedOperation Exception
+ 	 * @throws UnsupportedOperationException
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
-    public List<String> getRevision() throws UnsupportedOperationException {
+    public ArrayList<String> getRevision() throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Not Yet Implemented!");
     }
 
@@ -197,10 +205,12 @@ public class Arzt {
  	 *
  	 * TODO: create JavaDoc. 
  	 * @return String
- 	 * @throws UnsupportedOperation Exception
+ 	 * @throws UnsupportedOperationException
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
     public String getName() throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Not Yet Implemented!");
     }
+    public String getPasswort(){return passwort;}
+    public void setPasswort(String p){this.passwort=p;}
 }
