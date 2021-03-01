@@ -45,15 +45,15 @@ public class UntersuchungsberichtEingabeController {
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-        assert untersuchungsberichtDatum != null : "fx:id=\"untersuchungsberichtDatum\" was not injected: check your FXML file 'Untersuchungsbericht eingabe.fxml'.";
-        assert untersuchungsberichtUhrzeit != null : "fx:id=\"untersuchungsberichtUhrzeit\" was not injected: check your FXML file 'Untersuchungsbericht eingabe.fxml'.";
-        assert untersuchungsberichtGrund != null : "fx:id=\"untersuchungsberichtGrund\" was not injected: check your FXML file 'Untersuchungsbericht eingabe.fxml'.";
-        assert untersuchungsberichtSymptome != null : "fx:id=\"untersuchungsberichtSymptome\" was not injected: check your FXML file 'Untersuchungsbericht eingabe.fxml'.";
-        assert untersuchungsberichtICD != null : "fx:id=\"untersuchungsberichtICD\" was not injected: check your FXML file 'Untersuchungsbericht eingabe.fxml'.";
-        assert untersuchungsberichtBehandlung != null : "fx:id=\"untersuchungsberichtBehandlung\" was not injected: check your FXML file 'Untersuchungsbericht eingabe.fxml'.";
-        assert untersuchungsberichtMedikamente != null : "fx:id=\"untersuchungsberichtMedikamente\" was not injected: check your FXML file 'Untersuchungsbericht eingabe.fxml'.";
-        assert untersuchungsberichtNotesField != null : "fx:id=\"untersuchungsberichtNotesField\" was not injected: check your FXML file 'Untersuchungsbericht eingabe.fxml'.";
-        assert untersuchungsberichtSaveButton != null : "fx:id=\"untersuchungsberichtSaveButton\" was not injected: check your FXML file 'Untersuchungsbericht eingabe.fxml'.";
+        assert untersuchungsberichtDatum != null : "fx:id=\"untersuchungsberichtDatum\" was not injected: check your FXML file 'model.Untersuchungsbericht eingabe.fxml'.";
+        assert untersuchungsberichtUhrzeit != null : "fx:id=\"untersuchungsberichtUhrzeit\" was not injected: check your FXML file 'model.Untersuchungsbericht eingabe.fxml'.";
+        assert untersuchungsberichtGrund != null : "fx:id=\"untersuchungsberichtGrund\" was not injected: check your FXML file 'model.Untersuchungsbericht eingabe.fxml'.";
+        assert untersuchungsberichtSymptome != null : "fx:id=\"untersuchungsberichtSymptome\" was not injected: check your FXML file 'model.Untersuchungsbericht eingabe.fxml'.";
+        assert untersuchungsberichtICD != null : "fx:id=\"untersuchungsberichtICD\" was not injected: check your FXML file 'model.Untersuchungsbericht eingabe.fxml'.";
+        assert untersuchungsberichtBehandlung != null : "fx:id=\"untersuchungsberichtBehandlung\" was not injected: check your FXML file 'model.Untersuchungsbericht eingabe.fxml'.";
+        assert untersuchungsberichtMedikamente != null : "fx:id=\"untersuchungsberichtMedikamente\" was not injected: check your FXML file 'model.Untersuchungsbericht eingabe.fxml'.";
+        assert untersuchungsberichtNotesField != null : "fx:id=\"untersuchungsberichtNotesField\" was not injected: check your FXML file 'model.Untersuchungsbericht eingabe.fxml'.";
+        assert untersuchungsberichtSaveButton != null : "fx:id=\"untersuchungsberichtSaveButton\" was not injected: check your FXML file 'model.Untersuchungsbericht eingabe.fxml'.";
 
     }
 }

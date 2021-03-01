@@ -22,8 +22,8 @@ public class UntersuchungsberichtStartController {
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-        assert untersuchungsberichtVersicherungsnummer != null : "fx:id=\"untersuchungsberichtVersicherungsnummer\" was not injected: check your FXML file 'Untersuchungsbericht Start.fxml'.";
-        assert untersuchungsberichtNextStep != null : "fx:id=\"untersuchungsberichtNextStep\" was not injected: check your FXML file 'Untersuchungsbericht Start.fxml'.";
+        assert untersuchungsberichtVersicherungsnummer != null : "fx:id=\"untersuchungsberichtVersicherungsnummer\" was not injected: check your FXML file 'model.Untersuchungsbericht Start.fxml'.";
+        assert untersuchungsberichtNextStep != null : "fx:id=\"untersuchungsberichtNextStep\" was not injected: check your FXML file 'model.Untersuchungsbericht Start.fxml'.";
 
     }
 }
