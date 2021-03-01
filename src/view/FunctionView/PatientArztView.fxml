@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="166.0" fitWidth="168.0" layoutX="52.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images.jfif" />
+            <Image url="@image/doctorimage.jfif" />
          </image>
       </ImageView>
       <GridPane layoutX="242.0" layoutY="45.0" prefHeight="166.0" prefWidth="356.0">

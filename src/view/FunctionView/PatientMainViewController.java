@@ -4,7 +4,7 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
-public class PatientFunctionViewController {
+public class PatientMainViewController {
     @FXML
     private Text pVorname;
 

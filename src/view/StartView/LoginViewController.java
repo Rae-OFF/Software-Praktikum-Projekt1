@@ -1,12 +1,15 @@
 package view.StartView;
+import controller.EPAController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import view.FunctionView.ArztFunctionViewController;
+import model.EPA;
+import view.FunctionView.ArztMainViewController;
+import view.FunctionView.PatientMainViewController;
 
 import java.io.IOException;
 //hi
@@ -90,10 +93,16 @@ public class LoginViewController extends TabPane {
     private TextField aTel;
 
     @FXML
+    private Text ArzthiddenText;
+    @FXML
+    private Text PatientHiddenText;
+    @FXML
     private TextField aFach;
     private Stage mainStage;
+    private EPAController EPAControl;
     public LoginViewController(Stage primaryStage) {
         mainStage= primaryStage;
+        EPAControl= new EPAController();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/StartView/LoginView.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -106,9 +115,29 @@ public class LoginViewController extends TabPane {
     }
      @FXML
      void showArztFunctionView(ActionEvent event){
-        ArztFunctionViewController aFunction= new ArztFunctionViewController(mainStage);
-        mainStage.setScene(new Scene(aFunction));
+        String aID= aNum.getText();
+        String aPass=aPasswort.getText();
+        EPA epa= EPAControl.getEPA();
+        if(epa.checkNumArzt(aID)){
+            if(epa.getArzt(aID).getPasswort().equals(aPass)){
+                ArztMainViewController aFunction= new ArztMainViewController(mainStage);
+                mainStage.setScene(new Scene(aFunction));
+            }
+        }
+        ArzthiddenText.setVisible(true);
+     }
+    @FXML
+    void showPatientFunctionView(ActionEvent event){
+        String pID= pNum.getText();
+        String pPass=pPasswort.getText();
+        EPA epa= EPAControl.getEPA();
+        if(epa.checkNumPatient(pID)){
+            if(epa.getPatient(pID).getPasswort().equals(pPass)){
+                PatientMainViewController pFunction= new PatientMainViewController(mainStage);
+                mainStage.setScene(new Scene(pFunction));
+            }
+        }
+        PatientHiddenText.setVisible(true);
     }
-
 
 }

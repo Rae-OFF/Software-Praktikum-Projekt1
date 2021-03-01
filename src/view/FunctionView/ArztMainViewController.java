@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ArztFunctionViewController extends AnchorPane {
+public class ArztMainViewController extends AnchorPane {
 
     @FXML
     private Text aVorname;
@@ -40,9 +40,9 @@ public class ArztFunctionViewController extends AnchorPane {
     @FXML
     private Button aLogout;
     private Stage mainStage;
-    public ArztFunctionViewController(Stage primaryStage) {
+    public ArztMainViewController(Stage primaryStage) {
         mainStage= primaryStage;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FunctionView/ArztFunctionView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FunctionView/ArztMainView.fxml"));
         loader.setRoot(this);
         loader.setController(this);
         try {
