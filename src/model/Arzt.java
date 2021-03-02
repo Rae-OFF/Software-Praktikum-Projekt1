@@ -35,8 +35,9 @@ public class Arzt {
     /**
  	 * 
  	 */
-    private String name;
-
+    private String Vorname;
+    private String Tel;
+	private String Nachname;
     /**
  	 * 
  	 */
@@ -57,11 +58,13 @@ public class Arzt {
  	 */
     private Collection<Ueberweisung> ueberweisung;
     private String passwort;
-    public Arzt(String name, String fach, String num, String passwort) {
+    public Arzt(String Vorname,String Nachname, String fach, String num, String passwort, String Tel) {
     	this.passwort= passwort;
     	this.num=num;
-    	this.name=name;
+    	this.Vorname=Vorname;
+    	this.Nachname=Nachname;
     	this.fachrichtung=fach;
+    	this.Tel=Tel;
 		patientList=new ArrayList<Patient>();
 		ueberweisungList=new ArrayList<Ueberweisung>();
 		untersuchungsList= new ArrayList<Untersuchungsbericht>();
@@ -77,6 +80,7 @@ public class Arzt {
     public void addPatientToList(Patient patient) throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Not Yet Implemented!");
     }
+
 
     /**
  	 *
@@ -121,6 +125,7 @@ public class Arzt {
     public void setFach(String f) throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Not Yet Implemented!");
     }
+    public String getFachrichtung(){return fachrichtung;}
 
     /**
  	 *
@@ -209,8 +214,12 @@ public class Arzt {
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
     public String getName() throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not Yet Implemented!");
+        return Vorname+" "+Nachname;
     }
+    public String getTel(){return Tel;}
+    public void setTel(String n){Tel=n;}
+	public String getVorname(){return Vorname;}
+	public String getNachname(){return Nachname;}
     public String getPasswort(){return passwort;}
     public void setPasswort(String p){this.passwort=p;}
 }

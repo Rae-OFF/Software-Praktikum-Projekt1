@@ -17,14 +17,14 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" type="ScrollPane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <BorderPane fx:id="MainPane1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="904.0" prefWidth="627.0">
          <center>
             <GridPane BorderPane.alignment="CENTER">
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="275.0" minWidth="10.0" prefWidth="176.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" minWidth="10.0" prefWidth="384.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="275.0" minWidth="10.0" prefWidth="201.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="402.0" minWidth="10.0" prefWidth="386.0" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints maxHeight="62.0" minHeight="0.0" prefHeight="23.0" vgrow="SOMETIMES" />
@@ -38,7 +38,7 @@
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Versicherungsnummer" />
                   <TextField fx:id="Versicherungsnummer" prefHeight="25.0" prefWidth="419.0" GridPane.columnIndex="1" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Artzbezeichunung" wrappingWidth="98.90625" GridPane.rowIndex="2" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Arztnummer von zu überwiesendem Arzt" wrappingWidth="202.90625" GridPane.rowIndex="2" />
                   <TextField fx:id="ArztBezeich" prefHeight="25.0" prefWidth="295.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <VBox prefHeight="202.0" prefWidth="190.0" GridPane.rowIndex="3">
                      <children>
@@ -53,15 +53,15 @@
                   <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="5" />
                   <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <center>
-                        <Button fx:id="FortFahren" mnemonicParsing="false" prefHeight="25.0" prefWidth="197.0" text="Fortfahren" BorderPane.alignment="CENTER" />
+                        <Button fx:id="FortFahren" mnemonicParsing="false" onAction="#UeberweisungReview" prefHeight="25.0" prefWidth="197.0" text="Fortfahren" BorderPane.alignment="CENTER" />
                      </center>
                      <left>
-                        <Button fx:id="toFunctionView" mnemonicParsing="false" prefHeight="25.0" prefWidth="192.0" text="Zurück" BorderPane.alignment="CENTER" />
+                        <Button fx:id="toFunctionView" mnemonicParsing="false" onAction="#toMainView" prefHeight="25.0" prefWidth="192.0" text="Zurück" BorderPane.alignment="CENTER" />
                      </left>
                   </BorderPane>
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <Button fx:id="CheckButton" mnemonicParsing="false" text="Check" />
+                        <Button fx:id="CheckButton" mnemonicParsing="false" onAction="#checkVersicherungsnum" text="Check" />
                         <Text fx:id="HiddenText" fill="#f20404" strokeType="OUTSIDE" strokeWidth="0.0" text="Nummer ungültig !!!" textAlignment="CENTER" visible="false" />
                      </children>
                   </HBox>
@@ -441,4 +441,4 @@
          </center>
       </BorderPane>
    </content>
-</ScrollPane>
+</fx:root>
