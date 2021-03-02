@@ -1,6 +1,7 @@
 package view.FunctionView;
 import controller.EPAController;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,6 +14,7 @@ import javafx.stage.Stage;
 import model.Arzt;
 import view.StartView.LoginViewController;
 import view.ueberweisung.UeberweisungCreateViewController;
+import view.untersuchungsbericht.UntersuchungsberichtEingabeController;
 
 import javax.imageio.ImageIO;
 import java.io.IOException;
@@ -88,6 +90,10 @@ public class ArztMainViewController extends AnchorPane {
     @FXML
     void zumUeberweisungErstellen(){
         mainStage.setScene(new Scene(new UeberweisungCreateViewController(mainStage,EPAControll)));
+    }
+    @FXML
+    void zumUntersuchungsbericht(){
+        mainStage.setScene(new Scene(new UntersuchungsberichtEingabeController(mainStage,EPAControll)));
     }
 
 }
