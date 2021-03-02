@@ -10,7 +10,8 @@ public class Patient {
 
 	private ArrayList<Ueberweisung> ueberweisungsList;
 
-	private String name;
+	private String Vorname;
+	private String Nachname;
 
 	private String address;
 
@@ -30,10 +31,11 @@ public class Patient {
 
 	private Collection<Untersuchungsbericht> untersuchungsbericht;
 
-	public Patient(String num, String name, String Address, String Geschlecht, String Birth, String pass) {
-		this.passwort=pass;
-        this.name=name;
+	public Patient(String num, String Vorname,String Nachname, String Address, String Geschlecht, String Birth, String pass) {
+		this.passwort=pass;;
         this.num=num;
+		this.Vorname=Vorname;
+		this.Nachname=Nachname;
         this.address=Address;
         this.geschlecht=Geschlecht;
         this.gesburtsDatum=Birth;
@@ -45,15 +47,17 @@ public class Patient {
 	public String getNum() {
 		return num;
 	}
-
+    public String getGesburtsDatum(){return gesburtsDatum;}
 	public void addToRevision(String r) {
 
 	}
 
-	public void setName(String n) {
-
+	public void setVorname(String n) {
+        Vorname=n;
 	}
-
+	public void setNachname(String n) {
+        Nachname=n;
+	}
 	public void setAddress(String a) {
 
 	}
@@ -87,12 +91,18 @@ public class Patient {
 	}
 
 	public void behandeldenArztAendern(Arzt artzt) {
+		this.behandelnderArzt=artzt;
 
 	}
+	public Arzt getBehandelnderArzt(){return behandelnderArzt;}
     public String getPasswort(){return passwort;}
 	public String getName() {
-		return null;
+		return Vorname+" "+Nachname;
 	}
+	public String getVorname(){return Vorname;}
+	public String getNachname(){return Nachname;}
+	public String getAddress(){return address;}
+	public String getGeschlecht(){return geschlecht;}
 	public void setPasswort(String p){passwort=p;}
 
 }

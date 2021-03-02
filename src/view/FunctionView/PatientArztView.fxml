@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" type="AnchorPane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="166.0" fitWidth="168.0" layoutX="52.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="ArztImage" fitHeight="166.0" fitWidth="168.0" layoutX="52.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@image/doctorimage.jfif" />
          </image>
@@ -42,6 +42,6 @@
             <Text fx:id="aTel" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" wrappingWidth="259.13671875" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
-      <Button fx:id="toPFunction" layoutX="263.0" layoutY="413.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" text="Zurück" />
+      <Button fx:id="toPFunction" layoutX="263.0" layoutY="413.0" mnemonicParsing="false" onAction="#toMainFunction" prefHeight="34.0" prefWidth="102.0" text="Zurück" />
    </children>
-</AnchorPane>
+</fx:root>

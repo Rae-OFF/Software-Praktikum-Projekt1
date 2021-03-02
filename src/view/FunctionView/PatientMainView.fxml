@@ -17,7 +17,7 @@
       <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
    </opaqueInsets>
    <children>
-      <ImageView fitHeight="166.0" fitWidth="168.0" layoutX="52.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="PatientImage" fitHeight="166.0" fitWidth="168.0" layoutX="52.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@image/patientimage.jpg" />
          </image>
@@ -51,8 +51,7 @@
             </VBox>
             <TextFlow fx:id="pAdress" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hausarzt" GridPane.rowIndex="5" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hausarzt Name" visible="false" wrappingWidth="265.2578125" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Button fx:id="pHausArzt" mnemonicParsing="false" prefHeight="25.0" prefWidth="268.0" text="zum Hausarzt" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Button fx:id="pHausArzt" mnemonicParsing="false" onAction="#zumHausArzt" prefHeight="25.0" prefWidth="268.0" text="zum Hausarzt" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
       <GridPane layoutX="50.0" layoutY="283.0" prefHeight="96.0" prefWidth="538.0">
