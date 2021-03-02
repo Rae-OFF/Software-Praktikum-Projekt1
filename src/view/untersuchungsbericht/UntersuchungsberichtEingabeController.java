@@ -21,8 +21,8 @@ public class UntersuchungsberichtEingabeController {
     @FXML // fx:id="untersuchungsberichtUhrzeit"
     private TextField untersuchungsberichtUhrzeit; // Value injected by FXMLLoader
 
-    @FXML // fx:id="untersuchungsberichtGrund"
-    private TextField untersuchungsberichtGrund; // Value injected by FXMLLoader
+    @FXML // fx:id="untersuchungsberichtVersicherungsnummer"
+    private TextField untersuchungsberichtVersicherungsnummer; // Value injected by FXMLLoader
 
     @FXML // fx:id="untersuchungsberichtSymptome"
     private TextField untersuchungsberichtSymptome; // Value injected by FXMLLoader
@@ -47,7 +47,7 @@ public class UntersuchungsberichtEingabeController {
     void initialize() {
         assert untersuchungsberichtDatum != null : "fx:id=\"untersuchungsberichtDatum\" was not injected: check your FXML file 'model.Untersuchungsbericht eingabe.fxml'.";
         assert untersuchungsberichtUhrzeit != null : "fx:id=\"untersuchungsberichtUhrzeit\" was not injected: check your FXML file 'model.Untersuchungsbericht eingabe.fxml'.";
-        assert untersuchungsberichtGrund != null : "fx:id=\"untersuchungsberichtGrund\" was not injected: check your FXML file 'model.Untersuchungsbericht eingabe.fxml'.";
+        assert untersuchungsberichtVersicherungsnummer != null : "fx:id=\"untersuchungsberichtVersicherungsnummer\" was not injected: check your FXML file 'model.Untersuchungsbericht eingabe.fxml'.";
         assert untersuchungsberichtSymptome != null : "fx:id=\"untersuchungsberichtSymptome\" was not injected: check your FXML file 'model.Untersuchungsbericht eingabe.fxml'.";
         assert untersuchungsberichtICD != null : "fx:id=\"untersuchungsberichtICD\" was not injected: check your FXML file 'model.Untersuchungsbericht eingabe.fxml'.";
         assert untersuchungsberichtBehandlung != null : "fx:id=\"untersuchungsberichtBehandlung\" was not injected: check your FXML file 'model.Untersuchungsbericht eingabe.fxml'.";

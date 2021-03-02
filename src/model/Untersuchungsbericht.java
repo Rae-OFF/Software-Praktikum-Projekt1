@@ -21,16 +21,16 @@ public class Untersuchungsbericht {
 
 	private String behandenderArzt;
 
-	public Untersuchungsbericht(String versicherungsnummer, LocalDateTime datum, List<String> sonstigeInfo, String iCD, List<String> med, String diagnose, String behandlung, String behandelnderArzt) {
+	public Untersuchungsbericht(String versicherungsnummer, String behandelnderArzt, LocalDateTime datum, String iCD, List<String> med, String diagnose, String behandlung, List<String> notes) {
 
 	}
 
 	public List<String> getInfo() {
-		return null;
+		return sonstigesInfo;
 	}
 
 	public String getPatientNum() {
-		return null;
+		return patientVersicherungnum;
 	}
 
 	public void setInfo(String diagnose, List<String> Med, String Behandlung, String icd) {
@@ -38,7 +38,7 @@ public class Untersuchungsbericht {
 	}
 
 	public String getICD() {
-		return null;
+		return iCD;
 	}
 
 }
