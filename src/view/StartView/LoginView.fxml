@@ -55,7 +55,7 @@
          <content>
             <ScrollPane prefHeight="447.0" prefWidth="634.0">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="559.0" prefWidth="576.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="562.0" prefWidth="631.0">
                      <children>
                         <TextField fx:id="pVorname" layoutX="138.0" layoutY="68.0" prefHeight="25.0" prefWidth="410.0" />
                         <Text layoutX="42.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="* Vorname" />
@@ -78,7 +78,8 @@
                         <TextField fx:id="pAnum" layoutX="228.0" layoutY="360.0" prefHeight="25.0" prefWidth="316.0" />
                         <Text layoutX="42.0" layoutY="413.0" strokeType="OUTSIDE" strokeWidth="0.0" text="* Passwort" />
                         <TextField fx:id="pSetpass" layoutX="228.0" layoutY="396.0" prefHeight="25.0" prefWidth="315.0" />
-                        <Button fx:id="neuPatient" layoutX="227.0" layoutY="459.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="316.0" text="Bestätigen" />
+                        <Button fx:id="neuPatient" layoutX="227.0" layoutY="459.0" mnemonicParsing="false" onAction="#neuPatientAnlegen" prefHeight="25.0" prefWidth="316.0" text="Bestätigen" />
+                        <Text fx:id="PatientAnlegenHiddenText" fill="RED" layoutX="189.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bitte geben Sie alle Datein mit * ein" visible="false" />
                      </children>
                      <opaqueInsets>
                         <Insets left="20.0" right="20.0" />
@@ -105,13 +106,14 @@
                         <RadioButton fx:id="aIsfemale" layoutX="466.0" layoutY="157.0" mnemonicParsing="false" text="fraulich" toggleGroup="$sex" />
                         <TextField fx:id="aSetnum" layoutX="137.0" layoutY="278.0" prefHeight="25.0" prefWidth="410.0" />
                         <Text layoutX="48.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="* Arztnummer" wrappingWidth="90.12109375" />
-                        <Button fx:id="neuArzt" layoutX="183.0" layoutY="360.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="318.0" text="Bestätigen" />
+                        <Button fx:id="neuArzt" layoutX="183.0" layoutY="360.0" mnemonicParsing="false" onAction="#neuArztAnlegen" prefHeight="25.0" prefWidth="318.0" text="Bestätigen" />
                         <Text layoutX="47.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="* Passwort" />
                         <TextField fx:id="aSetpass" layoutX="139.0" layoutY="318.0" prefHeight="25.0" prefWidth="410.0" />
                         <Text layoutX="42.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="* Tel" />
                         <TextField fx:id="aTel" layoutX="137.0" layoutY="199.0" prefHeight="25.0" prefWidth="410.0" />
                         <Text layoutX="46.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="* Fachrichtung" />
                         <TextField fx:id="aFach" layoutX="137.0" layoutY="240.0" prefHeight="25.0" prefWidth="410.0" />
+                        <Text fx:id="NeuArztHiddenText" fill="RED" layoutX="189.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bitte geben Sie alle Datein mit * ein" visible="false" />
                      </children>
                      <opaqueInsets>
                         <Insets left="20.0" right="20.0" />

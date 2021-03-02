@@ -1,14 +1,22 @@
 package view.FunctionView;
+import controller.EPAController;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import model.Patient;
 import view.StartView.LoginViewController;
 
+import javax.imageio.ImageIO;
 import java.io.IOException;
 
 public class PatientMainViewController extends AnchorPane {
@@ -44,24 +52,56 @@ public class PatientMainViewController extends AnchorPane {
 
     @FXML
     private Button PLogout;
+    @FXML
+    private ImageView PatientImage;
     private Stage mainStage;
-    private String pID;
-    public PatientMainViewController(Stage primaryStage, String ID) {
+    private EPAController EPAControl;
+    public PatientMainViewController(Stage primaryStage, EPAController EPAControl) {
         mainStage= primaryStage;
-        pID=ID;
+        this.EPAControl=EPAControl;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FunctionView/PatientMainView.fxml"));
         loader.setRoot(this);
         loader.setController(this);
         try {
             loader.load();
+            init();
         } catch (IOException e) {
 
             e.printStackTrace();
         }
     }
+    private void init() throws IOException {
+        Patient p=EPAControl.getEPA().getPatient(EPAControl.getCurrLoggedIn());
+        Image icon = SwingFXUtils.toFXImage(ImageIO.read(this.getClass().getClassLoader().getResource("view/image/patientimage.jpg")), null);
+        PatientImage.setImage(icon);
+        pNachname.setText(p.getNachname());
+        pNachname.setVisible(true);
+        pVorname.setText(p.getVorname());
+        pVorname.setVisible(true);
+        pSex.setText(p.getGeschlecht());
+        pSex.setVisible(true);
+        pBday.setText(p.getGesburtsDatum());
+        pBday.setVisible(true);
+        pAdress.getChildren().add(new Text(p.getAddress()));
+        pAdress.setVisible(true);
+    }
     @FXML
-    void zumLoginView(){
+    void zumLoginView(ActionEvent e){
         mainStage.setScene(new Scene(new LoginViewController(mainStage)));
     }
-
+    @FXML
+    void zumHausArzt(ActionEvent e){
+        Patient p=EPAControl.getEPA().getPatient(EPAControl.getCurrLoggedIn());
+        if(p.getBehandelnderArzt()==null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("");
+            alert.setHeaderText("Error");
+            String s ="SIe haben keinen Hausarzt ";
+            alert.setContentText(s);
+            alert.show();
+        }
+        else{
+            mainStage.setScene(new Scene(new PatientArztViewController(mainStage, p.getBehandelnderArzt(),EPAControl)));
+        }
+    }
 }

@@ -85,16 +85,6 @@ public class EPAController {
         throw new UnsupportedOperationException("Not Yet Implemented!");
     }
 
-    /**
- 	 *
- 	 * TODO: create JavaDoc. 
- 	 * @return String
- 	 * @throws UnsupportedOperationException
- 	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
- 	 */
-    public String getnum() throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not Yet Implemented!");
-    }
 
     /**
  	 *
@@ -190,7 +180,8 @@ public class EPAController {
  	 * @throws UnsupportedOperationException
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
+    public void setCurrLoggedIn(String num){currLoggedIn=num;}
     public String getCurrLoggedIn() throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not Yet Implemented!");
+        return currLoggedIn;
     }
 }

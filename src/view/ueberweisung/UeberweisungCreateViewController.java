@@ -1,16 +1,21 @@
 package view.ueberweisung;
+import controller.EPAController;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TitledPane;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.stage.Stage;
+import model.Untersuchungsbericht;
+import view.FunctionView.ArztMainViewController;
 
-public class UeberweisungCreateViewController {
+import java.io.IOException;
+import java.util.ArrayList;
+
+public class UeberweisungCreateViewController extends ScrollPane {
 
     @FXML
     private BorderPane MainPane1;
@@ -119,6 +124,57 @@ public class UeberweisungCreateViewController {
 
     @FXML
     private TextFlow Notiz2;
+    private EPAController EPAControl;
+    private Stage mainStage;
+    private boolean VnumValid=false;
+    private String pVnum="";
+    private ArrayList<Untersuchungsbericht> BerichtListe;
+    public UeberweisungCreateViewController(Stage primaryStage, EPAController EPAControl) {
+        mainStage= primaryStage;
+        this.EPAControl=EPAControl;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ueberweisung/UeberweisungCreateView.fxml"));
+        loader.setRoot(this);
+        loader.setController(this);
+        try {
+            loader.load();
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void checkVersicherungsnum(){
+        if(Versicherungsnummer.getText().isEmpty()||!(EPAControl.getEPA().checkNumPatient(Versicherungsnummer.getText()))){
+            HiddenText.setText("Versicherungsnummer ist invalid");
+            HiddenText.setVisible(true);
+        }
+        else{
+            // load Untersuchungberichte von Patient
+            // speichern in attribut BerichtListe
+            // show in Flow
+
+            HiddenText.setText("Versicherungsnummer ist valid");
+            HiddenText.setVisible(true);
+            pVnum=Versicherungsnummer.getText();
+            VnumValid=true;
+        }
+    }
+    @FXML
+    void toMainView(){
+        mainStage.setScene(new Scene(new ArztMainViewController(mainStage,EPAControl)));
+    }
+    @FXML
+    void UeberweisungReview(){
+         if(VnumValid&&pVnum.equals(Versicherungsnummer.getText())){
+             if(!(Versicherungsnummer.getText().isEmpty()||ArztBezeich.getText().isEmpty()||ArztBezeich.getText().equals(EPAControl.getCurrLoggedIn())||Auftrag.getText().isEmpty())){
+                 if(EPAControl.getEPA().checkNumArzt(ArztBezeich.getText())){
+                     // delete nicht gewählte Untersuchungsberichte aus Berichtliste
+                     mainStage.setScene(new Scene(new UeberweisungsViewController(Versicherungsnummer.getText(),ArztBezeich.getText(),Auftrag.getText(),BerichtListe,mainStage,EPAControl)));
+                 }
+             }
+         }
+    }
+
 
 }
 

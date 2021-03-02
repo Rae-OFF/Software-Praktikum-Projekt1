@@ -1,4 +1,5 @@
 package view.StartView;
+import controller.BenutzerAnlegenController;
 import controller.EPAController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -97,6 +98,10 @@ public class LoginViewController extends TabPane {
     @FXML
     private Text PatientHiddenText;
     @FXML
+    private Text NeuArztHiddenText;
+    @FXML
+    private Text PatientAnlegenHiddenText;
+    @FXML
     private TextField aFach;
     private Stage mainStage;
     private EPAController EPAControl;
@@ -121,7 +126,8 @@ public class LoginViewController extends TabPane {
              EPA epa= EPAControl.getEPA();
              if(epa.checkNumArzt(aID)){
                  if(epa.getArzt(aID).getPasswort().equals(aPass)){
-                     mainStage.setScene(new Scene(new ArztMainViewController(mainStage,aID)));
+                     EPAControl.setCurrLoggedIn(aID);
+                     mainStage.setScene(new Scene(new ArztMainViewController(mainStage,EPAControl)));
                  }
              }
          }
@@ -134,10 +140,29 @@ public class LoginViewController extends TabPane {
         EPA epa= EPAControl.getEPA();
         if(epa.checkNumPatient(pID)){
             if(epa.getPatient(pID).getPasswort().equals(pPass)){
-                mainStage.setScene(new Scene(new PatientMainViewController(mainStage,pID)));
+                EPAControl.setCurrLoggedIn(pID);
+                mainStage.setScene(new Scene(new PatientMainViewController(mainStage,EPAControl)));
             }
         }
         PatientHiddenText.setVisible(true);
+    }
+    @FXML
+    void neuPatientAnlegen(ActionEvent e){
+        if(!(pAdress.getText().isEmpty()||pNachname.getText().isEmpty()||pSetnum.getText().isEmpty()||pVorname.getText().isEmpty()||pSetpass.getText().isEmpty()||pBday.getValue()==null||!(pIsfemale.isSelected()||pIsmale.isSelected())))
+        {
+          // nutzt BenuterAnlegenController und erzeugt neu PAtient Instanz
+          mainStage.setScene(new Scene(new LoginViewController(mainStage)));
+        }
+        PatientAnlegenHiddenText.setVisible(true);
+    }
+    @FXML
+    void neuArztAnlegen(ActionEvent e){
+        if(!(aFach.getText().isEmpty()||aNachname.getText().isEmpty()||aSetnum.getText().isEmpty()||aVorname.getText().isEmpty()||aSetpass.getText().isEmpty()||aTel.getText().isEmpty()||aBday.getValue()==null||!(aIsfemale.isSelected()||aIsmale.isSelected())))
+        {
+            // nutzt BenuterAnlegenController und erzeugt neu Arzt Instanz
+            mainStage.setScene(new Scene(new LoginViewController(mainStage)));
+        }
+        NeuArztHiddenText.setVisible(true);
     }
 
 }

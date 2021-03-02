@@ -1,4 +1,4 @@
-package view.ueberweisung;
+package view.untersuchungsbericht;
 import javafx.fxml.FXML;
 import javafx.scene.control.TitledPane;
 import javafx.scene.text.Text;

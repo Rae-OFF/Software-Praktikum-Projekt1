@@ -15,7 +15,7 @@
 <?import javafx.scene.text.TextFlow?>
 
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" type="ScrollPane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <BorderPane fx:id="ArtzPreviewPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="916.0" prefWidth="625.0">
          <opaqueInsets>
@@ -56,7 +56,7 @@
                      </rowConstraints>
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Address" GridPane.rowIndex="3" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Artzbezeichnung vom zu überweisenden Artz" GridPane.rowIndex="4" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name von zu überweisendem Artz" GridPane.rowIndex="4" />
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Patientname :      " />
@@ -96,20 +96,27 @@
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="473.0" minWidth="10.0" prefWidth="390.0" />
                      </columnConstraints>
                      <rowConstraints>
-                        <RowConstraints maxHeight="528.0" minHeight="10.0" prefHeight="528.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="528.0" minHeight="10.0" prefHeight="122.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="528.0" minHeight="10.0" prefHeight="406.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="70.0" minHeight="1.0" prefHeight="1.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ScrollPane prefHeight="274.0" prefWidth="363.0" GridPane.columnIndex="1">
+                        <ScrollPane prefHeight="274.0" prefWidth="363.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <content>
                               <FlowPane fx:id="Flow" prefHeight="527.0" prefWidth="389.0" />
                            </content>
                         </ScrollPane>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Medizinische Daten" />
                            </children>
                         </VBox>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Auftrag" />
+                        <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                           <content>
+                              <TextFlow fx:id="Auftragtext" prefHeight="123.0" prefWidth="400.0" />
+                           </content>
+                        </ScrollPane>
                      </children>
                   </GridPane>
                   <GridPane>
@@ -125,8 +132,8 @@
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Artznummer: " />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Datum: " GridPane.rowIndex="1" />
-                        <Button fx:id="Bestaetigen" mnemonicParsing="false" prefHeight="25.0" prefWidth="284.0" text="Bestätigen" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Button fx:id="Zurück" mnemonicParsing="false" prefHeight="25.0" prefWidth="282.0" text="Zurueck" GridPane.rowIndex="2" />
+                        <Button fx:id="Bestaetigen" mnemonicParsing="false" onAction="#ToMainView" prefHeight="25.0" prefWidth="284.0" text="Bestätigen" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button fx:id="Zurück" mnemonicParsing="false" onAction="#ToCreateUeberweisung" prefHeight="25.0" prefWidth="282.0" text="Zurueck" GridPane.rowIndex="2" />
                         <Text fx:id="ArtzNum" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" GridPane.columnIndex="1" />
                         <Text fx:id="Datum" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                      </children>
@@ -139,4 +146,4 @@
          </center>
       </BorderPane>
    </content>
-</ScrollPane>
+</fx:root>
