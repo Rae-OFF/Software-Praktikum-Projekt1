@@ -1,12 +1,18 @@
 package view.untersuchungsbericht;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import controller.EPAController;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
-public class UntersuchungsberichtEingabeController {
+public class UntersuchungsberichtEingabeController extends Parent {
 
 
     @FXML // ResourceBundle that was given to the FXMLLoader
@@ -42,18 +48,20 @@ public class UntersuchungsberichtEingabeController {
     @FXML // fx:id="untersuchungsberichtSaveButton"
     private Button untersuchungsberichtSaveButton; // Value injected by FXMLLoader
 
-    @FXML
-        // This method is called by the FXMLLoader when initialization is complete
-    void initialize() {
-        assert untersuchungsberichtDatum != null : "fx:id=\"untersuchungsberichtDatum\" was not injected: check your FXML file 'model.Untersuchungsbericht eingabe.fxml'.";
-        assert untersuchungsberichtUhrzeit != null : "fx:id=\"untersuchungsberichtUhrzeit\" was not injected: check your FXML file 'model.Untersuchungsbericht eingabe.fxml'.";
-        assert untersuchungsberichtVersicherungsnummer != null : "fx:id=\"untersuchungsberichtVersicherungsnummer\" was not injected: check your FXML file 'model.Untersuchungsbericht eingabe.fxml'.";
-        assert untersuchungsberichtSymptome != null : "fx:id=\"untersuchungsberichtSymptome\" was not injected: check your FXML file 'model.Untersuchungsbericht eingabe.fxml'.";
-        assert untersuchungsberichtICD != null : "fx:id=\"untersuchungsberichtICD\" was not injected: check your FXML file 'model.Untersuchungsbericht eingabe.fxml'.";
-        assert untersuchungsberichtBehandlung != null : "fx:id=\"untersuchungsberichtBehandlung\" was not injected: check your FXML file 'model.Untersuchungsbericht eingabe.fxml'.";
-        assert untersuchungsberichtMedikamente != null : "fx:id=\"untersuchungsberichtMedikamente\" was not injected: check your FXML file 'model.Untersuchungsbericht eingabe.fxml'.";
-        assert untersuchungsberichtNotesField != null : "fx:id=\"untersuchungsberichtNotesField\" was not injected: check your FXML file 'model.Untersuchungsbericht eingabe.fxml'.";
-        assert untersuchungsberichtSaveButton != null : "fx:id=\"untersuchungsberichtSaveButton\" was not injected: check your FXML file 'model.Untersuchungsbericht eingabe.fxml'.";
+    private EPAController EPAControl;
+    private Stage mainStage;
 
+    public UntersuchungsberichtEingabeController(Stage primaryStage, EPAController EPAControl) {
+        mainStage = primaryStage;
+        this.EPAControl = EPAControl;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/untersuchungsbericht/UntersuchungsberichtEingabe.fxml"));
+        loader.setRoot(this);
+        loader.setController(this);
+        try {
+            loader.load();
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
     }
 }
