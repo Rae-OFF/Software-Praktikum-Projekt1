@@ -1,9 +1,11 @@
 package controller;
 
 import AUI.UeberweisungsAUI;
-import model.Ueberweisung;
+import model.*;
 
 import java.lang.UnsupportedOperationException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class UeberweisungsController {
 
@@ -18,30 +20,37 @@ public class UeberweisungsController {
     private UeberweisungsAUI ueberweisungsAUI;
 
     public UeberweisungsController(EPAController e) {
+    	this.ePAController=e;
     }
 
     /**
  	 *
  	 * TODO: create JavaDoc. 
- 	 * @param arztNummer
- 	 * @param patientenNummer
+
  	 * @return Ueberweisung
  	 * @throws UnsupportedOperationException
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
-    public Ueberweisung createUeberweisung(String arztNummer, String patientenNummer) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not Yet Implemented!");
+    public Ueberweisung createUeberweisung(String altArzt,String pnum, String Artzbezeich, String Auftrag, ArrayList<Untersuchungsbericht> berichtliste,String time) throws UnsupportedOperationException {
+		Ueberweisung ueberweisung= new Ueberweisung(altArzt,pnum,Artzbezeich,berichtliste,Auftrag,time);
+		return ueberweisung;
     }
 
     /**
  	 *
- 	 * TODO: create JavaDoc. 
- 	 * @param patientenNummer
- 	 * @param untersuchungsbericht
+
  	 * @throws UnsupportedOperationException
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
-    public void addÜberweisung(String patientenNummer, Ueberweisung untersuchungsbericht) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not Yet Implemented!");
+    public void addÜberweisung( Ueberweisung u) throws UnsupportedOperationException {
+        EPA epa= ePAController.getEPA();
+        Patient p =epa.getPatient(u.getPatientnummer());
+        Arzt neuArzt = epa.getArzt(u.getNeuarztnummer());
+        p.behandeldenArztAendern(neuArzt);
+        neuArzt.addPatientToList(p);
+        p.addUeberweisungsList(u);
+        Arzt altArzt=epa.getArzt(ePAController.getCurrLoggedIn());
+        altArzt.addÜberweisung(u);
+
     }
 }

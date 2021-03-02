@@ -15,6 +15,7 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import model.Patient;
 import view.StartView.LoginViewController;
+import view.ueberweisung.UeberweisungsChooseController;
 
 import javax.imageio.ImageIO;
 import java.io.IOException;
@@ -96,12 +97,17 @@ public class PatientMainViewController extends AnchorPane {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("");
             alert.setHeaderText("Error");
-            String s ="SIe haben keinen Hausarzt ";
+            String s ="Sie haben keinen Hausarzt ";
             alert.setContentText(s);
             alert.show();
         }
         else{
             mainStage.setScene(new Scene(new PatientArztViewController(mainStage, p.getBehandelnderArzt(),EPAControl)));
         }
+    }
+    @FXML
+    void zumUeberweisungsAnsehen(){
+        mainStage.setScene(new Scene(new UeberweisungsChooseController(mainStage, EPAControl)));
+
     }
 }

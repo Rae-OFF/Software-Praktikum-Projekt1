@@ -1,14 +1,26 @@
 package view.ueberweisung;
+import controller.EPAController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TitledPane;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.stage.Stage;
+import model.EPA;
+import model.Patient;
+import model.Ueberweisung;
+import model.Untersuchungsbericht;
+import view.FunctionView.PatientMainViewController;
 
-public class UeberweisungsAnderungViewController {
+import java.io.IOException;
+import java.util.ArrayList;
+
+public class UeberweisungsAnderungViewController extends ScrollPane {
 
     @FXML
     private BorderPane PatientPreviewPane;
@@ -35,141 +47,6 @@ public class UeberweisungsAnderungViewController {
     private FlowPane Flow;
 
     @FXML
-    private TitledPane Bericht1;
-
-    @FXML
-    private Text Date;
-
-    @FXML
-    private RadioButton GrundChoose;
-
-    @FXML
-    private Text Grund;
-
-    @FXML
-    private RadioButton SymtomeChoose;
-
-    @FXML
-    private Text Symtome;
-
-    @FXML
-    private RadioButton ICDChoose;
-
-    @FXML
-    private Text ICD;
-
-    @FXML
-    private TextFlow Behandlung;
-
-    @FXML
-    private TextFlow Medikamente;
-
-    @FXML
-    private TextFlow Notiz;
-
-    @FXML
-    private RadioButton BehandlungChoose;
-
-    @FXML
-    private RadioButton MedChoose;
-
-    @FXML
-    private RadioButton NotizChoose;
-
-    @FXML
-    private RadioButton chooseThis;
-
-    @FXML
-    private TitledPane Bericht11;
-
-    @FXML
-    private Text Date1;
-
-    @FXML
-    private RadioButton GrundChoose1;
-
-    @FXML
-    private Text Grund1;
-
-    @FXML
-    private RadioButton SymtomeChoose1;
-
-    @FXML
-    private Text Symtome1;
-
-    @FXML
-    private RadioButton ICDChoose1;
-
-    @FXML
-    private Text ICD1;
-
-    @FXML
-    private TextFlow Behandlung1;
-
-    @FXML
-    private TextFlow Medikamente1;
-
-    @FXML
-    private TextFlow Notiz1;
-
-    @FXML
-    private RadioButton BehandlungChoose1;
-
-    @FXML
-    private RadioButton MedChoose1;
-
-    @FXML
-    private RadioButton NotizChoose1;
-
-    @FXML
-    private RadioButton chooseThis1;
-
-    @FXML
-    private TitledPane Bericht12;
-
-    @FXML
-    private Text Date2;
-
-    @FXML
-    private RadioButton GrundChoose2;
-
-    @FXML
-    private Text Grund2;
-
-    @FXML
-    private RadioButton SymtomeChoose2;
-
-    @FXML
-    private Text Symtome2;
-
-    @FXML
-    private RadioButton ICDChoose2;
-
-    @FXML
-    private Text ICD2;
-
-    @FXML
-    private TextFlow Behandlung2;
-
-    @FXML
-    private TextFlow Medikamente2;
-
-    @FXML
-    private TextFlow Notiz2;
-
-    @FXML
-    private RadioButton BehandlungChoose2;
-
-    @FXML
-    private RadioButton MedChoose2;
-
-    @FXML
-    private RadioButton NotizChoose2;
-
-    @FXML
-    private RadioButton chooseThis2;
-
-    @FXML
     private Button Save;
 
     @FXML
@@ -180,6 +57,65 @@ public class UeberweisungsAnderungViewController {
 
     @FXML
     private Text Datum;
+
+    private  Stage mainStage;
+    private EPAController epaController;
+    private Ueberweisung u;
+    private ArrayList<Untersuchungsbericht>Choosenuntersuchungsberichts=new ArrayList<Untersuchungsbericht>();
+    public UeberweisungsAnderungViewController(EPAController EPAControl, Stage primary, Ueberweisung u){
+        mainStage=primary;
+        epaController=EPAControl;
+        this.u=u;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ueberweisung/UeberweisungsAnderungView.fxml"));
+        loader.setRoot(this);
+        loader.setController(this);
+        try {
+            loader.load();
+            init();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void init(){
+        Patient p= epaController.getEPA().getPatient(epaController.getCurrLoggedIn());
+        Name.setText(p.getName());
+        Name.setVisible(true);
+        Datum.setText(u.getDate());
+        Datum.setVisible(true);
+        Adress.getChildren().add(new Text(p.getAddress()));
+        Versicherungsnum.setText(p.getNum());
+        Versicherungsnum.setVisible(true);
+        BirthDay.setText(p.getGesburtsDatum());
+        BirthDay.setVisible(true);
+        Sex.setText(p.getGeschlecht());
+        Sex.setVisible(true);
+        NeuArtz.setText(epaController.getEPA().getArzt(u.getNeuarztnummer()).getName());
+        NeuArtz.setVisible(true);
+        ArtzNum.setText(u.getAltArztnummer());
+        ArtzNum.setVisible(true);
+        ArrayList<Untersuchungsbericht> berichtList=u.getUntersuchungsbericht();
+        Flow.getChildren().clear();
+        for(int i=0; i<berichtList.size(); i++){
+            UntersuchungsWahlController uc= new UntersuchungsWahlController(berichtList.get(i));
+            Flow.getChildren().add(uc);
+        }
+    }
+    @FXML
+    void AnderungenSpeichern(ActionEvent event) {
+        for(int i=0; i<Flow.getChildren().size();i++){
+            UntersuchungsWahlController uc= (UntersuchungsWahlController)Flow.getChildren().get(i);
+            if(uc.BerichtChoosen()){Choosenuntersuchungsberichts.add(uc.getUntersuchung());}
+        }
+        u.setUntersuchungsbericht(Choosenuntersuchungsberichts);
+        mainStage.setScene(new Scene(new PatientMainViewController(mainStage,epaController)));
+    }
+
+    @FXML
+    void ToChooseUeberweisung(ActionEvent event) {
+        mainStage.setScene(new Scene(new UeberweisungsChooseController(mainStage,epaController)));
+    }
+
+
 
 }
 

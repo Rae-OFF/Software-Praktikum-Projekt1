@@ -50,6 +50,7 @@ public class EPAController {
 
     public EPAController() {
     	this.ePA=new EPA();
+    	this.ueberweisungsController=new UeberweisungsController(this);
     }
 
     /**
@@ -148,7 +149,7 @@ public class EPAController {
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
     public UeberweisungsController getUeberweisungsController() throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not Yet Implemented!");
+        return ueberweisungsController;
     }
 
     /**

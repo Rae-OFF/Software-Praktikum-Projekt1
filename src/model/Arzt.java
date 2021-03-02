@@ -46,7 +46,7 @@ public class Arzt {
     /**
  	 * 
  	 */
-    private Collection<Patient> patient;
+    private ArrayList<Patient> patient;
 
     /**
  	 * 
@@ -78,7 +78,7 @@ public class Arzt {
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
     public void addPatientToList(Patient patient) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not Yet Implemented!");
+        patientList.add(patient);
     }
 
 
@@ -112,7 +112,7 @@ public class Arzt {
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
     public void addÜberweisung(Ueberweisung u) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not Yet Implemented!");
+        this.ueberweisungList.add(u);
     }
 
     /**

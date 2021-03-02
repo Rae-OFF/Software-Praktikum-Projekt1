@@ -9,10 +9,12 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import model.Patient;
 import model.Untersuchungsbericht;
 import view.FunctionView.ArztMainViewController;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class UeberweisungCreateViewController extends ScrollPane {
@@ -128,7 +130,7 @@ public class UeberweisungCreateViewController extends ScrollPane {
     private Stage mainStage;
     private boolean VnumValid=false;
     private String pVnum="";
-    private ArrayList<Untersuchungsbericht> BerichtListe;
+    private ArrayList<Untersuchungsbericht> BerichtListe=new ArrayList<Untersuchungsbericht>();
     public UeberweisungCreateViewController(Stage primaryStage, EPAController EPAControl) {
         mainStage= primaryStage;
         this.EPAControl=EPAControl;
@@ -147,12 +149,16 @@ public class UeberweisungCreateViewController extends ScrollPane {
         if(Versicherungsnummer.getText().isEmpty()||!(EPAControl.getEPA().checkNumPatient(Versicherungsnummer.getText()))){
             HiddenText.setText("Versicherungsnummer ist invalid");
             HiddenText.setVisible(true);
+            Flow.getChildren().clear();
         }
         else{
-            // load Untersuchungberichte von Patient
-            // speichern in attribut BerichtListe
-            // show in Flow
-
+            Flow.getChildren().clear();
+            Patient p =EPAControl.getEPA().getPatient(Versicherungsnummer.getText());
+            ArrayList<Untersuchungsbericht> berichtliste= p.getUntersuchungList();
+            for(int i= 0; i< berichtliste.size(); i++){
+                UntersuchungBerichtWahlController uc= new UntersuchungBerichtWahlController(berichtliste.get(i));
+                Flow.getChildren().add(uc);
+            }
             HiddenText.setText("Versicherungsnummer ist valid");
             HiddenText.setVisible(true);
             pVnum=Versicherungsnummer.getText();
@@ -168,8 +174,14 @@ public class UeberweisungCreateViewController extends ScrollPane {
          if(VnumValid&&pVnum.equals(Versicherungsnummer.getText())){
              if(!(Versicherungsnummer.getText().isEmpty()||ArztBezeich.getText().isEmpty()||ArztBezeich.getText().equals(EPAControl.getCurrLoggedIn())||Auftrag.getText().isEmpty())){
                  if(EPAControl.getEPA().checkNumArzt(ArztBezeich.getText())){
-                     // delete nicht gewählte Untersuchungsberichte aus Berichtliste
-                     mainStage.setScene(new Scene(new UeberweisungsViewController(Versicherungsnummer.getText(),ArztBezeich.getText(),Auftrag.getText(),BerichtListe,mainStage,EPAControl)));
+                     for(int i= 0; i < Flow.getChildren().size(); i++){
+                         UntersuchungBerichtWahlController uc = (UntersuchungBerichtWahlController) Flow.getChildren().get(i);
+                         if(uc.isChoosen()){
+                             BerichtListe.add(uc.getUntersuchung());
+                         }
+                     }
+                     String time = LocalDateTime.now().toString();
+                     mainStage.setScene(new Scene(new UeberweisungsViewController(Versicherungsnummer.getText(),ArztBezeich.getText(),Auftrag.getText(),BerichtListe,time,mainStage,EPAControl)));
                  }
              }
          }

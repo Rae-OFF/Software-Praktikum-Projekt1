@@ -25,11 +25,7 @@ public class Patient {
 
 	private Arzt behandelnderArzt;
 
-	private Collection<Ueberweisung> überweisung;
 	private String passwort;
-
-
-	private Collection<Untersuchungsbericht> untersuchungsbericht;
 
 	public Patient(String num, String Vorname,String Nachname, String Address, String Geschlecht, String Birth, String pass) {
 		this.passwort=pass;;
@@ -69,25 +65,23 @@ public class Patient {
 	public void setBirth(String b) {
 
 	}
-
-	public List<String> getRevision() {
+    public void addUeberweisungsList(Ueberweisung u){ueberweisungsList.add(u);}
+    public ArrayList<Ueberweisung> getUeberweisungsList(){return ueberweisungsList;}
+	public ArrayList<String> getRevision() {
 		return null;
 	}
 
-	public List<String> getInfo() {
+	public ArrayList<String> getInfo() {
 		return null;
 	}
 
-	public List<Ueberweisung> getÜberweisungList() {
-		return null;
-	}
 
 	public void addUntersuchungsList(Untersuchungsbericht u) {
-
+        untersuchungsList.add(u);
 	}
 
-	public List<Untersuchungsbericht> getUntersuchungList() {
-		return null;
+	public ArrayList<Untersuchungsbericht> getUntersuchungList() {
+		return untersuchungsList;
 	}
 
 	public void behandeldenArztAendern(Arzt artzt) {

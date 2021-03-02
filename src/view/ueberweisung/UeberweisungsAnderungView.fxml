@@ -16,8 +16,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" type="ScrollPane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <BorderPane fx:id="PatientPreviewPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="908.0" prefWidth="627.0">
          <center>
@@ -347,8 +346,8 @@
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Artznummer: " />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Datum: " GridPane.rowIndex="1" />
-                        <Button fx:id="Save" mnemonicParsing="false" prefHeight="25.0" prefWidth="284.0" text="Save" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Button fx:id="Zurück" mnemonicParsing="false" prefHeight="25.0" prefWidth="319.0" text="Zurück" GridPane.rowIndex="2" />
+                        <Button fx:id="Save" mnemonicParsing="false" onAction="#AnderungenSpeichern" prefHeight="25.0" prefWidth="284.0" text="Save" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button fx:id="Zurück" mnemonicParsing="false" onAction="#ToChooseUeberweisung" prefHeight="25.0" prefWidth="319.0" text="Zurück" GridPane.rowIndex="2" />
                         <Text fx:id="ArtzNum" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" GridPane.columnIndex="1" />
                         <Text fx:id="Datum" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                      </children>
@@ -361,4 +360,4 @@
          </center>
       </BorderPane>
    </content>
-</ScrollPane>
+</fx:root>

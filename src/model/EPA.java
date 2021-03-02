@@ -25,12 +25,20 @@ public class EPA {
     public EPA() {
     	arzt= new ArrayList<Arzt>();
     	patient= new ArrayList<Patient>();
+    	ArrayList<Untersuchungsbericht> untersuchungslist=new ArrayList<Untersuchungsbericht>();
     	Arzt a =new Arzt("hai","nguyen","unknown","1234","1234","1900");
-    	arzt.add(a);
-		arzt.add(new Arzt("tram","la","unknown","5678","5678","1090"));
-		Patient p =new Patient("1234","hai","nguyen","ho chi minh stadt","male","10.09.1998","1234");
+    	Arzt a1 = new Arzt("tram","la","unknown","5678","5678","1090");
+		arzt.add(a1);
+		Patient p =new Patient("1234","hai","nguyen","ho chi minh stadt","male","1.1.2022","1234");
+		Untersuchungsbericht u= new Untersuchungsbericht("","",null,"",null,"","",null);
 		p.behandeldenArztAendern(a);
-		Patient p1 =new Patient("5678","tram","la","ho chi minh stadt","female","10.09.1998","5678");
+		p.addUntersuchungsList(u);
+		untersuchungslist.add(u);
+		Ueberweisung ue = new Ueberweisung("1234","1234","5678",untersuchungslist,"test","1.1.2022");
+		p.addUeberweisungsList(ue);
+		a.addPatientToList(p);
+		arzt.add(a);
+		Patient p1 =new Patient("5678","tram","la","ho chi minh stadt","female","1.1.2022","5678");
 		patient.add(p);
 		patient.add(p1);
     }

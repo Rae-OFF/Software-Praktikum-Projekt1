@@ -13,6 +13,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import model.Patient;
+import model.Ueberweisung;
 import model.Untersuchungsbericht;
 import view.FunctionView.ArztMainViewController;
 
@@ -55,16 +56,20 @@ public class UeberweisungsViewController extends ScrollPane {
     @FXML
     private Text ArtzNum;
 
+
     @FXML
     private Text Datum;
+
     private ArrayList<Untersuchungsbericht> berichtliste;
     private Stage mainStage;
     private  EPAController EPAControl;
     private String neuArzt;
     private String pnum;
     private String Auftrag;
-    public UeberweisungsViewController(String pnum, String Artzbezeich, String Auftrag, ArrayList<Untersuchungsbericht> berichtliste, Stage primaryStage, EPAController EPAControl) {
+    private String time;
+    public UeberweisungsViewController(String pnum, String Artzbezeich, String Auftrag, ArrayList<Untersuchungsbericht> berichtliste, String time,Stage primaryStage, EPAController EPAControl) {
         mainStage= primaryStage;
+        this.time=time;
         this.pnum=pnum;
         neuArzt= Artzbezeich;
         this.EPAControl=EPAControl;
@@ -85,6 +90,8 @@ public class UeberweisungsViewController extends ScrollPane {
         Patient p = EPAControl.getEPA().getPatient(pnum);
         Name.setText(p.getName());
         Name.setVisible(true);
+        Datum.setText(time);
+        Datum.setVisible(true);
         Adress.getChildren().add(new Text(p.getAddress()));
         Auftragtext.getChildren().add(new Text(Auftrag));
         Versicherungsnum.setText(p.getNum());
@@ -97,15 +104,21 @@ public class UeberweisungsViewController extends ScrollPane {
         ArtzNum.setVisible(true);
         ArtzBez.setText(EPAControl.getEPA().getArzt(neuArzt).getName());
         ArtzBez.setVisible(true);
-        // add element in berichtliste to flow
+        for(int i=0; i<berichtliste.size();i++){
+            UntersuchungBerichtWahlController uc = new UntersuchungBerichtWahlController(berichtliste.get(i));
+            uc.setButtonDisable();
+            Flow.getChildren().add(uc);
+        }
     }
     @FXML
     void ToMainView(ActionEvent e){
+        // create new Ueberweisung with UeberweisungsController parameter ist atribute ()
+        Ueberweisung ueberweisung =EPAControl.getUeberweisungsController().createUeberweisung(EPAControl.getCurrLoggedIn(),pnum,neuArzt,Auftrag,berichtliste,time);
+        EPAControl.getUeberweisungsController().addÜberweisung(ueberweisung);
         mainStage.setScene(new Scene(new ArztMainViewController(mainStage,EPAControl)));
     }
     @FXML
     void ToCreateUeberweisung(ActionEvent e){
-        // create new Ueberweisung with UeberweisungsController parameter ist atribute ()
         mainStage.setScene(new Scene(new UeberweisungCreateViewController(mainStage, EPAControl)));
     }
 

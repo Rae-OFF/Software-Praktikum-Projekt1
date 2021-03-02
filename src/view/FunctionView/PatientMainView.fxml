@@ -66,7 +66,7 @@
          <children>
             <Button fx:id="pZumDataAndern" mnemonicParsing="false" prefHeight="92.0" prefWidth="297.0" text="Daten Andern" />
             <Button fx:id="pZumUntersuchungsberichte" mnemonicParsing="false" prefHeight="49.0" prefWidth="271.0" text="Untersuchungsberichte ansehen" GridPane.columnIndex="1" />
-            <Button fx:id="pZumUeberweisung" mnemonicParsing="false" prefHeight="54.0" prefWidth="277.0" text="Überweisungen ansehen" GridPane.rowIndex="1" />
+            <Button fx:id="pZumUeberweisung" mnemonicParsing="false" onAction="#zumUeberweisungsAnsehen" prefHeight="54.0" prefWidth="277.0" text="Überweisungen ansehen" GridPane.rowIndex="1" />
             <Button fx:id="pZumRevision" mnemonicParsing="false" prefHeight="117.0" prefWidth="320.0" text="Revisionen" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
