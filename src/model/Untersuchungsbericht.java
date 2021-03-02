@@ -3,13 +3,14 @@ package model;
 import java.time.LocalDateTime;
 import java.util.List;
 
+
 public class Untersuchungsbericht {
 
 	private String patientVersicherungnum;
 
 	private LocalDateTime datum;
 
-	private List<String> sonstigesInfo;
+	private List<String> notes;
 
 	private String iCD;
 
@@ -26,7 +27,7 @@ public class Untersuchungsbericht {
 	}
 
 	public List<String> getInfo() {
-		return sonstigesInfo;
+		return notes;
 	}
 
 	public String getPatientNum() {
@@ -39,6 +40,26 @@ public class Untersuchungsbericht {
 
 	public String getICD() {
 		return iCD;
+	}
+
+	public String toString(){
+		String ausgabe="";
+		ausgabe+="Name: "+""+"/n";
+		ausgabe+="Datum: "+datum+"/n";
+		ausgabe+="Behandelnder Arzt: "+""+"/n";
+		ausgabe+="ICD: "+iCD+"/n";
+		ausgabe+="Diagnose: "+diagnose+"/n";
+		ausgabe+="verabreichte Medikamente:/n";
+		for (String x:med) {
+			ausgabe+="-"+x;
+		}
+		ausgabe+="/n";
+		ausgabe+="Behandlung: "+behandlung+"/n";
+		ausgabe+="Notizen:/n";
+		for (String y:notes) {
+			ausgabe+="-"+y;
+		}
+		return ausgabe;
 	}
 
 }

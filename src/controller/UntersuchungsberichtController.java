@@ -5,12 +5,9 @@ import model.EPA;
 import model.Untersuchungsbericht;
 import model.Arzt;
 import model.Patient;
-
-import java.lang.UnsupportedOperationException;
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
 import java.time.LocalDateTime;
-import java.util.Iterator;
 import java.util.List;
 
 import static java.lang.Character.isLetter;
