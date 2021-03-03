@@ -51,6 +51,7 @@ public class EPAController {
     public EPAController() {
     	this.ePA=new EPA();
     	this.ueberweisungsController=new UeberweisungsController(this);
+		this.untersuchungsberichtController=new UntersuchungsberichtController(this);
     }
 
     /**

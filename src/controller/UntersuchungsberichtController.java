@@ -27,8 +27,7 @@ public class UntersuchungsberichtController {
     }
 
     /**
- 	 *
- 	 * TODO: create JavaDoc.
+ 	 *Erstellt ein neues Untersuchungsberichtobjekt und fügt es hinzu.
 	 * @param versicherungsnummer des Patienten
  	 * @param dateTime Datum und Uhrzeit
  	 * @param diagnose des Patienten
@@ -43,8 +42,7 @@ public class UntersuchungsberichtController {
     }
 
     /**
- 	 *
- 	 * TODO: create JavaDoc. 
+ 	 * Fügt den angegebenen Untersuchungsbericht dem angegebenen Patienten und dem Arzt der diesen erstellt hinzu.
  	 * @param versicherungsnummer ist die Versicherungsnummer des Patienten.
  	 * @param untersuchungsbericht ist der Untersuchungsbericht der beim Arzt und beim Patienten hinzugefügt werden soll.
  	 */
@@ -56,63 +54,108 @@ public class UntersuchungsberichtController {
         patient.addUntersuchungsList(untersuchungsbericht);
     }
 
-    /**
- 	 *
- 	 * TODO: create JavaDoc. 
- 	 * @return boolean gibt wahr zurück wenn die eingegebenen Daten korrekt sind.
- 	 */
-    public boolean iCDUeberpruefen(String icd){
+	/**
+	 * Ist zum überprüfen der ICDeingabe.
+	 * @param icd die zu überprüfende ICD.
+	 * @return true für Format ist richtig.
+	 */
+    public static boolean iCDUeberpruefen(String icd){
 		CharacterIterator icdIterator = new StringCharacterIterator(icd);
-		if(!Character.isUpperCase(icdIterator.current())||icdIterator.current()==CharacterIterator.DONE){
+		if(!Character.isUpperCase(icdIterator.current())){
 			return false;
 		}
 		else{
 			icdIterator.next();
-			if(icdIterator.current()==CharacterIterator.DONE||!(Character.isDigit(icdIterator.current())||Character.isDigit(icdIterator.next()))||icdIterator.current()==CharacterIterator.DONE){
+			if(!(Character.isDigit(icdIterator.current()))){
 				return false;
 			}
 			else{
 				icdIterator.next();
-				if(icdIterator.current()!=CharacterIterator.DONE&&icdIterator.current()!='.'||icdIterator.current()==CharacterIterator.DONE){
+				if(!Character.isDigit(icdIterator.current())){
 					return false;
 				}
 				else{
 					icdIterator.next();
-					if(icdIterator.current()==CharacterIterator.DONE||!(Character.isDigit(icdIterator.current())||Character.isDigit(icdIterator.next()))||icdIterator.current()==CharacterIterator.DONE){
+					if(icdIterator.current()!='.'&&icdIterator.current() !=CharacterIterator.DONE){
 						return false;
 					}
-					else return true;
+					else{
+						if(icdIterator.current() !=CharacterIterator.DONE){
+							icdIterator.next();
+							if(!Character.isDigit(icdIterator.current())){
+								return false;
+							}
+							else
+								icdIterator.next();
+								if(!Character.isDigit(icdIterator.current())&&icdIterator.current() !=CharacterIterator.DONE){
+								return false;
+								}
+								else return true;
+						}
+						else return true;
+					}
 				}
 			}
 		}
     }
 
+	/**
+	 * Ist zum überprüfen der Versicherungsnummerneingabe.
+	 * @return true für Format ist richtig.
+	 */
     public boolean versicherungsnummerUeberpruefen(String versicherungsnummer){
 		EPA epa = ePAController.getEPA();
 		return epa.checkNumPatient(versicherungsnummer);
 	}
 
-	public boolean UhrzeitUeberpruefen(String uhrzeit){
+
+	/**
+	 * Ist zum überprüfen der Urzeiteingabe.
+	 * @param uhrzeit die zu überprüfende Uhrzeit.
+	 * @return true für Format ist richtig.
+	 */
+	public static boolean uhrzeitUeberpruefen(String uhrzeit){
 		CharacterIterator timeIterator = new StringCharacterIterator(uhrzeit);
-		if(!Character.isDigit(timeIterator.current())|| timeIterator.current() >2){
+		String stunden="";
+		int stundenInt;
+		String minuten="";
+		int minutenInt;
+		if(!Character.isDigit(timeIterator.current())){
 			return false;
 		}
 		else{
+			stunden+=timeIterator.current();
 			timeIterator.next();
-			if(!Character.isDigit(timeIterator.current())||timeIterator.next()!=':'){
+			if(!Character.isDigit(timeIterator.current())){
 				return false;
 			}
 			else{
+				stunden+=timeIterator.current();
+				stundenInt=Integer.parseInt(stunden);
 				timeIterator.next();
-				if(!Character.isDigit(timeIterator.current())|| timeIterator.current() >5){
+				if(timeIterator.current()!=':'||(stundenInt>24&&stundenInt<0)){
 					return false;
 				}
-				else{
+				else
+				{
 					timeIterator.next();
 					if(!Character.isDigit(timeIterator.current())){
 						return false;
 					}
-					else return true;
+					else{
+						minuten+=timeIterator.current();
+						timeIterator.next();
+						if(!Character.isDigit(timeIterator.current())){
+							return false;
+						}
+						else
+							minuten+=timeIterator.current();
+							minutenInt=Integer.parseInt(minuten);
+							if(minutenInt>60&&stundenInt<0){
+								return false;
+							}
+							else return true;
+					}
 				}
 			}
 		}
