@@ -21,14 +21,12 @@ public class BenutzerAnlegenController {
     /**
  	 *
  	 * TODO: create JavaDoc. 
-	 * @param Vorname Datum und Uhrzeit
-	 * @param Nachname des Patienten
-	 * @param fach -ikamente des Patienten
-	 * @param num des Patienten
-	 * @param passwort des Patienten
-	 * @param Tel des Patienten
- 	 * @throws UnsupportedOperationException
- 	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
+	 * @param Vorname des Arztes
+	 * @param Nachname des Arztes
+	 * @param fach  des Arztes
+	 * @param num des Arztes
+	 * @param passwort des Arztes
+	 * @param Tel des Arztes
  	 */
     public void ArztAnlegen(String Vorname,String Nachname, String fach, String num, String passwort, String Tel)
 			throws UnsupportedOperationException {
@@ -39,7 +37,6 @@ public class BenutzerAnlegenController {
 
 
 
-        throw new UnsupportedOperationException("Not Yet Implemented!");
     }
 
     /**
@@ -51,15 +48,12 @@ public class BenutzerAnlegenController {
 	 * @param Address -ikamente des Patienten
 	 * @param Geschlecht des Patienten
 	 * @param pass des Patienten
- 	 * @throws UnsupportedOperationException
- 	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
- 	 */
+	 */
     public void PatientAnlegen(String versicherungsnummer, String Vorname,String Nachname, String Address, String Geschlecht, String Birth, String pass)
 			throws UnsupportedOperationException {
     	//neuen Patient anlegen
 		Patient patient = new Patient(versicherungsnummer, Vorname, Nachname, Address, Geschlecht, Birth, pass) ;
 
 
-		throw new UnsupportedOperationException("Not Yet Implemented!");
     }
 }
