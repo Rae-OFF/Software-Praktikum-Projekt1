@@ -159,7 +159,12 @@ public class Arzt {
     public ArrayList<String> getInfo() throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Not Yet Implemented!");
     }
-
+    public Patient getPatient(String num){
+		for(int i=0; i< patientList.size(); i++){
+			if(patientList.get(i).getNum().equals(num)){return patientList.get(i);}
+		}
+    	return null;
+	}
     /**
  	 *
  	 * TODO: create JavaDoc. 
@@ -169,7 +174,10 @@ public class Arzt {
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
     public boolean checkPatientValid(String versicherungsnummer) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not Yet Implemented!");
+        for(int i=0; i< patientList.size(); i++){
+        	if(patientList.get(i).getNum().equals(versicherungsnummer)){return true;}
+		}
+        return false;
     }
 
     /**

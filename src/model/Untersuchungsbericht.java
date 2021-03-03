@@ -45,7 +45,7 @@ public class Untersuchungsbericht {
 	public String toString(){
 		String ausgabe="";
 		ausgabe+="Name: "+""+"/n";
-		ausgabe+="Datum: "+datum+"/n";
+		ausgabe+="Datum: "+datum  +"/n";
 		ausgabe+="Behandelnder Arzt: "+""+"/n";
 		ausgabe+="ICD: "+iCD+"/n";
 		ausgabe+="Diagnose: "+diagnose+"/n";
