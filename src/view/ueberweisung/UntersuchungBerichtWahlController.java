@@ -38,9 +38,9 @@ public class UntersuchungBerichtWahlController extends TitledPane {
 
     @FXML
     private TextFlow Notiz;
-    private Untersuchungsbericht untersuchung;
-    public UntersuchungBerichtWahlController(Untersuchungsbericht u){
-        untersuchung=u;
+    private Untersuchungsbericht untersuchungsbericht;
+    public UntersuchungBerichtWahlController(Untersuchungsbericht untersuchungsbericht){
+        this.untersuchungsbericht=untersuchungsbericht;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ueberweisung/untersuchung.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -66,7 +66,7 @@ public class UntersuchungBerichtWahlController extends TitledPane {
        Notiz.setVisible(true);
     }
     public boolean isChoosen(){return ChooseButton.isSelected();}
-    public Untersuchungsbericht getUntersuchung(){return untersuchung;}
+    public Untersuchungsbericht getUntersuchung(){return untersuchungsbericht;}
     public void setButtonDisable(){ChooseButton.setDisable(true);ChooseButton.setVisible(false);}
 
 }

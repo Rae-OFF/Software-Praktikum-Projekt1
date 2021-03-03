@@ -6,6 +6,7 @@ import java.lang.UnsupportedOperationException;
 
 public class EPAController {
 
+	private boolean isArzt;
     /**
  	 * 
  	 */
@@ -51,8 +52,13 @@ public class EPAController {
     	this.ueberweisungsController=new UeberweisungsController(this);
 		this.untersuchungsberichtController=new UntersuchungsberichtController(this);
     }
+    public void setisArzt(boolean b){this.isArzt=b;}
 
-    /**
+	public boolean isArzt() {
+		return isArzt;
+	}
+
+	/**
  	 *
  	 * TODO: create JavaDoc. 
  	 * @return EPA
@@ -66,12 +72,12 @@ public class EPAController {
     /**
  	 *
  	 * TODO: create JavaDoc. 
- 	 * @param e
+ 	 * @param
  	 * @throws UnsupportedOperationException
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
-    public void setEPA(EPA e) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not Yet Implemented!");
+    public void setEPA(EPA epa) throws UnsupportedOperationException {
+        this.ePA=epa;
     }
 
     /**
@@ -93,17 +99,6 @@ public class EPAController {
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
     public void setNum() throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not Yet Implemented!");
-    }
-
-    /**
- 	 *
- 	 * TODO: create JavaDoc. 
- 	 * @return int
- 	 * @throws UnsupportedOperationException
- 	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
- 	 */
-    public int getPatientÜberweisungsController() throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Not Yet Implemented!");
     }
 

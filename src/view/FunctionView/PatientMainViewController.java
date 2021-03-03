@@ -14,6 +14,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import model.Patient;
+import view.Revision.RevisionsController;
 import view.StartView.LoginViewController;
 import view.ueberweisung.UeberweisungsChooseController;
 
@@ -56,10 +57,10 @@ public class PatientMainViewController extends AnchorPane {
     @FXML
     private ImageView PatientImage;
     private Stage mainStage;
-    private EPAController EPAControl;
-    public PatientMainViewController(Stage primaryStage, EPAController EPAControl) {
+    private EPAController epaController;
+    public PatientMainViewController(Stage primaryStage, EPAController epaController) {
         mainStage= primaryStage;
-        this.EPAControl=EPAControl;
+        this.epaController=epaController;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FunctionView/PatientMainView.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -72,7 +73,7 @@ public class PatientMainViewController extends AnchorPane {
         }
     }
     private void init() throws IOException {
-        Patient p=EPAControl.getEPA().getPatient(EPAControl.getCurrLoggedIn());
+        Patient p=epaController.getEPA().getPatient(epaController.getCurrLoggedIn());
         Image icon = SwingFXUtils.toFXImage(ImageIO.read(this.getClass().getClassLoader().getResource("view/image/patientimage.jpg")), null);
         PatientImage.setImage(icon);
         pNachname.setText(p.getNachname());
@@ -82,6 +83,7 @@ public class PatientMainViewController extends AnchorPane {
         pSex.setText(p.getGeschlecht());
         pSex.setVisible(true);
         pBday.setText(p.getGesburtsDatum());
+        if(p.isNeuDaten()){pZumUeberweisung.setText(pZumUeberweisung.getText()+"(*)");}
         pBday.setVisible(true);
         pAdress.getChildren().add(new Text(p.getAddress()));
         pAdress.setVisible(true);
@@ -92,7 +94,7 @@ public class PatientMainViewController extends AnchorPane {
     }
     @FXML
     void zumHausArzt(ActionEvent e){
-        Patient p=EPAControl.getEPA().getPatient(EPAControl.getCurrLoggedIn());
+        Patient p=epaController.getEPA().getPatient(epaController.getCurrLoggedIn());
         if(p.getBehandelnderArzt()==null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("");
@@ -102,12 +104,15 @@ public class PatientMainViewController extends AnchorPane {
             alert.show();
         }
         else{
-            mainStage.setScene(new Scene(new PatientArztViewController(mainStage, p.getBehandelnderArzt(),EPAControl)));
+            mainStage.setScene(new Scene(new PatientArztViewController(mainStage, p.getBehandelnderArzt(),epaController)));
         }
     }
     @FXML
     void zumUeberweisungsAnsehen(){
-        mainStage.setScene(new Scene(new UeberweisungsChooseController(mainStage, EPAControl)));
-
+        mainStage.setScene(new Scene(new UeberweisungsChooseController(mainStage, epaController)));
+    }
+    @FXML
+    void zumRevision(){
+        mainStage.setScene(new Scene(new RevisionsController(mainStage,epaController)));
     }
 }

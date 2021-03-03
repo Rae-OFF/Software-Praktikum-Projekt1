@@ -1,17 +1,18 @@
 package model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 public class Patient {
 
-	private String num;
+	private String versicherungNum;
 
 	private ArrayList<Ueberweisung> ueberweisungsList;
-
-	private String Vorname;
-	private String Nachname;
+	private ArrayList<Untersuchungsbericht> untersuchungsberichtsList;
+	private String vorName;
+	private String nachName;
 
 	private String address;
 
@@ -21,80 +22,91 @@ public class Patient {
 
 	private ArrayList<String> revision;
 
-	private ArrayList<Untersuchungsbericht> untersuchungsList;
-
 	private Arzt behandelnderArzt;
-
+	private String nameAltArzt;
+    private boolean isNeuDaten=false;
 	private String passwort;
-
-	public Patient(String num, String Vorname,String Nachname, String Address, String Geschlecht, String Birth, String pass) {
-		this.passwort=pass;;
-        this.num=num;
-		this.Vorname=Vorname;
-		this.Nachname=Nachname;
-        this.address=Address;
-        this.geschlecht=Geschlecht;
-        this.gesburtsDatum=Birth;
-		ueberweisungsList= new ArrayList<Ueberweisung>();
-		revision= new ArrayList<String>();
-		untersuchungsList= new ArrayList<Untersuchungsbericht>();
+	public Patient(String versicherungNum, String vorName,String nachName, String address, String geschlecht, String birth, String passWort) {
+		this.passwort=passWort;
+        this.versicherungNum=versicherungNum;
+		this.vorName=vorName;
+		this.nachName=nachName;
+        this.address=address;
+        this.geschlecht=geschlecht;
+        this.gesburtsDatum=birth;
+		this.ueberweisungsList= new ArrayList<Ueberweisung>();
+		this.untersuchungsberichtsList= new ArrayList<Untersuchungsbericht>();
+		this.revision= new ArrayList<String>();
 	}
 
 	public String getNum() {
-		return num;
+		return versicherungNum;
 	}
     public String getGesburtsDatum(){return gesburtsDatum;}
 	public void addToRevision(String r) {
-
+        revision.add(r);
 	}
-
 	public void setVorname(String n) {
-        Vorname=n;
+        vorName=n;
 	}
 	public void setNachname(String n) {
-        Nachname=n;
+        nachName=n;
 	}
 	public void setAddress(String a) {
-
+         address=a;
 	}
-
 	public void setGeschlecht(String s) {
-
+        geschlecht=s;
 	}
-
 	public void setBirth(String b) {
-
+        gesburtsDatum=b;
 	}
-    public void addUeberweisungsList(Ueberweisung u){ueberweisungsList.add(u);}
+	public void setNeuDaten(boolean b){isNeuDaten=b;}
+	public boolean isNeuDaten(){return isNeuDaten;}
+	public void updateDaten(){
+		int count=0;
+		for(int i=0; i< ueberweisungsList.size();i++){
+			if(!ueberweisungsList.get(i).isDatenStimmZu()){
+                count++;
+			}
+		}
+		isNeuDaten=(count!=0);
+	}
+    public void addUeberweisungsList(Ueberweisung u){
+		nameAltArzt= behandelnderArzt.getName();
+		String time =LocalDateTime.now().toString();
+		String s =time+" Sie wurden von Arzt(in) "+nameAltArzt+" überwiesen";
+		revision.add(s);
+		setNeuDaten(true);
+		ueberweisungsList.add(u);
+	}
     public ArrayList<Ueberweisung> getUeberweisungsList(){return ueberweisungsList;}
+
 	public ArrayList<String> getRevision() {
-		return null;
+		return revision;
 	}
-
-	public ArrayList<String> getInfo() {
-		return null;
-	}
-
 
 	public void addUntersuchungsList(Untersuchungsbericht u) {
-        untersuchungsList.add(u);
+        untersuchungsberichtsList.add(u);
 	}
 
 	public ArrayList<Untersuchungsbericht> getUntersuchungList() {
-		return untersuchungsList;
+		return untersuchungsberichtsList;
 	}
 
 	public void behandeldenArztAendern(Arzt artzt) {
+		String time =LocalDateTime.now().toString();
+		String s =time+" Arzt(in) "+ artzt.getName()+"ist nun ihr(e) Hausarzt(in)";
+		revision.add(s);
 		this.behandelnderArzt=artzt;
-
 	}
 	public Arzt getBehandelnderArzt(){return behandelnderArzt;}
     public String getPasswort(){return passwort;}
 	public String getName() {
-		return Vorname+" "+Nachname;
+		return vorName+" "+nachName;
 	}
-	public String getVorname(){return Vorname;}
-	public String getNachname(){return Nachname;}
+	public String getVorname(){return vorName;}
+	public String getNachname(){return nachName;}
 	public String getAddress(){return address;}
 	public String getGeschlecht(){return geschlecht;}
 	public void setPasswort(String p){passwort=p;}

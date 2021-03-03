@@ -29,7 +29,6 @@ public class UeberweisungsChooseController extends AnchorPane {
     private Button ToFuncView;
     private Stage mainStage;
     private  EPAController epaController;
-    private ArrayList<Button> Ueberweisungslist= new ArrayList<Button>();
     public UeberweisungsChooseController(Stage primaryStage, EPAController EPAControl){
         mainStage=primaryStage;
         epaController=EPAControl;
@@ -49,16 +48,16 @@ public class UeberweisungsChooseController extends AnchorPane {
         if(PatientUeberweisung.size()>0){
             Flow.getChildren().clear();
             for(int i=0; i<PatientUeberweisung.size();i++){
-                Button b = new Button();
-                b.setText("Überweisung am "+PatientUeberweisung.get(i).getDate()+" vom Arzt "+epaController.getEPA().getArzt(PatientUeberweisung.get(i).getAltArztnummer()).getName()+" zu Arzt "+epaController.getEPA().getArzt(PatientUeberweisung.get(i).getNeuarztnummer()).getName());
+                Button button = new Button();
+                button.setText("Überweisung am "+PatientUeberweisung.get(i).getDate()+" vom Arzt "+epaController.getEPA().getArzt(PatientUeberweisung.get(i).getAltArztnummer()).getName()+" zu Arzt "+epaController.getEPA().getArzt(PatientUeberweisung.get(i).getNeuarztnummer()).getName());
                 Ueberweisung u=PatientUeberweisung.get(i);
-                b.setOnAction(event -> {
+                button.setOnAction(event -> {
                     mainStage.setScene(new Scene(new UeberweisungsAnderungViewController(epaController,mainStage,u)));
                     event.consume();
                 });
-                b.setPrefWidth(540.0);
-                b.setPrefHeight(90.0);
-                Flow.getChildren().add(b);
+                button.setPrefWidth(540.0);
+                button.setPrefHeight(90.0);
+                Flow.getChildren().add(button);
             }
         }
         else{

@@ -60,21 +60,21 @@ public class UeberweisungsViewController extends ScrollPane {
     @FXML
     private Text Datum;
 
-    private ArrayList<Untersuchungsbericht> berichtliste;
+    private ArrayList<Untersuchungsbericht> berichtListe;
     private Stage mainStage;
-    private  EPAController EPAControl;
+    private  EPAController epaController;
     private String neuArzt;
-    private String pnum;
-    private String Auftrag;
+    private String versicherungsNummmer;
+    private String auftrag;
     private String time;
-    public UeberweisungsViewController(String pnum, String Artzbezeich, String Auftrag, ArrayList<Untersuchungsbericht> berichtliste, String time,Stage primaryStage, EPAController EPAControl) {
-        mainStage= primaryStage;
+    public UeberweisungsViewController(String versicherung, String neuArztNum, String auftrag, ArrayList<Untersuchungsbericht> berichtListe, String time,Stage primaryStage, EPAController epaController) {
+        this.mainStage= primaryStage;
         this.time=time;
-        this.pnum=pnum;
-        neuArzt= Artzbezeich;
-        this.EPAControl=EPAControl;
-        this.Auftrag=Auftrag;
-        this.berichtliste=berichtliste;
+        this.versicherungsNummmer=versicherung;
+        this.neuArzt= neuArztNum;
+        this.epaController=epaController;
+        this.auftrag=auftrag;
+        this.berichtListe=berichtListe;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ueberweisung/UeberweisungsView.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -87,25 +87,25 @@ public class UeberweisungsViewController extends ScrollPane {
         }
     }
     private void init(){
-        Patient p = EPAControl.getEPA().getPatient(pnum);
+        Patient p = epaController.getEPA().getPatient(versicherungsNummmer);
         Name.setText(p.getName());
         Name.setVisible(true);
         Datum.setText(time);
         Datum.setVisible(true);
         Adress.getChildren().add(new Text(p.getAddress()));
-        Auftragtext.getChildren().add(new Text(Auftrag));
+        Auftragtext.getChildren().add(new Text(auftrag));
         Versicherungsnum.setText(p.getNum());
         Versicherungsnum.setVisible(true);
         BirthDay.setText(p.getGesburtsDatum());
         BirthDay.setVisible(true);
         Sex.setText(p.getGeschlecht());
         Sex.setVisible(true);
-        ArtzNum.setText(EPAControl.getCurrLoggedIn());
+        ArtzNum.setText(epaController.getCurrLoggedIn());
         ArtzNum.setVisible(true);
-        ArtzBez.setText(EPAControl.getEPA().getArzt(neuArzt).getName());
+        ArtzBez.setText(epaController.getEPA().getArzt(neuArzt).getName());
         ArtzBez.setVisible(true);
-        for(int i=0; i<berichtliste.size();i++){
-            UntersuchungBerichtWahlController uc = new UntersuchungBerichtWahlController(berichtliste.get(i));
+        for(int i=0; i<berichtListe.size();i++){
+            UntersuchungBerichtWahlController uc = new UntersuchungBerichtWahlController(berichtListe.get(i));
             uc.setButtonDisable();
             Flow.getChildren().add(uc);
         }
@@ -113,13 +113,13 @@ public class UeberweisungsViewController extends ScrollPane {
     @FXML
     void ToMainView(ActionEvent e){
         // create new Ueberweisung with UeberweisungsController parameter ist atribute ()
-        Ueberweisung ueberweisung =EPAControl.getUeberweisungsController().createUeberweisung(EPAControl.getCurrLoggedIn(),pnum,neuArzt,Auftrag,berichtliste,time);
-        EPAControl.getUeberweisungsController().addÜberweisung(ueberweisung);
-        mainStage.setScene(new Scene(new ArztMainViewController(mainStage,EPAControl)));
+        Ueberweisung ueberweisung =epaController.getUeberweisungsController().createUeberweisung(epaController.getCurrLoggedIn(),versicherungsNummmer,neuArzt,auftrag,berichtListe,time);
+        epaController.getUeberweisungsController().addUeberweisung(ueberweisung);
+        mainStage.setScene(new Scene(new ArztMainViewController(mainStage,epaController)));
     }
     @FXML
     void ToCreateUeberweisung(ActionEvent e){
-        mainStage.setScene(new Scene(new UeberweisungCreateViewController(mainStage, EPAControl)));
+        mainStage.setScene(new Scene(new UeberweisungCreateViewController(mainStage, epaController)));
     }
 
 

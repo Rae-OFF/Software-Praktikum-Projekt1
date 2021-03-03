@@ -10,12 +10,12 @@ public class EPA {
     /**
  	 * 
  	 */
-    private ArrayList<Arzt> arzt;
+    private ArrayList<Arzt> arztList;
 
     /**
  	 * 
  	 */
-    private ArrayList<Patient> patient;
+    private ArrayList<Patient> patientList;
 
     /**
  	 * 
@@ -23,24 +23,29 @@ public class EPA {
 
 
     public EPA() {
-    	arzt= new ArrayList<Arzt>();
-    	patient= new ArrayList<Patient>();
+    	this.arztList= new ArrayList<Arzt>();
+    	this.patientList= new ArrayList<Patient>();
     	ArrayList<Untersuchungsbericht> untersuchungslist=new ArrayList<Untersuchungsbericht>();
-    	Arzt a =new Arzt("hai","nguyen","unknown","1234","1234","1900");
-    	Arzt a1 = new Arzt("tram","la","unknown","5678","5678","1090");
-		arzt.add(a1);
-		Patient p =new Patient("1234","hai","nguyen","ho chi minh stadt","male","1.1.2022","1234");
-		Untersuchungsbericht u= new Untersuchungsbericht("","",null,"",null,"","",null);
-		p.behandeldenArztAendern(a);
-		p.addUntersuchungsList(u);
-		untersuchungslist.add(u);
-		Ueberweisung ue = new Ueberweisung("1234","1234","5678",untersuchungslist,"test","1.1.2022");
-		p.addUeberweisungsList(ue);
-		a.addPatientToList(p);
-		arzt.add(a);
-		Patient p1 =new Patient("5678","tram","la","ho chi minh stadt","female","1.1.2022","5678");
-		patient.add(p);
-		patient.add(p1);
+    	Arzt testArzt1 =new Arzt("hai","nguyen","unknown","1234","1234","1900");
+    	Arzt testArzt2 = new Arzt("tram","la","unknown","5678","5678","1090");
+		arztList.add(testArzt2);
+		Patient testPatient1 =new Patient("1234","hai","nguyen","ho chi minh stadt","male","1.1.2022","1234");
+		Untersuchungsbericht untersuchungsbericht= new Untersuchungsbericht("","",null,"",null,"","",null);
+		testPatient1.behandeldenArztAendern(testArzt1);
+		testPatient1.addUntersuchungsList(untersuchungsbericht);
+		untersuchungslist.add(untersuchungsbericht);
+		Ueberweisung ueberweisung = new Ueberweisung("1234","1234","5678",untersuchungslist,"test","1.1.2022");
+		testPatient1.addUeberweisungsList(ueberweisung);
+		testArzt1.addPatientToList(testPatient1);
+		arztList.add(testArzt1);
+		Patient testPatient2 =new Patient("5678","tram","la","ho chi minh stadt","female","1.1.2022","5678");
+		patientList.add(testPatient1);
+		patientList.add(testPatient2);
+		// testArzt1 id 1234 pass 1234, hat patient testPatient1
+		// testArzt2 id 5678 pass 5678  hat kein patient
+		// testPatient1 id 1234 pass 1234 hat Arzt testArzt1, hat Untersuchungsbericht untersuchungsbericht(leer), hat Ueberweisung ueberweisung
+		// ueberweisung hat untersuchungsbericht
+		// testPatient2 id 5678 pass 5678 hat nichts
     }
 
     /**
@@ -50,8 +55,8 @@ public class EPA {
  	 * @return Patient
  	 */
     public Patient getPatient(String num) {
-		for(int i=0; i< patient.size(); i++){
-			if(patient.get(i).getNum().equals(num)){return patient.get(i);}
+		for(int i=0; i< patientList.size(); i++){
+			if(patientList.get(i).getNum().equals(num)){return patientList.get(i);}
 		}
 		return null;
     }
@@ -65,8 +70,8 @@ public class EPA {
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
     public Arzt getArzt(String num) throws UnsupportedOperationException {
-        for(int i=0; i< arzt.size(); i++){
-        	if(arzt.get(i).getNum().equals(num)){return arzt.get(i);}
+        for(int i=0; i< arztList.size(); i++){
+        	if(arztList.get(i).getNum().equals(num)){return arztList.get(i);}
 		}
         return null;
     }
@@ -80,8 +85,8 @@ public class EPA {
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
     public boolean checkNumArzt(String num) throws UnsupportedOperationException {
-        for(int i=0; i< arzt.size(); i++){
-        	if(arzt.get(i).getNum().equals(num)){return true;}
+        for(int i=0; i< arztList.size(); i++){
+        	if(arztList.get(i).getNum().equals(num)){return true;}
 		}
         return false;
     }
@@ -95,8 +100,8 @@ public class EPA {
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
     public boolean checkNumPatient(String num) throws UnsupportedOperationException {
-		for(int i=0; i< patient.size(); i++){
-			if(patient.get(i).getNum().equals(num)){return true;}
+		for(int i=0; i< patientList.size(); i++){
+			if(patientList.get(i).getNum().equals(num)){return true;}
 		}
 		return false;
     }

@@ -36,13 +36,13 @@ public class PatientArztViewController extends AnchorPane {
     private Button toPFunction;
     @FXML
     private ImageView ArztImage;
-    private EPAController EPAControl;
+    private EPAController epaController;
     private Stage mainStage;
-    private Arzt a;
-    public PatientArztViewController(Stage primaryStage, Arzt a, EPAController EPAControl){
+    private Arzt hausArzt;
+    public PatientArztViewController(Stage primaryStage, Arzt hausArzt, EPAController epaController){
         mainStage= primaryStage;
-        this.a=a;
-        this.EPAControl=EPAControl;
+        this.hausArzt=hausArzt;
+        this.epaController=epaController;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FunctionView/PatientArztView.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -54,22 +54,22 @@ public class PatientArztViewController extends AnchorPane {
         }
     }
     private void init() throws IOException {
-        aVorname.setText(a.getVorname());
+        aVorname.setText(hausArzt.getVorname());
         aVorname.setVisible(true);
-        aNachname.setText(a.getNachname());
+        aNachname.setText(hausArzt.getNachname());
         aNachname.setVisible(true);
-        aFach.setText(a.getFachrichtung());
+        aFach.setText(hausArzt.getFachrichtung());
         aFach.setVisible(true);
-        aNum.setText(a.getNum());
+        aNum.setText(hausArzt.getNum());
         aNum.setVisible(true);
-        aTel.setText(a.getTel());
+        aTel.setText(hausArzt.getTel());
         aTel.setVisible(true);
         Image icon = SwingFXUtils.toFXImage(ImageIO.read(this.getClass().getClassLoader().getResource("view/image/50115-200.png")), null);
         ArztImage.setImage(icon);
     }
     @FXML
     void toMainFunction(ActionEvent a){
-        mainStage.setScene(new Scene(new PatientMainViewController(mainStage,EPAControl)));
+        mainStage.setScene(new Scene(new PatientMainViewController(mainStage,epaController)));
     }
 
 }

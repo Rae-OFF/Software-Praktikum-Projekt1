@@ -18,6 +18,7 @@ import model.Untersuchungsbericht;
 import view.FunctionView.PatientMainViewController;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class UeberweisungsAnderungViewController extends ScrollPane {
@@ -60,12 +61,12 @@ public class UeberweisungsAnderungViewController extends ScrollPane {
 
     private  Stage mainStage;
     private EPAController epaController;
-    private Ueberweisung u;
-    private ArrayList<Untersuchungsbericht>Choosenuntersuchungsberichts=new ArrayList<Untersuchungsbericht>();
-    public UeberweisungsAnderungViewController(EPAController EPAControl, Stage primary, Ueberweisung u){
-        mainStage=primary;
-        epaController=EPAControl;
-        this.u=u;
+    private Ueberweisung ueberweisung;
+    private ArrayList<Untersuchungsbericht>choosenUntersuchungsberichts=new ArrayList<Untersuchungsbericht>();
+    public UeberweisungsAnderungViewController(EPAController EPAControl, Stage primary, Ueberweisung ueberweisung){
+        this.mainStage=primary;
+        this.epaController=EPAControl;
+        this.ueberweisung=ueberweisung;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ueberweisung/UeberweisungsAnderungView.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -80,7 +81,7 @@ public class UeberweisungsAnderungViewController extends ScrollPane {
         Patient p= epaController.getEPA().getPatient(epaController.getCurrLoggedIn());
         Name.setText(p.getName());
         Name.setVisible(true);
-        Datum.setText(u.getDate());
+        Datum.setText(ueberweisung.getDate());
         Datum.setVisible(true);
         Adress.getChildren().add(new Text(p.getAddress()));
         Versicherungsnum.setText(p.getNum());
@@ -89,11 +90,11 @@ public class UeberweisungsAnderungViewController extends ScrollPane {
         BirthDay.setVisible(true);
         Sex.setText(p.getGeschlecht());
         Sex.setVisible(true);
-        NeuArtz.setText(epaController.getEPA().getArzt(u.getNeuarztnummer()).getName());
+        NeuArtz.setText(epaController.getEPA().getArzt(ueberweisung.getNeuarztnummer()).getName());
         NeuArtz.setVisible(true);
-        ArtzNum.setText(u.getAltArztnummer());
+        ArtzNum.setText(ueberweisung.getAltArztnummer());
         ArtzNum.setVisible(true);
-        ArrayList<Untersuchungsbericht> berichtList=u.getUntersuchungsbericht();
+        ArrayList<Untersuchungsbericht> berichtList=ueberweisung.getUntersuchungsbericht();
         Flow.getChildren().clear();
         for(int i=0; i<berichtList.size(); i++){
             UntersuchungsWahlController uc= new UntersuchungsWahlController(berichtList.get(i));
@@ -104,9 +105,14 @@ public class UeberweisungsAnderungViewController extends ScrollPane {
     void AnderungenSpeichern(ActionEvent event) {
         for(int i=0; i<Flow.getChildren().size();i++){
             UntersuchungsWahlController uc= (UntersuchungsWahlController)Flow.getChildren().get(i);
-            if(uc.BerichtChoosen()){Choosenuntersuchungsberichts.add(uc.getUntersuchung());}
+            if(uc.BerichtChoosen()){choosenUntersuchungsberichts.add(uc.getUntersuchung());}
         }
-        u.setUntersuchungsbericht(Choosenuntersuchungsberichts);
+        ueberweisung.setUntersuchungsbericht(choosenUntersuchungsberichts);
+        ueberweisung.setDatenStimmZu(true);
+        Patient patient=epaController.getEPA().getPatient(epaController.getCurrLoggedIn());
+        patient.addToRevision(LocalDateTime.now().toString()+" Sie haben Veranderungen zur Überweisung am "+ueberweisung.getDate()+" gemacht");
+        patient.updateDaten();
+        System.out.println(patient.isNeuDaten());
         mainStage.setScene(new Scene(new PatientMainViewController(mainStage,epaController)));
     }
 
