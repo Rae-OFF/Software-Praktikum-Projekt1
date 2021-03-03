@@ -48,10 +48,8 @@ public class EPA {
  	 * TODO: create JavaDoc. 
  	 * @param num
  	 * @return Patient
- 	 * @throws UnsupportedOperationException
- 	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
-    public Patient getPatient(String num) throws UnsupportedOperationException {
+    public Patient getPatient(String num) {
 		for(int i=0; i< patient.size(); i++){
 			if(patient.get(i).getNum().equals(num)){return patient.get(i);}
 		}
