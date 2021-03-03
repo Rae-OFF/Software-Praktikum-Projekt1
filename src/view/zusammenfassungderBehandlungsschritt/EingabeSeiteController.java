@@ -84,5 +84,19 @@ public class EingabeSeiteController extends AnchorPane {
        //}
     }
 
+    /*
+    @FXML
+    void zumZusammenfassung(ActionEvent event){
+        String pVS= pVersicherungsnummer.getText();
+        String pICD =pICDCode.getText();
+        if (pVS != null ) {
+            EPA epa= EPAControll.getEPA();
+            if(epa.checkNumPatient(pVS)){
+                //EPAControl.getUntersuchungsberichtcontroller();
+                //mainStage.setScene(new Scene(???));
+            }
+        }
+    }*/
+
 
 }

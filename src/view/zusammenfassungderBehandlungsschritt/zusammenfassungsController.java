@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,6 +21,8 @@ import model.Patient;
 import view.FunctionView.ArztMainViewController;
 
 import javax.imageio.ImageIO;
+
+
 
 
 public class zusammenfassungsController extends SplitPane {
@@ -44,6 +47,14 @@ public class zusammenfassungsController extends SplitPane {
 
     @FXML
     private Text pVersicherungsnum;
+
+    @FXML
+    private Button zumEinfabeSeite;
+
+    @FXML
+    private Button zumArztMainView;
+
+
 
     @FXML
     void initialize() {
@@ -81,17 +92,16 @@ public class zusammenfassungsController extends SplitPane {
         pVorname.setText(p.getVorname());
         pNachname.setText(p.getNachname());
         pGeschlecht.setText(p.getGeschlecht());
-    }
-*/
+    }*/
+
     @FXML
-    void zumArztMainView(ActionEvent e){
+    void zumArztMainView(ActionEvent actionEvent){
         mainStage.setScene(new Scene(new ArztMainViewController(mainStage, EPAControl)));
     }
 
     @FXML
-    void zumEingabeSeite(ActionEvent e){
+    void zumEingabeSeite(ActionEvent actionEvent){
         mainStage.setScene(new Scene(new EingabeSeiteController(mainStage, EPAControl)));
     }
-
 
 }
