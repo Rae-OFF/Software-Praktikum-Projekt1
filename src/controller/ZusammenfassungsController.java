@@ -54,7 +54,17 @@ public class ZusammenfassungsController {
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
     public List<Untersuchungsbericht> createZusammenfassungEinArzt(String versicherungsnummer, String iCD) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not Yet Implemented!");
+		EPA e= ePAController.getEPA();
+		Arzt a = e.getArzt(ePAController.getCurrLoggedIn());// get arzt
+		ArrayList<Untersuchungsbericht>berichtlist= a.getUntersuchungsberichte(versicherungsnummer);
+		if(!iCD.equals("leer")){
+			for(int i=0; i<berichtlist.size();i++){
+				if(!berichtlist.get(i).getICD().equals(iCD)){
+					berichtlist.remove(i);// remove berichte that have icd != icd to find from list
+				}
+			}
+		}
+		return berichtlist;
     }
 
     /**
@@ -75,6 +85,7 @@ public class ZusammenfassungsController {
          	if(ue.get(i).getNeuarztnummer().equals(ePAController.getCurrLoggedIn())) {// interpretioert ueberweisung mit neuarztnum == this arztnum
 				berichtlist.addAll(ue.get(i).getUntersuchungsbericht());// get all untersuchung from ueberweisunglist
 			}
+
          }
          if(!iCD.equals("leer")){
 			 for(int i=0; i<berichtlist.size();i++){

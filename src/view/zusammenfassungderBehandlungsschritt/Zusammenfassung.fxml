@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
-<fx:root dividerPositions="0.27638190954773867" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" type="SplitPane" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root type="SplitPane" dividerPositions="0.27638190954773867" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
          <children>
-            <ImageView fitHeight="107.0" fitWidth="107.0" layoutX="-2.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="PatientImage" fitHeight="107.0" fitWidth="107.0" layoutX="-2.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@image/doctorimage.jfif" />
+                  <Image url="@/view/zusammenfassungderBehandlungsschritt/patientimage.jpg" />
                </image>
             </ImageView>
             <Label fx:id="pInfomation" layoutX="122.0" layoutY="6.0" text="personliche Information" />
@@ -42,17 +53,87 @@
          <children>
             <ScrollPane prefHeight="255.0" prefWidth="598.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <content>
-                  <TableView prefHeight="245.0" prefWidth="598.0">
-                    <columns>
-                      <TableColumn fx:id="pTermin" prefWidth="75.0" text="Termin" />
-                      <TableColumn fx:id="pArzt" prefWidth="75.0" text="Arzt" />
-                        <TableColumn fx:id="pUntersuchungsbericht" prefWidth="446.0" text="Untsuchungsbericht" />
-                    </columns>
-                  </TableView>
+                  <GridPane prefHeight="428.0" prefWidth="581.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="285.0" minWidth="10.0" prefWidth="264.33331298828125" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="390.3333435058594" minWidth="10.0" prefWidth="317.66668701171875" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="43.0" minHeight="8.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="84.0" minHeight="0.0" prefHeight="68.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="95.0" minHeight="0.0" prefHeight="78.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="102.0" minHeight="0.0" prefHeight="88.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="46.0" minHeight="0.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <RadioButton fx:id="ChooseButton" mnemonicParsing="false" text="Diese Bericht wählen" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Datum :     " />
+                              <Text fx:id="Date" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Symtome : " />
+                              <Text fx:id="Symtome" strokeType="OUTSIDE" strokeWidth="0.0" text="dfsdddddddddddddddddddddddddddddddddddddddddddddddddddd" visible="false" wrappingWidth="122.3671875" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" ICD :          " />
+                              <Text fx:id="ICD" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" />
+                           </children>
+                        </HBox>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Behandlung" GridPane.rowIndex="2" />
+                        <ScrollPane prefHeight="40.0" prefWidth="184.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <content>
+                              <TextFlow fx:id="Behandlung" prefHeight="86.0" prefWidth="178.0" />
+                           </content>
+                        </ScrollPane>
+                        <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <content>
+                              <TextFlow fx:id="Medikamente" prefHeight="95.0" prefWidth="181.0" />
+                           </content>
+                        </ScrollPane>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Medikamente" GridPane.rowIndex="3" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Notizen" GridPane.rowIndex="4" />
+                        <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <content>
+                              <TextFlow fx:id="Notiz" prefHeight="86.0" prefWidth="180.0" />
+                           </content>
+                        </ScrollPane>
+                        <GridPane GridPane.columnIndex="1">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="85.0" minWidth="10.0" prefWidth="53.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="10.0" prefWidth="128.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox prefHeight="51.0" prefWidth="164.0" GridPane.rowIndex="1" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Grund :     " />
+                              <Text fx:id="grund" strokeType="OUTSIDE" strokeWidth="0.0" text="Grund" visible="false" wrappingWidth="127.13671875" GridPane.columnIndex="1" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </GridPane>
                </content>
             </ScrollPane>
-            <Button fx:id="zumEingabeSeite" onAction="#zumEingabeSeite" layoutX="418.0" layoutY="259.0" mnemonicParsing="false" text="weitere Patienten aussuchen" AnchorPane.rightAnchor="0.0" />
-            <Button fx:id="zumArztMainView" onAction="#zumArztMainView" layoutX="285.0" layoutY="259.0" mnemonicParsing="false" text="zurückgehen" />
+            <HBox layoutX="318.0" layoutY="259.0">
+               <children>
+                  <Button fx:id="ZumArztMainView" mnemonicParsing="false" onAction="#ZumArztMainView" text="zurückgehen">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="ZumEingabeSeite" mnemonicParsing="false" onAction="#ZumEingabeSeite" text="weitere Patienten aussuchen" />
+               </children>
+            </HBox>
          </children></AnchorPane>
   </items>
 </fx:root>

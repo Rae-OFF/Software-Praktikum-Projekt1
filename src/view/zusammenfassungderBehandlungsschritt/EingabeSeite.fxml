@@ -10,8 +10,10 @@
       <TextField layoutX="171.0" layoutY="172.0" prefHeight="28.0" prefWidth="226.0" promptText="option" />
       <Label layoutX="256.0" layoutY="149.0" text="ICD Code" />
 
-      <Button fx:id="zumZusammenfassung" layoutX="246.0" layoutY="217.0" mnemonicParsing="false" onAction="#zumZusammenfassung" text="Bestätigen" />
-      <Button fx:id="zumArztMainView" layoutX="238.0" layoutY="248.0" mnemonicParsing="false" onAction="#zumArztMainView" text="zurückgehen" />
+      <Button fx:id="zumZusammenfassung" layoutX="246.0" layoutY="268.0" mnemonicParsing="false" onAction="#zumZusammenfassung" text="Bestätigen" />
+      <Button fx:id="zumArztMainView" layoutX="238.0" layoutY="299.0" mnemonicParsing="false" onAction="#zumArztMainView" text="zurückgehen" />
+      <RadioButton fx:id="aktuellerArzt" layoutX="125.0" layoutY="224.0" mnemonicParsing="false" onAction="#aktuellerArzt" text="aktueller Arzt" />
+      <RadioButton fx:id="alleÄrzte" layoutX="344.0" layoutY="224.0" mnemonicParsing="false" onAction="#alleÄrzte" text="alle Ärzte" />
 
    </children>
 </fx:root>

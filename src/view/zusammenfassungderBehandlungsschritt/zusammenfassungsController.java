@@ -18,14 +18,16 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import model.Patient;
+import model.Untersuchungsbericht;
 import view.FunctionView.ArztMainViewController;
 
 import javax.imageio.ImageIO;
+import javafx.fxml.Initializable;
 
 
 
 
-public class zusammenfassungsController extends SplitPane {
+public class zusammenfassungsController extends SplitPane{
 
     @FXML
     private ResourceBundle resources;
@@ -70,6 +72,7 @@ public class zusammenfassungsController extends SplitPane {
     //private ImageView PatientImage;
     private Stage mainStage;
     private EPAController EPAControl;
+    private Untersuchungsbericht Ub;
     public zusammenfassungsController(Stage primaryStage, EPAController EPAControl) {
         mainStage = primaryStage;
         this.EPAControl = EPAControl;
@@ -85,22 +88,26 @@ public class zusammenfassungsController extends SplitPane {
     }
 
 /*
-    private void init() throws IOException {
+    private void init1() throws IOException {
         Patient p= EPAControl.getEPA().getPatient(EPAControl.getCurrLoggedIn());
         Image icon = SwingFXUtils.toFXImage(ImageIO.read(this.getClass().getClassLoader().getResource("view/image/patienteimage.jpg")), null);
         patienteImage.setImage(icon);
         pVorname.setText(p.getVorname());
         pNachname.setText(p.getNachname());
         pGeschlecht.setText(p.getGeschlecht());
+        Ub.getICD();
+        Ub.getPatientNum();
+        Ub.setInfo();
     }*/
 
+
     @FXML
-    void zumArztMainView(ActionEvent actionEvent){
+    void ZumArztMainView(ActionEvent actionEvent){
         mainStage.setScene(new Scene(new ArztMainViewController(mainStage, EPAControl)));
     }
 
     @FXML
-    void zumEingabeSeite(ActionEvent actionEvent){
+    void ZumEingabeSeite(ActionEvent actionEvent){
         mainStage.setScene(new Scene(new EingabeSeiteController(mainStage, EPAControl)));
     }
 

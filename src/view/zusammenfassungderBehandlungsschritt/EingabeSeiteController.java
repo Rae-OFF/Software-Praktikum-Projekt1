@@ -7,22 +7,26 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.EPA;
-import model.Patient;
 import view.FunctionView.ArztMainViewController;
-import view.StartView.LoginViewController;
-
 import java.io.IOException;
-
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import view.ueberweisung.UeberweisungCreateViewController;
 
-//hi
+import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.geometry.Insets;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+
 public class EingabeSeiteController extends AnchorPane {
     @FXML
     private ResourceBundle resources;
@@ -31,12 +35,44 @@ public class EingabeSeiteController extends AnchorPane {
     private URL location;
 
     @FXML
-    void toMain(ActionEvent event) {
+    private Button zumZusammenfassung;
+
+    @FXML
+    private Button zumArztMainView;
+
+    @FXML
+    private RadioButton aktuellerArzt;
+
+    @FXML
+    private RadioButton alleÄrzte;
+
+
+    @FXML
+    void aktuellerArzt(ActionEvent event) {
 
     }
 
     @FXML
+    void alleÄrzte(ActionEvent event) {
+
+    }
+
+    @FXML
+    void zumArztMainView(ActionEvent event) {
+        mainStage.setScene(new Scene(new ArztMainViewController(mainStage, EPAControll)));
+    }
+
+    @FXML
+    void zumZusammenfassung(ActionEvent event) {
+        mainStage.setScene(new Scene(new zusammenfassungsController(mainStage, EPAControll)));
+    }
+
+    @FXML
     void initialize() {
+        assert zumZusammenfassung != null : "fx:id=\"zumZusammenfassung\" was not injected: check your FXML file 'EingabeSeite.fxml'.";
+        assert zumArztMainView != null : "fx:id=\"zumArztMainView\" was not injected: check your FXML file 'EingabeSeite.fxml'.";
+        assert aktuellerArzt != null : "fx:id=\"aktuellerArzt\" was not injected: check your FXML file 'EingabeSeite.fxml'.";
+        assert alleÄrzte != null : "fx:id=\"alleÄrzte\" was not injected: check your FXML file 'EingabeSeite.fxml'.";
 
     }
 
@@ -64,11 +100,12 @@ public class EingabeSeiteController extends AnchorPane {
     }
 
 
+
 /*
     @FXML
     void zumArztMainView(ActionEvent e){
         mainStage.setScene(new Scene(new ArztMainViewController(mainStage, EPAControll)));
-    }*/
+    }
 
     @FXML
     void zumArztMainView(ActionEvent event){
@@ -84,7 +121,7 @@ public class EingabeSeiteController extends AnchorPane {
        //}
     }
 
-    /*
+
     @FXML
     void zumZusammenfassung(ActionEvent event){
         String pVS= pVersicherungsnummer.getText();

@@ -189,7 +189,13 @@ public class Arzt {
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
     public ArrayList<Untersuchungsbericht> getUntersuchungsberichte(String versicherungsnummer) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not Yet Implemented!");
+        ArrayList<Untersuchungsbericht> berichtList = new ArrayList<Untersuchungsbericht>();
+        for(int i=0; i< untersuchungsList.size();i++){
+        	if(untersuchungsList.get(i).getPatientNum().equals(versicherungsnummer)){
+        		berichtList.add(untersuchungsList.get(i));
+			}
+		}
+        return berichtList;
     }
 
     /**
