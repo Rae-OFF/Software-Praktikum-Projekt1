@@ -62,7 +62,6 @@ public class UeberweisungsChooseController extends AnchorPane {
             }
         }
         else{
-            System.out.println("list leer");
             Flow.getChildren().clear();
             Flow.getChildren().add(HiddenText);
             HiddenText.setVisible(true);

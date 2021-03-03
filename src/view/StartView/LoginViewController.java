@@ -131,7 +131,9 @@ public class LoginViewController extends TabPane {
                  }
              }
          }
-        ArztHiddenText.setVisible(true);
+         else{
+             ArztHiddenText.setVisible(true);
+         }
      }
     @FXML
     void showPatientFunctionView(ActionEvent event){
@@ -144,7 +146,9 @@ public class LoginViewController extends TabPane {
                 mainStage.setScene(new Scene(new PatientMainViewController(mainStage,EPAControl)));
             }
         }
-        PatientHiddenText.setVisible(true);
+        else{
+            PatientHiddenText.setVisible(true);
+        }
     }
     @FXML
     void neuPatientAnlegen(ActionEvent e){
@@ -153,7 +157,11 @@ public class LoginViewController extends TabPane {
           // nutzt BenuterAnlegenController und erzeugt neu PAtient Instanz
           mainStage.setScene(new Scene(new LoginViewController(mainStage)));
         }
-        PatientAnlegenHiddenText.setVisible(true);
+        else
+        {
+            PatientAnlegenHiddenText.setVisible(true);
+        }
+
     }
     @FXML
     void neuArztAnlegen(ActionEvent e){
@@ -162,7 +170,10 @@ public class LoginViewController extends TabPane {
             // nutzt BenuterAnlegenController und erzeugt neu Arzt Instanz
             mainStage.setScene(new Scene(new LoginViewController(mainStage)));
         }
-        NeuArztHiddenText.setVisible(true);
+        else{
+            NeuArztHiddenText.setVisible(true);
+        }
+
     }
 
 }

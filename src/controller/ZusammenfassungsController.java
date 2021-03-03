@@ -1,9 +1,13 @@
 package controller;
 
 import AUI.ZusammenfassungsAUI;
+import model.Arzt;
+import model.EPA;
+import model.Ueberweisung;
 import model.Untersuchungsbericht;
 
 import java.lang.UnsupportedOperationException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ZusammenfassungsController {
@@ -26,6 +30,7 @@ public class ZusammenfassungsController {
 
 
     public ZusammenfassungsController(EPAController e) {
+    	ePAController=e;
     }
 
     /**
@@ -61,7 +66,23 @@ public class ZusammenfassungsController {
  	 * @throws UnsupportedOperationException
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
-    public List<Untersuchungsbericht> createZusammenfassungAlleAerzte(String versicherungsnummer, String iCD) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not Yet Implemented!");
+    public ArrayList<Untersuchungsbericht> createZusammenfassungAlleAerzte(String versicherungsnummer, String iCD) throws UnsupportedOperationException {
+         EPA e= ePAController.getEPA();
+         Arzt a = e.getArzt(ePAController.getCurrLoggedIn());// get arzt
+         ArrayList<Ueberweisung> ue=a.getPatient(versicherungsnummer).getUeberweisungsList();// get ueberweisungslist from patient with versicherungsnummer
+		 ArrayList<Untersuchungsbericht>berichtlist= new ArrayList<Untersuchungsbericht>();
+         for(int i=0; i<ue.size(); i++){
+         	if(ue.get(i).getNeuarztnummer().equals(ePAController.getCurrLoggedIn())) {// interpretioert ueberweisung mit neuarztnum == this arztnum
+				berichtlist.addAll(ue.get(i).getUntersuchungsbericht());// get all untersuchung from ueberweisunglist
+			}
+         }
+         if(!iCD.equals("leer")){
+			 for(int i=0; i<berichtlist.size();i++){
+				 if(!berichtlist.get(i).getICD().equals(iCD)){
+					 berichtlist.remove(i);// remove berichte that have icd != icd to find from list
+				 }
+			 }
+		 }
+         return berichtlist;
     }
 }
