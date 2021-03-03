@@ -96,7 +96,7 @@ public class UntersuchungsberichtEingabeController extends BorderPane {
         UntersuchungsberichtController untersuchungsberichtController = EPAControl.getUntersuchungsberichtcontroller();
         boolean icdFormat = untersuchungsberichtController.iCDUeberpruefen(icd);
         boolean versicherungsnummerFormat = true;//untersuchungsberichtController.versicherungsnummerUeberpruefen(versicherungsnummer);
-        boolean uhrzeitFormat = untersuchungsberichtController.UhrzeitUeberpruefen(uhrzeit);
+        boolean uhrzeitFormat = untersuchungsberichtController.uhrzeitUeberpruefen(uhrzeit);
         if(!(icdFormat||versicherungsnummerFormat||uhrzeitFormat)){
             mehrereFehler.setVisible(true);
         }

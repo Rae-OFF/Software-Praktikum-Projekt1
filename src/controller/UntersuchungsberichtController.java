@@ -92,27 +92,48 @@ public class UntersuchungsberichtController {
 		return epa.checkNumPatient(versicherungsnummer);
 	}
 
-	public boolean UhrzeitUeberpruefen(String uhrzeit){
+	public static boolean uhrzeitUeberpruefen(String uhrzeit){
 		CharacterIterator timeIterator = new StringCharacterIterator(uhrzeit);
-		if(!Character.isDigit(timeIterator.current())|| timeIterator.current() >2){
+		String stunden="";
+		int stundenInt;
+		String minuten="";
+		int minutenInt;
+		if(!Character.isDigit(timeIterator.current())){
 			return false;
 		}
 		else{
+			stunden+=timeIterator.current();
 			timeIterator.next();
-			if(!Character.isDigit(timeIterator.current())||timeIterator.next()!=':'){
+			if(!Character.isDigit(timeIterator.current())){
 				return false;
 			}
 			else{
+				stunden+=timeIterator.current();
+				stundenInt=Integer.parseInt(stunden);
 				timeIterator.next();
-				if(!Character.isDigit(timeIterator.current())|| timeIterator.current() >5){
+				if(timeIterator.current()!=':'||stundenInt>24){
 					return false;
 				}
-				else{
+				else
+				{
 					timeIterator.next();
 					if(!Character.isDigit(timeIterator.current())){
 						return false;
 					}
-					else return true;
+					else{
+						minuten+=timeIterator.current();
+						timeIterator.next();
+						if(!Character.isDigit(timeIterator.current())){
+							return false;
+						}
+						else
+							minuten+=timeIterator.current();
+							minutenInt=Integer.parseInt(minuten);
+							if(minutenInt>60){
+								return false;
+							}
+							else return true;
+					}
 				}
 			}
 		}
