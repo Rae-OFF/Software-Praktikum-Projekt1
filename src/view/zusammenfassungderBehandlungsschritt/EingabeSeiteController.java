@@ -49,12 +49,12 @@ public class EingabeSeiteController extends AnchorPane {
 
     @FXML
     void aktuellerArzt(ActionEvent event) {
-
+        mainStage.setScene(new Scene(new ));
     }
 
     @FXML
     void alleÄrzte(ActionEvent event) {
-
+        mainStage.setScene(new Scene(new ));
     }
 
     @FXML
