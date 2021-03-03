@@ -3,6 +3,8 @@ package controller;
 import model.EPA;
 
 import java.lang.UnsupportedOperationException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class EPAController {
 
@@ -79,6 +81,10 @@ public class EPAController {
     public void setEPA(EPA epa) throws UnsupportedOperationException {
         this.ePA=epa;
     }
+    public String getTime(){
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return LocalDateTime.now().format(formatter);
+	}
 
     /**
  	 *

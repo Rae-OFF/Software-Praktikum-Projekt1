@@ -179,7 +179,7 @@ public class UeberweisungCreateViewController extends ScrollPane {
                              BerichtListe.add(uc.getUntersuchung());
                          }
                      }
-                     String time = LocalDateTime.now().toString();
+                     String time=epaController.getTime();
                      mainStage.setScene(new Scene(new UeberweisungsViewController(Versicherungsnummer.getText(),ArztBezeich.getText(),Auftrag.getText(),BerichtListe,time,mainStage,epaController)));
                  }
              }

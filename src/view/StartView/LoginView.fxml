@@ -23,8 +23,8 @@
                   <TextField fx:id="pNum" layoutX="223.0" layoutY="84.0" prefHeight="25.0" prefWidth="275.0" />
                   <Text layoutX="85.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Versicherungsnummer" />
                   <Text layoutX="85.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passwort" />
-                  <Text layoutX="223.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                  <Button fx:id="pLogin" layoutX="223.0" layoutY="185.0" mnemonicParsing="false" onAction="#showPatientFunctionView" text="Login" />
+                  <Text fx:id="PatientHiddenText" fill="RED" layoutX="224.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Versicherungsnummer und / oder Passwort sind falsch" visible="false" wrappingWidth="274.0" />
+                  <Button fx:id="pLogin" layoutX="223.0" layoutY="169.0" mnemonicParsing="false" onAction="#showPatientFunctionView" text="Login" />
                   <Text fx:id="PatientHiddenText" fill="RED" layoutX="223.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passwort und/oder Versicherungsnummer sind falsch" visible="false" wrappingWidth="283.138671875" />
                   <PasswordField fx:id="pPasswort" layoutX="223.0" layoutY="123.0" prefHeight="27.0" prefWidth="276.0" />
                </children>
@@ -40,8 +40,8 @@
                   <TextField fx:id="aNum" layoutX="223.0" layoutY="84.0" prefHeight="25.0" prefWidth="275.0" />
                   <Text layoutX="85.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Arztnummer" />
                   <Text layoutX="85.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passwort" />
-                  <Text layoutX="223.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                  <Button fx:id="aLogin" layoutX="223.0" layoutY="185.0" mnemonicParsing="false" onAction="#showArztFunctionView" text="Login" />
+                  <Text fx:id="ArztHiddenText" fill="#f50000" layoutX="224.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ArztID und/oder Passwort sind falsch" visible="false" wrappingWidth="274.0" />
+                  <Button fx:id="aLogin" layoutX="224.0" layoutY="166.0" mnemonicParsing="false" onAction="#showArztFunctionView" text="Login" />
                   <PasswordField fx:id="aPasswort" layoutX="223.0" layoutY="124.0" prefHeight="25.0" prefWidth="275.0" />
                   <Text fx:id="ArztHiddenText" fill="RED" layoutX="220.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ArztID und/oder Passwort sind falsch" visible="false" wrappingWidth="281.13671875" />
                </children>

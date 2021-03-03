@@ -48,23 +48,13 @@ public class EingabeSeiteController extends AnchorPane {
 
 
     @FXML
-    void aktuellerArzt(ActionEvent event) {
-        mainStage.setScene(new Scene(new ));
-    }
-
-    @FXML
-    void alleÄrzte(ActionEvent event) {
-        mainStage.setScene(new Scene(new ));
-    }
-
-    @FXML
     void zumArztMainView(ActionEvent event) {
         mainStage.setScene(new Scene(new ArztMainViewController(mainStage, EPAControll)));
     }
 
     @FXML
     void zumZusammenfassung(ActionEvent event) {
-        mainStage.setScene(new Scene(new zusammenfassungsController(mainStage, EPAControll)));
+        if(alleÄrzte.isSelected()||aktuellerArzt.isSelected()){mainStage.setScene(new Scene(new zusammenfassungsController(mainStage, EPAControll,alleÄrzte.isSelected())));}
     }
 
     @FXML

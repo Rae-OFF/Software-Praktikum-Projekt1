@@ -110,10 +110,10 @@ public class UeberweisungsAnderungViewController extends ScrollPane {
         ueberweisung.setUntersuchungsbericht(choosenUntersuchungsberichts);
         ueberweisung.setDatenStimmZu(true);
         Patient patient=epaController.getEPA().getPatient(epaController.getCurrLoggedIn());
-        patient.addToRevision(LocalDateTime.now().toString()+" Sie haben Veranderungen zur Überweisung am "+ueberweisung.getDate()+" gemacht");
+        patient.addToRevision(epaController.getTime()+" Sie haben Veranderungen zur Überweisung am "+ueberweisung.getDate()+" gemacht");
         patient.updateDaten();
         System.out.println(patient.isNeuDaten());
-        mainStage.setScene(new Scene(new PatientMainViewController(mainStage,epaController)));
+        mainStage.setScene(new Scene(new UeberweisungsChooseController(mainStage,epaController)));
     }
 
     @FXML

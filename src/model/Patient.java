@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -74,8 +75,9 @@ public class Patient {
 	}
     public void addUeberweisungsList(Ueberweisung u){
 		nameAltArzt= behandelnderArzt.getName();
-		String time =LocalDateTime.now().toString();
-		String s =time+" Sie wurden von Arzt(in) "+nameAltArzt+" überwiesen";
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		String formattedDateTime = LocalDateTime.now().format(formatter);
+		String s =formattedDateTime+" Sie wurden von Arzt(in) "+nameAltArzt+" überwiesen";
 		revision.add(s);
 		setNeuDaten(true);
 		ueberweisungsList.add(u);
@@ -95,8 +97,9 @@ public class Patient {
 	}
 
 	public void behandeldenArztAendern(Arzt artzt) {
-		String time =LocalDateTime.now().toString();
-		String s =time+" Arzt(in) "+ artzt.getName()+"ist nun ihr(e) Hausarzt(in)";
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		String formattedDateTime = LocalDateTime.now().format(formatter);
+		String s =formattedDateTime+" Arzt(in) "+ artzt.getName()+" ist nun ihr(e) Hausarzt(in)";
 		revision.add(s);
 		this.behandelnderArzt=artzt;
 	}

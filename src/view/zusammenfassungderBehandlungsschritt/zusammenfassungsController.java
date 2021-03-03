@@ -73,9 +73,11 @@ public class zusammenfassungsController extends SplitPane{
     private Stage mainStage;
     private EPAController EPAControl;
     private Untersuchungsbericht Ub;
-    public zusammenfassungsController(Stage primaryStage, EPAController EPAControl) {
+    private boolean alleArzte;// falsch -> inhalt 1 arzt, true -> inhalt allle arzte
+    public zusammenfassungsController(Stage primaryStage, EPAController EPAControl,boolean alleArzte ) {
         mainStage = primaryStage;
         this.EPAControl = EPAControl;
+        this.alleArzte=alleArzte;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/zusammenfassungderBehandlungsschritt/Zusammenfassung.fxml"));
         loader.setRoot(this);
         loader.setController(this);

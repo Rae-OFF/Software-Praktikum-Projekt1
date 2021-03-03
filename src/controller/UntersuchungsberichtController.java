@@ -151,7 +151,7 @@ public class UntersuchungsberichtController {
 						else
 							minuten+=timeIterator.current();
 							minutenInt=Integer.parseInt(minuten);
-							if(minutenInt>60&&stundenInt<0){
+							if(minutenInt>60&&stundenInt<0){// kleine anmerkung es gibt kein minute 60
 								return false;
 							}
 							else return true;
