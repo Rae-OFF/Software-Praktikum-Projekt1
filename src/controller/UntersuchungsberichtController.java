@@ -61,27 +61,41 @@ public class UntersuchungsberichtController {
  	 * TODO: create JavaDoc. 
  	 * @return boolean gibt wahr zurück wenn die eingegebenen Daten korrekt sind.
  	 */
-    public boolean iCDUeberpruefen(String icd){
+    public static boolean iCDUeberpruefen(String icd){
 		CharacterIterator icdIterator = new StringCharacterIterator(icd);
-		if(!Character.isUpperCase(icdIterator.current())||icdIterator.current()==CharacterIterator.DONE){
+		if(!Character.isUpperCase(icdIterator.current())){
 			return false;
 		}
 		else{
 			icdIterator.next();
-			if(icdIterator.current()==CharacterIterator.DONE||!(Character.isDigit(icdIterator.current())||Character.isDigit(icdIterator.next()))||icdIterator.current()==CharacterIterator.DONE){
+			if(!(Character.isDigit(icdIterator.current()))){
 				return false;
 			}
 			else{
 				icdIterator.next();
-				if(icdIterator.current()!=CharacterIterator.DONE&&icdIterator.current()!='.'||icdIterator.current()==CharacterIterator.DONE){
+				if(!Character.isDigit(icdIterator.current())){
 					return false;
 				}
 				else{
 					icdIterator.next();
-					if(icdIterator.current()==CharacterIterator.DONE||!(Character.isDigit(icdIterator.current())||Character.isDigit(icdIterator.next()))||icdIterator.current()==CharacterIterator.DONE){
+					if(icdIterator.current()!='.'&&icdIterator.current() !=CharacterIterator.DONE){
 						return false;
 					}
-					else return true;
+					else{
+						if(icdIterator.current() !=CharacterIterator.DONE){
+							icdIterator.next();
+							if(!Character.isDigit(icdIterator.current())){
+								return false;
+							}
+							else
+								icdIterator.next();
+								if(!Character.isDigit(icdIterator.current())&&icdIterator.current() !=CharacterIterator.DONE){
+								return false;
+								}
+								else return true;
+						}
+						else return true;
+					}
 				}
 			}
 		}
@@ -111,7 +125,7 @@ public class UntersuchungsberichtController {
 				stunden+=timeIterator.current();
 				stundenInt=Integer.parseInt(stunden);
 				timeIterator.next();
-				if(timeIterator.current()!=':'||stundenInt>24){
+				if(timeIterator.current()!=':'||(stundenInt>24&&stundenInt<0)){
 					return false;
 				}
 				else
@@ -129,7 +143,7 @@ public class UntersuchungsberichtController {
 						else
 							minuten+=timeIterator.current();
 							minutenInt=Integer.parseInt(minuten);
-							if(minutenInt>60){
+							if(minutenInt>60&&stundenInt<0){
 								return false;
 							}
 							else return true;
