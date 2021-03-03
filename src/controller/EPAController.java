@@ -137,8 +137,8 @@ public class EPAController {
  	 * @throws UnsupportedOperationException
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
-    public UntersuchungsberichtController getUntersuchungsberichtcontroller() throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not Yet Implemented!");
+    public UntersuchungsberichtController getUntersuchungsberichtcontroller() {
+        return untersuchungsberichtController;
     }
 
     /**
