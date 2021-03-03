@@ -126,34 +126,33 @@ public class UeberweisungCreateViewController extends ScrollPane {
 
     @FXML
     private TextFlow Notiz2;
-    private EPAController EPAControl;
+    private EPAController epaController;
     private Stage mainStage;
-    private boolean VnumValid=false;
+    private boolean versicherungsnummerValid=false;
     private String pVnum="";
     private ArrayList<Untersuchungsbericht> BerichtListe=new ArrayList<Untersuchungsbericht>();
-    public UeberweisungCreateViewController(Stage primaryStage, EPAController EPAControl) {
-        mainStage= primaryStage;
-        this.EPAControl=EPAControl;
+    public UeberweisungCreateViewController(Stage primaryStage, EPAController epaController) {
+        this.mainStage= primaryStage;
+        this.epaController=epaController;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ueberweisung/UeberweisungCreateView.fxml"));
         loader.setRoot(this);
         loader.setController(this);
         try {
             loader.load();
         } catch (IOException e) {
-
             e.printStackTrace();
         }
     }
     @FXML
     void checkVersicherungsnum(){
-        if(Versicherungsnummer.getText().isEmpty()||!(EPAControl.getEPA().checkNumPatient(Versicherungsnummer.getText()))){
+        if(Versicherungsnummer.getText().isEmpty()||!(epaController.getEPA().checkNumPatient(Versicherungsnummer.getText()))){
             HiddenText.setText("Versicherungsnummer ist invalid");
             HiddenText.setVisible(true);
             Flow.getChildren().clear();
         }
         else{
             Flow.getChildren().clear();
-            Patient p =EPAControl.getEPA().getPatient(Versicherungsnummer.getText());
+            Patient p =epaController.getEPA().getPatient(Versicherungsnummer.getText());
             ArrayList<Untersuchungsbericht> berichtliste= p.getUntersuchungList();
             for(int i= 0; i< berichtliste.size(); i++){
                 UntersuchungBerichtWahlController uc= new UntersuchungBerichtWahlController(berichtliste.get(i));
@@ -162,18 +161,18 @@ public class UeberweisungCreateViewController extends ScrollPane {
             HiddenText.setText("Versicherungsnummer ist valid");
             HiddenText.setVisible(true);
             pVnum=Versicherungsnummer.getText();
-            VnumValid=true;
+            versicherungsnummerValid=true;
         }
     }
     @FXML
     void toMainView(){
-        mainStage.setScene(new Scene(new ArztMainViewController(mainStage,EPAControl)));
+        mainStage.setScene(new Scene(new ArztMainViewController(mainStage,epaController)));
     }
     @FXML
     void UeberweisungReview(){
-         if(VnumValid&&pVnum.equals(Versicherungsnummer.getText())){
-             if(!(Versicherungsnummer.getText().isEmpty()||ArztBezeich.getText().isEmpty()||ArztBezeich.getText().equals(EPAControl.getCurrLoggedIn())||Auftrag.getText().isEmpty())){
-                 if(EPAControl.getEPA().checkNumArzt(ArztBezeich.getText())){
+         if(versicherungsnummerValid&&pVnum.equals(Versicherungsnummer.getText())){
+             if(!(Versicherungsnummer.getText().isEmpty()||ArztBezeich.getText().isEmpty()||ArztBezeich.getText().equals(epaController.getCurrLoggedIn())||Auftrag.getText().isEmpty())){
+                 if(epaController.getEPA().checkNumArzt(ArztBezeich.getText())){
                      for(int i= 0; i < Flow.getChildren().size(); i++){
                          UntersuchungBerichtWahlController uc = (UntersuchungBerichtWahlController) Flow.getChildren().get(i);
                          if(uc.isChoosen()){
@@ -181,7 +180,7 @@ public class UeberweisungCreateViewController extends ScrollPane {
                          }
                      }
                      String time = LocalDateTime.now().toString();
-                     mainStage.setScene(new Scene(new UeberweisungsViewController(Versicherungsnummer.getText(),ArztBezeich.getText(),Auftrag.getText(),BerichtListe,time,mainStage,EPAControl)));
+                     mainStage.setScene(new Scene(new UeberweisungsViewController(Versicherungsnummer.getText(),ArztBezeich.getText(),Auftrag.getText(),BerichtListe,time,mainStage,epaController)));
                  }
              }
          }

@@ -104,10 +104,10 @@ public class LoginViewController extends TabPane {
     @FXML
     private TextField aFach;
     private Stage mainStage;
-    private EPAController EPAControl;
+    private EPAController epaController;
     public LoginViewController(Stage primaryStage) {
         mainStage= primaryStage;
-        EPAControl= new EPAController();
+        epaController= new EPAController();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/StartView/LoginView.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -123,11 +123,12 @@ public class LoginViewController extends TabPane {
         String aID= aNum.getText();
         String aPass=aPasswort.getText();
          if (aID != null && aPass != null) {
-             EPA epa= EPAControl.getEPA();
+             EPA epa= epaController.getEPA();
              if(epa.checkNumArzt(aID)){
                  if(epa.getArzt(aID).getPasswort().equals(aPass)){
-                     EPAControl.setCurrLoggedIn(aID);
-                     mainStage.setScene(new Scene(new ArztMainViewController(mainStage,EPAControl)));
+                     epaController.setCurrLoggedIn(aID);
+                     epaController.setisArzt(true);
+                     mainStage.setScene(new Scene(new ArztMainViewController(mainStage,epaController)));
                  }
              }
          }
@@ -139,11 +140,12 @@ public class LoginViewController extends TabPane {
     void showPatientFunctionView(ActionEvent event){
         String pID= pNum.getText();
         String pPass=pPasswort.getText();
-        EPA epa= EPAControl.getEPA();
+        EPA epa= epaController.getEPA();
         if(epa.checkNumPatient(pID)){
             if(epa.getPatient(pID).getPasswort().equals(pPass)){
-                EPAControl.setCurrLoggedIn(pID);
-                mainStage.setScene(new Scene(new PatientMainViewController(mainStage,EPAControl)));
+                epaController.setCurrLoggedIn(pID);
+                epaController.setisArzt(false);
+                mainStage.setScene(new Scene(new PatientMainViewController(mainStage,epaController)));
             }
         }
         else{

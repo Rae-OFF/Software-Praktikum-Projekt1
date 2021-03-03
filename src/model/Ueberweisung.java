@@ -7,22 +7,22 @@ import java.util.List;
 public class Ueberweisung {
 
 	private String patientnummer;
-
 	private String neuarztnummer;
 	private String altArztnummer;
 
 	private ArrayList<Untersuchungsbericht> untersuchungsbericht;
 
-	private String Auftrag;
+	private String auftrag;
 
 	private String date;
+	private boolean datenStimmZu=false;
 
-	public Ueberweisung(String altArzt, String patient, String arzt, ArrayList<Untersuchungsbericht> untersuchungsList, String Auftrag, String date) {
+	public Ueberweisung(String altArzt, String patient, String neuArzt, ArrayList<Untersuchungsbericht> untersuchungsList, String Auftrag, String date) {
         patientnummer=patient;
-        neuarztnummer=arzt;
+        neuarztnummer=neuArzt;
         altArztnummer=altArzt;
         this.untersuchungsbericht=untersuchungsList;
-        this.Auftrag=Auftrag;
+        this.auftrag=Auftrag;
         this.date=date;
 	}
 
@@ -35,12 +35,17 @@ public class Ueberweisung {
 	}
 
 	public String getAuftrag() {
-		return Auftrag;
+		return auftrag;
 	}
 
 	public String getDate() {
 		return date;
 	}
+
+	public boolean isDatenStimmZu() {
+		return datenStimmZu;
+	}
+	public void setDatenStimmZu(boolean b){datenStimmZu=b;}
 
 	public String getPatientnummer() {
 		return patientnummer;

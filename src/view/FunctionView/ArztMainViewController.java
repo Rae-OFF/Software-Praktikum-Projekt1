@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Arzt;
+import view.Revision.RevisionsController;
 import view.StartView.LoginViewController;
 import view.ueberweisung.UeberweisungCreateViewController;
 import view.untersuchungsbericht.UntersuchungsberichtEingabeController;
@@ -48,16 +49,16 @@ public class ArztMainViewController extends AnchorPane {
     private Button aUeberweisungErstellen;
 
     @FXML
-    private Button aZumRevisionen;
+    private Button revisionButton;
     @FXML
     private ImageView ArztImage;
 
     @FXML
     private Button aLogout;
     private Stage mainStage;
-    private EPAController EPAControll;
-    public ArztMainViewController(Stage primaryStage, EPAController EPAControll) {
-        this.EPAControll= EPAControll;
+    private EPAController epaController;
+    public ArztMainViewController(Stage primaryStage, EPAController ePAControll) {
+        this.epaController= ePAControll;
         mainStage= primaryStage;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FunctionView/ArztMainView.fxml"));
         loader.setRoot(this);
@@ -71,7 +72,7 @@ public class ArztMainViewController extends AnchorPane {
         }
     }
     private void init() throws IOException {
-        Arzt a= EPAControll.getEPA().getArzt(EPAControll.getCurrLoggedIn());
+        Arzt a= epaController.getEPA().getArzt(epaController.getCurrLoggedIn());
         Image icon = SwingFXUtils.toFXImage(ImageIO.read(this.getClass().getClassLoader().getResource("view/image/50115-200.png")), null);
         ArztImage.setImage(icon);
         aVorname.setText(a.getVorname());
@@ -91,15 +92,17 @@ public class ArztMainViewController extends AnchorPane {
     }
     @FXML
     void zumUeberweisungErstellen(){
-        mainStage.setScene(new Scene(new UeberweisungCreateViewController(mainStage,EPAControll)));
+        mainStage.setScene(new Scene(new UeberweisungCreateViewController(mainStage,epaController)));
     }
     @FXML
     void zumUntersuchungsbericht(){
-        mainStage.setScene(new Scene(new UntersuchungsberichtEingabeController(mainStage,EPAControll)));
+        mainStage.setScene(new Scene(new UntersuchungsberichtEingabeController(mainStage,epaController)));
     }
     @FXML
     void zumEingabeSeite(){
-        mainStage.setScene(new Scene(new EingabeSeiteController(mainStage, EPAControll)));
+        mainStage.setScene(new Scene(new EingabeSeiteController(mainStage,epaController)));
     }
+    @FXML
+    void zumRevision(){mainStage.setScene(new Scene(new RevisionsController(mainStage,epaController)));}
 
 }

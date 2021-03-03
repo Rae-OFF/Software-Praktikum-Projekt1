@@ -79,18 +79,19 @@ public class ZusammenfassungsController {
     public ArrayList<Untersuchungsbericht> createZusammenfassungAlleAerzte(String versicherungsnummer, String iCD) throws UnsupportedOperationException {
          EPA e= ePAController.getEPA();
          Arzt a = e.getArzt(ePAController.getCurrLoggedIn());// get arzt
-         ArrayList<Ueberweisung> ue=a.getPatient(versicherungsnummer).getUeberweisungsList();// get ueberweisungslist from patient with versicherungsnummer
-		 ArrayList<Untersuchungsbericht>berichtlist= new ArrayList<Untersuchungsbericht>();
-         for(int i=0; i<ue.size(); i++){
-         	if(ue.get(i).getNeuarztnummer().equals(ePAController.getCurrLoggedIn())) {// interpretioert ueberweisung mit neuarztnum == this arztnum
-				berichtlist.addAll(ue.get(i).getUntersuchungsbericht());// get all untersuchung from ueberweisunglist
-			}
-
-         }
-         if(!iCD.equals("leer")){
-			 for(int i=0; i<berichtlist.size();i++){
-				 if(!berichtlist.get(i).getICD().equals(iCD)){
-					 berichtlist.remove(i);// remove berichte that have icd != icd to find from list
+		 ArrayList<Untersuchungsbericht>berichtlist= new ArrayList<Untersuchungsbericht>();//zum ausgabe
+		 if(a.getPatient(versicherungsnummer)!=null&&e.checkNumPatient(versicherungsnummer)){// patient valid
+			 ArrayList<Ueberweisung> ue=a.getPatient(versicherungsnummer).getUeberweisungsList();// get ueberweisungslist from patient with versicherungsnummer
+			 for(int i=0; i<ue.size(); i++){
+				 if(ue.get(i).getNeuarztnummer().equals(ePAController.getCurrLoggedIn())&&ue.get(i).isDatenStimmZu()) {// interpretioert ueberweisung mit neuarztnum == this arztnum && derren Daten wurden schon zugestimmt
+					 berichtlist.addAll(ue.get(i).getUntersuchungsbericht());// get all untersuchung from ueberweisunglist
+				 }
+			 }
+			 if(!iCD.equals("leer")){
+				 for(int i=0; i<berichtlist.size();i++){
+					 if(!berichtlist.get(i).getICD().equals(iCD)){
+						 berichtlist.remove(i);// remove berichte that have icd != icd to find from list
+					 }
 				 }
 			 }
 		 }
