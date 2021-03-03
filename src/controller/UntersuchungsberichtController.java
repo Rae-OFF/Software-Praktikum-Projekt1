@@ -59,7 +59,7 @@ public class UntersuchungsberichtController {
 	 * @param icd die zu überprüfende ICD.
 	 * @return true für Format ist richtig.
 	 */
-    public static boolean iCDUeberpruefen(String icd){
+    public boolean iCDUeberpruefen(String icd){
 		CharacterIterator icdIterator = new StringCharacterIterator(icd);
 		if(!Character.isUpperCase(icdIterator.current())){
 			return false;
@@ -114,7 +114,7 @@ public class UntersuchungsberichtController {
 	 * @param uhrzeit die zu überprüfende Uhrzeit.
 	 * @return true für Format ist richtig.
 	 */
-	public static boolean uhrzeitUeberpruefen(String uhrzeit){
+	public boolean uhrzeitUeberpruefen(String uhrzeit){
 		CharacterIterator timeIterator = new StringCharacterIterator(uhrzeit);
 		String stunden="";
 		int stundenInt;

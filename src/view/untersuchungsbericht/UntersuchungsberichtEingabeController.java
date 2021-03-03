@@ -95,9 +95,9 @@ public class UntersuchungsberichtEingabeController extends BorderPane {
         String notes = untersuchungsberichtNotesField.getText();
         UntersuchungsberichtController untersuchungsberichtController = EPAControl.getUntersuchungsberichtcontroller();
         boolean icdFormat = untersuchungsberichtController.iCDUeberpruefen(icd);
-        boolean versicherungsnummerFormat = true;//untersuchungsberichtController.versicherungsnummerUeberpruefen(versicherungsnummer);
+        boolean versicherungsnummerFormat = untersuchungsberichtController.versicherungsnummerUeberpruefen(versicherungsnummer);
         boolean uhrzeitFormat = untersuchungsberichtController.uhrzeitUeberpruefen(uhrzeit);
-        if(!(icdFormat||versicherungsnummerFormat||uhrzeitFormat)){
+        if(!(icdFormat||versicherungsnummerFormat)||!(uhrzeitFormat||versicherungsnummerFormat)||!(icdFormat||uhrzeitFormat)){
             mehrereFehler.setVisible(true);
         }
         else if(!icdFormat){
