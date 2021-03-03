@@ -16,6 +16,8 @@ import view.StartView.LoginViewController;
 import view.ueberweisung.UeberweisungCreateViewController;
 import view.untersuchungsbericht.UntersuchungsberichtEingabeController;
 
+import view.zusammenfassungderBehandlungsschritt.EingabeSeiteController;
+
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
@@ -94,6 +96,10 @@ public class ArztMainViewController extends AnchorPane {
     @FXML
     void zumUntersuchungsbericht(){
         mainStage.setScene(new Scene(new UntersuchungsberichtEingabeController(mainStage,EPAControll)));
+    }
+    @FXML
+    void zumEingabeSeite(){
+        mainStage.setScene(new Scene(new EingabeSeiteController(mainStage, EPAControll)));
     }
 
 }

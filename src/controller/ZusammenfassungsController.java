@@ -23,6 +23,8 @@ public class ZusammenfassungsController {
  	 */
     private ZusammenfassungsAUI zusammenfassungsAUI;
 
+
+
     public ZusammenfassungsController(EPAController e) {
     }
 
