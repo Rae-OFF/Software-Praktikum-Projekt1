@@ -51,13 +51,13 @@ public class Untersuchungsbericht {
 		ausgabe+="Diagnose: "+diagnose+"/n";
 		ausgabe+="verabreichte Medikamente:/n";
 		for (String x:med) {
-			ausgabe+="-"+x;
+			ausgabe+="-"+x+"/n";
 		}
 		ausgabe+="/n";
 		ausgabe+="Behandlung: "+behandlung+"/n";
 		ausgabe+="Notizen:/n";
 		for (String y:notes) {
-			ausgabe+="-"+y;
+			ausgabe+="-"+y+"/n";
 		}
 		return ausgabe;
 	}
