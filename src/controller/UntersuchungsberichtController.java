@@ -10,7 +10,6 @@ import java.text.StringCharacterIterator;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static java.lang.Character.isLetter;
 
 public class UntersuchungsberichtController {
 
@@ -39,13 +38,8 @@ public class UntersuchungsberichtController {
 	 * @param notes Notizen zum Patienten
  	 */
     public void createUntersuchungsbericht(String versicherungsnummer, LocalDateTime dateTime, String icd, List<String> med, String diagnose, String behandlung, List<String> notes){
-    	if(!datenUeberpruefen(icd, versicherungsnummer)){
-    		//ausgabe falsche eingabe
-		}
-    	else{
-    		Untersuchungsbericht bericht = new Untersuchungsbericht(versicherungsnummer, ePAController.getCurrLoggedIn(),dateTime, icd, med, diagnose, behandlung, notes);
-    		addUntersuchungbericht(versicherungsnummer, bericht);
-    	}
+		Untersuchungsbericht bericht = new Untersuchungsbericht(versicherungsnummer, ePAController.getCurrLoggedIn(),dateTime, icd, med, diagnose, behandlung, notes);
+		addUntersuchungbericht(versicherungsnummer, bericht);
     }
 
     /**
@@ -67,33 +61,60 @@ public class UntersuchungsberichtController {
  	 * TODO: create JavaDoc. 
  	 * @return boolean gibt wahr zurück wenn die eingegebenen Daten korrekt sind.
  	 */
-    public boolean datenUeberpruefen(String icd, String versicherungsnummer){
+    public boolean iCDUeberpruefen(String icd){
 		CharacterIterator icdIterator = new StringCharacterIterator(icd);
-		boolean icdRightFormat = true;
-		if(!Character.isUpperCase(icdIterator.current())){
-			icdRightFormat = false;
+		if(!Character.isUpperCase(icdIterator.current())||icdIterator.current()==CharacterIterator.DONE){
+			return false;
 		}
 		else{
 			icdIterator.next();
-			if(icdIterator.current()==CharacterIterator.DONE||!(Character.isDigit(icdIterator.current())||Character.isDigit(icdIterator.next()))){
-				icdRightFormat = false;
+			if(icdIterator.current()==CharacterIterator.DONE||!(Character.isDigit(icdIterator.current())||Character.isDigit(icdIterator.next()))||icdIterator.current()==CharacterIterator.DONE){
+				return false;
 			}
 			else{
 				icdIterator.next();
-				if(icdIterator.current()!=CharacterIterator.DONE&&icdIterator.current()!='.'){
-					icdRightFormat = false;
+				if(icdIterator.current()!=CharacterIterator.DONE&&icdIterator.current()!='.'||icdIterator.current()==CharacterIterator.DONE){
+					return false;
 				}
 				else{
 					icdIterator.next();
-					if(icdIterator.current()==CharacterIterator.DONE||!(Character.isDigit(icdIterator.current())||Character.isDigit(icdIterator.next()))){
-						icdRightFormat = false;
+					if(icdIterator.current()==CharacterIterator.DONE||!(Character.isDigit(icdIterator.current())||Character.isDigit(icdIterator.next()))||icdIterator.current()==CharacterIterator.DONE){
+						return false;
 					}
-					else icdRightFormat = true;
+					else return true;
 				}
 			}
 		}
-		EPA epa = ePAController.getEPA();
-		boolean patientExists = epa.checkNumPatient(versicherungsnummer);
-		return (icdRightFormat&&patientExists);
     }
+
+    public boolean versicherungsnummerUeberpruefen(String versicherungsnummer){
+		EPA epa = ePAController.getEPA();
+		return epa.checkNumPatient(versicherungsnummer);
+	}
+
+	public boolean UhrzeitUeberpruefen(String uhrzeit){
+		CharacterIterator timeIterator = new StringCharacterIterator(uhrzeit);
+		if(!Character.isDigit(timeIterator.current())|| timeIterator.current() >2){
+			return false;
+		}
+		else{
+			timeIterator.next();
+			if(!Character.isDigit(timeIterator.current())||timeIterator.next()!=':'){
+				return false;
+			}
+			else{
+				timeIterator.next();
+				if(!Character.isDigit(timeIterator.current())|| timeIterator.current() >5){
+					return false;
+				}
+				else{
+					timeIterator.next();
+					if(!Character.isDigit(timeIterator.current())){
+						return false;
+					}
+					else return true;
+				}
+			}
+		}
+	}
 }

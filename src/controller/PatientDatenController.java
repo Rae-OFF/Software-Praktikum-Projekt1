@@ -4,6 +4,8 @@ import model.EPA;
 import model.Patient;
 import model.Untersuchungsbericht;
 
+import javax.sound.midi.InvalidMidiDataException;
+import java.security.InvalidParameterException;
 import java.util.List;
 
 public class PatientDatenController {
@@ -25,12 +27,31 @@ public class PatientDatenController {
 		patient.setBirth(Birth);
 		patient.setPasswort(pass);
 	}
+	/**
+	 *
+	 * TODO: create JavaDoc.
+	 * @param versicherungsnummer des Patienten
+	 * @param  icd der Krankheit
+	 * @return liste aller Untersuchungsberichte einer bestimmten Krankheit
+	 */
+	public List<Untersuchungsbericht> berichteAussuchen(String versicherungsnummer , String icd ) {
+		if (versicherungsnummer == null || icd == null  ){
+			// ungültige Eingabe
+			throw new InvalidParameterException();
 
-	public List<Untersuchungsbericht> berichteAussuchen() {
+		}
+		List<Untersuchungsbericht> list1 = null;
+		EPA epa = ePAController.getEPA();
+		Patient patient = epa.getPatient(versicherungsnummer);
+		List<Untersuchungsbericht> list =patient.getUntersuchungList();
+		for(Untersuchungsbericht untersuchungsbericht: list){
+			if(untersuchungsbericht.getICD().equals(icd)){
+				list1.add(untersuchungsbericht);
 
+			}
+		}
 
-
-		return null;
+		return list1;
 	}
 
 
