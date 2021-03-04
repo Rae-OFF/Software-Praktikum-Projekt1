@@ -25,8 +25,9 @@ import javax.imageio.ImageIO;
 import javafx.fxml.Initializable;
 
 
-
-
+/**
+ * The type Zusammenfassungs controller.
+ */
 public class zusammenfassungsController extends SplitPane{
 
     @FXML
@@ -57,7 +58,9 @@ public class zusammenfassungsController extends SplitPane{
     private Button zumArztMainView;
 
 
-
+    /**
+     * Initialize.
+     */
     @FXML
     void initialize() {
         assert pInfomation != null : "fx:id=\"pInfomation\" was not injected: check your FXML file 'Zusammenfassung.fxml'.";
@@ -74,6 +77,14 @@ public class zusammenfassungsController extends SplitPane{
     private EPAController EPAControl;
     private Untersuchungsbericht Ub;
     private boolean alleArzte;// falsch -> inhalt 1 arzt, true -> inhalt allle arzte
+
+    /**
+     * Instantiates a new Zusammenfassungs controller.
+     *
+     * @param primaryStage the primary stage
+     * @param EPAControl   the epa control
+     * @param alleArzte    the alle arzte
+     */
     public zusammenfassungsController(Stage primaryStage, EPAController EPAControl,boolean alleArzte ) {
         mainStage = primaryStage;
         this.EPAControl = EPAControl;
@@ -103,11 +114,21 @@ public class zusammenfassungsController extends SplitPane{
     }*/
 
 
+    /**
+     * Zum arzt main view.
+     *
+     * @param actionEvent the action event
+     */
     @FXML
     void ZumArztMainView(ActionEvent actionEvent){
         mainStage.setScene(new Scene(new ArztMainViewController(mainStage, EPAControl)));
     }
 
+    /**
+     * Zum eingabe seite.
+     *
+     * @param actionEvent the action event
+     */
     @FXML
     void ZumEingabeSeite(ActionEvent actionEvent){
         mainStage.setScene(new Scene(new EingabeSeiteController(mainStage, EPAControl)));

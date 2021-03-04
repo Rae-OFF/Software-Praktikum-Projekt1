@@ -21,6 +21,9 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * The type Ueberweisungs anderung view controller.
+ */
 public class UeberweisungsAnderungViewController extends ScrollPane {
 
     @FXML
@@ -63,6 +66,14 @@ public class UeberweisungsAnderungViewController extends ScrollPane {
     private EPAController epaController;
     private Ueberweisung ueberweisung;
     private ArrayList<Untersuchungsbericht>choosenUntersuchungsberichts=new ArrayList<Untersuchungsbericht>();
+
+    /**
+     * Instantiates a new Ueberweisungs anderung view controller.
+     *
+     * @param EPAControl   the epa control
+     * @param primary      the primary
+     * @param ueberweisung the ueberweisung
+     */
     public UeberweisungsAnderungViewController(EPAController EPAControl, Stage primary, Ueberweisung ueberweisung){
         this.mainStage=primary;
         this.epaController=EPAControl;
@@ -101,6 +112,12 @@ public class UeberweisungsAnderungViewController extends ScrollPane {
             Flow.getChildren().add(uc);
         }
     }
+
+    /**
+     * Anderungen speichern.
+     *
+     * @param event the event
+     */
     @FXML
     void AnderungenSpeichern(ActionEvent event) {
         for(int i=0; i<Flow.getChildren().size();i++){
@@ -116,6 +133,11 @@ public class UeberweisungsAnderungViewController extends ScrollPane {
         mainStage.setScene(new Scene(new UeberweisungsChooseController(mainStage,epaController)));
     }
 
+    /**
+     * To choose ueberweisung.
+     *
+     * @param event the event
+     */
     @FXML
     void ToChooseUeberweisung(ActionEvent event) {
         mainStage.setScene(new Scene(new UeberweisungsChooseController(mainStage,epaController)));

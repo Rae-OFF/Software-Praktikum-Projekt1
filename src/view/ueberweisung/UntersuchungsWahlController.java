@@ -9,6 +9,9 @@ import model.Untersuchungsbericht;
 
 import java.io.IOException;
 
+/**
+ * The type Untersuchungs wahl controller.
+ */
 public class UntersuchungsWahlController extends TitledPane {
     @FXML
     private Text Date;
@@ -52,6 +55,12 @@ public class UntersuchungsWahlController extends TitledPane {
     @FXML
     private RadioButton chooseThis;
     private Untersuchungsbericht untersuchung;
+
+    /**
+     * Instantiates a new Untersuchungs wahl controller.
+     *
+     * @param u the u
+     */
     public UntersuchungsWahlController(Untersuchungsbericht u){
         this.untersuchung=u;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ueberweisung/UntersuchungsWahl.fxml"));
@@ -79,8 +88,20 @@ public class UntersuchungsWahlController extends TitledPane {
         Notiz.getChildren().add(new Text(""));
         Notiz.setVisible(true);
     }
-    //  write method to check radiobuttons and set attribute in untersuchungsbericht
+
+    /**
+     * Bericht choosen boolean.
+     *
+     * @return the boolean
+     */
+//  write method to check radiobuttons and set attribute in untersuchungsbericht
     public boolean BerichtChoosen(){return chooseThis.isSelected();}
+
+    /**
+     * Get untersuchung untersuchungsbericht.
+     *
+     * @return the untersuchungsbericht
+     */
     public Untersuchungsbericht getUntersuchung(){return untersuchung;}
 }
 

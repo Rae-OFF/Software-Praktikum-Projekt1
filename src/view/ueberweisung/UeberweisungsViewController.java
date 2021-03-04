@@ -20,6 +20,9 @@ import view.FunctionView.ArztMainViewController;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * The type Ueberweisungs view controller.
+ */
 public class UeberweisungsViewController extends ScrollPane {
 
     @FXML
@@ -67,6 +70,18 @@ public class UeberweisungsViewController extends ScrollPane {
     private String versicherungsNummmer;
     private String auftrag;
     private String time;
+
+    /**
+     * Instantiates a new Ueberweisungs view controller.
+     *
+     * @param versicherung  the versicherung
+     * @param neuArztNum    the neu arzt num
+     * @param auftrag       the auftrag
+     * @param berichtListe  the bericht liste
+     * @param time          the time
+     * @param primaryStage  the primary stage
+     * @param epaController the epa controller
+     */
     public UeberweisungsViewController(String versicherung, String neuArztNum, String auftrag, ArrayList<Untersuchungsbericht> berichtListe, String time,Stage primaryStage, EPAController epaController) {
         this.mainStage= primaryStage;
         this.time=time;
@@ -110,6 +125,12 @@ public class UeberweisungsViewController extends ScrollPane {
             Flow.getChildren().add(uc);
         }
     }
+
+    /**
+     * To main view.
+     *
+     * @param e the e
+     */
     @FXML
     void ToMainView(ActionEvent e){
         // create new Ueberweisung with UeberweisungsController parameter ist atribute ()
@@ -117,6 +138,12 @@ public class UeberweisungsViewController extends ScrollPane {
         epaController.getUeberweisungsController().addUeberweisung(ueberweisung);
         mainStage.setScene(new Scene(new ArztMainViewController(mainStage,epaController)));
     }
+
+    /**
+     * To create ueberweisung.
+     *
+     * @param e the e
+     */
     @FXML
     void ToCreateUeberweisung(ActionEvent e){
         mainStage.setScene(new Scene(new UeberweisungCreateViewController(mainStage, epaController)));

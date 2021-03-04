@@ -16,6 +16,9 @@ import model.Arzt;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
+/**
+ * The type Patient arzt view controller.
+ */
 public class PatientArztViewController extends AnchorPane {
     @FXML
     private Text aVorname;
@@ -39,6 +42,14 @@ public class PatientArztViewController extends AnchorPane {
     private EPAController epaController;
     private Stage mainStage;
     private Arzt hausArzt;
+
+    /**
+     * Instantiates a new Patient arzt view controller.
+     *
+     * @param primaryStage  the primary stage
+     * @param hausArzt      the haus arzt
+     * @param epaController the epa controller
+     */
     public PatientArztViewController(Stage primaryStage, Arzt hausArzt, EPAController epaController){
         mainStage= primaryStage;
         this.hausArzt=hausArzt;
@@ -67,6 +78,12 @@ public class PatientArztViewController extends AnchorPane {
         Image icon = SwingFXUtils.toFXImage(ImageIO.read(this.getClass().getClassLoader().getResource("view/image/50115-200.png")), null);
         ArztImage.setImage(icon);
     }
+
+    /**
+     * To main function.
+     *
+     * @param a the a
+     */
     @FXML
     void toMainFunction(ActionEvent a){
         mainStage.setScene(new Scene(new PatientMainViewController(mainStage,epaController)));

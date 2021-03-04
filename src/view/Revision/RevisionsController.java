@@ -19,6 +19,9 @@ import javafx.stage.Stage;
 import view.FunctionView.ArztMainViewController;
 import view.FunctionView.PatientMainViewController;
 
+/**
+ * The type Revisions controller.
+ */
 public class RevisionsController extends BorderPane {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
@@ -31,6 +34,9 @@ public class RevisionsController extends BorderPane {
     @FXML // fx:id="reviewOutput"
     private FlowPane reviewOutput; // Value injected by FXMLLoader
 
+    /**
+     * Initialize.
+     */
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert reviewBackButton != null : "fx:id=\"reviewBackButton\" was not injected: check your FXML file 'Revision.fxml'.";
@@ -39,6 +45,13 @@ public class RevisionsController extends BorderPane {
     }
     private Stage mainStage;
     private EPAController epaController;
+
+    /**
+     * Instantiates a new Revisions controller.
+     *
+     * @param mainStage     the main stage
+     * @param epaController the epa controller
+     */
     public RevisionsController( Stage mainStage,EPAController epaController){
         this.epaController=epaController;
         this.mainStage=mainStage;
@@ -66,6 +79,10 @@ public class RevisionsController extends BorderPane {
             }
         }
     }
+
+    /**
+     * Zu main view.
+     */
     @FXML
     void zuMainView(){
         if(epaController.isArzt()){

@@ -6,6 +6,9 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
+/**
+ * The type Untersuchung bericht controller.
+ */
 public class UntersuchungBerichtController {
 
     @FXML

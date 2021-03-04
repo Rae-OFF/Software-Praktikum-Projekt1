@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * The type Ueberweisung create view controller.
+ */
 public class UeberweisungCreateViewController extends ScrollPane {
 
     @FXML
@@ -131,6 +134,13 @@ public class UeberweisungCreateViewController extends ScrollPane {
     private boolean versicherungsnummerValid=false;
     private String pVnum="";
     private ArrayList<Untersuchungsbericht> BerichtListe=new ArrayList<Untersuchungsbericht>();
+
+    /**
+     * Instantiates a new Ueberweisung create view controller.
+     *
+     * @param primaryStage  the primary stage
+     * @param epaController the epa controller
+     */
     public UeberweisungCreateViewController(Stage primaryStage, EPAController epaController) {
         this.mainStage= primaryStage;
         this.epaController=epaController;
@@ -143,6 +153,10 @@ public class UeberweisungCreateViewController extends ScrollPane {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Check versicherungsnum.
+     */
     @FXML
     void checkVersicherungsnum(){
         if(Versicherungsnummer.getText().isEmpty()||!(epaController.getEPA().checkNumPatient(Versicherungsnummer.getText()))){
@@ -164,10 +178,18 @@ public class UeberweisungCreateViewController extends ScrollPane {
             versicherungsnummerValid=true;
         }
     }
+
+    /**
+     * To main view.
+     */
     @FXML
     void toMainView(){
         mainStage.setScene(new Scene(new ArztMainViewController(mainStage,epaController)));
     }
+
+    /**
+     * Ueberweisung review.
+     */
     @FXML
     void UeberweisungReview(){
          if(versicherungsnummerValid&&pVnum.equals(Versicherungsnummer.getText())){

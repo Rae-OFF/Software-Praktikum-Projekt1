@@ -21,6 +21,9 @@ import view.ueberweisung.UeberweisungsChooseController;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
+/**
+ * The type Patient main view controller.
+ */
 public class PatientMainViewController extends AnchorPane {
     @FXML
     private Text pVorname;
@@ -58,6 +61,13 @@ public class PatientMainViewController extends AnchorPane {
     private ImageView PatientImage;
     private Stage mainStage;
     private EPAController epaController;
+
+    /**
+     * Instantiates a new Patient main view controller.
+     *
+     * @param primaryStage  the primary stage
+     * @param epaController the epa controller
+     */
     public PatientMainViewController(Stage primaryStage, EPAController epaController) {
         mainStage= primaryStage;
         this.epaController=epaController;
@@ -88,10 +98,22 @@ public class PatientMainViewController extends AnchorPane {
         pAdress.getChildren().add(new Text(p.getAddress()));
         pAdress.setVisible(true);
     }
+
+    /**
+     * Zum login view.
+     *
+     * @param e the e
+     */
     @FXML
     void zumLoginView(ActionEvent e){
         mainStage.setScene(new Scene(new LoginViewController(mainStage)));
     }
+
+    /**
+     * Zum haus arzt.
+     *
+     * @param e the e
+     */
     @FXML
     void zumHausArzt(ActionEvent e){
         Patient p=epaController.getEPA().getPatient(epaController.getCurrLoggedIn());
@@ -107,10 +129,18 @@ public class PatientMainViewController extends AnchorPane {
             mainStage.setScene(new Scene(new PatientArztViewController(mainStage, p.getBehandelnderArzt(),epaController)));
         }
     }
+
+    /**
+     * Zum ueberweisungs ansehen.
+     */
     @FXML
     void zumUeberweisungsAnsehen(){
         mainStage.setScene(new Scene(new UeberweisungsChooseController(mainStage, epaController)));
     }
+
+    /**
+     * Zum revision.
+     */
     @FXML
     void zumRevision(){
         mainStage.setScene(new Scene(new RevisionsController(mainStage,epaController)));

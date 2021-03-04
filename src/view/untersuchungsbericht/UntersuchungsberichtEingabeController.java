@@ -17,6 +17,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import view.FunctionView.ArztMainViewController;
 
+/**
+ * The type Untersuchungsbericht eingabe controller.
+ */
 public class UntersuchungsberichtEingabeController extends BorderPane {
 
 
@@ -69,6 +72,12 @@ public class UntersuchungsberichtEingabeController extends BorderPane {
     private EPAController ePAControl;
     private Stage mainStage;
 
+    /**
+     * Instantiates a new Untersuchungsbericht eingabe controller.
+     *
+     * @param primaryStage the primary stage
+     * @param EPAControl   the epa control
+     */
     public UntersuchungsberichtEingabeController(Stage primaryStage, EPAController EPAControl) {
         mainStage = primaryStage;
         this.ePAControl = EPAControl;
@@ -82,6 +91,10 @@ public class UntersuchungsberichtEingabeController extends BorderPane {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Bestaetigen.
+     */
     @FXML
     void bestaetigen(){
         iCDFehler.setVisible(false);

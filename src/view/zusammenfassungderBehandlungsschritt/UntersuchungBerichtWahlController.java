@@ -10,6 +10,9 @@ import model.Untersuchungsbericht;
 
 import java.io.IOException;
 
+/**
+ * The type Untersuchung bericht wahl controller.
+ */
 public class UntersuchungBerichtWahlController extends TitledPane {
     @FXML
     private TitledPane Bericht1;
@@ -38,6 +41,12 @@ public class UntersuchungBerichtWahlController extends TitledPane {
     @FXML
     private TextFlow Notiz;
     private Untersuchungsbericht untersuchung;
+
+    /**
+     * Instantiates a new Untersuchung bericht wahl controller.
+     *
+     * @param u the u
+     */
     public UntersuchungBerichtWahlController(Untersuchungsbericht u){
         untersuchung=u;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ueberweisung/untersuchung.fxml"));
@@ -65,8 +74,24 @@ public class UntersuchungBerichtWahlController extends TitledPane {
        Notiz.setVisible(true);
        ChooseButton.setVisible(false);
     }
+
+    /**
+     * Is choosen boolean.
+     *
+     * @return the boolean
+     */
     public boolean isChoosen(){return ChooseButton.isSelected();}
+
+    /**
+     * Get untersuchung untersuchungsbericht.
+     *
+     * @return the untersuchungsbericht
+     */
     public Untersuchungsbericht getUntersuchung(){return untersuchung;}
+
+    /**
+     * Set button disable.
+     */
     public void setButtonDisable(){ChooseButton.setDisable(true);ChooseButton.setVisible(false);}
 
 }

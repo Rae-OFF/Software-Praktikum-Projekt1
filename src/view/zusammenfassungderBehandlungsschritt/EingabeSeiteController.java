@@ -27,6 +27,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
+/**
+ * The type Eingabe seite controller.
+ */
 public class EingabeSeiteController extends AnchorPane {
     @FXML
     private ResourceBundle resources;
@@ -47,16 +50,29 @@ public class EingabeSeiteController extends AnchorPane {
     private RadioButton alleÄrzte;
 
 
+    /**
+     * Zum arzt main view.
+     *
+     * @param event the event
+     */
     @FXML
     void zumArztMainView(ActionEvent event) {
         mainStage.setScene(new Scene(new ArztMainViewController(mainStage, EPAControll)));
     }
 
+    /**
+     * Zum zusammenfassung.
+     *
+     * @param event the event
+     */
     @FXML
     void zumZusammenfassung(ActionEvent event) {
         if(alleÄrzte.isSelected()||aktuellerArzt.isSelected()){mainStage.setScene(new Scene(new zusammenfassungsController(mainStage, EPAControll,alleÄrzte.isSelected())));}
     }
 
+    /**
+     * Initialize.
+     */
     @FXML
     void initialize() {
         assert zumZusammenfassung != null : "fx:id=\"zumZusammenfassung\" was not injected: check your FXML file 'EingabeSeite.fxml'.";
@@ -75,6 +91,12 @@ public class EingabeSeiteController extends AnchorPane {
     private Stage mainStage;
     private EPAController EPAControll;
 
+    /**
+     * Instantiates a new Eingabe seite controller.
+     *
+     * @param primaryStage the primary stage
+     * @param EPAControll  the epa controll
+     */
     public EingabeSeiteController(Stage primaryStage, EPAController EPAControll) {
         this.EPAControll= EPAControll;
         mainStage = primaryStage;

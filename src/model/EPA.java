@@ -5,24 +5,20 @@ import java.util.Collection;
 import java.lang.UnsupportedOperationException;
 import java.util.List;
 
+/**
+ * The type Epa.
+ */
 public class EPA {
 
-    /**
- 	 * 
- 	 */
     private ArrayList<Arzt> arztList;
 
-    /**
- 	 * 
- 	 */
     private ArrayList<Patient> patientList;
 
-    /**
- 	 * 
- 	 */
 
-
-    public EPA() {
+	/**
+	 * Instantiates a new Epa.
+	 */
+	public EPA() {
     	this.arztList= new ArrayList<Arzt>();
     	this.patientList= new ArrayList<Patient>();
     	ArrayList<Untersuchungsbericht> untersuchungslist=new ArrayList<Untersuchungsbericht>();
@@ -48,56 +44,52 @@ public class EPA {
 		// testPatient2 id 5678 pass 5678 hat nichts
     }
 
-    /**
- 	 *
- 	 * TODO: create JavaDoc. 
- 	 * @param num
- 	 * @return Patient
- 	 */
-    public Patient getPatient(String num) {
+	/**
+	 * Gets patient.
+	 *
+	 * @param num the num
+	 * @return the patient
+	 */
+	public Patient getPatient(String num) {
 		for(int i=0; i< patientList.size(); i++){
 			if(patientList.get(i).getNum().equals(num)){return patientList.get(i);}
 		}
 		return null;
     }
 
-    /**
- 	 *
- 	 * gibt Arzt wieder anhand der Arztnummer.
- 	 * @param num
- 	 * @return Arzt
- 	 */
-    public Arzt getArzt(String num){
+	/**
+	 * Get arzt arzt.
+	 *
+	 * @param num the num
+	 * @return the arzt
+	 */
+	public Arzt getArzt(String num){
         for(int i=0; i< arztList.size(); i++){
         	if(arztList.get(i).getNum().equals(num)){return arztList.get(i);}
 		}
         return null;
     }
 
-    /**
- 	 *
- 	 * TODO: create JavaDoc. 
- 	 * @param num
- 	 * @return boolean
- 	 * @throws UnsupportedOperationException
- 	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
- 	 */
-    public boolean checkNumArzt(String num) throws UnsupportedOperationException {
+	/**
+	 * Check num arzt boolean.
+	 *
+	 * @param num the num
+	 * @return the boolean
+	 */
+	public boolean checkNumArzt(String num){
         for(int i=0; i< arztList.size(); i++){
         	if(arztList.get(i).getNum().equals(num)){return true;}
 		}
         return false;
     }
 
-    /**
- 	 *
- 	 * TODO: create JavaDoc. 
- 	 * @param num
- 	 * @return boolean
- 	 * @throws UnsupportedOperationException
- 	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
- 	 */
-    public boolean checkNumPatient(String num) throws UnsupportedOperationException {
+	/**
+	 * Check num patient boolean.
+	 *
+	 * @param num the num
+	 * @return the boolean
+	 */
+	public boolean checkNumPatient(String num){
 		for(int i=0; i< patientList.size(); i++){
 			if(patientList.get(i).getNum().equals(num)){return true;}
 		}

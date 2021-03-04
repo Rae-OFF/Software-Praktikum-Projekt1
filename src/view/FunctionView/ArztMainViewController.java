@@ -22,6 +22,9 @@ import view.zusammenfassungderBehandlungsschritt.EingabeSeiteController;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
+/**
+ * The type Arzt main view controller.
+ */
 public class ArztMainViewController extends AnchorPane {
 
     @FXML
@@ -57,6 +60,13 @@ public class ArztMainViewController extends AnchorPane {
     private Button aLogout;
     private Stage mainStage;
     private EPAController epaController;
+
+    /**
+     * Instantiates a new Arzt main view controller.
+     *
+     * @param primaryStage the primary stage
+     * @param ePAControll  the e pa controll
+     */
     public ArztMainViewController(Stage primaryStage, EPAController ePAControll) {
         this.epaController= ePAControll;
         mainStage= primaryStage;
@@ -86,22 +96,42 @@ public class ArztMainViewController extends AnchorPane {
         aTel.setText(a.getTel());
         aTel.setVisible(true);
     }
+
+    /**
+     * Zum login view.
+     */
     @FXML
     void zumLoginView(){
         mainStage.setScene(new Scene(new LoginViewController(mainStage)));
     }
+
+    /**
+     * Zum ueberweisung erstellen.
+     */
     @FXML
     void zumUeberweisungErstellen(){
         mainStage.setScene(new Scene(new UeberweisungCreateViewController(mainStage,epaController)));
     }
+
+    /**
+     * Zum untersuchungsbericht.
+     */
     @FXML
     void zumUntersuchungsbericht(){
         mainStage.setScene(new Scene(new UntersuchungsberichtEingabeController(mainStage,epaController)));
     }
+
+    /**
+     * Zum eingabe seite.
+     */
     @FXML
     void zumEingabeSeite(){
         mainStage.setScene(new Scene(new EingabeSeiteController(mainStage,epaController)));
     }
+
+    /**
+     * Zum revision.
+     */
     @FXML
     void zumRevision(){mainStage.setScene(new Scene(new RevisionsController(mainStage,epaController)));}
 

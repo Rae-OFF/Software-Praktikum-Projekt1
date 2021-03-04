@@ -10,50 +10,45 @@ import java.lang.UnsupportedOperationException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Zusammenfassungs controller.
+ */
 public class ZusammenfassungsController {
 
-    /**
- 	 * 
- 	 */
     private List<Untersuchungsbericht> zusammenfassung;
 
-    /**
- 	 * 
- 	 */
     private EPAController ePAController;
 
-    /**
- 	 * 
- 	 */
     private ZusammenfassungsAUI zusammenfassungsAUI;
 
 
-
-    public ZusammenfassungsController(EPAController e) {
+	/**
+	 * Instantiates a new Zusammenfassungs controller.
+	 *
+	 * @param e the e
+	 */
+	public ZusammenfassungsController(EPAController e) {
     	ePAController=e;
     }
 
-    /**
- 	 *
- 	 * TODO: create JavaDoc. 
- 	 * @param untersuchungsbericht
- 	 * @throws UnsupportedOperationException
- 	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
- 	 */
-    public void addToZusammenfassung(Untersuchungsbericht untersuchungsbericht) throws UnsupportedOperationException {
+	/**
+	 * Add to zusammenfassung.
+	 *
+	 * @param untersuchungsbericht the untersuchungsbericht
+	 * @throws UnsupportedOperationException the unsupported operation exception
+	 */
+	public void addToZusammenfassung(Untersuchungsbericht untersuchungsbericht) throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Not Yet Implemented!");
     }
 
-    /**
- 	 *
- 	 * TODO: create JavaDoc. 
- 	 * @param versicherungsnummer
- 	 * @param iCD
- 	 * @return List<Untersuchungsbericht>
- 	 * @throws UnsupportedOperationException
- 	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
- 	 */
-    public List<Untersuchungsbericht> createZusammenfassungEinArzt(String versicherungsnummer, String iCD) throws UnsupportedOperationException {
+	/**
+	 * Create zusammenfassung ein arzt list.
+	 *
+	 * @param versicherungsnummer the versicherungsnummer
+	 * @param iCD                 the cd
+	 * @return the list
+	 */
+	public List<Untersuchungsbericht> createZusammenfassungEinArzt(String versicherungsnummer, String iCD){
 		EPA e= ePAController.getEPA();
 		Arzt a = e.getArzt(ePAController.getCurrLoggedIn());// get arzt
 		ArrayList<Untersuchungsbericht>berichtlist= a.getUntersuchungsberichte(versicherungsnummer);
@@ -67,16 +62,14 @@ public class ZusammenfassungsController {
 		return berichtlist;
     }
 
-    /**
- 	 *
- 	 * TODO: create JavaDoc. 
- 	 * @param versicherungsnummer
- 	 * @param iCD
- 	 * @return List<Untersuchungsbericht>
- 	 * @throws UnsupportedOperationException
- 	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
- 	 */
-    public ArrayList<Untersuchungsbericht> createZusammenfassungAlleAerzte(String versicherungsnummer, String iCD) throws UnsupportedOperationException {
+	/**
+	 * Create zusammenfassung alle aerzte array list.
+	 *
+	 * @param versicherungsnummer the versicherungsnummer
+	 * @param iCD                 the cd
+	 * @return the array list
+	 */
+	public ArrayList<Untersuchungsbericht> createZusammenfassungAlleAerzte(String versicherungsnummer, String iCD){
          EPA e= ePAController.getEPA();
          Arzt a = e.getArzt(ePAController.getCurrLoggedIn());// get arzt
 		 ArrayList<Untersuchungsbericht>berichtlist= new ArrayList<Untersuchungsbericht>();//zum ausgabe

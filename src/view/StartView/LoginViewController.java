@@ -13,6 +13,10 @@ import view.FunctionView.ArztMainViewController;
 import view.FunctionView.PatientMainViewController;
 
 import java.io.IOException;
+
+/**
+ * The type Login view controller.
+ */
 //hi
 public class LoginViewController extends TabPane {
     @FXML
@@ -105,6 +109,12 @@ public class LoginViewController extends TabPane {
     private TextField aFach;
     private Stage mainStage;
     private EPAController epaController;
+
+    /**
+     * Instantiates a new Login view controller.
+     *
+     * @param primaryStage the primary stage
+     */
     public LoginViewController(Stage primaryStage) {
         mainStage= primaryStage;
         epaController= new EPAController();
@@ -118,7 +128,13 @@ public class LoginViewController extends TabPane {
             e.printStackTrace();
         }
     }
-     @FXML
+
+    /**
+     * Show arzt function view.
+     *
+     * @param event the event
+     */
+    @FXML
      void showArztFunctionView(ActionEvent event){
         String aID= aNum.getText();
         String aPass=aPasswort.getText();
@@ -134,6 +150,12 @@ public class LoginViewController extends TabPane {
          }
          ArztHiddenText.setVisible(true);
      }
+
+    /**
+     * Show patient function view.
+     *
+     * @param event the event
+     */
     @FXML
     void showPatientFunctionView(ActionEvent event){
         String pID= pNum.getText();
@@ -150,6 +172,12 @@ public class LoginViewController extends TabPane {
         }
         PatientHiddenText.setVisible(true);
     }
+
+    /**
+     * Neu patient anlegen.
+     *
+     * @param e the e
+     */
     @FXML
     void neuPatientAnlegen(ActionEvent e){
         if(!(pAdress.getText().isEmpty()||pNachname.getText().isEmpty()||pSetnum.getText().isEmpty()||pVorname.getText().isEmpty()||pSetpass.getText().isEmpty()||pBday.getValue()==null||!(pIsfemale.isSelected()||pIsmale.isSelected())))
@@ -163,6 +191,12 @@ public class LoginViewController extends TabPane {
         }
 
     }
+
+    /**
+     * Neu arzt anlegen.
+     *
+     * @param e the e
+     */
     @FXML
     void neuArztAnlegen(ActionEvent e){
         if(!(aFach.getText().isEmpty()||aNachname.getText().isEmpty()||aSetnum.getText().isEmpty()||aVorname.getText().isEmpty()||aSetpass.getText().isEmpty()||aTel.getText().isEmpty()||aBday.getValue()==null||!(aIsfemale.isSelected()||aIsmale.isSelected())))

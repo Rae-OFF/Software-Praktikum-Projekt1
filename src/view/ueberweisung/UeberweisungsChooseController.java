@@ -18,6 +18,9 @@ import view.FunctionView.PatientMainViewController;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * The type Ueberweisungs choose controller.
+ */
 public class UeberweisungsChooseController extends AnchorPane {
     @FXML
     private FlowPane Flow;
@@ -29,6 +32,13 @@ public class UeberweisungsChooseController extends AnchorPane {
     private Button ToFuncView;
     private Stage mainStage;
     private  EPAController epaController;
+
+    /**
+     * Instantiates a new Ueberweisungs choose controller.
+     *
+     * @param primaryStage the primary stage
+     * @param EPAControl   the epa control
+     */
     public UeberweisungsChooseController(Stage primaryStage, EPAController EPAControl){
         mainStage=primaryStage;
         epaController=EPAControl;
@@ -66,6 +76,12 @@ public class UeberweisungsChooseController extends AnchorPane {
             HiddenText.setVisible(true);
         }
     }
+
+    /**
+     * Zum fuctions view.
+     *
+     * @param event the event
+     */
     @FXML
     void ZumFuctionsView(ActionEvent event) {
         mainStage.setScene(new Scene(new PatientMainViewController(mainStage,epaController)));

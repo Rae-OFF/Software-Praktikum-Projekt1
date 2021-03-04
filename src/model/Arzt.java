@@ -7,48 +7,41 @@ import java.util.Collection;
 import java.lang.UnsupportedOperationException;
 import java.util.List;
 
+/**
+ * The type Arzt.
+ */
 public class Arzt {
 
-    /**
- 	 * 
- 	 */
     private String idNum;
 
-    /**
- 	 * 
- 	 */
     private ArrayList<Patient> patientList;
 
 
-    /**
- 	 * 
- 	 */
     private ArrayList<Untersuchungsbericht> untersuchungsList;
 
-    /**
- 	 * 
- 	 */
     private String fachRichtung;
 
-    /**
- 	 * 
- 	 */
     private String vorName;
     private String tel;
 	private String nachName;
-    /**
- 	 * 
- 	 */
     private ArrayList<String> revision;
 
-    /**
- 	 * 
- 	 */
     private ArrayList<Patient> patient;
 
 
     private String passWort;
-    public Arzt(String vorName,String nachName, String fach, String idNum, String passWort, String tel) {
+
+	/**
+	 * Instantiates a new Arzt.
+	 *
+	 * @param vorName  the vor name
+	 * @param nachName the nach name
+	 * @param fach     the fach
+	 * @param idNum    the id num
+	 * @param passWort the pass wort
+	 * @param tel      the tel
+	 */
+	public Arzt(String vorName,String nachName, String fach, String idNum, String passWort, String tel) {
     	this.passWort= passWort;
     	this.idNum=idNum;
     	this.vorName=vorName;
@@ -60,14 +53,12 @@ public class Arzt {
 		revision=new ArrayList<String>();
     }
 
-    /**
- 	 *
- 	 * TODO: create JavaDoc. 
- 	 * @param patient
- 	 * @throws UnsupportedOperationException
- 	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
- 	 */
-    public void addPatientToList(Patient patient)  {
+	/**
+	 * Add patient to list.
+	 *
+	 * @param patient the patient
+	 */
+	public void addPatientToList(Patient patient)  {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		String formattedDateTime = LocalDateTime.now().format(formatter);
     	String s= formattedDateTime+" Patient(in) "+patient.getName()+" mit Versicherungsnummer "+patient.getNum()+" wurde in ihrer Patientenliste hinzugefügt";
@@ -76,81 +67,94 @@ public class Arzt {
     }
 
 
-    /**
- 	 *
- 	 * TODO: create JavaDoc. 
- 	 * @param patient
- 	 * @throws UnsupportedOperationException
- 	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
- 	 */
-    public void removeFromPatientlist(Patient patient)  {
+	/**
+	 * Remove from patientlist.
+	 *
+	 * @param patient the patient
+	 */
+	public void removeFromPatientlist(Patient patient)  {
         patientList.remove(patient);
     }
 
-    /**
- 	 *
- 	 * TODO: create JavaDoc. 
- 	 * @param
- 	 * @throws UnsupportedOperationException
- 	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
- 	 */
-    public void addUntersuchungsberichrt(Untersuchungsbericht untersuchungsbericht)  {
+	/**
+	 * Add untersuchungsberichrt.
+	 *
+	 * @param untersuchungsbericht the untersuchungsbericht
+	 */
+	public void addUntersuchungsberichrt(Untersuchungsbericht untersuchungsbericht)  {
         untersuchungsList.add(untersuchungsbericht);
     }
 
 
-
-    /**
- 	 *
- 	 * TODO: create JavaDoc. 
- 	 * @param f
- 	 * @throws UnsupportedOperationException
- 	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
- 	 */
-    public void setFach(String f) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not Yet Implemented!");
-    }
-    public String getFachrichtung(){return fachRichtung;}
-
-    public void setName(String n) {
+	/**
+	 * Sets fach.
+	 *
+	 * @param f the f
+	 * @throws UnsupportedOperationException the unsupported operation exception
+	 */
+	public void setFach(String f) throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Not Yet Implemented!");
     }
 
-    public void addToRevision(String re) {
+	/**
+	 * Get fachrichtung string.
+	 *
+	 * @return the string
+	 */
+	public String getFachrichtung(){return fachRichtung;}
+
+	/**
+	 * Sets name.
+	 *
+	 * @param n the n
+	 */
+	public void setName(String n) {
+        throw new UnsupportedOperationException("Not Yet Implemented!");
+    }
+
+	/**
+	 * Add to revision.
+	 *
+	 * @param re the re
+	 */
+	public void addToRevision(String re) {
         revision.add(re);
     }
 
 
-    public Patient getPatient(String num){
+	/**
+	 * Get patient patient.
+	 *
+	 * @param num the num
+	 * @return the patient
+	 */
+	public Patient getPatient(String num){
 		for(int i=0; i< patientList.size(); i++){
 			if(patientList.get(i).getNum().equals(num)){return patientList.get(i);}
 		}
     	return null;
 	}
-    /**
- 	 *
- 	 * TODO: create JavaDoc. 
- 	 * @param versicherungsnummer
- 	 * @return boolean
- 	 * @throws UnsupportedOperationException
- 	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
- 	 */
-    public boolean checkPatientValid(String versicherungsnummer)  {
+
+	/**
+	 * Check patient valid boolean.
+	 *
+	 * @param versicherungsnummer the versicherungsnummer
+	 * @return the boolean
+	 */
+	public boolean checkPatientValid(String versicherungsnummer)  {
         for(int i=0; i< patientList.size(); i++){
         	if(patientList.get(i).getNum().equals(versicherungsnummer)){return true;}
 		}
         return false;
     }
 
-    /**
- 	 *
- 	 * TODO: create JavaDoc. 
- 	 * @param versicherungsnummer
- 	 * @return List<Untersuchungsbericht>
- 	 * @throws UnsupportedOperationException
- 	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
- 	 */
-    public ArrayList<Untersuchungsbericht> getUntersuchungsberichte(String versicherungsnummer){
+	/**
+	 * Get untersuchungsberichte array list.
+	 *
+	 * @param versicherungsnummer the versicherungsnummer
+	 * @return the array list
+	 */
+	public ArrayList<Untersuchungsbericht> getUntersuchungsberichte(String versicherungsnummer){
         ArrayList<Untersuchungsbericht> berichtList= new ArrayList<Untersuchungsbericht>();
         for(int i=0; i< untersuchungsList.size();i++){
         	if(untersuchungsList.get(i).getPatientNum().equals(versicherungsnummer)){berichtList.add(untersuchungsList.get(i));}
@@ -158,42 +162,72 @@ public class Arzt {
         return berichtList;
     }
 
-    /**
- 	 *
- 	 * TODO: create JavaDoc. 
- 	 * @return String
- 	 * @throws UnsupportedOperationException
- 	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
- 	 */
-    public String getNum()   {
+	/**
+	 * Gets num.
+	 *
+	 * @return the num
+	 */
+	public String getNum()   {
         return idNum;
     }
 
-    /**
- 	 *
- 	 * TODO: create JavaDoc. 
- 	 * @return List<String>
- 	 * @throws UnsupportedOperationException
- 	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
- 	 */
-    public ArrayList<String> getRevision()  {
+	/**
+	 * Gets revision.
+	 *
+	 * @return the revision
+	 */
+	public ArrayList<String> getRevision()  {
         return revision;
     }
 
-    /**
- 	 *
- 	 * TODO: create JavaDoc. 
- 	 * @return String
- 	 * @throws UnsupportedOperationException
- 	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
- 	 */
-    public String getName()  {
+	/**
+	 * Gets name.
+	 *
+	 * @return the name
+	 */
+	public String getName()  {
         return vorName+" "+nachName;
     }
-    public String getTel(){return tel;}
-    public void setTel(String n){tel=n;}
+
+	/**
+	 * Get tel string.
+	 *
+	 * @return the string
+	 */
+	public String getTel(){return tel;}
+
+	/**
+	 * Set tel.
+	 *
+	 * @param n the n
+	 */
+	public void setTel(String n){tel=n;}
+
+	/**
+	 * Get vorname string.
+	 *
+	 * @return the string
+	 */
 	public String getVorname(){return vorName;}
+
+	/**
+	 * Get nachname string.
+	 *
+	 * @return the string
+	 */
 	public String getNachname(){return nachName;}
-    public String getPasswort(){return passWort;}
-    public void setPasswort(String passWort){this.passWort=passWort;}
+
+	/**
+	 * Get passwort string.
+	 *
+	 * @return the string
+	 */
+	public String getPasswort(){return passWort;}
+
+	/**
+	 * Set passwort.
+	 *
+	 * @param passWort the pass wort
+	 */
+	public void setPasswort(String passWort){this.passWort=passWort;}
 }

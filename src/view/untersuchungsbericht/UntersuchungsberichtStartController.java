@@ -6,6 +6,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
+/**
+ * The type Untersuchungsbericht start controller.
+ */
 public class UntersuchungsberichtStartController {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
@@ -20,6 +23,9 @@ public class UntersuchungsberichtStartController {
     @FXML // fx:id="untersuchungsberichtNextStep"
     private Button untersuchungsberichtNextStep; // Value injected by FXMLLoader
 
+    /**
+     * Initialize.
+     */
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert untersuchungsberichtVersicherungsnummer != null : "fx:id=\"untersuchungsberichtVersicherungsnummer\" was not injected: check your FXML file 'model.Untersuchungsbericht Start.fxml'.";

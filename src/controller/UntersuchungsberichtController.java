@@ -12,44 +12,45 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * Für die Verwaltung und erstellung von Unteruchungsberichten.
+ * The type Untersuchungsbericht controller.
  */
 public class UntersuchungsberichtController {
 
-    /**
- 	 * 
- 	 */
     private EPAController ePAController;
 
-    /**
- 	 * 
- 	 */
     private UntersuchungsberichtAUI untersuchungsberichtAUI;
 
-    public UntersuchungsberichtController(EPAController epaController) {
+	/**
+	 * Instantiates a new Untersuchungsbericht controller.
+	 *
+	 * @param epaController the epa controller
+	 */
+	public UntersuchungsberichtController(EPAController epaController) {
     }
 
-    /**
- 	 *Erstellt ein neues Untersuchungsberichtobjekt und fügt es hinzu.
-	 * @param versicherungsnummer des Patienten
- 	 * @param dateTime Datum und Uhrzeit
- 	 * @param diagnose des Patienten
- 	 * @param med -ikamente des Patienten
- 	 * @param behandlung des Patienten
- 	 * @param icd der Behandlung
-	 * @param notes Notizen zum Patienten
- 	 */
-    public void createUntersuchungsbericht(String versicherungsnummer, LocalDateTime dateTime, String icd, List<String> med, String diagnose, String behandlung, List<String> notes){
+	/**
+	 * Create untersuchungsbericht.
+	 *
+	 * @param versicherungsnummer the versicherungsnummer
+	 * @param dateTime            the date time
+	 * @param icd                 the icd
+	 * @param med                 the med
+	 * @param diagnose            the diagnose
+	 * @param behandlung          the behandlung
+	 * @param notes               the notes
+	 */
+	public void createUntersuchungsbericht(String versicherungsnummer, LocalDateTime dateTime, String icd, List<String> med, String diagnose, String behandlung, List<String> notes){
 		Untersuchungsbericht bericht = new Untersuchungsbericht(versicherungsnummer, ePAController.getCurrLoggedIn(),dateTime, icd, med, diagnose, behandlung, notes);
 		addUntersuchungbericht(versicherungsnummer, bericht);
     }
 
-    /**
- 	 * Fügt den angegebenen Untersuchungsbericht dem angegebenen Patienten und dem Arzt der diesen erstellt hinzu.
- 	 * @param versicherungsnummer ist die Versicherungsnummer des Patienten.
- 	 * @param untersuchungsbericht ist der Untersuchungsbericht der beim Arzt und beim Patienten hinzugefügt werden soll.
- 	 */
-    public void addUntersuchungbericht(String versicherungsnummer, Untersuchungsbericht untersuchungsbericht){
+	/**
+	 * Add untersuchungbericht.
+	 *
+	 * @param versicherungsnummer  the versicherungsnummer
+	 * @param untersuchungsbericht the untersuchungsbericht
+	 */
+	public void addUntersuchungbericht(String versicherungsnummer, Untersuchungsbericht untersuchungsbericht){
 		EPA epa = ePAController.getEPA();
         Arzt arzt = epa.getArzt(ePAController.getCurrLoggedIn());
         Patient patient = epa.getPatient(versicherungsnummer);
@@ -58,11 +59,12 @@ public class UntersuchungsberichtController {
     }
 
 	/**
-	 * Ist zum überprüfen der ICDeingabe.
-	 * @param icd die zu überprüfende ICD.
-	 * @return true für Großbuchstabe und 2 Zahlen und ggf. noch Punkt und 1-2 Zahlen.
+	 * Cd ueberpruefen boolean.
+	 *
+	 * @param icd the icd
+	 * @return the boolean
 	 */
-    public boolean iCDUeberpruefen(String icd){
+	public boolean iCDUeberpruefen(String icd){
 		CharacterIterator icdIterator = new StringCharacterIterator(icd);
 		if(!Character.isUpperCase(icdIterator.current())){
 			return false;
@@ -107,19 +109,22 @@ public class UntersuchungsberichtController {
     }
 
 	/**
-	 * Ist zum überprüfen der Versicherungsnummerneingabe.
-	 * @return true für Format ist richtig.
+	 * Versicherungsnummer ueberpruefen boolean.
+	 *
+	 * @param versicherungsnummer the versicherungsnummer
+	 * @return the boolean
 	 */
-    public boolean versicherungsnummerUeberpruefen(String versicherungsnummer){
+	public boolean versicherungsnummerUeberpruefen(String versicherungsnummer){
 		EPA epa = ePAController.getEPA();
 		return epa.checkNumPatient(versicherungsnummer);
 	}
 
 
 	/**
-	 * Ist zum überprüfen der Urzeiteingabe.
-	 * @param uhrzeit die zu überprüfende Uhrzeit.
-	 * @return true für Format ist richtig.
+	 * Uhrzeit ueberpruefen boolean.
+	 *
+	 * @param uhrzeit the uhrzeit
+	 * @return the boolean
 	 */
 	public boolean uhrzeitUeberpruefen(String uhrzeit){
 		CharacterIterator timeIterator = new StringCharacterIterator(uhrzeit);
