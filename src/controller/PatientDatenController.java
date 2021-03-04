@@ -8,7 +8,15 @@ import javax.sound.midi.InvalidMidiDataException;
 import java.security.InvalidParameterException;
 import java.util.List;
 
+/**
+ * personliche Daten bearbeiten
+ */
+
 public class PatientDatenController {
+
+	/**
+	 *
+	 */
 
 	private EPAController ePAController;
 
@@ -16,6 +24,16 @@ public class PatientDatenController {
 		this.ePAController = ePAController ;
 
 	}
+	/**
+	 * *Diese Methode ermauglicht die Daten eines schon existierend Patient zu bearbeiten
+	 * @param versicherungsnummer des Patienten
+	 * @param Vorname Datum und Uhrzeit
+	 * @param Nachname des Patienten
+	 * @param Address -ikamente des Patienten
+	 * @param Geschlecht des Patienten
+	 * @param Birth des Patienten
+	 * @param pass des Patienten
+	 */
 
 	public void PatientDatenUpdate(String versicherungsnummer, String Vorname,String Nachname, String Address, String Geschlecht, String Birth, String pass) {
 		EPA epa = ePAController.getEPA();
@@ -28,8 +46,7 @@ public class PatientDatenController {
 		patient.setPasswort(pass);
 	}
 	/**
-	 *
-	 * TODO: create JavaDoc.
+	 * Diese Methode ist verantwortlich feur Auswahl Von  Untersuchungsberichten
 	 * @param versicherungsnummer des Patienten
 	 * @param  icd der Krankheit
 	 * @return liste aller Untersuchungsberichte einer bestimmten Krankheit

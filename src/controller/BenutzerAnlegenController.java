@@ -7,12 +7,14 @@ import model.Patient;
 import java.lang.UnsupportedOperationException;
 import java.security.InvalidParameterException;
 import java.util.List;
-
+/**
+ * einen neuen Benutzer anlegen der , Patient oder Arzt sein kann
+ */
 public class BenutzerAnlegenController {
 
-    /**
- 	 * 
- 	 */
+	/**
+	 * 
+	 */
     private EPAController ePAController;
 
     public BenutzerAnlegenController(EPAController e) {
@@ -20,8 +22,7 @@ public class BenutzerAnlegenController {
     }
 
     /**
- 	 *
- 	 * TODO: create JavaDoc. 
+	 * Diese Methode liegt einen neuen Arzt an
 	 * @param Vorname des Arztes
 	 * @param Nachname des Arztes
 	 * @param fach  des Arztes
@@ -42,13 +43,13 @@ public class BenutzerAnlegenController {
     }
 
     /**
- 	 *
- 	 * TODO: create JavaDoc. 
+	 *  Diese Methode liegt einen neuen Patient an
 	 * @param versicherungsnummer des Patienten
 	 * @param Vorname Datum und Uhrzeit
 	 * @param Nachname des Patienten
-	 * @param Address -ikamente des Patienten
+	 * @param Address  des Patienten
 	 * @param Geschlecht des Patienten
+	 * @param Birth des Patienten
 	 * @param pass des Patienten
 	 */
     public void PatientAnlegen(String versicherungsnummer, String Vorname,String Nachname, String Address, String Geschlecht, String Birth, String pass)
