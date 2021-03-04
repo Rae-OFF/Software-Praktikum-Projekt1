@@ -5,9 +5,6 @@ import model.EPA;
 import model.Untersuchungsbericht;
 import model.Arzt;
 import model.Patient;
-
-import java.text.CharacterIterator;
-import java.text.StringCharacterIterator;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -26,6 +23,7 @@ public class UntersuchungsberichtController {
 	 * @param epaController the epa controller
 	 */
 	public UntersuchungsberichtController(EPAController epaController) {
+		ePAController = epaController;
     }
 
 	/**
@@ -65,47 +63,7 @@ public class UntersuchungsberichtController {
 	 * @return the boolean
 	 */
 	public boolean iCDUeberpruefen(String icd){
-		CharacterIterator icdIterator = new StringCharacterIterator(icd);
-		if(!Character.isUpperCase(icdIterator.current())){
-			return false;
-		}
-		else{
-			icdIterator.next();
-			if(!(Character.isDigit(icdIterator.current()))){
-				return false;
-			}
-			else{
-				icdIterator.next();
-				if(!Character.isDigit(icdIterator.current())){
-					return false;
-				}
-				else{
-					icdIterator.next();
-					if(icdIterator.current()!='.'&&icdIterator.current() !=CharacterIterator.DONE){
-						return false;
-					}
-					else{
-						if(icdIterator.current() !=CharacterIterator.DONE){
-							icdIterator.next();
-							if(!Character.isDigit(icdIterator.current())){
-								return false;
-							}
-							else
-								icdIterator.next();
-								if(!Character.isDigit(icdIterator.current())&&icdIterator.current() !=CharacterIterator.DONE){
-								return false;
-								}
-								else
-									if(icdIterator.next()!=CharacterIterator.DONE){
-										return false;
-									}
-									else return true;
-						}
-						else return true;
-					}
-				}
-			}
-		}
+		return icd.matches("[A-Z]\\d{1,2}(\\.\\d{1,2}){0,1}");
     }
 
 	/**
@@ -127,49 +85,6 @@ public class UntersuchungsberichtController {
 	 * @return the boolean
 	 */
 	public boolean uhrzeitUeberpruefen(String uhrzeit){
-		CharacterIterator timeIterator = new StringCharacterIterator(uhrzeit);
-		String stunden="";
-		int stundenInt;
-		String minuten="";
-		int minutenInt;
-		if(!Character.isDigit(timeIterator.current())){
-			return false;
-		}
-		else{
-			stunden+=timeIterator.current();
-			timeIterator.next();
-			if(!Character.isDigit(timeIterator.current())){
-				return false;
-			}
-			else{
-				stunden+=timeIterator.current();
-				stundenInt=Integer.parseInt(stunden);
-				timeIterator.next();
-				if(timeIterator.current()!=':'||(stundenInt>24&&stundenInt<0)){
-					return false;
-				}
-				else
-				{
-					timeIterator.next();
-					if(!Character.isDigit(timeIterator.current())){
-						return false;
-					}
-					else{
-						minuten+=timeIterator.current();
-						timeIterator.next();
-						if(!Character.isDigit(timeIterator.current())){
-							return false;
-						}
-						else
-							minuten+=timeIterator.current();
-							minutenInt=Integer.parseInt(minuten);
-							if(minutenInt>60&&stundenInt<0){// kleine anmerkung es gibt kein minute 60
-								return false;
-							}
-							else return true;
-					}
-				}
-			}
-		}
+		return uhrzeit.matches("([2][0-3]|[0-1][0-9]|[1-9]):[0-5][0-9]");
 	}
 }

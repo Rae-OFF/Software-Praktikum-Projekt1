@@ -59,7 +59,7 @@ public class EPAController {
 	 * @return the epa
 	 * @throws UnsupportedOperationException the unsupported operation exception
 	 */
-	public EPA getEPA() throws UnsupportedOperationException {
+	public EPA getEPA(){
         return ePA;
     }
 

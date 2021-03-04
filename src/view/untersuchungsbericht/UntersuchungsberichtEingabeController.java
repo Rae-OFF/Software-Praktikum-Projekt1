@@ -110,8 +110,8 @@ public class UntersuchungsberichtEingabeController extends BorderPane {
         String notes = untersuchungsberichtNotesField.getText();
         UntersuchungsberichtController untersuchungsberichtController = ePAControl.getUntersuchungsberichtcontroller();
         boolean icdFormat = untersuchungsberichtController.iCDUeberpruefen(icd);
-        boolean versicherungsnummerFormat = untersuchungsberichtController.versicherungsnummerUeberpruefen(versicherungsnummer);
         boolean uhrzeitFormat = untersuchungsberichtController.uhrzeitUeberpruefen(uhrzeit);
+        boolean versicherungsnummerFormat = untersuchungsberichtController.versicherungsnummerUeberpruefen(versicherungsnummer);
         if(!(icdFormat||versicherungsnummerFormat)||!(uhrzeitFormat||versicherungsnummerFormat)||!(icdFormat||uhrzeitFormat)){
             mehrereFehler.setVisible(true);
         }
