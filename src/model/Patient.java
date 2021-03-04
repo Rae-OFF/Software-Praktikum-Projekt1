@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.List;
 /**
  *
  */
-public class Patient {
+public class Patient implements Serializable {
 
 	private String versicherungNum;
 

@@ -35,7 +35,13 @@ public class EPAController {
     	this.ePA=new EPA();
     	this.ueberweisungsController=new UeberweisungsController(this);
 		this.untersuchungsberichtController=new UntersuchungsberichtController(this);
-    }
+		this.iOController=new IOController(this);
+		try {
+			iOController.load();
+		} catch (Exception e) {
+		}
+
+	}
 
 	/**
 	 * Setis arzt.
@@ -89,7 +95,7 @@ public class EPAController {
 	 * @throws UnsupportedOperationException the unsupported operation exception
 	 */
 	public IOController getIO() throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not Yet Implemented!");
+        return iOController;
     }
 
 

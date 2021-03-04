@@ -3,6 +3,7 @@ package controller;
 import AUI.UeberweisungsAUI;
 import model.*;
 
+import java.io.IOException;
 import java.lang.UnsupportedOperationException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -44,15 +45,16 @@ public class UeberweisungsController {
  	 * @throws UnsupportedOperationException
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
-    public void addUeberweisung( Ueberweisung ueberweisung) {
+    public void addUeberweisung( Ueberweisung ueberweisung) throws IOException {
         EPA epa= ePAController.getEPA();
         Patient patient =epa.getPatient(ueberweisung.getPatientnummer());
         Arzt neuArzt = epa.getArzt(ueberweisung.getNeuarztnummer());
         patient.behandeldenArztAendern(neuArzt);
         neuArzt.addPatientToList(patient);
         patient.addUeberweisungsList(ueberweisung);
-        Arzt altArzt=epa.getArzt(ePAController.getCurrLoggedIn());
+        Arzt altArzt=epa.getArzt(ueberweisung.getAltArztnummer());
         neuArzt.addToRevision(ueberweisung.getDate()+" Sie haben eine Patient Überweisung von Arzt(in) "+altArzt.getName());
         altArzt.addToRevision(ueberweisung.getDate()+" Sie haben eine Patient Überweisung zu Arzt(in) "+neuArzt.getName()+" gemacht");
+        ePAController.getIO().save();
     }
 }

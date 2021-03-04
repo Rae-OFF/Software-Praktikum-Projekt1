@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 /**
  * The type Ueberweisung.
  */
-public class Ueberweisung {
+public class Ueberweisung implements Serializable {
 
 	private String patientnummer;
 

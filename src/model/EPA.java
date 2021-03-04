@@ -1,12 +1,13 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.lang.UnsupportedOperationException;
 import java.util.List;
 
-public class EPA {
+public class EPA implements Serializable {
 
     /**
  	 * 
@@ -42,15 +43,11 @@ public class EPA {
 		testPatient1.behandeldenArztAendern(testArzt1);
 		testPatient1.addUntersuchungsList(untersuchungsbericht1);
 		untersuchungslist.add(untersuchungsbericht1);
-
 		Ueberweisung ueberweisung1=new Ueberweisung();
 		ueberweisung1.setAltArztNummer("1234").setPatientNummer("1234").setNeuArztNummer("5678").setUntersuchungberichtInit(untersuchungslist).setAuftrag("test").setDate("1.1.2022");
-
 		testPatient1.addUeberweisungsList(ueberweisung1);
-
 		Ueberweisung ueberweisung2=new Ueberweisung();
 		ueberweisung2.setAltArztNummer("5678").setPatientNummer("1234").setNeuArztNummer("1234").setUntersuchungberichtInit(untersuchungslist).setAuftrag("test").setDate("2.1.2022");
-
 		testPatient1.addUeberweisungsList(ueberweisung2);
 		testArzt1.addPatientToList(testPatient1);
 		arztList.add(testArzt1);

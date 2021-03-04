@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
 /**
  * The type Untersuchungsbericht.
  */
-public class Untersuchungsbericht {
+public class Untersuchungsbericht implements Serializable {
 
 	private String patientVersicherungnum;
 
