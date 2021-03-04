@@ -6,6 +6,7 @@ import model.Patient;
 
 import java.lang.UnsupportedOperationException;
 import java.security.InvalidParameterException;
+import java.util.ArrayList;
 import java.util.List;
 /**
  * einen neuen Benutzer anlegen der , Patient oder Arzt sein kann
@@ -16,8 +17,11 @@ public class BenutzerAnlegenController {
 	 * 
 	 */
     private EPAController ePAController;
+	ArrayList<Arzt> arztList = new ArrayList<Arzt>();
+	ArrayList<Patient> patientlist = new ArrayList<Patient>();
 
-    public BenutzerAnlegenController(EPAController e) {
+
+	public BenutzerAnlegenController(EPAController e) {
     	this.ePAController = e ;
     }
 
@@ -39,7 +43,8 @@ public class BenutzerAnlegenController {
 
              // neuen Artzt Anlegen
 			Arzt arzt = new Arzt(Vorname, Nachname, fach, num, passwort, Tel);
-
+    	EPA epa = ePAController.getEPA();
+    	arztList.add(arzt);
     }
 
     /**
@@ -61,6 +66,8 @@ public class BenutzerAnlegenController {
 
     	//neuen Patient anlegen
 		Patient patient = new Patient(versicherungsnummer, Vorname, Nachname, Address, Geschlecht, Birth, pass) ;
+    	EPA epa = ePAController.getEPA();
+    	patientlist.add(patient);
 
 
     }
