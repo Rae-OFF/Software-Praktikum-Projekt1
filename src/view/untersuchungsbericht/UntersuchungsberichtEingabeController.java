@@ -3,7 +3,6 @@ package view.untersuchungsbericht;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import controller.EPAController;
 import controller.UntersuchungsberichtController;
 import javafx.fxml.FXML;
@@ -65,6 +64,12 @@ public class UntersuchungsberichtEingabeController extends BorderPane {
     @FXML // fx:id="uhrzeitFehler"
     private Text uhrzeitFehler; // Value injected by FXMLLoader
 
+    @FXML // fx:id="speicherMessage"
+    private Text speicherMessage; // Value injected by FXMLLoader
+
+    @FXML // fx:id="untersuchungsberichtCheckButton"
+    private Button untersuchungsberichtCheckButton; // Value injected by FXMLLoader
+
     @FXML // fx:id="untersuchungsberichtSaveButton"
     private Button untersuchungsberichtSaveButton; // Value injected by FXMLLoader
 
@@ -101,6 +106,11 @@ public class UntersuchungsberichtEingabeController extends BorderPane {
         versicherungsFehler.setVisible(false);
         mehrereFehler.setVisible(false);
         uhrzeitFehler.setVisible(false);
+        speicherMessage.setVisible(false);
+        untersuchungsberichtCheckButton.setDisable(false);
+        untersuchungsberichtCheckButton.setOpacity(1);
+        untersuchungsberichtSaveButton.setDisable(true);
+        untersuchungsberichtSaveButton.setOpacity(0);
         String uhrzeit = untersuchungsberichtUhrzeit.getText();
         String versicherungsnummer = untersuchungsberichtVersicherungsnummer.getText();
         String Symptome = untersuchungsberichtSymptome.getText();
@@ -124,8 +134,20 @@ public class UntersuchungsberichtEingabeController extends BorderPane {
         else if(!uhrzeitFormat){
             uhrzeitFehler.setVisible(true);
         }
-        if(!(icdFormat||versicherungsnummerFormat||uhrzeitFormat)){
-            mainStage.setScene(new Scene(new ArztMainViewController(mainStage,ePAControl)));
+        if(icdFormat&&versicherungsnummerFormat&&uhrzeitFormat){
+            speicherMessage.setVisible(true);
+            untersuchungsberichtCheckButton.setDisable(true);
+            untersuchungsberichtCheckButton.setOpacity(0);
+            untersuchungsberichtSaveButton.setDisable(false);
+            untersuchungsberichtSaveButton.setOpacity(1);
         }
+    }
+
+    /**
+     * Save.
+     */
+    @FXML
+    void save(){
+        mainStage.setScene(new Scene(new ArztMainViewController(mainStage,ePAControl)));
     }
 }
