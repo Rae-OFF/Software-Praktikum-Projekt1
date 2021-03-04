@@ -189,7 +189,6 @@ public class LoginViewController extends TabPane {
         {
             PatientAnlegenHiddenText.setVisible(true);
         }
-
     }
 
     /**
@@ -207,7 +206,5 @@ public class LoginViewController extends TabPane {
         else{
             NeuArztHiddenText.setVisible(true);
         }
-
     }
-
 }

@@ -7,8 +7,8 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.text.TextFlow?>
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="452.0" type="TitledPane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <content>
@@ -34,7 +34,7 @@
             </HBox>
             <HBox prefHeight="21.0" prefWidth="247.0" GridPane.columnIndex="1">
                <children>
-                  <RadioButton fx:id="GrundChoose" mnemonicParsing="false" text="Grund" />
+                  <RadioButton fx:id="GrundChoose" disable="true" mnemonicParsing="false" text="Grund" visible="false" />
                   <Text fx:id="Grund" strokeType="OUTSIDE" strokeWidth="0.0" text="fdsfdsfsdddddddddddddddddddddddddddddddddddddddddddddddddd" visible="false" wrappingWidth="158.99609375" />
                </children>
             </HBox>
@@ -53,18 +53,18 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" GridPane.rowIndex="2" />
             <ScrollPane prefHeight="40.0" prefWidth="184.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <content>
-                  <TextFlow fx:id="Behandlung" prefHeight="71.0" prefWidth="215.0" />
+                  <VBox fx:id="Behandlung" prefHeight="83.0" prefWidth="215.0" />
                </content>
             </ScrollPane>
             <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <content>
-                  <TextFlow fx:id="Medikamente" prefHeight="84.0" prefWidth="216.0" />
+                  <VBox fx:id="Medikamente" prefHeight="94.0" prefWidth="216.0" />
                </content>
             </ScrollPane>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" GridPane.rowIndex="3" />
             <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <content>
-                  <TextFlow fx:id="Notiz" prefHeight="100.0" prefWidth="216.0" />
+                  <VBox fx:id="Notiz" prefHeight="101.0" prefWidth="217.0" />
                </content>
             </ScrollPane>
             <RadioButton fx:id="BehandlungChoose" mnemonicParsing="false" text="Behandlung" GridPane.rowIndex="2" />

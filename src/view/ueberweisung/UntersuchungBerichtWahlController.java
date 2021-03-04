@@ -5,11 +5,15 @@ import javafx.scene.control.TitledPane;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TitledPane;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import model.Untersuchungsbericht;
 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 /**
  * The type Untersuchung bericht wahl controller.
@@ -34,13 +38,13 @@ public class UntersuchungBerichtWahlController extends TitledPane {
     private Text ICD;
 
     @FXML
-    private TextFlow Behandlung;
+    private VBox Behandlung;
 
     @FXML
-    private TextFlow Medikamente;
+    private VBox Medikamente;
 
     @FXML
-    private TextFlow Notiz;
+    private VBox Notiz;
     private Untersuchungsbericht untersuchungsbericht;
 
     /**
@@ -61,18 +65,21 @@ public class UntersuchungBerichtWahlController extends TitledPane {
         }
     }
     private void init(){
-       Date.setText("");
-       Date.setVisible(true);
-       Symtome.setText("");
-       Symtome.setVisible(true);
-       ICD.setText("");
-       ICD.setVisible(true);
-       Behandlung.getChildren().add(new Text(""));
-       Behandlung.setVisible(true);
-       Medikamente.getChildren().add(new Text(""));
-       Medikamente.setVisible(true);
-       Notiz.getChildren().add(new Text(""));
-       Notiz.setVisible(true);
+        Date.setText(untersuchungsbericht.getDatum().format( DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).toString());
+        Date.setVisible(true);
+        Symtome.setText(untersuchungsbericht.getDiagnose());
+        Symtome.setVisible(true);
+        ICD.setText(untersuchungsbericht.getICD());
+        ICD.setVisible(true);
+        Behandlung.getChildren().add(new Text(untersuchungsbericht.getBehandlung()));
+        List<String> medikamente = untersuchungsbericht.getMed();
+        for(int i=0; i< medikamente.size();i++){
+            Medikamente.getChildren().add(new Text(medikamente.get(i)));
+        }
+        List<String> notizen = untersuchungsbericht.getNotes();
+        for(int i=0;i< notizen.size();i++){
+            Notiz.getChildren().add(new Text(notizen.get(i)));
+        }
     }
 
     /**

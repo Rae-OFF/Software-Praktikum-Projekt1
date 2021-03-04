@@ -10,7 +10,9 @@ import java.util.List;
 public class Ueberweisung {
 
 	private String patientnummer;
+
 	private String neuarztnummer;
+
 	private String altArztnummer;
 
 	private ArrayList<Untersuchungsbericht> untersuchungsbericht;
@@ -18,26 +20,30 @@ public class Ueberweisung {
 	private String auftrag;
 
 	private String date;
+
 	private boolean datenStimmZu=false;
 
 	/**
 	 * Instantiates a new Ueberweisung.
 	 *
-	 * @param altArzt           the alt arzt
-	 * @param patient           the patient
-	 * @param neuArzt           the neu arzt
-	 * @param untersuchungsList the untersuchungs list
-	 * @param Auftrag           the auftrag
-	 * @param date              the date
+	 * @param
+	 * @param
+	 * @param
+	 * @param
+	 * @param
+	 * @param
 	 */
-	public Ueberweisung(String altArzt, String patient, String neuArzt, ArrayList<Untersuchungsbericht> untersuchungsList, String Auftrag, String date) {
-        patientnummer=patient;
-        neuarztnummer=neuArzt;
-        altArztnummer=altArzt;
-        this.untersuchungsbericht=untersuchungsList;
-        this.auftrag=Auftrag;
-        this.date=date;
-	}
+	public Ueberweisung setPatientNummer(String patientnummer){this.patientnummer=patientnummer;return this;}
+
+	public Ueberweisung setNeuArztNummer(String neuarztnummer){this.neuarztnummer=neuarztnummer;return this;}
+
+	public Ueberweisung setAltArztNummer(String altArztnummer){this.altArztnummer=altArztnummer;return this;}
+
+	public Ueberweisung setUntersuchungberichtInit( ArrayList<Untersuchungsbericht> untersuchungsList){this.untersuchungsbericht=untersuchungsList;return this;}
+
+	public Ueberweisung setAuftrag(String auftrag){this.auftrag=auftrag;return this;}
+
+	public Ueberweisung setDate(String date){this.date=date;return this;}
 
 	/**
 	 * Gets neuarztnummer.

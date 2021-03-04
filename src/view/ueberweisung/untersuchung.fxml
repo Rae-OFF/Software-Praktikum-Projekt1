@@ -7,8 +7,8 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.text.TextFlow?>
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="444.0" prefWidth="384.0" type="TitledPane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <content>
@@ -48,19 +48,19 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Behandlung" GridPane.rowIndex="2" />
             <ScrollPane prefHeight="40.0" prefWidth="184.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <content>
-                  <TextFlow fx:id="Behandlung" prefHeight="86.0" prefWidth="178.0" />
+                  <VBox fx:id="Behandlung" prefHeight="77.0" prefWidth="182.0" />
                </content>
             </ScrollPane>
             <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <content>
-                  <TextFlow fx:id="Medikamente" prefHeight="95.0" prefWidth="181.0" />
+                  <VBox fx:id="Medikamente" prefHeight="86.0" prefWidth="183.0" />
                </content>
             </ScrollPane>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Medikamente" GridPane.rowIndex="3" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Notizen" GridPane.rowIndex="4" />
             <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <content>
-                  <TextFlow fx:id="Notiz" prefHeight="86.0" prefWidth="180.0" />
+                  <VBox fx:id="Notiz" prefHeight="96.0" prefWidth="183.0" />
                </content>
             </ScrollPane>
             <GridPane GridPane.columnIndex="1">
@@ -75,7 +75,7 @@
               </rowConstraints>
                <children>
                   <HBox prefHeight="51.0" prefWidth="164.0" GridPane.rowIndex="1" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Grund :     " />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Grund :     " visible="false" />
                   <Text fx:id="grund" strokeType="OUTSIDE" strokeWidth="0.0" text="Grund" visible="false" wrappingWidth="127.13671875" GridPane.columnIndex="1" />
                </children>
             </GridPane>

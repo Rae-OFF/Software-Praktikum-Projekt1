@@ -21,25 +21,26 @@ public class IOController {
     private EPAController ePAController;
 
     public IOController(EPAController e) {
+        ePAController=e;
     }
 
     /**
  	 *
  	 * TODO: create JavaDoc. 
- 	 * @throws UnsupportedOperation Exception
+ 	 * @throws  Exception
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
-    public void load() throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not Yet Implemented!");
+    public void load() {
+
     }
 
     /**
  	 *
  	 * TODO: create JavaDoc. 
- 	 * @throws UnsupportedOperation Exception
+ 	 * @throws  Exception
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
-    public void save() throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not Yet Implemented!");
+    public void save()  {
+
     }
 }

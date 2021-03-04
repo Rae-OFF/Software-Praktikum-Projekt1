@@ -132,7 +132,7 @@ public class UeberweisungCreateViewController extends ScrollPane {
     private EPAController epaController;
     private Stage mainStage;
     private boolean versicherungsnummerValid=false;
-    private String pVnum="";
+    private String patientVersucherungnum="";
     private ArrayList<Untersuchungsbericht> BerichtListe=new ArrayList<Untersuchungsbericht>();
 
     /**
@@ -174,7 +174,7 @@ public class UeberweisungCreateViewController extends ScrollPane {
             }
             HiddenText.setText("Versicherungsnummer ist valid");
             HiddenText.setVisible(true);
-            pVnum=Versicherungsnummer.getText();
+            patientVersucherungnum=Versicherungsnummer.getText();
             versicherungsnummerValid=true;
         }
     }
@@ -192,7 +192,7 @@ public class UeberweisungCreateViewController extends ScrollPane {
      */
     @FXML
     void UeberweisungReview(){
-         if(versicherungsnummerValid&&pVnum.equals(Versicherungsnummer.getText())){
+         if(versicherungsnummerValid&&patientVersucherungnum.equals(Versicherungsnummer.getText())){
              if(!(Versicherungsnummer.getText().isEmpty()||ArztBezeich.getText().isEmpty()||ArztBezeich.getText().equals(epaController.getCurrLoggedIn())||Auftrag.getText().isEmpty())){
                  if(epaController.getEPA().checkNumArzt(ArztBezeich.getText())){
                      for(int i= 0; i < Flow.getChildren().size(); i++){

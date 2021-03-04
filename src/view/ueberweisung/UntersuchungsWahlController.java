@@ -3,11 +3,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TitledPane;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import model.Untersuchungsbericht;
 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 /**
  * The type Untersuchungs wahl controller.
@@ -35,13 +39,13 @@ public class UntersuchungsWahlController extends TitledPane {
     private Text ICD;
 
     @FXML
-    private TextFlow Behandlung;
+    private VBox Behandlung;
 
     @FXML
-    private TextFlow Medikamente;
+    private VBox Medikamente;
 
     @FXML
-    private TextFlow Notiz;
+    private VBox Notiz;
 
     @FXML
     private RadioButton BehandlungChoose;
@@ -59,10 +63,10 @@ public class UntersuchungsWahlController extends TitledPane {
     /**
      * Instantiates a new Untersuchungs wahl controller.
      *
-     * @param u the u
+     * @param
      */
-    public UntersuchungsWahlController(Untersuchungsbericht u){
-        this.untersuchung=u;
+    public UntersuchungsWahlController(Untersuchungsbericht untersuchung){
+        this.untersuchung=untersuchung;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ueberweisung/UntersuchungsWahl.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -75,18 +79,22 @@ public class UntersuchungsWahlController extends TitledPane {
 
     }
     private void init(){
-        Date.setText("");
+        Date.setText(untersuchung.getDatum().format( DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).toString());
         Date.setVisible(true);
-        Symtome.setText("");
+        Symtome.setText(untersuchung.getDiagnose());
         Symtome.setVisible(true);
-        ICD.setText("");
+        ICD.setText(untersuchung.getICD());
         ICD.setVisible(true);
-        Behandlung.getChildren().add(new Text(""));
-        Behandlung.setVisible(true);
-        Medikamente.getChildren().add(new Text(""));
-        Medikamente.setVisible(true);
-        Notiz.getChildren().add(new Text(""));
-        Notiz.setVisible(true);
+        Behandlung.getChildren().add(new Text(untersuchung.getBehandlung()));
+        List<String> medikamente = untersuchung.getMed();
+        for(int i=0; i< medikamente.size();i++){
+            Medikamente.getChildren().add(new Text(medikamente.get(i)));
+
+        }
+        List<String> notizen = untersuchung.getNotes();
+        for(int i=0;i< notizen.size();i++){
+            Notiz.getChildren().add(new Text(notizen.get(i)));
+        }
     }
 
     /**

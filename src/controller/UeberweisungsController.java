@@ -32,7 +32,9 @@ public class UeberweisungsController {
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
     public Ueberweisung createUeberweisung(String altArzt,String versicherungsNum, String neuArzt, String auftrag, ArrayList<Untersuchungsbericht> berichtListe,String time) {
-		Ueberweisung ueberweisung= new Ueberweisung(altArzt,versicherungsNum,neuArzt,berichtListe,auftrag,time);
+		//Ueberweisung ueberweisung= new Ueberweisung(altArzt,versicherungsNum,neuArzt,berichtListe,auftrag,time);
+        Ueberweisung ueberweisung=new Ueberweisung();
+        ueberweisung.setPatientNummer(versicherungsNum).setAltArztNummer(altArzt).setNeuArztNummer(neuArzt).setAuftrag(auftrag).setUntersuchungberichtInit(berichtListe).setDate(time);
 		return ueberweisung;
     }
 
