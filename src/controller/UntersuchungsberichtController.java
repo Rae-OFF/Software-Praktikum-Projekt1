@@ -93,7 +93,11 @@ public class UntersuchungsberichtController {
 								if(!Character.isDigit(icdIterator.current())&&icdIterator.current() !=CharacterIterator.DONE){
 								return false;
 								}
-								else return true;
+								else
+									if(icdIterator.next()!=CharacterIterator.DONE){
+										return false;
+									}
+									else return true;
 						}
 						else return true;
 					}
