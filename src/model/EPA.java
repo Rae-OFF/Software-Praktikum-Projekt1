@@ -63,13 +63,11 @@ public class EPA {
 
     /**
  	 *
- 	 * TODO: create JavaDoc. 
+ 	 * gibt Arzt wieder anhand der Arztnummer.
  	 * @param num
  	 * @return Arzt
- 	 * @throws UnsupportedOperationException
- 	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
-    public Arzt getArzt(String num) throws UnsupportedOperationException {
+    public Arzt getArzt(String num){
         for(int i=0; i< arztList.size(); i++){
         	if(arztList.get(i).getNum().equals(num)){return arztList.get(i);}
 		}

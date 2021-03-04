@@ -5,12 +5,15 @@ import model.EPA;
 import model.Untersuchungsbericht;
 import model.Arzt;
 import model.Patient;
+
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
 import java.time.LocalDateTime;
 import java.util.List;
 
-
+/**
+ * Für die Verwaltung und erstellung von Unteruchungsberichten.
+ */
 public class UntersuchungsberichtController {
 
     /**
@@ -57,7 +60,7 @@ public class UntersuchungsberichtController {
 	/**
 	 * Ist zum überprüfen der ICDeingabe.
 	 * @param icd die zu überprüfende ICD.
-	 * @return true für Format ist richtig.
+	 * @return true für Großbuchstabe und 2 Zahlen und ggf. noch Punkt und 1-2 Zahlen.
 	 */
     public boolean iCDUeberpruefen(String icd){
 		CharacterIterator icdIterator = new StringCharacterIterator(icd);

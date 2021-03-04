@@ -30,7 +30,7 @@ public class BenutzerAnlegenController {
 	 * @param passwort des Arztes
 	 * @param Tel des Arztes
  	 */
-    public void ArztAnlegen(String Vorname,String Nachname, String fach, String num, String passwort, String Tel)
+    public void arztAnlegen(String Vorname, String Nachname, String fach, String num, String passwort, String Tel)
 			 {
     	if (Vorname == null || Nachname== null || fach == null || num == null || passwort == null || Tel == null  ){
     		//ungültige Eingabe ;
@@ -52,7 +52,7 @@ public class BenutzerAnlegenController {
 	 * @param Birth des Patienten
 	 * @param pass des Patienten
 	 */
-    public void PatientAnlegen(String versicherungsnummer, String Vorname,String Nachname, String Address, String Geschlecht, String Birth, String pass)
+    public void patientAnlegen(String versicherungsnummer, String Vorname, String Nachname, String Address, String Geschlecht, String Birth, String pass)
 			 {
     	if ( versicherungsnummer == null ||Vorname == null || Nachname== null || Address == null || Geschlecht == null || Birth == null || pass == null  ) {
 			//ungültige Eingabe ;

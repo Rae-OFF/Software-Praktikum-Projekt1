@@ -45,10 +45,6 @@ public class Untersuchungsbericht {
 
 	}
 
-	public String getICD() {
-		return iCD;
-	}
-
 	public String toString(){
 		String ausgabe="";
 		ausgabe+="Name: "+""+"/n";
@@ -71,6 +67,10 @@ public class Untersuchungsbericht {
 
 	public String getPatientVersicherungnum() {
 		return patientVersicherungnum;
+	}
+
+	public String getICD() {
+		return iCD;
 	}
 
 	public LocalDateTime getDatum() {

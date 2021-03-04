@@ -8,12 +8,14 @@ import controller.EPAController;
 import controller.UntersuchungsberichtController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import view.FunctionView.ArztMainViewController;
 
 public class UntersuchungsberichtEingabeController extends BorderPane {
 
@@ -64,12 +66,12 @@ public class UntersuchungsberichtEingabeController extends BorderPane {
     private Button untersuchungsberichtSaveButton; // Value injected by FXMLLoader
 
 
-    private EPAController EPAControl;
+    private EPAController ePAControl;
     private Stage mainStage;
 
     public UntersuchungsberichtEingabeController(Stage primaryStage, EPAController EPAControl) {
         mainStage = primaryStage;
-        this.EPAControl = EPAControl;
+        this.ePAControl = EPAControl;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/untersuchungsbericht/UntersuchungsberichtEingabe.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -93,7 +95,7 @@ public class UntersuchungsberichtEingabeController extends BorderPane {
         String behandlung = untersuchungsberichtBehandlung.getText();
         String medikamente = untersuchungsberichtMedikamente.getText();
         String notes = untersuchungsberichtNotesField.getText();
-        UntersuchungsberichtController untersuchungsberichtController = EPAControl.getUntersuchungsberichtcontroller();
+        UntersuchungsberichtController untersuchungsberichtController = ePAControl.getUntersuchungsberichtcontroller();
         boolean icdFormat = untersuchungsberichtController.iCDUeberpruefen(icd);
         boolean versicherungsnummerFormat = untersuchungsberichtController.versicherungsnummerUeberpruefen(versicherungsnummer);
         boolean uhrzeitFormat = untersuchungsberichtController.uhrzeitUeberpruefen(uhrzeit);
@@ -108,6 +110,9 @@ public class UntersuchungsberichtEingabeController extends BorderPane {
         }
         else if(!uhrzeitFormat){
             uhrzeitFehler.setVisible(true);
+        }
+        if(!(icdFormat||versicherungsnummerFormat||uhrzeitFormat)){
+            mainStage.setScene(new Scene(new ArztMainViewController(mainStage,ePAControl)));
         }
     }
 }
