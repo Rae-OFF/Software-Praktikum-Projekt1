@@ -23,7 +23,14 @@ public class Untersuchungsbericht {
 	private String behandenderArzt;
 
 	public Untersuchungsbericht(String versicherungsnummer, String behandelnderArzt, LocalDateTime datum, String iCD, List<String> med, String diagnose, String behandlung, List<String> notes) {
-
+		patientVersicherungnum = versicherungsnummer;
+		this.behandenderArzt = behandelnderArzt;
+		this.datum = datum;
+		this.iCD = iCD;
+		this.med = med;
+		this.diagnose = diagnose;
+		this.behandlung = behandlung;
+		this.notes = notes;
 	}
 
 	public List<String> getInfo() {
@@ -62,4 +69,31 @@ public class Untersuchungsbericht {
 		return ausgabe;
 	}
 
+	public String getPatientVersicherungnum() {
+		return patientVersicherungnum;
+	}
+
+	public LocalDateTime getDatum() {
+		return datum;
+	}
+
+	public List<String> getNotes() {
+		return notes;
+	}
+
+	public List<String> getMed() {
+		return med;
+	}
+
+	public String getDiagnose() {
+		return diagnose;
+	}
+
+	public String getBehandlung() {
+		return behandlung;
+	}
+
+	public String getBehandenderArzt() {
+		return behandenderArzt;
+	}
 }
