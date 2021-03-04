@@ -47,6 +47,7 @@
                   <Text fx:id="iCDFehler" fill="RED" layoutX="10.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ICD ist im Falschen Format!" visible="false" />
                   <Text fx:id="uhrzeitFehler" fill="RED" layoutX="10.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Uhrzeit ist im Falschen Format!" visible="false" />
                   <Text fx:id="speicherMessage" fill="LIME" layoutX="10.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Daten geprüft. Zum Speichern den Speichern Knopf drücken." visible="false" />
+                  <Text fx:id="felderAusfuellen" fill="RED" layoutX="10.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bitte alle Felder ausfüllen!" visible="false" />
                </children>
             </StackPane>
          </children>

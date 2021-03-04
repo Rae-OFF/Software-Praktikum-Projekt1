@@ -64,6 +64,9 @@ public class UntersuchungsberichtEingabeController extends BorderPane {
     @FXML // fx:id="uhrzeitFehler"
     private Text uhrzeitFehler; // Value injected by FXMLLoader
 
+    @FXML // fx:id="felderAusfuellen"
+    private Text felderAusfuellen; // Value injected by FXMLLoader
+
     @FXML // fx:id="speicherMessage"
     private Text speicherMessage; // Value injected by FXMLLoader
 
@@ -107,39 +110,40 @@ public class UntersuchungsberichtEingabeController extends BorderPane {
         mehrereFehler.setVisible(false);
         uhrzeitFehler.setVisible(false);
         speicherMessage.setVisible(false);
-        untersuchungsberichtCheckButton.setDisable(false);
-        untersuchungsberichtCheckButton.setOpacity(1);
-        untersuchungsberichtSaveButton.setDisable(true);
-        untersuchungsberichtSaveButton.setOpacity(0);
+        felderAusfuellen.setVisible(false);
         String uhrzeit = untersuchungsberichtUhrzeit.getText();
         String versicherungsnummer = untersuchungsberichtVersicherungsnummer.getText();
-        String Symptome = untersuchungsberichtSymptome.getText();
+        String symptome = untersuchungsberichtSymptome.getText();
         String icd = untersuchungsberichtICD.getText();
         String behandlung = untersuchungsberichtBehandlung.getText();
         String medikamente = untersuchungsberichtMedikamente.getText();
-        String notes = untersuchungsberichtNotesField.getText();
         UntersuchungsberichtController untersuchungsberichtController = ePAControl.getUntersuchungsberichtcontroller();
         boolean icdFormat = untersuchungsberichtController.iCDUeberpruefen(icd);
         boolean uhrzeitFormat = untersuchungsberichtController.uhrzeitUeberpruefen(uhrzeit);
         boolean versicherungsnummerFormat = untersuchungsberichtController.versicherungsnummerUeberpruefen(versicherungsnummer);
-        if(!(icdFormat||versicherungsnummerFormat)||!(uhrzeitFormat||versicherungsnummerFormat)||!(icdFormat||uhrzeitFormat)){
-            mehrereFehler.setVisible(true);
+        if(uhrzeit==null||uhrzeit==""||versicherungsnummer==null||versicherungsnummer==""||symptome==null||symptome==""||icd==null||icd=="" ||behandlung==null||behandlung==""||medikamente==null||medikamente==""){
+            felderAusfuellen.setVisible(true);
         }
-        else if(!icdFormat){
-            iCDFehler.setVisible(true);
-        }
-        else if(!versicherungsnummerFormat){
-            versicherungsFehler.setVisible(true);
-        }
-        else if(!uhrzeitFormat){
-            uhrzeitFehler.setVisible(true);
-        }
-        if(icdFormat&&versicherungsnummerFormat&&uhrzeitFormat){
-            speicherMessage.setVisible(true);
-            untersuchungsberichtCheckButton.setDisable(true);
-            untersuchungsberichtCheckButton.setOpacity(0);
-            untersuchungsberichtSaveButton.setDisable(false);
-            untersuchungsberichtSaveButton.setOpacity(1);
+        else{
+            if(!(icdFormat||versicherungsnummerFormat)||!(uhrzeitFormat||versicherungsnummerFormat)||!(icdFormat||uhrzeitFormat)){
+                mehrereFehler.setVisible(true);
+            }
+            else if(!icdFormat){
+                iCDFehler.setVisible(true);
+            }
+            else if(!versicherungsnummerFormat){
+                versicherungsFehler.setVisible(true);
+            }
+            else if(!uhrzeitFormat){
+                uhrzeitFehler.setVisible(true);
+            }
+            if(icdFormat&&versicherungsnummerFormat&&uhrzeitFormat){
+                speicherMessage.setVisible(true);
+                untersuchungsberichtCheckButton.setDisable(true);
+                untersuchungsberichtCheckButton.setOpacity(0);
+                untersuchungsberichtSaveButton.setDisable(false);
+                untersuchungsberichtSaveButton.setOpacity(1);
+            }
         }
     }
 
