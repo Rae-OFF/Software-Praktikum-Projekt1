@@ -59,6 +59,8 @@ public class BenutzerAnlegenController {
 		Patient patient = new Patient(versicherungsnummer, Vorname, Nachname, Address, sex, Birth, pass) ;
 		if(!hausarztid.isEmpty()&&ePAController.getEPA().checkNumArzt(hausarztid)){patient.behandeldenArztAendern(ePAController.getEPA().getArzt(hausarztid));}
         ePAController.getEPA().addPatientToList(patient);
+		EPA epa = ePAController.getEPA();
+		epa.getPatient(versicherungsnummer).setBehandelnderArzt(epa.getArzt(hausarztid));
 		ePAController.getIO().save();
     }
 }

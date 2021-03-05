@@ -54,6 +54,7 @@ public class BenutzerAnlegenControllerTest {
         epa = epaController.getEPA();
         testArzt = new Arzt(vorname, nachname, fach, num,passwort, tel);
         testPatient = new Patient(num,vorname,nachname,adresse,"m",birth,passwort);
+        testPatient.behandeldenArztAendern(testArzt);
         benutzerAnlegenController= epaController.getAktAnlegenController();
     }
 
@@ -62,19 +63,20 @@ public class BenutzerAnlegenControllerTest {
      *Test, ob Arzt objekt richtig angelegt wird.
      */
     @Test
-    public void arztAnlegen2() throws IOException {
+    public void arztAnlegen() throws IOException {
         //test2:
         benutzerAnlegenController.arztAnlegen(vorname, nachname, fach, num, passwort, tel);
-        assert(epa.getArzt("1248").equals(testArzt));
+        assert(epa.getArzt(num).equals(testArzt));
     }
 
     /**
      *Test, ob Patient objekt richtig angelegt wird.
      */
     @Test
-    public void patientAnlegen2() throws IOException {
+    public void patientAnlegen() throws IOException {
+        System.out.println(testPatient.getBehandelnderArzt());
         //test2:
-        benutzerAnlegenController.patientAnlegen(num, vorname, nachname, adresse, false,birth,passwort,"");
+        benutzerAnlegenController.patientAnlegen(num, vorname, nachname, adresse, false, birth, passwort,"1248");
         assert(epa.getPatient(num).equals(testPatient));
     }
 
