@@ -102,10 +102,8 @@ public class UntersuchungBerichtViewController extends AnchorPane {
     /**
      * Get untersuchung untersuchungsbericht.
      *
-     * @return the untersuchungsbericht
+     * @return the untersuchungsbericht.
      */
-
-
 
     @FXML
     void zumZusammenfassung(ActionEvent event) {

@@ -86,10 +86,11 @@ public class zusammenfassungsController extends SplitPane{
     /**
      * Instantiates a new Zusammenfassungs controller.
      *
-     * @param primaryStage the primary stage
-     * @param EPAControl   the epa control
+     * @param primaryStage the primary stage.
+     * @param EPAControl   the epa control.
      * @param
      */
+    //
     public zusammenfassungsController(Stage primaryStage, EPAController EPAControl,ArrayList<Untersuchungsbericht> berichtListe) {
         mainStage = primaryStage;
         this.EPAControl = EPAControl;
@@ -130,7 +131,7 @@ public class zusammenfassungsController extends SplitPane{
     /**
      * Zum arzt main view.
      *
-     * @param actionEvent the action event
+     * @param actionEvent the action event.
      */
     @FXML
     void ZumArztMainView(ActionEvent actionEvent){
@@ -140,7 +141,7 @@ public class zusammenfassungsController extends SplitPane{
     /**
      * Zum eingabe seite.
      *
-     * @param actionEvent the action event
+     * @param actionEvent the action event.
      */
     @FXML
     void ZumEingabeSeite(ActionEvent actionEvent){

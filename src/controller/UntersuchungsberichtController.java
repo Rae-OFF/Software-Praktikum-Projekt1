@@ -37,6 +37,7 @@ public class UntersuchungsberichtController {
 	 * @param behandlung          the behandlung
 	 * @param notes               the notes
 	 */
+
 	public void createUntersuchungsbericht(String versicherungsnummer, LocalDateTime dateTime, String icd, List<String> med, String diagnose, String behandlung, List<String> notes){
 		Untersuchungsbericht bericht = new Untersuchungsbericht(versicherungsnummer, ePAController.getCurrLoggedIn(),dateTime, icd, med, diagnose, behandlung, notes);
 		addUntersuchungbericht(versicherungsnummer, bericht);
