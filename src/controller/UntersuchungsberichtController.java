@@ -87,6 +87,17 @@ public class UntersuchungsberichtController {
 		return uhrzeit.matches("([2][0-3]|[0-1][0-9]|[1-9]):[0-5][0-9]");
 	}
 
+	/**
+	 * Felder leer boolean.
+	 *
+	 * @param uhrzeit             the uhrzeit
+	 * @param versicherungsnummer the versicherungsnummer
+	 * @param symptome            the symptome
+	 * @param icd                 the icd
+	 * @param behandlung          the behandlung
+	 * @param medikamente         the medikamente
+	 * @return the boolean
+	 */
 	public  boolean felderLeer(String uhrzeit, String versicherungsnummer, String symptome, String icd, String behandlung,String medikamente){
 		return uhrzeit==null||uhrzeit==""||versicherungsnummer==null||versicherungsnummer==""||symptome==null||symptome==""||icd==null||icd=="" ||behandlung==null||behandlung==""||medikamente==null||medikamente=="";
 	}

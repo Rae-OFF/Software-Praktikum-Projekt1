@@ -278,5 +278,16 @@ public class Patient implements Serializable {
 	 */
 	public String getGeschlecht(){return geschlecht;}
 
+	/**
+	 * Equals boolean.
+	 *
+	 * @param o the patient
+	 * @return the boolean
+	 */
+	@Override
+	public boolean equals(Object o) {
+		Patient patient = (Patient)o;
+		return(patient.getNum()==versicherungNum&&patient.getName()==vorName&&patient.getNachname()==nachName&&patient.getAddress()==address&&patient.getGeschlecht()==geschlecht&&patient.getGesburtsDatum()==gesburtsDatum&&patient.getPasswort()==passwort);
+	}
 
 }

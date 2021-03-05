@@ -45,7 +45,7 @@ public class PatientDatenControllerTest {
         nachname = "Ammermüller";
         adresse = "Lingusterweg";
         testGeschlecht = "m";
-        boolean geschlecht = true;
+        boolean geschlecht = false;
         birth = "20.05.01";
         passwort = "1234";
         String hausarzt = "1248";
@@ -64,10 +64,12 @@ public class PatientDatenControllerTest {
         nachname = "newName";
         try {
             //Test wurde verändert?
+            System.out.println(epa.getPatient(num).equals(testPatient));
             patientDatenController.patientDatenUpdate(num,vorname,nachname,adresse,testGeschlecht,birth,passwort);
-            assert(epa.getPatient(num).equals(testPatient));
+            assert(!(epa.getPatient(num).equals(testPatient)));
             //Test wurde richtig verändert?
             testPatient.setNachname("newName");
+            System.out.println(epa.getPatient(num).equals(testPatient));
             assert(epa.getPatient(num).equals(testPatient));
         } catch (IOException e) {
             System.out.println("PatientenDatenUpdateTest fehler bei update");

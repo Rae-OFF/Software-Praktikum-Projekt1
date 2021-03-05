@@ -12,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 public class EPAController {
 
 	private boolean isArzt;
+
     private String currLoggedIn;
 
     private EPA ePA;
@@ -66,7 +67,6 @@ public class EPAController {
 	 * Gets epa.
 	 *
 	 * @return the epa
-	 * @throws UnsupportedOperationException the unsupported operation exception
 	 */
 	public EPA getEPA(){
         return ePA;
@@ -95,7 +95,6 @@ public class EPAController {
 	 * Gets io.
 	 *
 	 * @return the io
-	 * @throws UnsupportedOperationException the unsupported operation exception
 	 */
 	public IOController getIO()  {
         return iOController;
@@ -106,7 +105,6 @@ public class EPAController {
 	 * Gets patient daten controller.
 	 *
 	 * @return the patient daten controller
-	 * @throws UnsupportedOperationException the unsupported operation exception
 	 */
 	public PatientDatenController getPatientDatenController()  {
         return patientDatencontroller;
@@ -116,7 +114,6 @@ public class EPAController {
 	 * Gets akt anlegen controller.
 	 *
 	 * @return the akt anlegen controller
-	 * @throws UnsupportedOperationException the unsupported operation exception
 	 */
 	public BenutzerAnlegenController getAktAnlegenController()  {
         return  benutzerAnlegenController;
@@ -145,7 +142,6 @@ public class EPAController {
 	 * Gets zusammenfassungs controller.
 	 *
 	 * @return the zusammenfassungs controller
-	 * @throws UnsupportedOperationException the unsupported operation exception
 	 */
 	public ZusammenfassungsController getZusammenfassungsController()  {
         return zusammenfassungsController;
@@ -162,7 +158,6 @@ public class EPAController {
 	 * Gets curr logged in.
 	 *
 	 * @return the curr logged in
-	 * @throws UnsupportedOperationException the unsupported operation exception
 	 */
 	public String getCurrLoggedIn() throws UnsupportedOperationException {
         return currLoggedIn;

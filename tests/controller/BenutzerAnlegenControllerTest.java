@@ -8,9 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.security.InvalidParameterException;
-import static org.junit.Assert.*;
-
 /**
  *Zur überprüfung der Klasse BenutzerAnlegenController.
  */
