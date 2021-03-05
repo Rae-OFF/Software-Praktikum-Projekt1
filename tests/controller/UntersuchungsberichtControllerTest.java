@@ -14,6 +14,9 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+/**
+ *Zur überprüfung der Klasse UntersuchungsberichtController.
+ */
 public class UntersuchungsberichtControllerTest {
     private EPAController epaController;
     private UntersuchungsberichtController usController;
@@ -37,7 +40,9 @@ public class UntersuchungsberichtControllerTest {
 
 
 
-
+    /**
+     *Setup ,was in den Test gebraucht wird.
+     */
     @Before
     public void setUp() {
 
@@ -117,7 +122,9 @@ public class UntersuchungsberichtControllerTest {
     }
 
 
-
+    /**
+     *Test,  ob Utersuchungsbericht richtig erstellt wird .
+     */
     @Test
     public void createUntersuchungsbericht() {
 
@@ -134,7 +141,9 @@ public class UntersuchungsberichtControllerTest {
         assertEquals(size4,size2+1);
     }
 
-
+    /**
+     *Test,  ob Utersuchungsbericht richtig hinzugefeugt wird.
+     */
     @Test
     public void addUntersuchungbericht() {
         int size1=arzt.getUntersuchungsberichte(versicherungsnummer).size();
@@ -151,6 +160,9 @@ public class UntersuchungsberichtControllerTest {
         assertEquals(size4,size2+1);
     }
 
+    /**
+     *Test, ob ICD richt überprüft wird.
+     */
     @Test
     public void iCDUeberpruefen() {
         String iCD2="ssd,,";
@@ -159,6 +171,9 @@ public class UntersuchungsberichtControllerTest {
 
     }
 
+    /**
+     *Test, ob Versicherungsnummer richt überprüft wird.
+     */
     @Test
     public void versicherungsnummerUeberpruefen() {
         String versicherungsnummer2="sdf123";
@@ -166,12 +181,18 @@ public class UntersuchungsberichtControllerTest {
         assertFalse(usController.versicherungsnummerUeberpruefen(versicherungsnummer2));
     }
 
+    /**
+     *Test, ob Uhrzeit richt überprüft wird.
+     */
     @Test
     public void uhrzeitUeberpruefen() {
         DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("HH:mm");
         assertTrue(usController.uhrzeitUeberpruefen(testTime.format(formatterTime)));
     }
 
+    /**
+     *Test, ob leere Felder richt überprüft wird.
+     */
     @Test
     public void felderLeer(){
         DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -181,4 +202,5 @@ public class UntersuchungsberichtControllerTest {
         symptome=null;
         assertTrue(usController.felderLeer(testTime.format(formatterTime), versicherungsnummer, symptome, iCD, behandlung,medikamente));
     }
+
 }

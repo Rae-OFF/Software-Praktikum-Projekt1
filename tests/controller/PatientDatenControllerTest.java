@@ -8,7 +8,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import java.io.IOException;
 
-
+/**
+ *Zur überprüfung der Klasse PatientDatenController.
+ */
 public class PatientDatenControllerTest {
 
     private EPA epa;
@@ -35,6 +37,9 @@ public class PatientDatenControllerTest {
 
     private String passwort;
 
+    /**
+     *Setup für gebraucht in den Tests.
+     */
     @Before
     public void setUp() throws Exception {
         epaController = new EPAController();
@@ -59,6 +64,9 @@ public class PatientDatenControllerTest {
         epa.removePatient(num);
     }
 
+    /**
+     *Test, ob Daten von Patient erneut werden.
+     */
     @Test
     public void patientDatenUpdate(){
         nachname = "newName";
