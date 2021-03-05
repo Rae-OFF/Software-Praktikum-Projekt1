@@ -1,69 +1,106 @@
 package view.DatenBearbeiten;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import controller.EPAController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import model.Patient;
+import view.FunctionView.PatientMainViewController;
 
-public class DatenBearbeitenController {
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-    @FXML // ResourceBundle that was given to the FXMLLoader
-    private ResourceBundle resources;
+public class DatenBearbeitenController extends ScrollPane {
 
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
-    private URL location;
+    @FXML
+    private TextField pVorname;
 
-    @FXML // fx:id="pVorname"
-    private TextField pVorname; // Value injected by FXMLLoader
+    @FXML
+    private TextField pNachname;
 
-    @FXML // fx:id="pNachname"
-    private TextField pNachname; // Value injected by FXMLLoader
+    @FXML
+    private DatePicker pBday;
 
-    @FXML // fx:id="pBday"
-    private DatePicker pBday; // Value injected by FXMLLoader
+    @FXML
+    private RadioButton pIsmale;
 
-    @FXML // fx:id="pIsmale"
-    private RadioButton pIsmale; // Value injected by FXMLLoader
+    @FXML
+    private ToggleGroup sex;
 
-    @FXML // fx:id="sex"
-    private ToggleGroup sex; // Value injected by FXMLLoader
+    @FXML
+    private RadioButton pIsfemale;
 
-    @FXML // fx:id="pIsfemale"
-    private RadioButton pIsfemale; // Value injected by FXMLLoader
+    @FXML
+    private TextArea pAdress;
 
-    @FXML // fx:id="pAdress"
-    private TextArea pAdress; // Value injected by FXMLLoader
+    @FXML
+    private TextField pSetnum;
+    @FXML
+    private TextField neuPass;
+    @FXML
+    private TextField pSetpass;
 
-    @FXML // fx:id="pSetnum"
-    private TextField pSetnum; // Value injected by FXMLLoader
+    @FXML
+    private Button back;
 
-    @FXML // fx:id="pAnum"
-    private TextField pAnum; // Value injected by FXMLLoader
+    @FXML
+    private Button save;
 
-    @FXML // fx:id="pSetpass"
-    private TextField pSetpass; // Value injected by FXMLLoader
+    @FXML
+    private Text HiddenText;
+    private Stage mainStage;
+    private EPAController epaController;
+    public DatenBearbeitenController(Stage primaryStage, EPAController epaController){
+        this.epaController= epaController;
+        mainStage= primaryStage;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DatenBearbeiten/DatenBearbeiten.fxml"));
+        loader.setRoot(this);
+        loader.setController(this);
+        try {
+            loader.load();
+            init();
+        } catch (IOException e) {
 
-    @FXML // fx:id="neuPatient"
-    private Button neuPatient; // Value injected by FXMLLoader
-
-    @FXML // This method is called by the FXMLLoader when initialization is complete
-    void initialize() {
-        assert pVorname != null : "fx:id=\"pVorname\" was not injected: check your FXML file 'DatenBearbeiten.fxml'.";
-        assert pNachname != null : "fx:id=\"pNachname\" was not injected: check your FXML file 'DatenBearbeiten.fxml'.";
-        assert pBday != null : "fx:id=\"pBday\" was not injected: check your FXML file 'DatenBearbeiten.fxml'.";
-        assert pIsmale != null : "fx:id=\"pIsmale\" was not injected: check your FXML file 'DatenBearbeiten.fxml'.";
-        assert sex != null : "fx:id=\"sex\" was not injected: check your FXML file 'DatenBearbeiten.fxml'.";
-        assert pIsfemale != null : "fx:id=\"pIsfemale\" was not injected: check your FXML file 'DatenBearbeiten.fxml'.";
-        assert pAdress != null : "fx:id=\"pAdress\" was not injected: check your FXML file 'DatenBearbeiten.fxml'.";
-        assert pSetnum != null : "fx:id=\"pSetnum\" was not injected: check your FXML file 'DatenBearbeiten.fxml'.";
-        assert pAnum != null : "fx:id=\"pAnum\" was not injected: check your FXML file 'DatenBearbeiten.fxml'.";
-        assert pSetpass != null : "fx:id=\"pSetpass\" was not injected: check your FXML file 'DatenBearbeiten.fxml'.";
-        assert neuPatient != null : "fx:id=\"neuPatient\" was not injected: check your FXML file 'DatenBearbeiten.fxml'.";
-
+            e.printStackTrace();
+        }
     }
+    private void init(){
+        Patient patient= epaController.getEPA().getPatient(epaController.getCurrLoggedIn());
+        pVorname.setText(patient.getVorname());
+        pNachname.setText(patient.getNachname());
+        pAdress.setText(patient.getAddress());
+        pBday.setValue(LocalDate.parse(patient.getGesburtsDatum(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        if(patient.getGeschlecht().equals("female")){
+            pIsfemale.setSelected(true);
+        }
+        else{pIsmale.setSelected(true);}
+    }
+    @FXML
+    void InfoAndern(ActionEvent event) throws IOException {
+        Patient patient= epaController.getEPA().getPatient(epaController.getCurrLoggedIn());
+        if(pSetpass.getText().isEmpty()){HiddenText.setText("Geben Sie bitte ihres Passwort ein");HiddenText.setVisible(true);}
+        else if(!pSetpass.getText().equals(patient.getPasswort())){HiddenText.setVisible(true);}
+        else{
+            String s = pIsfemale.isSelected() ? "female" : "male";
+            if(neuPass.getText().isEmpty()){
+                epaController.getPatientDatenController().PatientDatenUpdate(epaController.getCurrLoggedIn(),pVorname.getText(),pNachname.getText(),pAdress.getText(),s,pBday.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),patient.getPasswort());
+            }
+            else{
+                epaController.getPatientDatenController().PatientDatenUpdate(epaController.getCurrLoggedIn(),pVorname.getText(),pNachname.getText(),pAdress.getText(),s,pBday.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),neuPass.getText());
+            }
+            mainStage.setScene(new Scene(new PatientMainViewController(mainStage,epaController)));
+        }
+    }
+
+    @FXML
+    void ZumMainView(ActionEvent event) {
+        mainStage.setScene(new Scene(new PatientMainViewController(mainStage,epaController)));
+    }
+
 }

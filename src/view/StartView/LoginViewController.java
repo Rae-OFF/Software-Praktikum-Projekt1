@@ -13,6 +13,7 @@ import view.FunctionView.ArztMainViewController;
 import view.FunctionView.PatientMainViewController;
 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 
 /**
  * The type Login view controller.
@@ -179,10 +180,10 @@ public class LoginViewController extends TabPane {
      * @param e the e
      */
     @FXML
-    void neuPatientAnlegen(ActionEvent e){
+    void neuPatientAnlegen(ActionEvent e) throws IOException {
         if(!(pAdress.getText().isEmpty()||pNachname.getText().isEmpty()||pSetnum.getText().isEmpty()||pVorname.getText().isEmpty()||pSetpass.getText().isEmpty()||pBday.getValue()==null||!(pIsfemale.isSelected()||pIsmale.isSelected())))
         {
-          // nutzt BenuterAnlegenController und erzeugt neu PAtient Instanz
+          epaController.getAktAnlegenController().patientAnlegen(pNum.getText(),pVorname.getText(),pNachname.getText(),pAdress.getText(),pIsfemale.isSelected(),pBday.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),pPasswort.getText(),pAnum.getText());
           mainStage.setScene(new Scene(new LoginViewController(mainStage)));
         }
         else
@@ -197,10 +198,10 @@ public class LoginViewController extends TabPane {
      * @param e the e
      */
     @FXML
-    void neuArztAnlegen(ActionEvent e){
+    void neuArztAnlegen(ActionEvent e) throws IOException {
         if(!(aFach.getText().isEmpty()||aNachname.getText().isEmpty()||aSetnum.getText().isEmpty()||aVorname.getText().isEmpty()||aSetpass.getText().isEmpty()||aTel.getText().isEmpty()||aBday.getValue()==null||!(aIsfemale.isSelected()||aIsmale.isSelected())))
         {
-            // nutzt BenuterAnlegenController und erzeugt neu Arzt Instanz
+            epaController.getAktAnlegenController().arztAnlegen(aVorname.getText(),aNachname.getText(),aFach.getText(),aNum.getText(),aPasswort.getText(),aTel.getText());
             mainStage.setScene(new Scene(new LoginViewController(mainStage)));
         }
         else{

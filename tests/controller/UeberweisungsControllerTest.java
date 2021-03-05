@@ -53,7 +53,7 @@ public class UeberweisungsControllerTest {
      */
     @Test
     public void createUeberweisung1() {
-        Ueberweisung ueberweisung2 = ueberweisung1.createUeberweisung("1234",null ,"5678","test",untersuchungslist,"1.1.2022");
+        Ueberweisung ueberweisung2 = ueberweisung1.createUeberweisung("1234","" ,"5678","test",untersuchungslist,"1.1.2022");
         assertEquals(ueberweisung.getDate(),ueberweisung2.getDate());
         assertEquals(ueberweisung.getNeuarztnummer(),ueberweisung2.getNeuarztnummer());
         assertEquals(ueberweisung.getAltArztnummer(),ueberweisung2.getAltArztnummer());

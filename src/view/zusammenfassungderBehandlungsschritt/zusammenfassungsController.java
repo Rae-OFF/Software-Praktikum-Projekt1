@@ -2,6 +2,8 @@ package view.zusammenfassungderBehandlungsschritt;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import controller.EPAController;
@@ -14,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
@@ -56,8 +59,10 @@ public class zusammenfassungsController extends SplitPane{
 
     @FXML
     private Button zumArztMainView;
-
-
+    @FXML
+    private FlowPane Flow;
+    @FXML
+    private ImageView PatientImage;
     /**
      * Initialize.
      */
@@ -76,42 +81,50 @@ public class zusammenfassungsController extends SplitPane{
     private Stage mainStage;
     private EPAController EPAControl;
     private Untersuchungsbericht Ub;
-    private boolean alleArzte;// falsch -> inhalt 1 arzt, true -> inhalt allle arzte
+    private ArrayList<Untersuchungsbericht> berichtListe;
 
     /**
      * Instantiates a new Zusammenfassungs controller.
      *
      * @param primaryStage the primary stage
      * @param EPAControl   the epa control
-     * @param alleArzte    the alle arzte
+     * @param
      */
-    public zusammenfassungsController(Stage primaryStage, EPAController EPAControl,boolean alleArzte ) {
+    public zusammenfassungsController(Stage primaryStage, EPAController EPAControl,ArrayList<Untersuchungsbericht> berichtListe) {
         mainStage = primaryStage;
         this.EPAControl = EPAControl;
-        this.alleArzte=alleArzte;
+        this.berichtListe=berichtListe;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/zusammenfassungderBehandlungsschritt/Zusammenfassung.fxml"));
         loader.setRoot(this);
         loader.setController(this);
         try {
             loader.load();
+            init();
         } catch (IOException e) {
 
             e.printStackTrace();
         }
     }
 
-/*
-    private void init1() throws IOException {
+
+    private void init() throws IOException {
         Patient p= EPAControl.getEPA().getPatient(EPAControl.getCurrLoggedIn());
-        Image icon = SwingFXUtils.toFXImage(ImageIO.read(this.getClass().getClassLoader().getResource("view/image/patienteimage.jpg")), null);
-        patienteImage.setImage(icon);
+        Image icon = SwingFXUtils.toFXImage(ImageIO.read(this.getClass().getClassLoader().getResource("view/image/patientimage.jpg")), null);
+        PatientImage.setImage(icon);
         pVorname.setText(p.getVorname());
         pNachname.setText(p.getNachname());
         pGeschlecht.setText(p.getGeschlecht());
-        Ub.getICD();
-        Ub.getPatientNum();
-        Ub.setInfo();
-    }*/
+        for(int i=0;i<berichtListe.size();i++){
+            Button button=new Button("Untersuchungsbericht am "+berichtListe.get(i).getDatum().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))+" von Arzt(in) "+berichtListe.get(i).getBehandenderArzt());
+            Untersuchungsbericht untersuchungsbericht=berichtListe.get(i);
+            button.setOnAction(event -> {
+                mainStage.setScene(new Scene(new UntersuchungBerichtViewController(berichtListe,untersuchungsbericht, EPAControl, mainStage)));
+            });
+            button.setPrefWidth(580.0);
+            button.setPrefHeight(90.0);
+            Flow.getChildren().add(button);
+        }
+    }
 
 
     /**

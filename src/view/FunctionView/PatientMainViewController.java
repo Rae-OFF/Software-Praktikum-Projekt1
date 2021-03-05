@@ -14,6 +14,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import model.Patient;
+import view.DatenBearbeiten.DatenBearbeitenController;
 import view.Revision.RevisionsController;
 import view.StartView.LoginViewController;
 import view.ueberweisung.UeberweisungsChooseController;
@@ -144,5 +145,9 @@ public class PatientMainViewController extends AnchorPane {
     @FXML
     void zumRevision(){
         mainStage.setScene(new Scene(new RevisionsController(mainStage,epaController)));
+    }
+    @FXML
+    void zumDatenAndern(ActionEvent event) {
+        mainStage.setScene(new Scene(new DatenBearbeitenController(mainStage,epaController)));
     }
 }

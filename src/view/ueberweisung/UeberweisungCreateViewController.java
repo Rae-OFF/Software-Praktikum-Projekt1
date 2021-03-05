@@ -10,6 +10,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import model.Patient;
+import model.Ueberweisung;
 import model.Untersuchungsbericht;
 import view.FunctionView.ArztMainViewController;
 
@@ -167,7 +168,13 @@ public class UeberweisungCreateViewController extends ScrollPane {
         else{
             Flow.getChildren().clear();
             Patient p =epaController.getEPA().getPatient(Versicherungsnummer.getText());
-            ArrayList<Untersuchungsbericht> berichtliste= p.getUntersuchungList();
+            ArrayList<Untersuchungsbericht> berichtliste= epaController.getEPA().getArzt(epaController.getCurrLoggedIn()).getUntersuchungsberichte(Versicherungsnummer.getText());
+            ArrayList<Ueberweisung> ueberweisungslist= p.getUeberweisungsList();
+            for(int i=0;i<ueberweisungslist.size();i++){
+                if(ueberweisungslist.get(i).getNeuarztnummer().equals(epaController.getCurrLoggedIn())&&ueberweisungslist.get(i).isDatenStimmZu()){
+                    berichtliste.addAll(ueberweisungslist.get(i).getUntersuchungsbericht());
+                }
+            }
             for(int i= 0; i< berichtliste.size(); i++){
                 UntersuchungBerichtWahlController uc= new UntersuchungBerichtWahlController(berichtliste.get(i));
                 Flow.getChildren().add(uc);

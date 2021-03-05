@@ -5,6 +5,7 @@ import model.Patient;
 import model.Untersuchungsbericht;
 
 import javax.sound.midi.InvalidMidiDataException;
+import java.io.IOException;
 import java.security.InvalidParameterException;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class PatientDatenController {
 	 * @param pass des Patienten
 	 */
 
-	public void PatientDatenUpdate(String versicherungsnummer, String Vorname,String Nachname, String Address, String Geschlecht, String Birth, String pass) {
+	public void PatientDatenUpdate(String versicherungsnummer, String Vorname,String Nachname, String Address, String Geschlecht, String Birth, String pass) throws IOException {
 		EPA epa = ePAController.getEPA();
 		Patient patient = epa.getPatient(versicherungsnummer);
 		patient.setVorname(Vorname);
@@ -44,6 +45,7 @@ public class PatientDatenController {
 		patient.setGeschlecht(Geschlecht);
 		patient.setBirth(Birth);
 		patient.setPasswort(pass);
+		ePAController.getIO().save();
 	}
 	/**
 	 * Diese Methode ist verantwortlich feur Auswahl Von  Untersuchungsberichten

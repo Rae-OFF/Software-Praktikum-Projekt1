@@ -33,9 +33,12 @@ public class EPAController {
 	 */
 	public EPAController() {
     	this.ePA=new EPA();
+    	this.benutzerAnlegenController=new BenutzerAnlegenController(this);
     	this.ueberweisungsController=new UeberweisungsController(this);
 		this.untersuchungsberichtController=new UntersuchungsberichtController(this);
 		this.iOController=new IOController(this);
+		this.zusammenfassungsController= new ZusammenfassungsController(this);
+		this.patientDatencontroller=new PatientDatenController(this);
 		try {
 			iOController.load();
 		} catch (Exception e) {
@@ -94,7 +97,7 @@ public class EPAController {
 	 * @return the io
 	 * @throws UnsupportedOperationException the unsupported operation exception
 	 */
-	public IOController getIO() throws UnsupportedOperationException {
+	public IOController getIO()  {
         return iOController;
     }
 
@@ -114,8 +117,8 @@ public class EPAController {
 	 * @return the patient daten controller
 	 * @throws UnsupportedOperationException the unsupported operation exception
 	 */
-	public PatientDatenController getPatientDatenController() throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not Yet Implemented!");
+	public PatientDatenController getPatientDatenController()  {
+        return patientDatencontroller;
     }
 
 	/**
@@ -124,8 +127,8 @@ public class EPAController {
 	 * @return the akt anlegen controller
 	 * @throws UnsupportedOperationException the unsupported operation exception
 	 */
-	public BenutzerAnlegenController getAktAnlegenController() throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not Yet Implemented!");
+	public BenutzerAnlegenController getAktAnlegenController()  {
+        return  benutzerAnlegenController;
     }
 
 	/**
@@ -162,8 +165,8 @@ public class EPAController {
 	 * @return the zusammenfassungs controller
 	 * @throws UnsupportedOperationException the unsupported operation exception
 	 */
-	public ZusammenfassungsController getZusammenfassungsController() throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not Yet Implemented!");
+	public ZusammenfassungsController getZusammenfassungsController()  {
+        return zusammenfassungsController;
     }
 
 	/**

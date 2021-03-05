@@ -8,9 +8,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.Untersuchungsbericht;
 import view.FunctionView.ArztMainViewController;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.application.Application;
@@ -49,6 +51,11 @@ public class EingabeSeiteController extends AnchorPane {
     @FXML
     private RadioButton alleÄrzte;
 
+    @FXML
+    private TextField Versicherungsnum;
+
+    @FXML
+    private TextField ICD;
 
     /**
      * Zum arzt main view.
@@ -67,7 +74,17 @@ public class EingabeSeiteController extends AnchorPane {
      */
     @FXML
     void zumZusammenfassung(ActionEvent event) {
-        if(alleÄrzte.isSelected()||aktuellerArzt.isSelected()){mainStage.setScene(new Scene(new zusammenfassungsController(mainStage, EPAControll,alleÄrzte.isSelected())));}
+        if(!Versicherungsnum.getText().isEmpty()&&(aktuellerArzt.isSelected()||alleÄrzte.isSelected())){
+            String icd= ICD.getText().isEmpty() ? "leer" : ICD.getText();
+            ArrayList<Untersuchungsbericht> berichtListe;
+            if(aktuellerArzt.isSelected()){
+                berichtListe= EPAControll.getZusammenfassungsController().createZusammenfassungEinArzt(Versicherungsnum.getText(),icd);
+            }
+            else{
+                berichtListe=EPAControll.getZusammenfassungsController().createZusammenfassungAlleAerzte(Versicherungsnum.getText(),icd);
+            }
+            mainStage.setScene(new Scene(new zusammenfassungsController(mainStage,EPAControll,berichtListe)));
+        }
     }
 
     /**
@@ -110,42 +127,4 @@ public class EingabeSeiteController extends AnchorPane {
             e.printStackTrace();
         }
     }
-
-
-
-/*
-    @FXML
-    void zumArztMainView(ActionEvent e){
-        mainStage.setScene(new Scene(new ArztMainViewController(mainStage, EPAControll)));
-    }
-
-    @FXML
-    void zumArztMainView(ActionEvent event){
-       mainStage.setScene(new Scene(new ArztMainViewController(mainStage, EPAControll)));
-    }
-
-    @FXML
-     void zumZusammenfassung(ActionEvent event){
-        //String pVersicherungsnum= pVersicherungsnummer.getText();
-        //String pICD =pICDCode.getText();
-       // if (pVersicherungsnum != null ) {
-            mainStage.setScene(new Scene(new zusammenfassungsController(mainStage, EPAControll)));
-       //}
-    }
-
-
-    @FXML
-    void zumZusammenfassung(ActionEvent event){
-        String pVS= pVersicherungsnummer.getText();
-        String pICD =pICDCode.getText();
-        if (pVS != null ) {
-            EPA epa= EPAControll.getEPA();
-            if(epa.checkNumPatient(pVS)){
-                //EPAControl.getUntersuchungsberichtcontroller();
-                //mainStage.setScene(new Scene(???));
-            }
-        }
-    }*/
-
-
 }

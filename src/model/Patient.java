@@ -82,7 +82,11 @@ public class Patient implements Serializable {
 	 * @param n
 	 */
 	public void setVorname(String n) {
-        vorName=n;
+        if(n.equals(vorName)){}
+        else{
+        	revision.add(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" Ihrer Vorname wurde von "+vorName+" zu "+n+" geandert");
+			vorName=n;
+		}
 	}
 
 	/**
@@ -90,7 +94,11 @@ public class Patient implements Serializable {
 	 * @param n
 	 */
 	public void setNachname(String n) {
-        nachName=n;
+        if(n.equals(nachName)){}
+        else{
+            revision.add(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" Ihrer Vorname wurde von "+nachName+" zu "+n+" geandert");
+			nachName=n;
+		}
 	}
 
 	/**
@@ -98,7 +106,11 @@ public class Patient implements Serializable {
 	 * @param a
 	 */
 	public void setAddress(String a) {
-         address=a;
+		if(a.equals(address)){}
+        else{
+			revision.add(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" Ihre Addresse wurde von "+address+" zu "+a+" geandert");
+        	address=a;
+		}
 	}
 
 	/**
@@ -106,15 +118,33 @@ public class Patient implements Serializable {
 	 * @param s
 	 */
 	public void setGeschlecht(String s) {
-        geschlecht=s;
+		if(geschlecht.equals(s)){}
+		else{
+			revision.add(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" Ihr Geschlecht wurde von "+geschlecht+" zu "+s+" geandert");
+			geschlecht=s;
+		}
 	}
-
+	/**
+	 *
+	 * @param p
+	 */
+	public void setPasswort(String p){
+		if(passwort.equals(p)){}
+		else{
+			revision.add(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" Ihr Passwort wurde von "+passwort+" zu "+p+" geandert");
+			passwort=p;
+		}
+	}
 	/**
 	 *
 	 * @param b
 	 */
 	public void setBirth(String b) {
-        gesburtsDatum=b;
+        if(gesburtsDatum.equals(b)){}
+        else{
+        	revision.add(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" Ihr Gesburtsdatum wurde von "+gesburtsDatum+" zu "+b+" geandert");
+            gesburtsDatum=b;
+		}
 	}
 
 	/**
@@ -242,10 +272,5 @@ public class Patient implements Serializable {
 	 */
 	public String getGeschlecht(){return geschlecht;}
 
-	/**
-	 *
-	 * @param p
-	 */
-	public void setPasswort(String p){passwort=p;}
 
 }

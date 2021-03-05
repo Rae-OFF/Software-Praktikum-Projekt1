@@ -65,7 +65,7 @@ public class UeberweisungsChooseController extends AnchorPane {
                     mainStage.setScene(new Scene(new UeberweisungsAnderungViewController(epaController,mainStage,u)));
                     event.consume();
                 });
-                button.setPrefWidth(540.0);
+                button.setPrefWidth(530.0);
                 button.setPrefHeight(90.0);
                 Flow.getChildren().add(button);
             }

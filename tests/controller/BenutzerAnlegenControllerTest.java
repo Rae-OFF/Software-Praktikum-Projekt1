@@ -4,6 +4,8 @@ import model.Arzt;
 import model.EPA;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.IOException;
 import java.security.InvalidParameterException;
 import static org.junit.Assert.*;
 
@@ -34,22 +36,23 @@ public class BenutzerAnlegenControllerTest {
         epaController = new EPAController();
         epa = epaController.getEPA();
         testArzt = new Arzt(vorname, nachname, fach, num,passwort,tel);
+        benutzerAnlegenController=epaController.getAktAnlegenController();
     }
 
     /**
      *Test, ob der Fehler mit null ausgegeben wird.
      */
     @Test(expected = InvalidParameterException.class)
-    public void arztAnlegen() {
+    public void arztAnlegen() throws IOException {
         //test1:
-        benutzerAnlegenController.arztAnlegen("Mark", null, "Psychater", "1248", "1234", "0208 123456789");
+        benutzerAnlegenController.arztAnlegen("Mark", "", "Psychater", "1248", "1234", "0208 123456789");
     }
 
     /**
      *Test, ob Arzt objekt richtig angelegt wird.
      */
     @Test
-    public void arztAnlegen2() {
+    public void arztAnlegen2() throws IOException {
         //test2:
         benutzerAnlegenController.arztAnlegen("Mark", "Ammermüller", "Psychater", "1248", "1234", "0208 123456789");
         assertEquals(testArzt,epa.getArzt("1248"));
@@ -59,18 +62,18 @@ public class BenutzerAnlegenControllerTest {
      *Test, ob der Fehler mit null ausgegeben wird.
      */
     @Test(expected = InvalidParameterException.class)
-    public void patientAnlegen() {
+    public void patientAnlegen() throws IOException {
         //test2:
-        benutzerAnlegenController.patientAnlegen("1248", "Mark", null, "Linguster weg", "m","20.05.01","1234");
+        benutzerAnlegenController.patientAnlegen("1248", "Mark", "", "Linguster weg", false,"20.05.01","1234","");
     }
 
     /**
      *Test, ob Patient objekt richtig angelegt wird.
      */
     @Test(expected = InvalidParameterException.class)
-    public void patientAnlegen2() {
+    public void patientAnlegen2() throws IOException {
         //test2:
-        benutzerAnlegenController.patientAnlegen("1248", "Mark", null, "Linguster weg", "m","20.05.01","1234");
+        benutzerAnlegenController.patientAnlegen("1248", "Mark", "", "Linguster weg", false,"20.05.01","1234","");
         assertEquals(testArzt,epa.getPatient("1248"));
     }
 }

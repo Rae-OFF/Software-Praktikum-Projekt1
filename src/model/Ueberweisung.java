@@ -96,7 +96,7 @@ public class Ueberweisung implements Serializable {
 	 *
 	 * @param b the b
 	 */
-	public void setDatenStimmZu(boolean b){datenStimmZu=b;}
+	public void setDatenStimmZu(boolean b){this.datenStimmZu=b;}
 
 	/**
 	 * Gets patientnummer.

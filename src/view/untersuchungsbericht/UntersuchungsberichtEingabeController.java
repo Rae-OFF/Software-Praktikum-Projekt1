@@ -76,6 +76,8 @@ public class UntersuchungsberichtEingabeController extends BorderPane {
     @FXML // fx:id="untersuchungsberichtSaveButton"
     private Button untersuchungsberichtSaveButton; // Value injected by FXMLLoader
 
+    @FXML
+    private Button zuruck;
 
     private EPAController ePAControl;
     private Stage mainStage;
@@ -154,4 +156,6 @@ public class UntersuchungsberichtEingabeController extends BorderPane {
     void save(){
         mainStage.setScene(new Scene(new ArztMainViewController(mainStage,ePAControl)));
     }
+    @FXML
+    void zumMainView(){mainStage.setScene(new Scene(new ArztMainViewController(mainStage,ePAControl)));}
 }
