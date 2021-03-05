@@ -76,7 +76,7 @@ public class DatenBearbeitenController extends ScrollPane {
         pNachname.setText(patient.getNachname());
         pAdress.setText(patient.getAddress());
         pBday.setValue(LocalDate.parse(patient.getGesburtsDatum(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        if(patient.getGeschlecht().equals("female")){
+        if(patient.getGeschlecht().equals("f")){
             pIsfemale.setSelected(true);
         }
         else{pIsmale.setSelected(true);}
@@ -87,12 +87,12 @@ public class DatenBearbeitenController extends ScrollPane {
         if(pSetpass.getText().isEmpty()){HiddenText.setText("Geben Sie bitte ihres Passwort ein");HiddenText.setVisible(true);}
         else if(!pSetpass.getText().equals(patient.getPasswort())){HiddenText.setVisible(true);}
         else{
-            String s = pIsfemale.isSelected() ? "female" : "male";
+            String s = pIsfemale.isSelected() ? "f" : "m";
             if(neuPass.getText().isEmpty()){
-                epaController.getPatientDatenController().PatientDatenUpdate(epaController.getCurrLoggedIn(),pVorname.getText(),pNachname.getText(),pAdress.getText(),s,pBday.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),patient.getPasswort());
+                epaController.getPatientDatenController().patientDatenUpdate(epaController.getCurrLoggedIn(),pVorname.getText(),pNachname.getText(),pAdress.getText(),s,pBday.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),patient.getPasswort());
             }
             else{
-                epaController.getPatientDatenController().PatientDatenUpdate(epaController.getCurrLoggedIn(),pVorname.getText(),pNachname.getText(),pAdress.getText(),s,pBday.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),neuPass.getText());
+                epaController.getPatientDatenController().patientDatenUpdate(epaController.getCurrLoggedIn(),pVorname.getText(),pNachname.getText(),pAdress.getText(),s,pBday.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),neuPass.getText());
             }
             mainStage.setScene(new Scene(new PatientMainViewController(mainStage,epaController)));
         }

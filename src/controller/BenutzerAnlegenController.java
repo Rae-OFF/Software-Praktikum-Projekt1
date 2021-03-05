@@ -55,7 +55,7 @@ public class BenutzerAnlegenController {
 	 */
     public void patientAnlegen(String versicherungsnummer, String Vorname, String Nachname, String Address, boolean geschlecht, String Birth, String pass,String hausarztid) throws IOException {
     	//neuen Patient anlegen
-		String sex = geschlecht ? "female" : "male";
+		String sex = geschlecht ? "f" : "m";
 		Patient patient = new Patient(versicherungsnummer, Vorname, Nachname, Address, sex, Birth, pass) ;
 		if(!hausarztid.isEmpty()&&ePAController.getEPA().checkNumArzt(hausarztid)){patient.behandeldenArztAendern(ePAController.getEPA().getArzt(hausarztid));}
         ePAController.getEPA().addPatientToList(patient);

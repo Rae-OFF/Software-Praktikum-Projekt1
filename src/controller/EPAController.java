@@ -103,15 +103,6 @@ public class EPAController {
 
 
 	/**
-	 * Sets num.
-	 *
-	 * @throws UnsupportedOperationException the unsupported operation exception
-	 */
-	public void setNum() throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not Yet Implemented!");
-    }
-
-	/**
 	 * Gets patient daten controller.
 	 *
 	 * @return the patient daten controller
@@ -149,15 +140,6 @@ public class EPAController {
         return ueberweisungsController;
     }
 
-	/**
-	 * Gets behandlungcontroller.
-	 *
-	 * @return the behandlungcontroller
-	 * @throws UnsupportedOperationException the unsupported operation exception
-	 */
-	public int getBehandlungcontroller() throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not Yet Implemented!");
-    }
 
 	/**
 	 * Gets zusammenfassungs controller.

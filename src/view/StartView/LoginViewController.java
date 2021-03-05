@@ -181,13 +181,18 @@ public class LoginViewController extends TabPane {
      */
     @FXML
     void neuPatientAnlegen(ActionEvent e) throws IOException {
-        if(!(pAdress.getText().isEmpty()||pNachname.getText().isEmpty()||pSetnum.getText().isEmpty()||pVorname.getText().isEmpty()||pSetpass.getText().isEmpty()||pBday.getValue()==null||!(pIsfemale.isSelected()||pIsmale.isSelected())))
+        if(!pSetnum.getText().isEmpty()&&epaController.getEPA().checkNumPatient(pSetnum.getText())){
+            PatientHiddenText.setText("Versicherungsnummer schon vorhanden");
+            NeuArztHiddenText.setVisible(true);
+        }
+        else if(!(pAdress.getText().isEmpty()||pNachname.getText().isEmpty()||pSetnum.getText().isEmpty()||pVorname.getText().isEmpty()||pSetpass.getText().isEmpty()||pBday.getValue()==null||!(pIsfemale.isSelected()||pIsmale.isSelected())))
         {
           epaController.getAktAnlegenController().patientAnlegen(pNum.getText(),pVorname.getText(),pNachname.getText(),pAdress.getText(),pIsfemale.isSelected(),pBday.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),pPasswort.getText(),pAnum.getText());
           mainStage.setScene(new Scene(new LoginViewController(mainStage)));
         }
         else
         {
+            PatientHiddenText.setText("Felder mit (*) muss eingegeben werden");
             PatientAnlegenHiddenText.setVisible(true);
         }
     }
@@ -199,12 +204,17 @@ public class LoginViewController extends TabPane {
      */
     @FXML
     void neuArztAnlegen(ActionEvent e) throws IOException {
-        if(!(aFach.getText().isEmpty()||aNachname.getText().isEmpty()||aSetnum.getText().isEmpty()||aVorname.getText().isEmpty()||aSetpass.getText().isEmpty()||aTel.getText().isEmpty()||aBday.getValue()==null||!(aIsfemale.isSelected()||aIsmale.isSelected())))
+        if(!aSetnum.getText().isEmpty()&&epaController.getEPA().checkNumArzt(aSetnum.getText())){
+            NeuArztHiddenText.setText("ArztID schon vorhanden");
+            NeuArztHiddenText.setVisible(true);
+        }
+        else if(!(aFach.getText().isEmpty()||aNachname.getText().isEmpty()||aSetnum.getText().isEmpty()||aVorname.getText().isEmpty()||aSetpass.getText().isEmpty()||aTel.getText().isEmpty()||aBday.getValue()==null||!(aIsfemale.isSelected()||aIsmale.isSelected())))
         {
             epaController.getAktAnlegenController().arztAnlegen(aVorname.getText(),aNachname.getText(),aFach.getText(),aNum.getText(),aPasswort.getText(),aTel.getText());
             mainStage.setScene(new Scene(new LoginViewController(mainStage)));
         }
         else{
+            NeuArztHiddenText.setText("Felder mit (*) muss eingegeben werden");
             NeuArztHiddenText.setVisible(true);
         }
     }
