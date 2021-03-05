@@ -182,8 +182,8 @@ public class LoginViewController extends TabPane {
     @FXML
     void neuPatientAnlegen(ActionEvent e) throws IOException {
         if(!pSetnum.getText().isEmpty()&&epaController.getEPA().checkNumPatient(pSetnum.getText())){
-            PatientHiddenText.setText("Versicherungsnummer schon vorhanden");
-            NeuArztHiddenText.setVisible(true);
+            PatientAnlegenHiddenText.setText("Versicherungsnummer schon vorhanden");
+            PatientAnlegenHiddenText.setVisible(true);
         }
         else if(!(pAdress.getText().isEmpty()||pNachname.getText().isEmpty()||pSetnum.getText().isEmpty()||pVorname.getText().isEmpty()||pSetpass.getText().isEmpty()||pBday.getValue()==null||!(pIsfemale.isSelected()||pIsmale.isSelected())))
         {
@@ -192,7 +192,7 @@ public class LoginViewController extends TabPane {
         }
         else
         {
-            PatientHiddenText.setText("Felder mit (*) muss eingegeben werden");
+            PatientAnlegenHiddenText.setText("Felder mit (*) muss eingegeben werden");
             PatientAnlegenHiddenText.setVisible(true);
         }
     }
