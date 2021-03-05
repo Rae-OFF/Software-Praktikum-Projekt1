@@ -65,7 +65,7 @@ public class UntersuchungsberichtController {
 	 * @return the boolean
 	 */
 	public boolean iCDUeberpruefen(String icd){
-		return icd.matches("[A-Z]\\d{2}(\\.\\d{2}){0,1}");// check icd with format alphabet then 2 decimal or alphabet then 2 decimal then . then 2 decimal
+		return icd.matches("[A-Z]\\d{1,2}(\\.\\d{1,2}){0,1}");// check icd with format alphabet then  1 or 2 decimal ,  or alphabet then 1 or 2 decimal then . then 1 or 2 decimal
     }
 
 	/**

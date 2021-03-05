@@ -133,7 +133,8 @@ public class EPAController {
 	 *
 	 * @return the ueberweisungs controller
 	 */
-	public UeberweisungsController getUeberweisungsController(){
+	public UeberweisungsController getUeberweisungsController()
+	{
         return ueberweisungsController;
     }
 
@@ -143,7 +144,8 @@ public class EPAController {
 	 *
 	 * @return the zusammenfassungs controller
 	 */
-	public ZusammenfassungsController getZusammenfassungsController()  {
+	public ZusammenfassungsController getZusammenfassungsController()
+	{
         return zusammenfassungsController;
     }
 
@@ -152,14 +154,19 @@ public class EPAController {
 	 *
 	 * @param num the num
 	 */
-	public void setCurrLoggedIn(String num){currLoggedIn=num;}
+	public void setCurrLoggedIn(String num)
+	{
+		currLoggedIn=num;// set current loggin number
+	}
+
 
 	/**
 	 * Gets curr logged in.
 	 *
 	 * @return the curr logged in
 	 */
-	public String getCurrLoggedIn() throws UnsupportedOperationException {
-        return currLoggedIn;
+	public String getCurrLoggedIn() throws UnsupportedOperationException
+	{
+        return currLoggedIn;// ger current loggin number
     }
 }

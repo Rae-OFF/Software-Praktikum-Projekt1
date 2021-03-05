@@ -46,7 +46,7 @@ public class Arzt implements Serializable {
 	 * @param tel      the tel
 	 */
 	public Arzt(String vorName,String nachName, String fach, String idNum, String passWort, String tel) {
-    	this.passWort= passWort;
+    	this.passWort= passWort; // init arzt
     	this.idNum=idNum;
     	this.vorName=vorName;
     	this.nachName=nachName;
@@ -64,10 +64,10 @@ public class Arzt implements Serializable {
 	 */
 	public void addPatientToList(Patient patient)  {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		String formattedDateTime = LocalDateTime.now().format(formatter);
+		String formattedDateTime = LocalDateTime.now().format(formatter); // get String of time with formatter
     	String s= formattedDateTime+" Patient(in) "+patient.getName()+" mit Versicherungsnummer "+patient.getNum()+" wurde in ihrer Patientenliste hinzugefügt";
-    	revision.add(s);
-        patientList.add(patient);
+    	revision.add(s); // update revision of arzt
+        patientList.add(patient); // add patient to list
     }
 
 
@@ -77,7 +77,7 @@ public class Arzt implements Serializable {
 	 * @param patient the patient
 	 */
 	public void removeFromPatientlist(Patient patient)  {
-        patientList.remove(patient);
+		patientList.remove(patient); // remove patient from patient list
     }
 
 	/**
@@ -86,35 +86,17 @@ public class Arzt implements Serializable {
 	 * @param untersuchungsbericht the untersuchungsbericht
 	 */
 	public void addUntersuchungsberichrt(Untersuchungsbericht untersuchungsbericht)  {
-        untersuchungsList.add(untersuchungsbericht);
+        untersuchungsList.add(untersuchungsbericht); // add untersuchungbericht to untersuchungbericht list
     }
 
-
-	/**
-	 * Sets fach.
-	 *
-	 * @param f the f
-	 * @throws UnsupportedOperationException the unsupported operation exception
-	 */
-	public void setFach(String f) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not Yet Implemented!");
-    }
 
 	/**
 	 * Get fachrichtung string.
 	 *
 	 * @return the string
 	 */
-	public String getFachrichtung(){return fachRichtung;}
+	public String getFachrichtung(){return fachRichtung;} // get fachrichtung
 
-	/**
-	 * Sets name.
-	 *
-	 * @param n the n
-	 */
-	public void setName(String n) {
-        throw new UnsupportedOperationException("Not Yet Implemented!");
-    }
 
 	/**
 	 * Add to revision.
@@ -123,7 +105,7 @@ public class Arzt implements Serializable {
 	 */
 	public void addToRevision(String re) {
         revision.add(re);
-    }
+    } // add revision to revision list
 
 
 	/**
@@ -132,7 +114,7 @@ public class Arzt implements Serializable {
 	 * @param num the num
 	 * @return the patient
 	 */
-	public Patient getPatient(String num){
+	public Patient getPatient(String num){ // get patient with versiucherungsnummer from list
 		for(int i=0; i< patientList.size(); i++){
 			if(patientList.get(i).getNum().equals(num)){return patientList.get(i);}
 		}
@@ -145,7 +127,7 @@ public class Arzt implements Serializable {
 	 * @param versicherungsnummer the versicherungsnummer
 	 * @return the boolean
 	 */
-	public boolean checkPatientValid(String versicherungsnummer)  {
+	public boolean checkPatientValid(String versicherungsnummer)  { // check if patient with versicherungnummer exitst in patient list
         for(int i=0; i< patientList.size(); i++){
         	if(patientList.get(i).getNum().equals(versicherungsnummer)){return true;}
 		}
@@ -158,7 +140,7 @@ public class Arzt implements Serializable {
 	 * @param versicherungsnummer the versicherungsnummer
 	 * @return the array list
 	 */
-	public ArrayList<Untersuchungsbericht> getUntersuchungsberichte(String versicherungsnummer){
+	public ArrayList<Untersuchungsbericht> getUntersuchungsberichte(String versicherungsnummer){ // return list of untersuchungbericht wirh versucherungsnummer == versicherungsnummer in parameter
         ArrayList<Untersuchungsbericht> berichtList= new ArrayList<Untersuchungsbericht>();
         for(int i=0; i< untersuchungsList.size();i++){
         	if(untersuchungsList.get(i).getPatientNum().equals(versicherungsnummer)){berichtList.add(untersuchungsList.get(i));}
@@ -173,7 +155,7 @@ public class Arzt implements Serializable {
 	 */
 	public String getNum()   {
         return idNum;
-    }
+    } // get id number of arzt
 
 	/**
 	 * Gets revision.
@@ -182,7 +164,7 @@ public class Arzt implements Serializable {
 	 */
 	public ArrayList<String> getRevision()  {
         return revision;
-    }
+    } // get revision list
 
 	/**
 	 * Gets name.
@@ -191,53 +173,40 @@ public class Arzt implements Serializable {
 	 */
 	public String getName()  {
         return vorName+" "+nachName;
-    }
+    } // get name of arzt
 
 	/**
 	 * Get tel string.
 	 *
 	 * @return the string
 	 */
-	public String getTel(){return tel;}
+	public String getTel(){return tel;} // get telephone nummer of arzt
 
-	/**
-	 * Set tel.
-	 *
-	 * @param n the n
-	 */
-	public void setTel(String n){tel=n;}
 
 	/**
 	 * Get vorname string.
 	 *
 	 * @return the string
 	 */
-	public String getVorname(){return vorName;}
+	public String getVorname(){return vorName;} // get vorname of arzt
 
 	/**
 	 * Get nachname string.
 	 *
 	 * @return the string
 	 */
-	public String getNachname(){return nachName;}
+	public String getNachname(){return nachName;} // get nachname of arzt
 
 	/**
 	 * Get passwort string.
 	 *
 	 * @return the string
 	 */
-	public String getPasswort(){return passWort;}
+	public String getPasswort(){return passWort;} // get passwort
 
-	/**
-	 * Set passwort.
-	 *
-	 * @param passWort the pass wort
-	 */
-	public void setPasswort(String passWort){this.passWort=passWort;}
 
-	@Override
-	public boolean equals(Object o){
-		Arzt arzt = (Arzt)o;
+	public boolean equals(Arzt o){ // check every attributs of 2 arzt to find out if thay are the same
+		Arzt arzt = o;
 		return(arzt.getVorname().equals(this.getVorname())&&arzt.getNachname().equals(this.getNachname())&&arzt.getFachrichtung().equals(this.getFachrichtung())&&arzt.getNum().equals(this.getNum())&&arzt.getPasswort().equals(this.getPasswort())&&arzt.getTel().equals(this.getTel()));
 	}
 }

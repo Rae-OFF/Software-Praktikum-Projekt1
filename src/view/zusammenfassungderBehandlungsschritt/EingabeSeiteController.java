@@ -74,7 +74,7 @@ public class EingabeSeiteController extends AnchorPane {
      */
     @FXML
     void zumZusammenfassung(ActionEvent event) {
-        if(!Versicherungsnum.getText().isEmpty()&&(aktuellerArzt.isSelected()||alleÄrzte.isSelected())){
+        if(!Versicherungsnum.getText().isEmpty()&&EPAControll.getEPA().getArzt(EPAControll.getCurrLoggedIn()).checkPatientValid(Versicherungsnum.getText())&&(aktuellerArzt.isSelected()||alleÄrzte.isSelected())){
             String icd= ICD.getText().isEmpty() ? "leer" : ICD.getText();
             ArrayList<Untersuchungsbericht> berichtListe;
             if(aktuellerArzt.isSelected()){
