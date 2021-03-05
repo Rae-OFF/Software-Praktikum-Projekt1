@@ -26,6 +26,80 @@ public class Untersuchungsbericht implements Serializable {
 
 	private String behandenderArzt;
 
+	private boolean weiterSchicken;
+
+	/**
+	 * Sets patient versicherungnum.
+	 *
+	 * @param patientVersicherungnum the patient versicherungnum
+	 */
+	public void setPatientVersicherungnum(String patientVersicherungnum) {
+		this.patientVersicherungnum = patientVersicherungnum;
+	}
+
+	/**
+	 * Sets datum.
+	 *
+	 * @param datum the datum
+	 */
+	public void setDatum(LocalDateTime datum) {
+		this.datum = datum;
+	}
+
+	/**
+	 * Sets notes.
+	 *
+	 * @param notes the notes
+	 */
+	public void setNotes(List<String> notes) {
+		this.notes = notes;
+	}
+
+	/**
+	 * Sets cd.
+	 *
+	 * @param iCD the cd
+	 */
+	public void setiCD(String iCD) {
+		this.iCD = iCD;
+	}
+
+	/**
+	 * Sets med.
+	 *
+	 * @param med the med
+	 */
+	public void setMed(List<String> med) {
+		this.med = med;
+	}
+
+	/**
+	 * Sets diagnose.
+	 *
+	 * @param diagnose the diagnose
+	 */
+	public void setDiagnose(String diagnose) {
+		this.diagnose = diagnose;
+	}
+
+	/**
+	 * Sets behandlung.
+	 *
+	 * @param behandlung the behandlung
+	 */
+	public void setBehandlung(String behandlung) {
+		this.behandlung = behandlung;
+	}
+
+	/**
+	 * Sets behandender arzt.
+	 *
+	 * @param behandenderArzt the behandender arzt
+	 */
+	public void setBehandenderArzt(String behandenderArzt) {
+		this.behandenderArzt = behandenderArzt;
+	}
+
 	/**
 	 * Instantiates a new Untersuchungsbericht.
 	 *
@@ -47,15 +121,6 @@ public class Untersuchungsbericht implements Serializable {
 		this.diagnose = diagnose;
 		this.behandlung = behandlung;
 		this.notes = notes;
-	}
-
-	/**
-	 * Gets info.
-	 *
-	 * @return the info
-	 */
-	public List<String> getInfo() {
-		return notes;
 	}
 
 	/**
@@ -173,5 +238,23 @@ public class Untersuchungsbericht implements Serializable {
 	 */
 	public String getBehandenderArzt() {
 		return behandenderArzt;
+	}
+
+	/**
+	 * Is weiter schicken boolean.
+	 *
+	 * @return the boolean
+	 */
+	public boolean isWeiterSchicken() {
+		return weiterSchicken;
+	}
+
+	/**
+	 * Sets weiter schicken.
+	 *
+	 * @param weiterSchicken the weiter schicken
+	 */
+	public void setWeiterSchicken(boolean weiterSchicken) {
+		this.weiterSchicken = weiterSchicken;
 	}
 }
