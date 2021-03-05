@@ -7,24 +7,19 @@ import java.util.Collection;
 import java.lang.UnsupportedOperationException;
 import java.util.List;
 
+/**
+ * The type Epa.
+ */
 public class EPA implements Serializable {
 
-    /**
- 	 * 
- 	 */
     private ArrayList<Arzt> arztList;
 
-    /**
- 	 * 
- 	 */
     private ArrayList<Patient> patientList;
 
-    /**
- 	 * 
- 	 */
-
-
-    public EPA() {
+	/**
+	 * Instantiates a new Epa.
+	 */
+	public EPA() {
     	//some init Instances
     	this.arztList= new ArrayList<Arzt>();
     	this.patientList= new ArrayList<Patient>();
@@ -68,25 +63,46 @@ public class EPA implements Serializable {
 		// ueberweisung hat untersuchungsbericht
 		// testPatient2 id 5678 pass 5678 hat 2 untersuchungen untersuchungsbericht2
     }
-    public void addPatientToList(Patient patient){
+
+	/**
+	 * Add patient to list.
+	 *
+	 * @param patient the patient
+	 */
+	public void addPatientToList(Patient patient){
     	this.patientList.add(patient);
 	}
+
+	/**
+	 * Add arztt to list.
+	 *
+	 * @param arzt the arzt
+	 */
 	public void addArzttToList(Arzt arzt){
 		this.arztList.add(arzt);
 	}
+
+	/**
+	 * Get arzt list array list.
+	 *
+	 * @return the array list
+	 */
 	public ArrayList<Arzt> getArztList(){return arztList;}
 
+	/**
+	 * Gets patient list.
+	 *
+	 * @return the patient list
+	 */
 	public ArrayList<Patient> getPatientList() {
 		return patientList;
 	}
 
 	/**
- 	 *
- 	 * TODO: create JavaDoc. 
- 	 * @param num
- 	 * @return Patient
- 	 */
-    public Patient getPatient(String num) {
+	 * @param num the num
+	 * @return Patient patient
+	 */
+	public Patient getPatient(String num) {
 		for(int i=0; i< patientList.size(); i++){
 			if(patientList.get(i).getNum().equals(num)){return patientList.get(i);}
 		}
@@ -94,48 +110,55 @@ public class EPA implements Serializable {
     }
 
 
-    /**
- 	 *
- 	 * TODO: create JavaDoc. 
- 	 * @param num
- 	 * @return Arzt
- 	 * @throws UnsupportedOperationException
- 	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
- 	 */
-    public Arzt getArzt(String num) {
+	/**
+	 * @param num the num
+	 * @return Arzt arzt
+	 * @throws UnsupportedOperationException Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist.
+	 */
+	public Arzt getArzt(String num) {
         for(int i=0; i< arztList.size(); i++){
         	if(arztList.get(i).getNum().equals(num)){return arztList.get(i);}
 		}
         return null;
     }
 
-    /**
- 	 *
- 	 * TODO: create JavaDoc. 
- 	 * @param num
- 	 * @return boolean
- 	 * @throws UnsupportedOperationException
- 	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
- 	 */
-    public boolean checkNumArzt(String num)  {
+	/**
+	 * @param num the num
+	 * @return boolean boolean
+	 * @throws UnsupportedOperationException Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist.
+	 */
+	public boolean checkNumArzt(String num)  {
         for(int i=0; i< arztList.size(); i++){
         	if(arztList.get(i).getNum().equals(num)){return true;}
 		}
         return false;
     }
 
-    /**
- 	 *
- 	 * TODO: create JavaDoc. 
- 	 * @param num
- 	 * @return boolean
- 	 * @throws UnsupportedOperationException
- 	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
- 	 */
-    public boolean checkNumPatient(String num)  {
+	/**
+	 * @param num the num
+	 * @return boolean boolean
+	 * @throws UnsupportedOperationException Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist.
+	 */
+	public boolean checkNumPatient(String num)  {
 		for(int i=0; i< patientList.size(); i++){
 			if(patientList.get(i).getNum().equals(num)){return true;}
 		}
 		return false;
     }
+
+    public  void removeArzt(String num){
+		for(int i=0; i< arztList.size(); i++){
+			if(arztList.get(i).getNum().equals(num)){
+				arztList.remove(arztList.get(i));
+			}
+		}
+	}
+
+	public  void removePatient(String num){
+		for(int i=0; i< patientList.size(); i++){
+			if(patientList.get(i).getNum().equals(num)){
+				patientList.remove(patientList.get(i));
+			}
+		}
+	}
 }

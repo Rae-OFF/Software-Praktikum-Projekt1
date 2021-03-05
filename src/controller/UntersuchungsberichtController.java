@@ -1,6 +1,5 @@
 package controller;
 
-import AUI.UntersuchungsberichtAUI;
 import model.EPA;
 import model.Untersuchungsbericht;
 import model.Arzt;
@@ -15,7 +14,6 @@ public class UntersuchungsberichtController {
 
     private EPAController ePAController;
 
-    private UntersuchungsberichtAUI untersuchungsberichtAUI;
 
 	/**
 	 * Instantiates a new Untersuchungsbericht controller.

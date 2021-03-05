@@ -5,34 +5,33 @@ import model.EPA;
 import java.io.*;
 import java.lang.UnsupportedOperationException;
 
+/**
+ * The type Io controller.
+ */
 public class IOController {
 
-    /**
- 	 * 
- 	 */
     private  static final File SAVE= new File("SaveFile");
 
-    /**
- 	 * 
- 	 */
     private IOController iOController;
 
-    /**
- 	 * 
- 	 */
     private EPAController ePAController;
 
-    public IOController(EPAController e) {
+	/**
+	 * Instantiates a new Io controller.
+	 *
+	 * @param e the e
+	 */
+	public IOController(EPAController e) {
         ePAController=e;
     }
 
-    /**
- 	 *
- 	 * TODO: create JavaDoc. 
- 	 * @throws  Exception
- 	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
- 	 */
-    public void load() throws IOException, ClassNotFoundException {
+	/**
+	 * TODO: create JavaDoc.
+	 *
+	 * @throws IOException            the io exception
+	 * @throws ClassNotFoundException the class not found exception
+	 */
+	public void load() throws IOException, ClassNotFoundException {
 		if (!SAVE.exists()) {
 			return;
 		}
@@ -42,13 +41,12 @@ public class IOController {
 			stream.close();
 	}
 
-    /**
- 	 *
- 	 * TODO: create JavaDoc. 
- 	 * @throws  Exception
- 	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
- 	 */
-    public void save() throws IOException {
+	/**
+	 * TODO: create JavaDoc.
+	 *
+	 * @throws IOException the io exception
+	 */
+	public void save() throws IOException {
 		ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(SAVE));
 		stream.writeObject(ePAController.getEPA());
 		stream.close();

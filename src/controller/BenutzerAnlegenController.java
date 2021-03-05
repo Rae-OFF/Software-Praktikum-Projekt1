@@ -19,6 +19,11 @@ public class BenutzerAnlegenController {
 	 */
     private EPAController ePAController;
 
+	/**
+	 * Instantiates a new Benutzer anlegen controller.
+	 *
+	 * @param e the e
+	 */
 	public BenutzerAnlegenController(EPAController e) {
     	this.ePAController = e ;
     }

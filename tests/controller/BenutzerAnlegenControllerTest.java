@@ -2,6 +2,8 @@ package controller;
 
 import model.Arzt;
 import model.EPA;
+import model.Patient;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,20 +24,41 @@ public class BenutzerAnlegenControllerTest {
 
     private Arzt testArzt;
 
+    private Patient testPatient;
+
+    private String vorname;
+
+    private String nachname;
+
+    private String fach;
+
+    private String num;
+
+    private String passwort;
+
+    private String tel;
+
+    private String adresse;
+
+    private String birth;
+
     /**
      *Setup für gebraucht in den Tests.
      */
     @Before
     public void setUp() throws Exception {
-        String vorname="Mark";
-        String nachname = "Ammermüller";
-        String fach = "Psychater";
-        String num = "1248";
-        String passwort = "1234";
-        String tel = "0208 123456789";
+        vorname="Mark";
+        nachname = "Ammermüller";
+        fach = "Psychater";
+        num = "1248";
+        passwort = "1234";
+        tel = "0208 123456789";
+        adresse = "Linguster weg";
+        birth = "20.05.01";
         epaController = new EPAController();
         epa = epaController.getEPA();
         testArzt = new Arzt(vorname, nachname, fach, num,passwort,tel);
+        testPatient = new Patient(num,vorname,nachname,adresse,"m",birth,passwort);
         benutzerAnlegenController=epaController.getAktAnlegenController();
     }
 
@@ -45,7 +68,7 @@ public class BenutzerAnlegenControllerTest {
     @Test(expected = InvalidParameterException.class)
     public void arztAnlegen() throws IOException {
         //test1:
-        benutzerAnlegenController.arztAnlegen("Mark", "", "Psychater", "1248", "1234", "0208 123456789");
+        benutzerAnlegenController.arztAnlegen(vorname, "", fach, num, passwort, tel);
     }
 
     /**
@@ -54,7 +77,7 @@ public class BenutzerAnlegenControllerTest {
     @Test
     public void arztAnlegen2() throws IOException {
         //test2:
-        benutzerAnlegenController.arztAnlegen("Mark", "Ammermüller", "Psychater", "1248", "1234", "0208 123456789");
+        benutzerAnlegenController.arztAnlegen(vorname, nachname, fach, num, passwort, tel);
         assertEquals(testArzt,epa.getArzt("1248"));
     }
 
@@ -63,8 +86,8 @@ public class BenutzerAnlegenControllerTest {
      */
     @Test(expected = InvalidParameterException.class)
     public void patientAnlegen() throws IOException {
-        //test2:
-        benutzerAnlegenController.patientAnlegen("1248", "Mark", "", "Linguster weg", false,"20.05.01","1234","");
+        //test1:
+        benutzerAnlegenController.patientAnlegen(num, vorname, "", adresse, false,birth,passwort,"");
     }
 
     /**
@@ -73,7 +96,14 @@ public class BenutzerAnlegenControllerTest {
     @Test(expected = InvalidParameterException.class)
     public void patientAnlegen2() throws IOException {
         //test2:
-        benutzerAnlegenController.patientAnlegen("1248", "Mark", "", "Linguster weg", false,"20.05.01","1234","");
-        assertEquals(testArzt,epa.getPatient("1248"));
+        benutzerAnlegenController.patientAnlegen(num, vorname, nachname, adresse, false,birth,passwort,"");
+        assertEquals(testPatient,epa.getPatient(num));
+    }
+
+    @After
+    public void tearDown() throws Exception{
+        epa.removeArzt(num);
+        epa.removePatient(num);
+
     }
 }

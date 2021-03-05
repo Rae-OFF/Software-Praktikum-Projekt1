@@ -1,6 +1,5 @@
 package controller;
 
-import AUI.ZusammenfassungsAUI;
 import model.Arzt;
 import model.EPA;
 import model.Ueberweisung;
@@ -18,8 +17,6 @@ public class ZusammenfassungsController {
     private List<Untersuchungsbericht> zusammenfassung;
 
     private EPAController ePAController;
-
-    private ZusammenfassungsAUI zusammenfassungsAUI;
 
 
 	/**

@@ -21,6 +21,11 @@ public class PatientDatenController {
 
 	private EPAController ePAController;
 
+	/**
+	 * Instantiates a new Patient daten controller.
+	 *
+	 * @param ePAController the e pa controller
+	 */
 	public PatientDatenController(EPAController ePAController) {
 		this.ePAController = ePAController ;
 
@@ -28,22 +33,22 @@ public class PatientDatenController {
 	/**
 	 * *Diese Methode ermauglicht die Daten eines schon existierend Patient zu bearbeiten
 	 * @param versicherungsnummer des Patienten
-	 * @param Vorname Datum und Uhrzeit
-	 * @param Nachname des Patienten
-	 * @param Address -ikamente des Patienten
-	 * @param Geschlecht des Patienten
-	 * @param Birth des Patienten
+	 * @param vorname Datum und Uhrzeit
+	 * @param nachname des Patienten
+	 * @param address -ikamente des Patienten
+	 * @param geschlecht des Patienten
+	 * @param birth des Patienten
 	 * @param pass des Patienten
 	 */
 
-	public void PatientDatenUpdate(String versicherungsnummer, String Vorname,String Nachname, String Address, String Geschlecht, String Birth, String pass) throws IOException {
+	public void patientDatenUpdate(String versicherungsnummer, String vorname, String nachname, String address, String geschlecht, String birth, String pass) throws IOException {
 		EPA epa = ePAController.getEPA();
 		Patient patient = epa.getPatient(versicherungsnummer);
-		patient.setVorname(Vorname);
-		patient.setNachname(Nachname);
-		patient.setAddress(Address);
-		patient.setGeschlecht(Geschlecht);
-		patient.setBirth(Birth);
+		patient.setVorname(vorname);
+		patient.setNachname(nachname);
+		patient.setAddress(address);
+		patient.setGeschlecht(geschlecht);
+		patient.setBirth(birth);
 		patient.setPasswort(pass);
 		ePAController.getIO().save();
 	}

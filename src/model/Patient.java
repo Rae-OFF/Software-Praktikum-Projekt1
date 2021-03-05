@@ -15,8 +15,11 @@ public class Patient implements Serializable {
 	private String versicherungNum;
 
 	private ArrayList<Ueberweisung> ueberweisungsList;
+
 	private ArrayList<Untersuchungsbericht> untersuchungsberichtsList;
+
 	private String vorName;
+
 	private String nachName;
 
 	private String address;
@@ -28,8 +31,11 @@ public class Patient implements Serializable {
 	private ArrayList<String> revision;
 
 	private Arzt behandelnderArzt;
+
 	private String nameAltArzt;
+
     private boolean isNeuDaten=false;
+
 	private String passwort;
 
 	/**

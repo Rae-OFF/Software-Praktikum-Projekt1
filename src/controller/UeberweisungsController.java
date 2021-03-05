@@ -1,13 +1,13 @@
 package controller;
 
-import AUI.UeberweisungsAUI;
 import model.*;
-
 import java.io.IOException;
 import java.lang.UnsupportedOperationException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * The type Ueberweisungs controller.
+ */
 public class UeberweisungsController {
 
     /**
@@ -18,7 +18,6 @@ public class UeberweisungsController {
     /**
  	 * 
  	 */
-    //private UeberweisungsAUI ueberweisungsAUI;
 
     public UeberweisungsController(EPAController epaController) {
     	this.ePAController=epaController;
