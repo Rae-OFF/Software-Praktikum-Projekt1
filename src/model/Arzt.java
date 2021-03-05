@@ -23,8 +23,11 @@ public class Arzt implements Serializable {
     private String fachRichtung;
 
     private String vorName;
+
     private String tel;
+
 	private String nachName;
+
     private ArrayList<String> revision;
 
     private ArrayList<Patient> patient;
@@ -231,4 +234,10 @@ public class Arzt implements Serializable {
 	 * @param passWort the pass wort
 	 */
 	public void setPasswort(String passWort){this.passWort=passWort;}
+
+	@Override
+	public boolean equals(Object o){
+		Arzt arzt = (Arzt)o;
+		return(arzt.getVorname().equals(this.getVorname())&&arzt.getNachname().equals(this.getNachname())&&arzt.getFachrichtung().equals(this.getFachrichtung())&&arzt.getNum().equals(this.getNum())&&arzt.getPasswort().equals(this.getPasswort())&&arzt.getTel().equals(this.getTel()));
+	}
 }

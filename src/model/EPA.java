@@ -113,7 +113,6 @@ public class EPA implements Serializable {
 	/**
 	 * @param num the num
 	 * @return Arzt arzt
-	 * @throws UnsupportedOperationException Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist.
 	 */
 	public Arzt getArzt(String num) {
         for(int i=0; i< arztList.size(); i++){
@@ -125,7 +124,6 @@ public class EPA implements Serializable {
 	/**
 	 * @param num the num
 	 * @return boolean boolean
-	 * @throws UnsupportedOperationException Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist.
 	 */
 	public boolean checkNumArzt(String num)  {
         for(int i=0; i< arztList.size(); i++){
@@ -137,7 +135,6 @@ public class EPA implements Serializable {
 	/**
 	 * @param num the num
 	 * @return boolean boolean
-	 * @throws UnsupportedOperationException Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist.
 	 */
 	public boolean checkNumPatient(String num)  {
 		for(int i=0; i< patientList.size(); i++){
@@ -146,7 +143,12 @@ public class EPA implements Serializable {
 		return false;
     }
 
-    public  void removeArzt(String num){
+	/**
+	 * Remove arzt.
+	 *
+	 * @param num the num
+	 */
+	public  void removeArzt(String num){
 		for(int i=0; i< arztList.size(); i++){
 			if(arztList.get(i).getNum().equals(num)){
 				arztList.remove(arztList.get(i));
@@ -154,6 +156,11 @@ public class EPA implements Serializable {
 		}
 	}
 
+	/**
+	 * Remove patient.
+	 *
+	 * @param num the num
+	 */
 	public  void removePatient(String num){
 		for(int i=0; i< patientList.size(); i++){
 			if(patientList.get(i).getNum().equals(num)){

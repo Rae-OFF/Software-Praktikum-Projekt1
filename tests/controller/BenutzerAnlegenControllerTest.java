@@ -8,17 +8,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.security.InvalidParameterException;
-import static org.junit.Assert.*;
-
 /**
  *Zur überprüfung der Klasse BenutzerAnlegenController.
  */
 public class BenutzerAnlegenControllerTest {
 
     private EPA epa;
-
-    private EPAController epaController;
 
     private BenutzerAnlegenController benutzerAnlegenController;
 
@@ -46,7 +41,7 @@ public class BenutzerAnlegenControllerTest {
      *Setup für gebraucht in den Tests.
      */
     @Before
-    public void setUp() throws Exception {
+    public void setUp(){
         vorname="Mark";
         nachname = "Ammermüller";
         fach = "Psychater";
@@ -55,53 +50,38 @@ public class BenutzerAnlegenControllerTest {
         tel = "0208 123456789";
         adresse = "Linguster weg";
         birth = "20.05.01";
-        epaController = new EPAController();
+        EPAController epaController = new EPAController();
         epa = epaController.getEPA();
-        testArzt = new Arzt(vorname, nachname, fach, num,passwort,tel);
+        testArzt = new Arzt(vorname, nachname, fach, num,passwort, tel);
         testPatient = new Patient(num,vorname,nachname,adresse,"m",birth,passwort);
-        benutzerAnlegenController=epaController.getAktAnlegenController();
+        testPatient.behandeldenArztAendern(testArzt);
+        benutzerAnlegenController= epaController.getAktAnlegenController();
     }
 
-    /**
-     *Test, ob der Fehler mit null ausgegeben wird.
-
-    @Test(expected = InvalidParameterException.class)
-    public void arztAnlegen() throws IOException {
-        //test1:
-        benutzerAnlegenController.arztAnlegen(vorname, "", fach, num, passwort, tel);
-    }*/
 
     /**
      *Test, ob Arzt objekt richtig angelegt wird.
      */
     @Test
-    public void arztAnlegen2() throws IOException {
+    public void arztAnlegen() throws IOException {
         //test2:
         benutzerAnlegenController.arztAnlegen(vorname, nachname, fach, num, passwort, tel);
-        assert(epa.getArzt("1248").equals(testArzt));
+        assert(epa.getArzt(num).equals(testArzt));
     }
-
-    /**
-     *Test, ob der Fehler mit null ausgegeben wird.
-
-    @Test(expected = InvalidParameterException.class)
-    public void patientAnlegen() throws IOException {
-        //test1:
-        benutzerAnlegenController.patientAnlegen(num, vorname, "", adresse, false,birth,passwort,"");
-    }*/
 
     /**
      *Test, ob Patient objekt richtig angelegt wird.
      */
     @Test
-    public void patientAnlegen2() throws IOException {
+    public void patientAnlegen() throws IOException {
+        System.out.println(testPatient.getBehandelnderArzt());
         //test2:
-        benutzerAnlegenController.patientAnlegen(num, vorname, nachname, adresse, false,birth,passwort,"");
+        benutzerAnlegenController.patientAnlegen(num, vorname, nachname, adresse, false, birth, passwort,"1248");
         assert(epa.getPatient(num).equals(testPatient));
     }
 
     @After
-    public void tearDown() throws Exception{
+    public void tearDown(){
         epa.removeArzt(num);
         epa.removePatient(num);
 
