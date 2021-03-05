@@ -38,7 +38,6 @@ public class BenutzerAnlegenController {
 	 * @param Tel des Arztes
  	 */
     public void arztAnlegen(String Vorname, String Nachname, String fach, String num, String passwort, String Tel) throws IOException {
-
     	Arzt arzt = new Arzt(Vorname, Nachname, fach, num, passwort, Tel);
     	ePAController.getEPA().addArzttToList(arzt);
     	ePAController.getIO().save();

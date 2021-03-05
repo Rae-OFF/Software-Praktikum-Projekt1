@@ -86,4 +86,8 @@ public class UntersuchungsberichtController {
 	public boolean uhrzeitUeberpruefen(String uhrzeit){
 		return uhrzeit.matches("([2][0-3]|[0-1][0-9]|[1-9]):[0-5][0-9]");
 	}
+
+	public  boolean felderLeer(String uhrzeit, String versicherungsnummer, String symptome, String icd, String behandlung,String medikamente){
+		return uhrzeit==null||uhrzeit==""||versicherungsnummer==null||versicherungsnummer==""||symptome==null||symptome==""||icd==null||icd=="" ||behandlung==null||behandlung==""||medikamente==null||medikamente=="";
+	}
 }

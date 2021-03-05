@@ -123,7 +123,8 @@ public class UntersuchungsberichtEingabeController extends BorderPane {
         boolean icdFormat = untersuchungsberichtController.iCDUeberpruefen(icd);
         boolean uhrzeitFormat = untersuchungsberichtController.uhrzeitUeberpruefen(uhrzeit);
         boolean versicherungsnummerFormat = untersuchungsberichtController.versicherungsnummerUeberpruefen(versicherungsnummer);
-        if(uhrzeit==null||uhrzeit==""||versicherungsnummer==null||versicherungsnummer==""||symptome==null||symptome==""||icd==null||icd=="" ||behandlung==null||behandlung==""||medikamente==null||medikamente==""){
+        boolean leer = untersuchungsberichtController.felderLeer(uhrzeit,versicherungsnummer, symptome, icd, behandlung, medikamente);
+        if(leer){
             felderAusfuellen.setVisible(true);
         }
         else{

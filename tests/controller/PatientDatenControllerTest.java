@@ -38,6 +38,7 @@ public class PatientDatenControllerTest {
     @Before
     public void setUp() throws Exception {
         epaController = new EPAController();
+        benutzerAnlegenController = epaController.getAktAnlegenController();
         epa = epaController.getEPA();
         num = "1248";
         vorname="Mark";
@@ -64,10 +65,10 @@ public class PatientDatenControllerTest {
         try {
             //Test wurde verändert?
             patientDatenController.patientDatenUpdate(num,vorname,nachname,adresse,testGeschlecht,birth,passwort);
-            assertNotEquals(epa.getPatient(num),testPatient);
+            assert(epa.getPatient(num).equals(testPatient));
             //Test wurde richtig verändert?
             testPatient.setNachname("newName");
-            assertEquals(epa.getPatient(num),testPatient);
+            assert(epa.getPatient(num).equals(testPatient));
         } catch (IOException e) {
             System.out.println("PatientenDatenUpdateTest fehler bei update");
         }
