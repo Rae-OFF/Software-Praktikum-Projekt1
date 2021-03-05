@@ -2,6 +2,9 @@ package view.untersuchungsbericht;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.ResourceBundle;
 import controller.EPAController;
 import controller.UntersuchungsberichtController;
@@ -10,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
@@ -47,10 +51,10 @@ public class UntersuchungsberichtEingabeController extends BorderPane {
     private TextField untersuchungsberichtBehandlung; // Value injected by FXMLLoader
 
     @FXML // fx:id="untersuchungsberichtMedikamente"
-    private TextField untersuchungsberichtMedikamente; // Value injected by FXMLLoader
+    private TextArea untersuchungsberichtMedikamente; // Value injected by FXMLLoader
 
     @FXML // fx:id="untersuchungsberichtNotesField"
-    private TextField untersuchungsberichtNotesField; // Value injected by FXMLLoader
+    private TextArea untersuchungsberichtNotesField; // Value injected by FXMLLoader
 
     @FXML // fx:id="versicherungsFehler"
     private Text versicherungsFehler; // Value injected by FXMLLoader
@@ -80,7 +84,38 @@ public class UntersuchungsberichtEingabeController extends BorderPane {
     private Button zuruck;
 
     private EPAController ePAControl;
+
     private Stage mainStage;
+
+    private UntersuchungsberichtController untersuchungsberichtController;
+
+    private String versicherungsnummer;
+
+    private String uhrzeit;
+
+    private String datum;
+
+    private LocalDateTime timeDate;
+
+    private String symptome;
+
+    private String icd;
+
+    private List<String> med;
+
+    private String diagnose;
+
+    private String behandlung;
+
+    private List<String> notes;
+
+    private String medikamente;
+
+    private String[] medZwischen;
+
+    private String notizen;
+
+    private String[] notizenZwischen;
 
     /**
      * Instantiates a new Untersuchungsbericht eingabe controller.
@@ -113,13 +148,26 @@ public class UntersuchungsberichtEingabeController extends BorderPane {
         uhrzeitFehler.setVisible(false);
         speicherMessage.setVisible(false);
         felderAusfuellen.setVisible(false);
-        String uhrzeit = untersuchungsberichtUhrzeit.getText();
-        String versicherungsnummer = untersuchungsberichtVersicherungsnummer.getText();
-        String symptome = untersuchungsberichtSymptome.getText();
-        String icd = untersuchungsberichtICD.getText();
-        String behandlung = untersuchungsberichtBehandlung.getText();
-        String medikamente = untersuchungsberichtMedikamente.getText();
-        UntersuchungsberichtController untersuchungsberichtController = ePAControl.getUntersuchungsberichtcontroller();
+        versicherungsnummer = untersuchungsberichtVersicherungsnummer.getText();
+        uhrzeit = untersuchungsberichtUhrzeit.getText();
+        datum = untersuchungsberichtDatePicker.toString();
+        String str = datum+" "+uhrzeit;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy HH:mm");
+        LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
+        symptome = untersuchungsberichtSymptome.getText();
+        icd = untersuchungsberichtICD.getText();
+        medikamente = untersuchungsberichtMedikamente.getText();
+        medZwischen = medikamente.split("\n");
+        for(String x:medZwischen){
+            med.add(x);
+        }
+        diagnose = untersuchungsberichtSymptome.getText();
+        behandlung = untersuchungsberichtBehandlung.getText();
+        notizen = untersuchungsberichtNotesField.getText();
+        notizenZwischen = notizen.split("\n");
+        for(String y: notizenZwischen){
+            notes.add(y);
+        }
         boolean icdFormat = untersuchungsberichtController.iCDUeberpruefen(icd);
         boolean uhrzeitFormat = untersuchungsberichtController.uhrzeitUeberpruefen(uhrzeit);
         boolean versicherungsnummerFormat = untersuchungsberichtController.versicherungsnummerUeberpruefen(versicherungsnummer);
@@ -154,9 +202,16 @@ public class UntersuchungsberichtEingabeController extends BorderPane {
      * Save.
      */
     @FXML
-    void save(){
+    void save() throws IOException {
+        untersuchungsberichtController.createUntersuchungsbericht(versicherungsnummer, timeDate, icd, med, diagnose, behandlung, notes);
         mainStage.setScene(new Scene(new ArztMainViewController(mainStage,ePAControl)));
     }
+
+    /**
+     * Zum main view.
+     */
     @FXML
-    void zumMainView(){mainStage.setScene(new Scene(new ArztMainViewController(mainStage,ePAControl)));}
+    void zurMainView(){
+        mainStage.setScene(new Scene(new ArztMainViewController(mainStage,ePAControl)));
+    }
 }

@@ -7,7 +7,7 @@
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="470.0" type="BorderPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="200.0" prefWidth="350.0" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="untersuchungsberichtVersicherungsnummer" promptText="Versicherungsnummer" />
             <Pane prefHeight="12.0" prefWidth="354.0" />
@@ -36,9 +36,9 @@
                </cursor>
             </TextField>
             <Pane prefHeight="12.0" prefWidth="354.0" />
-            <TextField fx:id="untersuchungsberichtMedikamente" promptText="Bereits verabreichte Medikamente" />
+            <TextArea fx:id="untersuchungsberichtMedikamente" prefHeight="50.0" prefWidth="350.0" promptText="Bereits verabreichte Medikamente" />
             <Pane prefHeight="12.0" prefWidth="354.0" />
-            <TextField fx:id="untersuchungsberichtNotesField" alignment="TOP_LEFT" prefHeight="92.0" prefWidth="354.0" promptText="Notizen" />
+            <TextArea fx:id="untersuchungsberichtNotesField" prefHeight="67.0" prefWidth="345.0" promptText="Notizen" />
             <Pane layoutX="10.0" layoutY="220.0" prefHeight="12.0" prefWidth="354.0" />
             <StackPane alignment="CENTER_LEFT" prefHeight="20.0" prefWidth="350.0">
                <children>
