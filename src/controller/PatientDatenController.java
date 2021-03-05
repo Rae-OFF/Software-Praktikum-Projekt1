@@ -42,41 +42,17 @@ public class PatientDatenController {
 	 */
 
 	public void patientDatenUpdate(String versicherungsnummer, String vorname, String nachname, String address, String geschlecht, String birth, String pass) throws IOException {
-		EPA epa = ePAController.getEPA();
-		Patient patient = epa.getPatient(versicherungsnummer);
-		patient.setVorname(vorname);
+		EPA epa = ePAController.getEPA();  // get epa
+		Patient patient = epa.getPatient(versicherungsnummer); // get patient with versicherungnummer
+		patient.setVorname(vorname); // update new info like parameter with setter
 		patient.setNachname(nachname);
 		patient.setAddress(address);
 		patient.setGeschlecht(geschlecht);
 		patient.setBirth(birth);
 		patient.setPasswort(pass);
-		ePAController.getIO().save();
+		ePAController.getIO().save(); // save
 	}
-	/**
-	 * Diese Methode ist verantwortlich feur Auswahl Von  Untersuchungsberichten
-	 * @param versicherungsnummer des Patienten
-	 * @param  icd der Krankheit
-	 * @return liste aller Untersuchungsberichte einer bestimmten Krankheit
-	 */
-	public List<Untersuchungsbericht> berichteAussuchen(String versicherungsnummer , String icd ) {
-		if (versicherungsnummer == null || icd == null  ){
-			// ungültige Eingabe
-			throw new InvalidParameterException();
 
-		}
-		List<Untersuchungsbericht> list1 = null;
-		EPA epa = ePAController.getEPA();
-		Patient patient = epa.getPatient(versicherungsnummer);
-		List<Untersuchungsbericht> list =patient.getUntersuchungList();
-		for(Untersuchungsbericht untersuchungsbericht: list){
-			if(untersuchungsbericht.getICD().equals(icd)){
-				list1.add(untersuchungsbericht);
-
-			}
-		}
-
-		return list1;
-	}
 
 
 

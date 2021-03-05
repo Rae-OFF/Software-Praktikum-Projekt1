@@ -10,7 +10,7 @@ import java.lang.UnsupportedOperationException;
  */
 public class IOController {
 
-    private  static final File SAVE= new File("SaveFile");
+    private  static final File SAVE= new File("SaveFile"); // File SAVE to save epa
 
     private IOController iOController;
 
@@ -32,10 +32,10 @@ public class IOController {
 	 * @throws ClassNotFoundException the class not found exception
 	 */
 	public void load() throws IOException, ClassNotFoundException {
-		if (!SAVE.exists()) {
-			return;
-		}
-			ObjectInputStream stream = new ObjectInputStream(new FileInputStream(SAVE));
+		if (!SAVE.exists()) { // no file
+			return; // do nothing
+		} // file exists
+			ObjectInputStream stream = new ObjectInputStream(new FileInputStream(SAVE)); // get epa from SAVE and set epa
 			EPA epa = (EPA) stream.readObject();
 			ePAController.setEPA(epa);
 			stream.close();
@@ -48,7 +48,7 @@ public class IOController {
 	 */
 	public void save() throws IOException {
 		ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(SAVE));
-		stream.writeObject(ePAController.getEPA());
+		stream.writeObject(ePAController.getEPA()); // save epa to SAVE
 		stream.close();
 	}
 }

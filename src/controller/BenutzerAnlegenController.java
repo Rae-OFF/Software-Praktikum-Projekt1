@@ -38,9 +38,11 @@ public class BenutzerAnlegenController {
 	 * @param Tel des Arztes
  	 */
     public void arztAnlegen(String Vorname, String Nachname, String fach, String num, String passwort, String Tel) throws IOException {
-    	Arzt arzt = new Arzt(Vorname, Nachname, fach, num, passwort, Tel);
-    	ePAController.getEPA().addArzttToList(arzt);
-    	ePAController.getIO().save();
+
+    	Arzt arzt = new Arzt(Vorname, Nachname, fach, num, passwort, Tel); // create new instance arzt
+    	ePAController.getEPA().addArzttToList(arzt);                      // add arzt to list
+    	ePAController.getIO().save();                                    // save
+
     }
 
     /**
@@ -54,12 +56,12 @@ public class BenutzerAnlegenController {
 	 * @param pass des Patienten
 	 */
     public void patientAnlegen(String versicherungsnummer, String Vorname, String Nachname, String Address, boolean geschlecht, String Birth, String pass,String hausarztid) throws IOException {
-    	//neuen Patient anlegen
-		String sex = geschlecht ? "f" : "m";
-		Patient patient = new Patient(versicherungsnummer, Vorname, Nachname, Address, sex, Birth, pass) ;
-		if(!hausarztid.isEmpty()&&ePAController.getEPA().checkNumArzt(hausarztid)){patient.behandeldenArztAendern(ePAController.getEPA().getArzt(hausarztid));}
-        ePAController.getEPA().addPatientToList(patient);
-		EPA epa = ePAController.getEPA();
-		ePAController.getIO().save();
+
+    	String sex = geschlecht ? "f" : "m";  // geschlecht is female ?
+		Patient patient = new Patient(versicherungsnummer, Vorname, Nachname, Address, sex, Birth, pass) ;  // create new instance patient
+		if(!hausarztid.isEmpty()&&ePAController.getEPA().checkNumArzt(hausarztid)){patient.behandeldenArztAendern(ePAController.getEPA().getArzt(hausarztid));}  // hausarzt id valid and not empty
+        ePAController.getEPA().addPatientToList(patient);  // add patient to list
+		ePAController.getIO().save(); // save
+
     }
 }

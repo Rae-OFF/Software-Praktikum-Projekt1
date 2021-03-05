@@ -32,10 +32,9 @@ public class UeberweisungsController {
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
     public Ueberweisung createUeberweisung(String altArzt,String versicherungsNum, String neuArzt, String auftrag, ArrayList<Untersuchungsbericht> berichtListe,String time) {
-		//Ueberweisung ueberweisung= new Ueberweisung(altArzt,versicherungsNum,neuArzt,berichtListe,auftrag,time);
-        Ueberweisung ueberweisung=new Ueberweisung();
-        ueberweisung.setPatientNummer(versicherungsNum).setAltArztNummer(altArzt).setNeuArztNummer(neuArzt).setAuftrag(auftrag).setUntersuchungberichtInit(berichtListe).setDate(time);
-		return ueberweisung;
+        Ueberweisung ueberweisung=new Ueberweisung(); // create ueberweisung with empty constructor
+        ueberweisung.setPatientNummer(versicherungsNum).setAltArztNummer(altArzt).setNeuArztNummer(neuArzt).setAuftrag(auftrag).setUntersuchungberichtInit(berichtListe).setDate(time); // set attributes
+		return ueberweisung; // return ueberweisung
     }
 
     /**
@@ -45,15 +44,14 @@ public class UeberweisungsController {
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
     public void addUeberweisung( Ueberweisung ueberweisung) throws IOException {
-        EPA epa= ePAController.getEPA();
-        Patient patient =epa.getPatient(ueberweisung.getPatientnummer());
-        Arzt neuArzt = epa.getArzt(ueberweisung.getNeuarztnummer());
-        patient.behandeldenArztAendern(neuArzt);
-        neuArzt.addPatientToList(patient);
-        patient.addUeberweisungsList(ueberweisung);
-        Arzt altArzt=epa.getArzt(ueberweisung.getAltArztnummer());
-        neuArzt.addToRevision(ueberweisung.getDate()+" Sie haben eine Patient Überweisung von Arzt(in) "+altArzt.getName());
+        EPA epa= ePAController.getEPA(); // get epa
+        Patient patient =epa.getPatient(ueberweisung.getPatientnummer()); // get patient with info from ueberweisung in parameter
+        Arzt neuArzt = epa.getArzt(ueberweisung.getNeuarztnummer()); // get new arzt the same way
+        neuArzt.addPatientToList(patient); // add patient to list of new arzt
+        patient.addUeberweisungsList(ueberweisung); // add ueberweisung in parameter ot list of patient
+        Arzt altArzt=epa.getArzt(ueberweisung.getAltArztnummer()); // get old arzt the same way
+        neuArzt.addToRevision(ueberweisung.getDate()+" Sie haben eine Patient Überweisung von Arzt(in) "+altArzt.getName()); // update revision 2 arzt
         altArzt.addToRevision(ueberweisung.getDate()+" Sie haben eine Patient Überweisung zu Arzt(in) "+neuArzt.getName()+" gemacht");
-        ePAController.getIO().save();
+        ePAController.getIO().save(); // save
     }
 }

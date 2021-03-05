@@ -4,6 +4,8 @@ import model.EPA;
 import model.Untersuchungsbericht;
 import model.Arzt;
 import model.Patient;
+
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -36,9 +38,9 @@ public class UntersuchungsberichtController {
 	 * @param notes               the notes
 	 */
 
-	public void createUntersuchungsbericht(String versicherungsnummer, LocalDateTime dateTime, String icd, List<String> med, String diagnose, String behandlung, List<String> notes){
-		Untersuchungsbericht bericht = new Untersuchungsbericht(versicherungsnummer, ePAController.getCurrLoggedIn(),dateTime, icd, med, diagnose, behandlung, notes);
-		addUntersuchungbericht(versicherungsnummer, bericht);
+	public void createUntersuchungsbericht(String versicherungsnummer, LocalDateTime dateTime, String icd, List<String> med, String diagnose, String behandlung, List<String> notes) throws IOException {
+		Untersuchungsbericht bericht = new Untersuchungsbericht(versicherungsnummer, ePAController.getCurrLoggedIn(),dateTime, icd, med, diagnose, behandlung, notes); // create new instance untersuchung
+		addUntersuchungbericht(versicherungsnummer, bericht); // add untersuchung to lists
     }
 
 	/**
@@ -47,12 +49,13 @@ public class UntersuchungsberichtController {
 	 * @param versicherungsnummer  the versicherungsnummer
 	 * @param untersuchungsbericht the untersuchungsbericht
 	 */
-	public void addUntersuchungbericht(String versicherungsnummer, Untersuchungsbericht untersuchungsbericht){
-		EPA epa = ePAController.getEPA();
-        Arzt arzt = epa.getArzt(ePAController.getCurrLoggedIn());
-        Patient patient = epa.getPatient(versicherungsnummer);
-        arzt.addUntersuchungsberichrt(untersuchungsbericht);
-        patient.addUntersuchungsList(untersuchungsbericht);
+	public void addUntersuchungbericht(String versicherungsnummer, Untersuchungsbericht untersuchungsbericht) throws IOException {
+		EPA epa = ePAController.getEPA(); // get epa
+        Arzt arzt = epa.getArzt(ePAController.getCurrLoggedIn()); // get arzt instance of user
+        Patient patient = epa.getPatient(versicherungsnummer); // get patient with versicherungsnummer
+        arzt.addUntersuchungsberichrt(untersuchungsbericht); // add untersuchungbericht to list of arzt
+        patient.addUntersuchungsList(untersuchungsbericht); // add untersuchungbericht to list of patient
+		ePAController.getIO().save(); // save
     }
 
 	/**
@@ -62,7 +65,7 @@ public class UntersuchungsberichtController {
 	 * @return the boolean
 	 */
 	public boolean iCDUeberpruefen(String icd){
-		return icd.matches("[A-Z]\\d{1,2}(\\.\\d{1,2}){0,1}");
+		return icd.matches("[A-Z]\\d{2}(\\.\\d{2}){0,1}");// check icd with format alphabet then 2 decimal or alphabet then 2 decimal then . then 2 decimal
     }
 
 	/**
@@ -84,7 +87,7 @@ public class UntersuchungsberichtController {
 	 * @return the boolean
 	 */
 	public boolean uhrzeitUeberpruefen(String uhrzeit){
-		return uhrzeit.matches("([2][0-3]|[0-1][0-9]|[1-9]):[0-5][0-9]");
+		return uhrzeit.matches("([2][0-3]|[0-1][0-9]):[0-5][0-9]");// check time with format hh:mm
 	}
 
 	/**
@@ -98,7 +101,7 @@ public class UntersuchungsberichtController {
 	 * @param medikamente         the medikamente
 	 * @return the boolean
 	 */
-	public  boolean felderLeer(String uhrzeit, String versicherungsnummer, String symptome, String icd, String behandlung,String medikamente){
+	public  boolean felderLeer(String uhrzeit, String versicherungsnummer, String symptome, String icd, String behandlung,String medikamente){// check leer felder
 		return uhrzeit==null||uhrzeit==""||versicherungsnummer==null||versicherungsnummer==""||symptome==null||symptome==""||icd==null||icd=="" ||behandlung==null||behandlung==""||medikamente==null||medikamente=="";
 	}
 }

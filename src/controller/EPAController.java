@@ -32,7 +32,7 @@ public class EPAController {
 	/**
 	 * Instantiates a new Epa controller.
 	 */
-	public EPAController() {
+	public EPAController() { // create epa controller and others controller, save in attributes
     	this.ePA=new EPA();
     	this.benutzerAnlegenController=new BenutzerAnlegenController(this);
     	this.ueberweisungsController=new UeberweisungsController(this);
@@ -86,7 +86,7 @@ public class EPAController {
 	 *
 	 * @return the string
 	 */
-	public String getTime(){
+	public String getTime(){ // get time, return with format yyyy-MM-dd HH:mm:ss
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return LocalDateTime.now().format(formatter);
 	}

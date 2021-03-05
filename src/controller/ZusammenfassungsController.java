@@ -48,7 +48,7 @@ public class ZusammenfassungsController {
 	public ArrayList<Untersuchungsbericht> createZusammenfassungEinArzt(String versicherungsnummer, String iCD){
 		EPA e= ePAController.getEPA();
 		Arzt a = e.getArzt(ePAController.getCurrLoggedIn());// get arzt
-		ArrayList<Untersuchungsbericht>berichtlist= a.getUntersuchungsberichte(versicherungsnummer);
+		ArrayList<Untersuchungsbericht>berichtlist= a.getUntersuchungsberichte(versicherungsnummer); // get untersuchungbericht
 		if(!iCD.equals("leer")){
 			for(int i=0; i<berichtlist.size();i++){
 				if(!berichtlist.get(i).getICD().equals(iCD)){
@@ -83,12 +83,7 @@ public class ZusammenfassungsController {
 			}
 		 }else{
 			 ArrayList<Ueberweisung> ue=a.getPatient(versicherungsnummer).getUeberweisungsList();// get ueberweisungslist from patient with versicherungsnummer
-			// System.out.println(ue.size());
 			 for(int i=0; i<ue.size(); i++){
-			 	 System.out.println(ue.get(i).getDate());
-				 System.out.println("curren: "+ePAController.getCurrLoggedIn());
-				 System.out.println("neu arzt: "+ue.get(i).getNeuarztnummer());
-				 System.out.println("daten"+ue.get(i).isDatenStimmZu());
 				 if(ue.get(i).getNeuarztnummer().equals(ePAController.getCurrLoggedIn())&&ue.get(i).isDatenStimmZu()) {// interpretioert ueberweisung mit neuarztnum == this arztnum && derren Daten wurden schon zugestimmt
 					 for(int k=0; k<ue.get(i).getUntersuchungsbericht().size();k++){
 						 boolean check=false;
