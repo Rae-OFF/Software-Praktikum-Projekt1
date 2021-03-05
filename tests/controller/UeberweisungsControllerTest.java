@@ -18,11 +18,12 @@ import static org.junit.Assert.*;
  */
 
 public class UeberweisungsControllerTest {
-    EPAController epaController = new EPAController();
-    EPA epa= epaController.getEPA();
-    UeberweisungsController ueberweisung1 = epaController.getUeberweisungsController();
-    ArrayList<Untersuchungsbericht> untersuchungslist  = new ArrayList<Untersuchungsbericht>();
-    Ueberweisung ueberweisung = new Ueberweisung();
+    private EPA epa ;
+    private Ueberweisung ueberweisung ;
+    private UeberweisungsController ueberweisungsController;
+    private ArrayList<Untersuchungsbericht> untersuchungslist;
+
+
 
     /**
      *Setup ,was in den Test gebraucht wird.
@@ -30,6 +31,11 @@ public class UeberweisungsControllerTest {
 
     @Before
     public void setUp() throws Exception {
+        EPAController epaController = new EPAController();
+        EPA epa= epaController.getEPA();
+        UeberweisungsController ueberweisungsController = epaController.getUeberweisungsController();
+        ArrayList<Untersuchungsbericht> untersuchungslist  = new ArrayList<Untersuchungsbericht>();
+        Ueberweisung ueberweisung = new Ueberweisung();
         ueberweisung.setAltArztNummer("1234").setPatientNummer("1234").setNeuArztNummer("5678").setUntersuchungberichtInit(untersuchungslist).setAuftrag("test").setDate("1.1.2022");
     }
     /**
@@ -38,13 +44,13 @@ public class UeberweisungsControllerTest {
 
     @Test
     public void createUeberweisung() {
-        Ueberweisung ueberweisung2 = ueberweisung1.createUeberweisung("1234","1234","5678","test",untersuchungslist,"1.1.2022");
-        assertEquals(ueberweisung.getDate(),ueberweisung2.getDate());
-        assertEquals(ueberweisung.getNeuarztnummer(),ueberweisung2.getNeuarztnummer());
-        assertEquals(ueberweisung.getAltArztnummer(),ueberweisung2.getAltArztnummer());
-        assertEquals(ueberweisung.getPatientnummer(),ueberweisung2.getPatientnummer());
-        assertEquals(ueberweisung.getAuftrag(),ueberweisung2.getAuftrag());
-        assertEquals(ueberweisung.getUntersuchungsbericht(),ueberweisung2.getUntersuchungsbericht());
+        Ueberweisung ueberweisung1 = ueberweisungsController.createUeberweisung("1234","1234","5678","test",untersuchungslist,"1.1.2022");
+        assertEquals(ueberweisung.getDate(),ueberweisung1.getDate());
+        assertEquals(ueberweisung.getNeuarztnummer(),ueberweisung1.getNeuarztnummer());
+        assertEquals(ueberweisung.getAltArztnummer(),ueberweisung1.getAltArztnummer());
+        assertEquals(ueberweisung.getPatientnummer(),ueberweisung1.getPatientnummer());
+        assertEquals(ueberweisung.getAuftrag(),ueberweisung1.getAuftrag());
+        assertEquals(ueberweisung.getUntersuchungsbericht(),ueberweisung1.getUntersuchungsbericht());
     }
 
     /**
@@ -52,7 +58,7 @@ public class UeberweisungsControllerTest {
      */
     @Test
     public void createUeberweisung1() {
-        Ueberweisung ueberweisung2 = ueberweisung1.createUeberweisung("1234","" ,"5678","test",untersuchungslist,"1.1.2022");
+        Ueberweisung ueberweisung2 = ueberweisungsController.createUeberweisung("1234","" ,"5678","test",untersuchungslist,"1.1.2022");
         assertEquals(ueberweisung.getDate(),ueberweisung2.getDate());
         assertEquals(ueberweisung.getNeuarztnummer(),ueberweisung2.getNeuarztnummer());
         assertEquals(ueberweisung.getAltArztnummer(),ueberweisung2.getAltArztnummer());
@@ -67,32 +73,10 @@ public class UeberweisungsControllerTest {
 
     @Test
     public void addUeberweisung() throws IOException {
-        ueberweisung1.addUeberweisung(ueberweisung);
-        assertEquals(epa.getPatient("1234").getUeberweisungsList().size(),16);
-
-
+        Ueberweisung ueberweisung2 = ueberweisung.setAltArztNummer("1233").setPatientNummer("1224").setNeuArztNummer("5468").setUntersuchungberichtInit(untersuchungslist).setAuftrag("test").setDate("20.1.2022");
+        ueberweisungsController.addUeberweisung(ueberweisung);
+        assertEquals(epa.getPatient("1234").getUeberweisungsList().size(),3 );
     }
 
-    /**
-     *Test , ob die Ueberwisung nicht richtig hinzugefeugt wird.
-     */
-    @Test
-    public void addUeberweisung1() throws IOException {
-        ueberweisung1.addUeberweisung(ueberweisung);
-        assertEquals(epa.getPatient("1234").getUeberweisungsList().size(),8);
-
-
-    }
-
-    /**
-     *Test ,ob die Ueberwisung richtig hinzugefeugt wird.
-     */
-    @Test
-    public void addUeberweisung2() throws IOException {
-        ueberweisung1.addUeberweisung(ueberweisung);
-        assertEquals(epa.getPatient("1234").getUeberweisungsList().size(),20);
-
-
-    }
 
 }
