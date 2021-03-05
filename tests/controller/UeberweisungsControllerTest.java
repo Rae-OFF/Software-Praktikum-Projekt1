@@ -18,7 +18,6 @@ import static org.junit.Assert.*;
  */
 
 public class UeberweisungsControllerTest {
-
     EPAController epaController = new EPAController();
     EPA epa= epaController.getEPA();
     UeberweisungsController ueberweisung1 = epaController.getUeberweisungsController();
