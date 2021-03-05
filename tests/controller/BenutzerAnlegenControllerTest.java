@@ -15,8 +15,6 @@ public class BenutzerAnlegenControllerTest {
 
     private EPA epa;
 
-    private EPAController epaController;
-
     private BenutzerAnlegenController benutzerAnlegenController;
 
     private Arzt testArzt;
@@ -43,7 +41,7 @@ public class BenutzerAnlegenControllerTest {
      *Setup für gebraucht in den Tests.
      */
     @Before
-    public void setUp() throws Exception {
+    public void setUp(){
         vorname="Mark";
         nachname = "Ammermüller";
         fach = "Psychater";
@@ -52,21 +50,13 @@ public class BenutzerAnlegenControllerTest {
         tel = "0208 123456789";
         adresse = "Linguster weg";
         birth = "20.05.01";
-        epaController = new EPAController();
+        EPAController epaController = new EPAController();
         epa = epaController.getEPA();
-        testArzt = new Arzt(vorname, nachname, fach, num,passwort,tel);
+        testArzt = new Arzt(vorname, nachname, fach, num,passwort, tel);
         testPatient = new Patient(num,vorname,nachname,adresse,"m",birth,passwort);
-        benutzerAnlegenController=epaController.getAktAnlegenController();
+        benutzerAnlegenController= epaController.getAktAnlegenController();
     }
 
-    /**
-     *Test, ob der Fehler mit null ausgegeben wird.
-
-    @Test(expected = InvalidParameterException.class)
-    public void arztAnlegen() throws IOException {
-        //test1:
-        benutzerAnlegenController.arztAnlegen(vorname, "", fach, num, passwort, tel);
-    }*/
 
     /**
      *Test, ob Arzt objekt richtig angelegt wird.
@@ -79,15 +69,6 @@ public class BenutzerAnlegenControllerTest {
     }
 
     /**
-     *Test, ob der Fehler mit null ausgegeben wird.
-
-    @Test(expected = InvalidParameterException.class)
-    public void patientAnlegen() throws IOException {
-        //test1:
-        benutzerAnlegenController.patientAnlegen(num, vorname, "", adresse, false,birth,passwort,"");
-    }*/
-
-    /**
      *Test, ob Patient objekt richtig angelegt wird.
      */
     @Test
@@ -98,7 +79,7 @@ public class BenutzerAnlegenControllerTest {
     }
 
     @After
-    public void tearDown() throws Exception{
+    public void tearDown(){
         epa.removeArzt(num);
         epa.removePatient(num);
 

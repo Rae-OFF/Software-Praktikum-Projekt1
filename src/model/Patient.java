@@ -287,7 +287,7 @@ public class Patient implements Serializable {
 	@Override
 	public boolean equals(Object o) {
 		Patient patient = (Patient)o;
-		return(patient.getNum()==versicherungNum&&patient.getName()==vorName&&patient.getNachname()==nachName&&patient.getAddress()==address&&patient.getGeschlecht()==geschlecht&&patient.getGesburtsDatum()==gesburtsDatum&&patient.getPasswort()==passwort);
+		return(patient.getNum().equals(this.getNum())&&patient.getVorname().equals(this.getVorname())&&patient.getNachname().equals(this.getNachname())&&patient.getAddress().equals(this.getAddress())&&patient.getGeschlecht().equals(this.getGeschlecht())&&patient.getGesburtsDatum().equals(this.getGesburtsDatum())&&patient.getPasswort().equals(this.getPasswort()));
 	}
 
 }
