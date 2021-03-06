@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import controller.EPAController;
@@ -111,11 +112,7 @@ public class UntersuchungsberichtEingabeController extends BorderPane {
 
     private String medikamente;
 
-    private String[] medZwischen;
-
     private String notizen;
-
-    private String[] notizenZwischen;
 
     /**
      * Instantiates a new Untersuchungsbericht eingabe controller.
@@ -126,6 +123,7 @@ public class UntersuchungsberichtEingabeController extends BorderPane {
     public UntersuchungsberichtEingabeController(Stage primaryStage, EPAController EPAControl) {
         mainStage = primaryStage;
         this.ePAControl = EPAControl;
+        untersuchungsberichtController = ePAControl.getUntersuchungsberichtcontroller();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/untersuchungsbericht/UntersuchungsberichtEingabe.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -150,26 +148,22 @@ public class UntersuchungsberichtEingabeController extends BorderPane {
         felderAusfuellen.setVisible(false);
         versicherungsnummer = untersuchungsberichtVersicherungsnummer.getText();
         uhrzeit = untersuchungsberichtUhrzeit.getText();
-        datum = untersuchungsberichtDatePicker.toString();
-        String str = datum+" "+uhrzeit;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy HH:mm");
-        LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
+        datum = String.valueOf(untersuchungsberichtDatePicker.getValue());
         symptome = untersuchungsberichtSymptome.getText();
         icd = untersuchungsberichtICD.getText();
         medikamente = untersuchungsberichtMedikamente.getText();
-        medZwischen = medikamente.split("\n");
-        for(String x:medZwischen){
-            med.add(x);
-        }
+        med = Arrays.asList(medikamente.split("\n"));
         diagnose = untersuchungsberichtSymptome.getText();
         behandlung = untersuchungsberichtBehandlung.getText();
         notizen = untersuchungsberichtNotesField.getText();
-        notizenZwischen = notizen.split("\n");
-        for(String y: notizenZwischen){
-            notes.add(y);
-        }
+        notes = Arrays.asList(notizen.split("\n"));
         boolean icdFormat = untersuchungsberichtController.iCDUeberpruefen(icd);
         boolean uhrzeitFormat = untersuchungsberichtController.uhrzeitUeberpruefen(uhrzeit);
+        if(uhrzeitFormat){
+            String str = datum+" "+uhrzeit;
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            timeDate = LocalDateTime.parse(str, formatter);
+        }
         boolean versicherungsnummerFormat = untersuchungsberichtController.versicherungsnummerUeberpruefen(versicherungsnummer);
         boolean leer = untersuchungsberichtController.felderLeer(uhrzeit,versicherungsnummer, symptome, icd, behandlung, medikamente);// muss erstmal auf leerheit prüfen,
         if(leer){                                                                                                                     // danach die inhalte der eingabefelder
