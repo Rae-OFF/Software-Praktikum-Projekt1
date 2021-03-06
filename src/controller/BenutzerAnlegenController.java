@@ -40,7 +40,8 @@ public class BenutzerAnlegenController {
     public void arztAnlegen(String Vorname, String Nachname, String fach, String num, String passwort, String Tel) throws IOException {
 
     	Arzt arzt = new Arzt(Vorname, Nachname, fach, num, passwort, Tel); // create new instance arzt
-    	ePAController.getEPA().addArzttToList(arzt);                      // add arzt to list
+		arzt.addToRevision(ePAController.getTime()+" Herzlich Willkommen");// add revision
+		ePAController.getEPA().addArzttToList(arzt);                      // add arzt to list
     	ePAController.getIO().save();                                    // save
 
     }
@@ -59,6 +60,7 @@ public class BenutzerAnlegenController {
 
     	String sex = geschlecht ? "f" : "m";  // geschlecht is female ?
 		Patient patient = new Patient(versicherungsnummer, Vorname, Nachname, Address, sex, Birth, pass) ;  // create new instance patient
+		patient.addToRevision(ePAController.getTime()+" Herzlich Willkommen");// add revision
 		if(!hausarztid.isEmpty()){patient.behandeldenArztAendern(ePAController.getEPA().getArzt(hausarztid));}  // hausarzt id not empty -> set hausarzt for patient
         ePAController.getEPA().addPatientToList(patient);  // add patient to list
 		ePAController.getIO().save(); // save

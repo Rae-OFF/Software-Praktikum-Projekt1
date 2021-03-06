@@ -181,18 +181,18 @@ public class LoginViewController extends TabPane {
      */
     @FXML
     void neuPatientAnlegen(ActionEvent e) throws IOException {
-        if(!pSetnum.getText().isEmpty()&&epaController.getEPA().checkNumPatient(pSetnum.getText())){
-            PatientAnlegenHiddenText.setText("Versicherungsnummer schon vorhanden");
-            PatientAnlegenHiddenText.setVisible(true);
-        }
-        else if(!pSetnum.getText().isEmpty()&&!isNumberString(pSetnum.getText())){
-            PatientAnlegenHiddenText.setText("Versicherungsnummer Format invalid");
-            PatientAnlegenHiddenText.setVisible(true);
-        }
-        else if(!(pAdress.getText().isEmpty()||pNachname.getText().isEmpty()||pSetnum.getText().isEmpty()||pVorname.getText().isEmpty()||pSetpass.getText().isEmpty()||pBday.getValue()==null||!(pIsfemale.isSelected()||pIsmale.isSelected())))
+        if(!(pAdress.getText().isEmpty()||pNachname.getText().isEmpty()||pSetnum.getText().isEmpty()||pVorname.getText().isEmpty()||pSetpass.getText().isEmpty()||pBday.getValue()==null||!(pIsfemale.isSelected()||pIsmale.isSelected())))
         {
-            if(!isAlphabetString(pNachname.getText())||!isAlphabetString(pVorname.getText())){
-                PatientAnlegenHiddenText.setText("Name Format invalid");
+            if(epaController.getEPA().checkNumPatient(pSetnum.getText())){
+                PatientAnlegenHiddenText.setText("Versicherungsnummer schon vorhanden");
+                PatientAnlegenHiddenText.setVisible(true);
+            }
+            else if(!isNumberString(pSetnum.getText())){
+                PatientAnlegenHiddenText.setText("Versicherungsnummer Format ungültig");
+                PatientAnlegenHiddenText.setVisible(true);
+            }
+            else if(!isAlphabetString(pNachname.getText())||!isAlphabetString(pVorname.getText())){
+                PatientAnlegenHiddenText.setText("Name Format ungültig");
                 PatientAnlegenHiddenText.setVisible(true);
             }
             else{
@@ -200,7 +200,7 @@ public class LoginViewController extends TabPane {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information");
                     alert.setHeaderText("Information");
-                    String s ="Sie haben keine gultige HausarztID eingegeben , Sie werden keinen Hausarzt zugewiesen ";
+                    String s ="Sie haben keine gültige HausarztID eingegeben , Sie werden keinen Hausarzt zugewiesen ";
                     alert.setContentText(s);
                     alert.show();
                     pAnum.setText("");
@@ -223,18 +223,22 @@ public class LoginViewController extends TabPane {
      */
     @FXML
     void neuArztAnlegen(ActionEvent e) throws IOException {
-        if(!aSetnum.getText().isEmpty()&&epaController.getEPA().checkNumArzt(aSetnum.getText())){
-            NeuArztHiddenText.setText("ArztID schon vorhanden");
-            NeuArztHiddenText.setVisible(true);
-        }
-        else if(!aSetnum.getText().isEmpty()&&!isNumberString(aSetnum.getText())){
-            NeuArztHiddenText.setText("ArztID Format invalid");
-            NeuArztHiddenText.setVisible(true);
-        }
-        else if(!(aFach.getText().isEmpty()||aNachname.getText().isEmpty()||aSetnum.getText().isEmpty()||aVorname.getText().isEmpty()||aSetpass.getText().isEmpty()||aTel.getText().isEmpty()||aBday.getValue()==null||!(aIsfemale.isSelected()||aIsmale.isSelected())))
+        if(!(aFach.getText().isEmpty()||aNachname.getText().isEmpty()||aSetnum.getText().isEmpty()||aVorname.getText().isEmpty()||aSetpass.getText().isEmpty()||aTel.getText().isEmpty()||aBday.getValue()==null||!(aIsfemale.isSelected()||aIsmale.isSelected())))
         {
             if(!isAlphabetString(aNachname.getText())||!isAlphabetString(aVorname.getText())){
-                NeuArztHiddenText.setText("Name Format invalid");
+                NeuArztHiddenText.setText("Name Format ungültig");
+                NeuArztHiddenText.setVisible(true);
+            }
+            else if(!isNumberString(aTel.getText())){
+                NeuArztHiddenText.setText("Telefonenummer Format ungültig");
+                NeuArztHiddenText.setVisible(true);
+            }
+            else if(!isNumberString(aSetnum.getText())){
+                NeuArztHiddenText.setText("ArztID Format ungültig");
+                NeuArztHiddenText.setVisible(true);
+            }
+            else if(epaController.getEPA().checkNumArzt(aSetnum.getText())){
+                NeuArztHiddenText.setText("ArztID schon vorhanden");
                 NeuArztHiddenText.setVisible(true);
             }
             else{

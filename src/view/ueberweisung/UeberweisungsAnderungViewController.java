@@ -129,7 +129,7 @@ public class UeberweisungsAnderungViewController extends ScrollPane {
         Patient patient=epaController.getEPA().getPatient(epaController.getCurrLoggedIn());
         patient.addToRevision(epaController.getTime()+" Sie haben Veranderungen zur Überweisung am "+ueberweisung.getDate()+" gemacht");
         patient.updateDaten();
-        System.out.println(patient.isNeuDaten());
+        // System.out.println(patient.isNeuDaten());
         mainStage.setScene(new Scene(new UeberweisungsChooseController(mainStage,epaController)));
     }
 
