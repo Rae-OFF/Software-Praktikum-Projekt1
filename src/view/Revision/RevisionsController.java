@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
@@ -32,7 +33,7 @@ public class RevisionsController extends BorderPane {
     private Button reviewBackButton; // Value injected by FXMLLoader
 
     @FXML // fx:id="reviewOutput"
-    private FlowPane reviewOutput; // Value injected by FXMLLoader
+    private VBox reviewOutput; // Value injected by FXMLLoader
 
     /**
      * Initialize.
