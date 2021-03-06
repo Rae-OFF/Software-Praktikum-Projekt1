@@ -33,13 +33,13 @@
                   <RowConstraints maxHeight="175.0" minHeight="10.0" prefHeight="85.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Versicherungsnummer" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="* Versicherungsnummer" />
                   <TextField fx:id="Versicherungsnummer" prefHeight="25.0" prefWidth="419.0" GridPane.columnIndex="1" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Arztnummer von zu überwiesendem Arzt" wrappingWidth="202.90625" GridPane.rowIndex="2" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="* Arztnummer von zu überwiesendem Arzt" wrappingWidth="202.90625" GridPane.rowIndex="2" />
                   <TextField fx:id="ArztBezeich" prefHeight="25.0" prefWidth="295.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <VBox prefHeight="202.0" prefWidth="190.0" GridPane.rowIndex="3">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Auftrag" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="* Auftrag" />
                      </children>
                   </VBox>
                   <VBox prefHeight="197.0" prefWidth="187.0" GridPane.rowIndex="4">

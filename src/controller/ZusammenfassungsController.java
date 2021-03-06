@@ -69,14 +69,16 @@ public class ZusammenfassungsController {
 		 ArrayList<Untersuchungsbericht>berichtlist= createZusammenfassungEinArzt(versicherungsnummer,iCD); // get untersuchungberichtlist of this arzt, save in berichtlist
 		 if(a.getFachrichtung().equals("Hausarzt")){ // if arzt is hausarzt
 		 	for(int i=0; i<a.getPatient(versicherungsnummer).getUntersuchungList().size();i++){ // check every untersuchungbericht in untersuchungberichtlist of patient with versicherungsnummer in patient list of arzt
-		 		boolean check=false;
-		 		for(int j=0;j<berichtlist.size();j++){ // check every untersuchungbericht in berichtlist
-		 			if(equalsBericht(berichtlist.get(j),a.getPatient(versicherungsnummer).getUntersuchungList().get(i) )){ // if duplicate
-		 				check=true; // check = true
-		 				break;
+		 		if(a.getPatient(versicherungsnummer).getUntersuchungList().get(i).isWeiterSchicken()){// if bericht ist zum weiterschicken
+					boolean check=false;
+					for(int j=0;j<berichtlist.size();j++){ // check every untersuchungbericht in berichtlist
+						if(equalsBericht(berichtlist.get(j),a.getPatient(versicherungsnummer).getUntersuchungList().get(i) )){ // if duplicate
+							check=true; // check = true
+							break;
+						}
 					}
+					if(check==false){berichtlist.add(a.getPatient(versicherungsnummer).getUntersuchungList().get(i));}// not duplicate -> check == false and save in berichtlist
 				}
-		 		if(check==false){berichtlist.add(a.getPatient(versicherungsnummer).getUntersuchungList().get(i));}// not duplicate -> check == false and save in berichtlist
 			}
 		 }else{ // if arzt != hausarzt
 			 ArrayList<Ueberweisung> ue=a.getPatient(versicherungsnummer).getUeberweisungsList();// get ueberweisungslist from patient with versicherungsnummer, save in ue

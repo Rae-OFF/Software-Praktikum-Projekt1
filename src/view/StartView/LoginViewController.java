@@ -185,10 +185,29 @@ public class LoginViewController extends TabPane {
             PatientAnlegenHiddenText.setText("Versicherungsnummer schon vorhanden");
             PatientAnlegenHiddenText.setVisible(true);
         }
+        else if(!pSetnum.getText().isEmpty()&&!isNumberString(pSetnum.getText())){
+            PatientAnlegenHiddenText.setText("Versicherungsnummer Format invalid");
+            PatientAnlegenHiddenText.setVisible(true);
+        }
         else if(!(pAdress.getText().isEmpty()||pNachname.getText().isEmpty()||pSetnum.getText().isEmpty()||pVorname.getText().isEmpty()||pSetpass.getText().isEmpty()||pBday.getValue()==null||!(pIsfemale.isSelected()||pIsmale.isSelected())))
         {
-          epaController.getAktAnlegenController().patientAnlegen(pSetnum.getText(),pVorname.getText(),pNachname.getText(),pAdress.getText(),pIsfemale.isSelected(),pBday.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),pSetpass.getText(),pAnum.getText());
-          mainStage.setScene(new Scene(new LoginViewController(mainStage)));
+            if(!isAlphabetString(pNachname.getText())||!isAlphabetString(pVorname.getText())){
+                PatientAnlegenHiddenText.setText("Name Format invalid");
+                PatientAnlegenHiddenText.setVisible(true);
+            }
+            else{
+                if(!pAnum.getText().isEmpty()&&(!epaController.getEPA().checkNumArzt(pAnum.getText())||!epaController.getEPA().getArzt(pAnum.getText()).getFachrichtung().equals("Hausarzt"))){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information");
+                    alert.setHeaderText("Information");
+                    String s ="Sie haben keine gultige HausarztID eingegeben , Sie werden keinen Hausarzt zugewiesen ";
+                    alert.setContentText(s);
+                    alert.show();
+                    pAnum.setText("");
+                }
+                epaController.getAktAnlegenController().patientAnlegen(pSetnum.getText(),pVorname.getText(),pNachname.getText(),pAdress.getText(),pIsfemale.isSelected(),pBday.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),pSetpass.getText(),pAnum.getText());
+                mainStage.setScene(new Scene(new LoginViewController(mainStage)));
+            }
         }
         else
         {
@@ -208,14 +227,30 @@ public class LoginViewController extends TabPane {
             NeuArztHiddenText.setText("ArztID schon vorhanden");
             NeuArztHiddenText.setVisible(true);
         }
+        else if(!aSetnum.getText().isEmpty()&&!isNumberString(aSetnum.getText())){
+            NeuArztHiddenText.setText("ArztID Format invalid");
+            NeuArztHiddenText.setVisible(true);
+        }
         else if(!(aFach.getText().isEmpty()||aNachname.getText().isEmpty()||aSetnum.getText().isEmpty()||aVorname.getText().isEmpty()||aSetpass.getText().isEmpty()||aTel.getText().isEmpty()||aBday.getValue()==null||!(aIsfemale.isSelected()||aIsmale.isSelected())))
         {
-            epaController.getAktAnlegenController().arztAnlegen(aVorname.getText(),aNachname.getText(),aFach.getText(),aSetnum.getText(),aSetpass.getText(),aTel.getText());
-            mainStage.setScene(new Scene(new LoginViewController(mainStage)));
+            if(!isAlphabetString(aNachname.getText())||!isAlphabetString(aVorname.getText())){
+                NeuArztHiddenText.setText("Name Format invalid");
+                NeuArztHiddenText.setVisible(true);
+            }
+            else{
+                epaController.getAktAnlegenController().arztAnlegen(aVorname.getText(),aNachname.getText(),aFach.getText(),aSetnum.getText(),aSetpass.getText(),aTel.getText());
+                mainStage.setScene(new Scene(new LoginViewController(mainStage)));
+            }
         }
         else{
             NeuArztHiddenText.setText("Felder mit (*) muss eingegeben werden");
             NeuArztHiddenText.setVisible(true);
         }
+    }
+    public boolean isNumberString(String s){
+        return s.matches("[0-9]+");
+    }
+    public boolean isAlphabetString(String s){
+        return s.matches("[a-zA-Z]+");
     }
 }

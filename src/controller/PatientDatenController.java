@@ -60,6 +60,7 @@ public class PatientDatenController {
 		Patient patient = epa.getPatient(versicherungsnummer); // get patient
 		Arzt arzt=epa.getArzt(ArztID); // get arzt
 		patient.behandeldenArztAendern(arzt); // add arzt as patient hausarzt
+		arzt.addPatientToList(patient);
 		ePAController.getIO().save();// save
 	}
 	public ArrayList<Untersuchungsbericht> getUntersuchungbericht(LocalDateTime startDate, LocalDateTime endDate, String versicherungsnummer){ // return all untersuchungbericht of patient with versicherungnummer in between startdate and enddate

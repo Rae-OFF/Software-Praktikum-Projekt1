@@ -171,9 +171,9 @@ public class UntersuchungsberichtEingabeController extends BorderPane {
         boolean icdFormat = untersuchungsberichtController.iCDUeberpruefen(icd);
         boolean uhrzeitFormat = untersuchungsberichtController.uhrzeitUeberpruefen(uhrzeit);
         boolean versicherungsnummerFormat = untersuchungsberichtController.versicherungsnummerUeberpruefen(versicherungsnummer);
-        boolean leer = untersuchungsberichtController.felderLeer(uhrzeit,versicherungsnummer, symptome, icd, behandlung, medikamente);
-        if(leer){
-            felderAusfuellen.setVisible(true);
+        boolean leer = untersuchungsberichtController.felderLeer(uhrzeit,versicherungsnummer, symptome, icd, behandlung, medikamente);// muss erstmal auf leerheit prüfen,
+        if(leer){                                                                                                                     // danach die inhalte der eingabefelder
+            felderAusfuellen.setVisible(true);                                                                                        // zum string ergänzen, nicht umgekehr
         }
         else{
             if(!(icdFormat||versicherungsnummerFormat)||!(uhrzeitFormat||versicherungsnummerFormat)||!(icdFormat||uhrzeitFormat)){

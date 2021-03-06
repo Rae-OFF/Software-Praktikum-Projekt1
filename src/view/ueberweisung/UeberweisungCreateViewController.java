@@ -201,7 +201,11 @@ public class UeberweisungCreateViewController extends ScrollPane {
     void UeberweisungReview(){
          if(versicherungsnummerValid&&patientVersucherungnum.equals(Versicherungsnummer.getText())){
              if(!(Versicherungsnummer.getText().isEmpty()||ArztBezeich.getText().isEmpty()||ArztBezeich.getText().equals(epaController.getCurrLoggedIn())||Auftrag.getText().isEmpty())){
-                 if(epaController.getEPA().checkNumArzt(ArztBezeich.getText())){
+                 if(!epaController.getEPA().checkNumArzt(ArztBezeich.getText())){
+                     HiddenText.setText("Arztnummer nicht gultig");// set hidden text
+                     HiddenText.setVisible(true);
+                 }
+                 else {
                      for(int i= 0; i < Flow.getChildren().size(); i++){
                          UntersuchungBerichtWahlController uc = (UntersuchungBerichtWahlController) Flow.getChildren().get(i);
                          if(uc.isChoosen()){
@@ -212,6 +216,14 @@ public class UeberweisungCreateViewController extends ScrollPane {
                      mainStage.setScene(new Scene(new UeberweisungsViewController(Versicherungsnummer.getText(),ArztBezeich.getText(),Auftrag.getText(),BerichtListe,time,mainStage,epaController)));
                  }
              }
+             else{
+                 HiddenText.setText("Alle Felder mit * müssen eingegeben werden");// set hidden text
+                 HiddenText.setVisible(true);
+             }
+         }
+         else if(Versicherungsnummer.getText().isEmpty()){
+             HiddenText.setText("Sie haben die Versicherungnummer noch nicht eingegeben");// set hidden text
+             HiddenText.setVisible(true);
          }
     }
 

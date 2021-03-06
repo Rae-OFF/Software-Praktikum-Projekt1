@@ -66,25 +66,32 @@ public class UntersuchungberichtEinstellenViewController extends AnchorPane {
         }
     }
     @FXML
-    void zuMainView(ActionEvent event) {
+    void zuMainView(ActionEvent event) throws IOException {
+        updateuntersuchungbericht();
+        mainStage.setScene(new Scene(new PatientMainViewController(mainStage,epaController)));
+    }
+
+    @FXML
+    void zuUntersuchungberichtFinden(ActionEvent event) throws IOException {
+        updateuntersuchungbericht();
+        mainStage.setScene(new Scene(new UntersuchungberichtFindenViewController(mainStage,epaController)));
+    }
+
+    @FXML
+    void zumHausArztFinden(ActionEvent event) throws IOException {
+        updateuntersuchungbericht();
+        mainStage.setScene(new Scene(new ArztTabViewController(mainStage,epaController)));
+    }
+    private void updateuntersuchungbericht() throws IOException {
         Patient patient= epaController.getEPA().getPatient(epaController.getCurrLoggedIn());
         ArrayList<Untersuchungsbericht> untersuchungsberichtsList= patient.getUntersuchungList();
         if(notempty){
             for(int i=0;i<berichtListeView.getChildren().size();i++){
                 UntersuchungBerichtWahlController uc= (UntersuchungBerichtWahlController)berichtListeView.getChildren().get(i);
                 if(uc.isChoosen()){untersuchungsberichtsList.get(i).setWeiterSchicken(true);}
+                else{untersuchungsberichtsList.get(i).setWeiterSchicken(false);}
             }
         }
-        mainStage.setScene(new Scene(new PatientMainViewController(mainStage,epaController)));
-    }
-
-    @FXML
-    void zuUntersuchungberichtFinden(ActionEvent event) {
-        mainStage.setScene(new Scene(new UntersuchungberichtFindenViewController(mainStage,epaController)));
-    }
-
-    @FXML
-    void zumHausArztFinden(ActionEvent event) {
-        mainStage.setScene(new Scene(new ArztTabViewController(mainStage,epaController)));
+        epaController.getIO().save();
     }
 }

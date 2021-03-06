@@ -59,7 +59,7 @@ public class BenutzerAnlegenController {
 
     	String sex = geschlecht ? "f" : "m";  // geschlecht is female ?
 		Patient patient = new Patient(versicherungsnummer, Vorname, Nachname, Address, sex, Birth, pass) ;  // create new instance patient
-		if(!hausarztid.isEmpty()&&ePAController.getEPA().checkNumArzt(hausarztid)){patient.behandeldenArztAendern(ePAController.getEPA().getArzt(hausarztid));}  // hausarzt id valid and not empty -> set hausarzt for patient
+		if(!hausarztid.isEmpty()){patient.behandeldenArztAendern(ePAController.getEPA().getArzt(hausarztid));}  // hausarzt id not empty -> set hausarzt for patient
         ePAController.getEPA().addPatientToList(patient);  // add patient to list
 		ePAController.getIO().save(); // save
 

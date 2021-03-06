@@ -121,6 +121,7 @@ public class Untersuchungsbericht implements Serializable {
 		this.diagnose = diagnose;
 		this.behandlung = behandlung;
 		this.notes = notes;
+		this.weiterSchicken=false;
 	}
 
 	/**
