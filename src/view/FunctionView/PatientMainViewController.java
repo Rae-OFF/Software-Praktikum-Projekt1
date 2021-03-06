@@ -17,6 +17,7 @@ import model.Patient;
 import view.DatenBearbeiten.DatenBearbeitenController;
 import view.Revision.RevisionsController;
 import view.StartView.LoginViewController;
+import view.UntersuchungberichtEinstellen.UntersuchungberichtEinstellenViewController;
 import view.ueberweisung.UeberweisungsChooseController;
 
 import javax.imageio.ImageIO;
@@ -149,5 +150,9 @@ public class PatientMainViewController extends AnchorPane {
     @FXML
     void zumDatenAndern(ActionEvent event) {
         mainStage.setScene(new Scene(new DatenBearbeitenController(mainStage,epaController)));
+    }
+    @FXML
+    void ZumUntersuchungsberichte(ActionEvent event) {
+        mainStage.setScene(new Scene(new UntersuchungberichtEinstellenViewController(mainStage,epaController)));
     }
 }

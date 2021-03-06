@@ -1,5 +1,6 @@
 package controller;
 
+import model.Arzt;
 import model.EPA;
 import model.Patient;
 import model.Untersuchungsbericht;
@@ -7,6 +8,8 @@ import model.Untersuchungsbericht;
 import javax.sound.midi.InvalidMidiDataException;
 import java.io.IOException;
 import java.security.InvalidParameterException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -51,6 +54,22 @@ public class PatientDatenController {
 		patient.setBirth(birth);
 		patient.setPasswort(pass);
 		ePAController.getIO().save(); // save
+	}
+	public void patientSetArzt(String versicherungsnummer, String ArztID) throws IOException {
+		EPA epa = ePAController.getEPA(); // get ePA
+		Patient patient = epa.getPatient(versicherungsnummer); // get patient
+		Arzt arzt=epa.getArzt(ArztID); // get arzt
+		patient.behandeldenArztAendern(arzt); // add arzt as patient hausarzt
+		ePAController.getIO().save();// save
+	}
+	public ArrayList<Untersuchungsbericht> getUntersuchungbericht(LocalDateTime startDate, LocalDateTime endDate, String versicherungsnummer){ // return all untersuchungbericht of patient with versicherungnummer in between startdate and enddate
+		ArrayList<Untersuchungsbericht> untersuchungsberichtsList= ePAController.getEPA().getPatient(versicherungsnummer).getUntersuchungList(); // get unterscuhungberichtlist
+		for(int i=0; i<untersuchungsberichtsList.size();i++){// check every element in list
+			if(untersuchungsberichtsList.get(i).getDatum().isBefore(startDate)||untersuchungsberichtsList.get(i).getDatum().isAfter(endDate)){
+				untersuchungsberichtsList.remove(i); // if date of element before startdate || after enddate -> remove element from list
+			}
+		}
+		return untersuchungsberichtsList;
 	}
 
 

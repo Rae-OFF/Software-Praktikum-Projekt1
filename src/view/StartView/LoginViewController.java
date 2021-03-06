@@ -187,7 +187,7 @@ public class LoginViewController extends TabPane {
         }
         else if(!(pAdress.getText().isEmpty()||pNachname.getText().isEmpty()||pSetnum.getText().isEmpty()||pVorname.getText().isEmpty()||pSetpass.getText().isEmpty()||pBday.getValue()==null||!(pIsfemale.isSelected()||pIsmale.isSelected())))
         {
-          epaController.getAktAnlegenController().patientAnlegen(pNum.getText(),pVorname.getText(),pNachname.getText(),pAdress.getText(),pIsfemale.isSelected(),pBday.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),pPasswort.getText(),pAnum.getText());
+          epaController.getAktAnlegenController().patientAnlegen(pSetnum.getText(),pVorname.getText(),pNachname.getText(),pAdress.getText(),pIsfemale.isSelected(),pBday.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),pSetpass.getText(),pAnum.getText());
           mainStage.setScene(new Scene(new LoginViewController(mainStage)));
         }
         else
@@ -210,7 +210,7 @@ public class LoginViewController extends TabPane {
         }
         else if(!(aFach.getText().isEmpty()||aNachname.getText().isEmpty()||aSetnum.getText().isEmpty()||aVorname.getText().isEmpty()||aSetpass.getText().isEmpty()||aTel.getText().isEmpty()||aBday.getValue()==null||!(aIsfemale.isSelected()||aIsmale.isSelected())))
         {
-            epaController.getAktAnlegenController().arztAnlegen(aVorname.getText(),aNachname.getText(),aFach.getText(),aNum.getText(),aPasswort.getText(),aTel.getText());
+            epaController.getAktAnlegenController().arztAnlegen(aVorname.getText(),aNachname.getText(),aFach.getText(),aSetnum.getText(),aSetpass.getText(),aTel.getText());
             mainStage.setScene(new Scene(new LoginViewController(mainStage)));
         }
         else{

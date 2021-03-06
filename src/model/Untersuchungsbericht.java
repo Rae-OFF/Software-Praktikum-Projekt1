@@ -34,7 +34,7 @@ public class Untersuchungsbericht implements Serializable {
 	 * @param patientVersicherungnum the patient versicherungnum
 	 */
 	public void setPatientVersicherungnum(String patientVersicherungnum) {
-		this.patientVersicherungnum = patientVersicherungnum;
+		this.patientVersicherungnum = patientVersicherungnum; // set versicherungsnummer vpon patient
 	}
 
 	/**
@@ -148,7 +148,7 @@ public class Untersuchungsbericht implements Serializable {
 	 * todo: name
 	 * @return
 	 */
-	public String toString(){
+	public String toString(){// return all atrributes as String
 		String ausgabe="";
 		ausgabe+="Name: "+""+"/n";
 		ausgabe+="Datum: "+datum  +"/n";

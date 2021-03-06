@@ -143,9 +143,9 @@ public class UeberweisungCreateViewController extends ScrollPane {
      * @param epaController the epa controller
      */
     public UeberweisungCreateViewController(Stage primaryStage, EPAController epaController) {
-        this.mainStage= primaryStage;
-        this.epaController=epaController;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ueberweisung/UeberweisungCreateView.fxml"));
+        this.mainStage= primaryStage;// save primaryStage in main stage
+        this.epaController=epaController;// save epa controller in epaController
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ueberweisung/UeberweisungCreateView.fxml"));// load fxml data
         loader.setRoot(this);
         loader.setController(this);
         try {
@@ -160,28 +160,28 @@ public class UeberweisungCreateViewController extends ScrollPane {
      */
     @FXML
     void checkVersicherungsnum(){
-        if(Versicherungsnummer.getText().isEmpty()||!(epaController.getEPA().checkNumPatient(Versicherungsnummer.getText()))){
-            HiddenText.setText("Versicherungsnummer ist invalid");
+        if(Versicherungsnummer.getText().isEmpty()||!(epaController.getEPA().checkNumPatient(Versicherungsnummer.getText()))){// if versicherungnummer textfeld ist empty or there is no such versiucherungnummer in epa
+            HiddenText.setText("Versicherungsnummer ist invalid"); // set hidden text in flow pane
             HiddenText.setVisible(true);
-            Flow.getChildren().clear();
+            Flow.getChildren().clear(); // clear flow pane
         }
         else{
-            Flow.getChildren().clear();
-            Patient p =epaController.getEPA().getPatient(Versicherungsnummer.getText());
-            ArrayList<Untersuchungsbericht> berichtliste= epaController.getEPA().getArzt(epaController.getCurrLoggedIn()).getUntersuchungsberichte(Versicherungsnummer.getText());
-            ArrayList<Ueberweisung> ueberweisungslist= p.getUeberweisungsList();
-            for(int i=0;i<ueberweisungslist.size();i++){
-                if(ueberweisungslist.get(i).getNeuarztnummer().equals(epaController.getCurrLoggedIn())&&ueberweisungslist.get(i).isDatenStimmZu()){
-                    berichtliste.addAll(ueberweisungslist.get(i).getUntersuchungsbericht());
+            Flow.getChildren().clear(); // clear flow pane
+            Patient p =epaController.getEPA().getPatient(Versicherungsnummer.getText()); // get patient
+            ArrayList<Untersuchungsbericht> berichtliste= epaController.getEPA().getArzt(epaController.getCurrLoggedIn()).getUntersuchungsberichte(Versicherungsnummer.getText());// get untersuchungbericht that this arzt mde for that patient with versicherungnumber
+            ArrayList<Ueberweisung> ueberweisungslist= p.getUeberweisungsList();//get ueberweisunglist from patient
+            for(int i=0;i<ueberweisungslist.size();i++){// check every element in ueberweisunglist
+                if(ueberweisungslist.get(i).getNeuarztnummer().equals(epaController.getCurrLoggedIn())&&ueberweisungslist.get(i).isDatenStimmZu()){// if neuarztnummer ==this arzt id
+                    berichtliste.addAll(ueberweisungslist.get(i).getUntersuchungsbericht()); // add all untersuchungberichte of element to berichtliste
                 }
             }
             for(int i= 0; i< berichtliste.size(); i++){
-                UntersuchungBerichtWahlController uc= new UntersuchungBerichtWahlController(berichtliste.get(i));
-                Flow.getChildren().add(uc);
+                UntersuchungBerichtWahlController uc= new UntersuchungBerichtWahlController(berichtliste.get(i));// create  UntersuchungBerichtWahlController with untersuchungbericht in berichtliste to show
+                Flow.getChildren().add(uc); // add the UntersuchungBerichtWahlController to Flowpane
             }
-            HiddenText.setText("Versicherungsnummer ist valid");
+            HiddenText.setText("Versicherungsnummer ist valid");// set hidden text
             HiddenText.setVisible(true);
-            patientVersucherungnum=Versicherungsnummer.getText();
+            patientVersucherungnum=Versicherungsnummer.getText();// save Versicherungsnummer in patientVersucherungnum
             versicherungsnummerValid=true;
         }
     }

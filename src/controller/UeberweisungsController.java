@@ -28,7 +28,6 @@ public class UeberweisungsController {
  	 * TODO: create JavaDoc. 
 
  	 * @return Ueberweisung
- 	 * @throws UnsupportedOperationException
  	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
     public Ueberweisung createUeberweisung(String altArzt,String versicherungsNum, String neuArzt, String auftrag, ArrayList<Untersuchungsbericht> berichtListe,String time) {

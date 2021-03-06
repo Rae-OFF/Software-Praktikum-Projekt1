@@ -34,7 +34,7 @@ public class Ueberweisung implements Serializable {
 	 * @param
 	 * @param
 	 */
-	public Ueberweisung setPatientNummer(String patientnummer){this.patientnummer=patientnummer;return this;}
+	public Ueberweisung setPatientNummer(String patientnummer){this.patientnummer=patientnummer;return this;} // set attributes with setter
 
 	public Ueberweisung setNeuArztNummer(String neuarztnummer){this.neuarztnummer=neuarztnummer;return this;}
 
@@ -114,7 +114,7 @@ public class Ueberweisung implements Serializable {
 	 */
 	public ArrayList<Untersuchungsbericht> getUntersuchungsbericht() {
 		return untersuchungsbericht;
-	}
+	} // return untersuchungbericht list
 
 	/**
 	 * Sets untersuchungsbericht.
@@ -123,5 +123,5 @@ public class Ueberweisung implements Serializable {
 	 */
 	public void setUntersuchungsbericht(ArrayList<Untersuchungsbericht> untersuchungsbericht) {
 		this.untersuchungsbericht = untersuchungsbericht;
-	}
+	} // set new unterscuhungbericht list
 }
