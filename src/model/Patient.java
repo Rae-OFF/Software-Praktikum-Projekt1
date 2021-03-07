@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 /**
  *
@@ -79,88 +77,88 @@ public class Patient implements Serializable {
 
 	/**
 	 *
-	 * @param r
+	 * @param newRevision
 	 */
-	public void addToRevision(String r) {
-        revision.add(r);
-	}// add new revision to revision list
+	public void addToRevision(String newRevision) {
+        this.revision.add(newRevision);
+	}
 
 	/**
 	 *
-	 * @param n
+	 * @param newVorname
 	 */
-	public void setVorname(String n) {
-        if(n.equals(vorName)){}
-        else{ // if n != vorname
-        	revision.add(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" Ihrer Vorname wurde von "+vorName+" zu "+n+" geandert"); // add revision
-			vorName=n; // change vorname to n
+	public void setVorname(String newVorname) {
+        if(newVorname.equals(vorName)){}
+        else{ // if newVorname != newVorname
+        	revision.add(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" Ihrer Vorname wurde von "+vorName+" zu "+newVorname+" geandert"); // add revision
+			vorName=newVorname; // change newVorname to newVorname
 		}
 	}
 
 	/**
 	 *
-	 * @param n
+	 * @param newNachname
 	 */
-	public void setNachname(String n) {
-        if(n.equals(nachName)){}
-        else{ // if n != nachname
-            revision.add(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" Ihrer Vorname wurde von "+nachName+" zu "+n+" geandert"); // add revision
-			nachName=n; // change nachname to n
+	public void setNachname(String newNachname) {
+        if(newNachname.equals(nachName)){}
+        else{ // if newNachname != newNachname
+            revision.add(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" Ihrer Vorname wurde von "+nachName+" zu "+newNachname+" geandert"); // add revision
+			nachName=newNachname; // change newNachname to newNachname
 		}
 	}
 
 	/**
 	 *
-	 * @param a
+	 * @param newAddress
 	 */
-	public void setAddress(String a) {
-		if(a.equals(address)){}
-        else{ // if a != address
-			revision.add(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" Ihre Addresse wurde von "+address+" zu "+a+" geandert"); // add revision
-        	address=a; // change address to a
+	public void setAddress(String newAddress) {
+		if(newAddress.equals(address)){}
+        else{ // if newAddress != address
+			revision.add(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" Ihre Addresse wurde von "+address+" zu "+newAddress+" geandert"); // add revision
+        	address=newAddress; // change address to newAddress
 		}
 	}
 
 	/**
 	 *
-	 * @param s
+	 * @param newGeschlecht
 	 */
-	public void setGeschlecht(String s) {
-		if(geschlecht.equals(s)){} // if s != geschlecht
+	public void setGeschlecht(String newGeschlecht) {
+		if(geschlecht.equals(newGeschlecht)){} // if newGeschlecht != geschlecht
 		else{
-			revision.add(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" Ihr Geschlecht wurde von "+geschlecht+" zu "+s+" geandert"); // add revision
-			geschlecht=s; // set geschelcht to s
+			revision.add(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" Ihr Geschlecht wurde von "+geschlecht+" zu "+newGeschlecht+" geandert"); // add revision
+			geschlecht=newGeschlecht; // set geschelcht to newGeschlecht
 		}
 	}
 	/**
 	 *
-	 * @param p
+	 * @param newPasswort
 	 */
-	public void setPasswort(String p){
-		if(passwort.equals(p)){}// if p != passwort
+	public void setPasswort(String newPasswort){
+		if(passwort.equals(newPasswort)){}// if newPasswort != passwort
 		else{
-			revision.add(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" Ihr Passwort wurde von "+passwort+" zu "+p+" geandert"); // add revision
-			passwort=p;// set passwort to p
+			revision.add(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" Ihr Passwort wurde von "+passwort+" zu "+newPasswort+" geandert"); // add revision
+			passwort=newPasswort;// set passwort to newPasswort
 		}
 	}
 	/**
 	 *
-	 * @param b
+	 * @param newBirth
 	 */
-	public void setBirth(String b) {
-        if(gesburtsDatum.equals(b)){}
-        else{// if b != gesburtDatum
-        	revision.add(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" Ihr Gesburtsdatum wurde von "+gesburtsDatum+" zu "+b+" geandert"); // add revision
-            gesburtsDatum=b;// set gesburtsDatum to b
+	public void setBirth(String newBirth) {
+        if(gesburtsDatum.equals(newBirth)){}
+        else{// if newBirth != gesburtDatum
+        	revision.add(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+" Ihr Gesburtsdatum wurde von "+gesburtsDatum+" zu "+newBirth+" geandert"); // add revision
+            gesburtsDatum=newBirth;// set gesburtsDatum to newBirth
 		}
 	}
 
 	/**
 	 *
-	 * @param b
+	 * @param neuDaten
 	 */
-	public void setNeuDaten(boolean b){isNeuDaten=b;}// set if new Data added
-	public void setNeuUntersuchung(boolean b){isNeuUntersuchung=b;}
+	public void setNeuDaten(boolean neuDaten){isNeuDaten=neuDaten;}// set if new Data added
+	public void setNeuUntersuchung(boolean neuUntersuchung){isNeuUntersuchung=neuUntersuchung;}
 
 	/**
 	 *
@@ -183,16 +181,16 @@ public class Patient implements Serializable {
 
 	/**
 	 *
-	 * @param u
+	 * @param ueberweisung
 	 */
-    public void addUeberweisungsList(Ueberweisung u){
+    public void addUeberweisungsList(Ueberweisung ueberweisung){
 		nameAltArzt= behandelnderArzt.getName();// get name from arzt that make the ueberweisung
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		String formattedDateTime = LocalDateTime.now().format(formatter);
-		String s =formattedDateTime+" Sie wurden von Arzt(in) "+nameAltArzt+" überwiesen"; // add revision with time and name of arzt
-		revision.add(s);
+		String newRevision =formattedDateTime+" Sie wurden von Arzt(in) "+nameAltArzt+" überwiesen"; // add revision with time and name of arzt
+		revision.add(newRevision);
 		setNeuDaten(true); // set new data
-		ueberweisungsList.add(u);// add to ueberweisunglist
+		ueberweisungsList.add(ueberweisung);// add to ueberweisunglist
 	}
 
 	/**
@@ -211,15 +209,15 @@ public class Patient implements Serializable {
 
 	/**
 	 *
-	 * @param u
+	 * @param untersuchungsbericht
 	 */
-	public void addUntersuchungsList(Untersuchungsbericht u) {
+	public void addUntersuchungsList(Untersuchungsbericht untersuchungsbericht) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		String formattedDateTime = LocalDateTime.now().format(formatter);
-		String s =formattedDateTime+"  Arzt(in) "+u.getBehandenderArzt()+" hat eine Untersuchungbericht gemacht"; // add revision with time and name of arzt
-		revision.add(s);
+		String newRevision =formattedDateTime+"  Arzt(in) "+untersuchungsbericht.getBehandenderArzt()+" hat eine Untersuchungbericht gemacht"; // add revision with time and name of arzt
+		revision.add(newRevision);
 		setNeuUntersuchung(true);
-		untersuchungsberichtsList.add(u);
+		untersuchungsberichtsList.add(untersuchungsbericht);
 	}
 
 	/**
@@ -232,14 +230,14 @@ public class Patient implements Serializable {
 
 	/**
 	 *
-	 * @param artzt
+	 * @param arzt
 	 */
-	public void behandeldenArztAendern(Arzt artzt) {
+	public void behandeldenArztAendern(Arzt arzt) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		String formattedDateTime = LocalDateTime.now().format(formatter);
-		String s =formattedDateTime+" Arzt(in) "+ artzt.getName()+" ist nun ihr(e) Hausarzt(in)";// set new hausarzt, add revision
-		revision.add(s);
-		this.behandelnderArzt=artzt;
+		String newRevision =formattedDateTime+" Arzt(in) "+ arzt.getName()+" ist nun ihr(e) Hausarzt(in)";// set new hausarzt, add revision
+		revision.add(newRevision);
+		this.behandelnderArzt=arzt;
 	}
 
 	/**
@@ -289,12 +287,12 @@ public class Patient implements Serializable {
 	/**
 	 * Equals boolean.
 	 *
-	 * @param o the patient
+	 * @param patient1 the patient
 	 * @return the boolean
 	 */
 	@Override
-	public boolean equals(Object o) { // check if 2 patient are the same
-		Patient patient = (Patient)o;
+	public boolean equals(Object patient1) { // check if 2 patient are the same
+		Patient patient = (Patient) patient1;
 		return(patient.getNum().equals(this.getNum())&&patient.getVorname().equals(this.getVorname())&&patient.getNachname().equals(this.getNachname())&&patient.getAddress().equals(this.getAddress())&&patient.getGeschlecht().equals(this.getGeschlecht())&&patient.getGesburtsDatum().equals(this.getGesburtsDatum())&&patient.getPasswort().equals(this.getPasswort())&&patient.getBehandelnderArzt().equals(this.getBehandelnderArzt()));
 	}
 

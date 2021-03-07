@@ -4,9 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.lang.UnsupportedOperationException;
-import java.util.List;
 
 /**
  * The type Arzt.
@@ -65,8 +62,8 @@ public class Arzt implements Serializable {
 	public void addPatientToList(Patient patient)  {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		String formattedDateTime = LocalDateTime.now().format(formatter); // get String of time with formatter
-    	String s= formattedDateTime+" Patient(in) "+patient.getName()+" mit Versicherungsnummer "+patient.getNum()+" wurde in ihrer Patientenliste hinzugefügt";
-    	revision.add(s); // update revision of arzt
+    	String revisionOfArzt = formattedDateTime+" Patient(in) "+patient.getName()+" mit Versicherungsnummer "+patient.getNum()+" wurde in ihrer Patientenliste hinzugefügt";
+    	revision.add(revisionOfArzt); // update revision of arzt
         patientList.add(patient); // add patient to list
     }
 
@@ -88,8 +85,8 @@ public class Arzt implements Serializable {
 	public void addUntersuchungsberichrt(Untersuchungsbericht untersuchungsbericht)  {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		String formattedDateTime = LocalDateTime.now().format(formatter); // get String of time with formatter
-		String s= formattedDateTime+" Neue Untersuchungbericht von Patient mit Versicherungnummer: "+untersuchungsbericht.getPatientNum()+" wurde in ihre Untersuchungberichtliste hinzugefügt";
-		revision.add(s);
+		String revisionOfArzt = formattedDateTime+" Neue Untersuchungbericht von Patient mit Versicherungnummer: "+untersuchungsbericht.getPatientNum()+" wurde in ihre Untersuchungberichtliste hinzugefügt";
+		revision.add(revisionOfArzt);
         untersuchungsList.add(untersuchungsbericht); // add untersuchungbericht to untersuchungbericht list
     }
 
@@ -105,10 +102,10 @@ public class Arzt implements Serializable {
 	/**
 	 * Add to revision.
 	 *
-	 * @param re the re
+	 * @param revision the revision
 	 */
-	public void addToRevision(String re) {
-        revision.add(re);
+	public void addToRevision(String revision) {
+        this.revision.add(revision);
     } // add revision to revision list
 
 
@@ -209,8 +206,8 @@ public class Arzt implements Serializable {
 	public String getPasswort(){return passWort;} // get passwort
 
 
-	public boolean equals(Arzt o){ // check every attributs of 2 arzt to find out if thay are the same
-		Arzt arzt = o;
+	public boolean equals(Arzt arzt1){ // check every attributs of 2 arzt to find out if they are the same
+		Arzt arzt = arzt1;
 		return(arzt.getVorname().equals(this.getVorname())&&arzt.getNachname().equals(this.getNachname())&&arzt.getFachrichtung().equals(this.getFachrichtung())&&arzt.getNum().equals(this.getNum())&&arzt.getPasswort().equals(this.getPasswort())&&arzt.getTel().equals(this.getTel()));
 	}
 }
