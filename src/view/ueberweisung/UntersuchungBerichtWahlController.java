@@ -100,5 +100,6 @@ public class UntersuchungBerichtWahlController extends TitledPane {
      * Set button disable.
      */
     public void setButtonDisable(){ChooseButton.setDisable(true);ChooseButton.setVisible(false);}
+    public void setButtonChoosen(){ChooseButton.setSelected(true);}
 
 }

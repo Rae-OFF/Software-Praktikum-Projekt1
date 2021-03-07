@@ -47,7 +47,11 @@ public class PatientMainViewController extends AnchorPane {
 
     @FXML
     private Button pZumDataAndern;
+    @FXML
+    private Text UeberweisungHiddenText;
 
+    @FXML
+    private Text UntersuchungHiddenText;
     @FXML
     private Button pZumUntersuchungsberichte;
 
@@ -95,7 +99,16 @@ public class PatientMainViewController extends AnchorPane {
         pSex.setText(p.getGeschlecht());
         pSex.setVisible(true);
         pBday.setText(p.getGesburtsDatum());
-        if(p.isNeuDaten()){pZumUeberweisung.setText(pZumUeberweisung.getText()+"(*)");}
+        if(p.isNeuUntersuchung()){
+            UntersuchungHiddenText.setText("  Sie haben neue Untersuchungbericht in ihrer Untersuchungberichtliste ");
+            UntersuchungHiddenText.setVisible(true);
+            pZumUntersuchungsberichte.setText(pZumUntersuchungsberichte.getText()+"(*)");
+        }
+        if(p.isNeuDaten()){
+            UeberweisungHiddenText.setText("  Sie haben neue Überweisung in ihrer Überweisungliste ");
+            UeberweisungHiddenText.setVisible(true);
+            pZumUeberweisung.setText(pZumUeberweisung.getText()+"(*)");
+        }
         pBday.setVisible(true);
         pAdress.getChildren().add(new Text(p.getAddress()));
         pAdress.setVisible(true);

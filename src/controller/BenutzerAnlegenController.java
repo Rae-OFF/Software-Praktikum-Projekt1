@@ -22,7 +22,7 @@ public class BenutzerAnlegenController {
 	/**
 	 * Instantiates a new Benutzer anlegen controller.
 	 *
-	 * @param e the e
+	 * @param e the EPAController
 	 */
 	public BenutzerAnlegenController(EPAController e) {
     	this.ePAController = e ;
@@ -30,12 +30,12 @@ public class BenutzerAnlegenController {
 
     /**
 	 * Diese Methode liegt einen neuen Arzt an
-	 * @param Vorname des Arztes
-	 * @param Nachname des Arztes
-	 * @param fach  des Arztes
-	 * @param num des Arztes
-	 * @param passwort des Arztes
-	 * @param Tel des Arztes
+	 * @param Vorname Vorname des Arztes
+	 * @param Nachname Nachname des Arztes
+	 * @param fach Fachrichtung des Arztes
+	 * @param num  ID des Arztes
+	 * @param passwort passowrt des Arztes
+	 * @param Tel Telefonnummmer des Arztes
  	 */
     public void arztAnlegen(String Vorname, String Nachname, String fach, String num, String passwort, String Tel) throws IOException {
 
@@ -48,13 +48,14 @@ public class BenutzerAnlegenController {
 
     /**
 	 *  Diese Methode liegt einen neuen Patient an
-	 * @param versicherungsnummer des Patienten
-	 * @param Vorname Datum und Uhrzeit
-	 * @param Nachname des Patienten
-	 * @param Address  des Patienten
-	 * @param
-	 * @param Birth des Patienten
-	 * @param pass des Patienten
+	 * @param versicherungsnummer versicherungsnummer des Patienten
+	 * @param Vorname vorname Datum und Uhrzeit
+	 * @param Nachname nachname des Patienten
+	 * @param Address address des Patienten
+	 * @param geschlecht is the patient female?
+	 * @param Birth geburtstag des Patienten
+	 * @param pass passwort des Patienten
+	 * @param hausarztid hausarzt id to set for patient
 	 */
     public void patientAnlegen(String versicherungsnummer, String Vorname, String Nachname, String Address, boolean geschlecht, String Birth, String pass,String hausarztid) throws IOException {
 

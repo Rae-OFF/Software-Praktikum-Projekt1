@@ -13,7 +13,6 @@ import model.Patient;
 import model.Untersuchungsbericht;
 import view.FunctionView.PatientMainViewController;
 import view.ueberweisung.UntersuchungBerichtWahlController;
-import view.ueberweisung.UntersuchungsWahlController;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,6 +36,7 @@ public class UntersuchungberichtEinstellenViewController extends AnchorPane {
     private Button zuMainView;
     private Stage mainStage;
     private EPAController epaController;
+    private ArrayList<Boolean> untersuchungberichtInfoSave=new ArrayList<Boolean>();
     private boolean notempty;
     public UntersuchungberichtEinstellenViewController(Stage mainStage, EPAController epaController){
         this.mainStage=mainStage;
@@ -57,6 +57,8 @@ public class UntersuchungberichtEinstellenViewController extends AnchorPane {
         if(untersuchungsberichtsList.size()!=0){berichtListeView.getChildren().clear();notempty=true;}
         for(int i=0; i< untersuchungsberichtsList.size(); i++){
             UntersuchungBerichtWahlController untersuchungWahl = new UntersuchungBerichtWahlController(untersuchungsberichtsList.get(i));
+            if(untersuchungsberichtsList.get(i).isWeiterSchicken()){untersuchungWahl.setButtonChoosen();untersuchungberichtInfoSave.add(true);}
+            else{untersuchungberichtInfoSave.add(false);}
             untersuchungWahl.setPrefHeight(422.0);
             untersuchungWahl.setPrefWidth(338.0);
             berichtListeView.getChildren().add(untersuchungWahl);
@@ -68,6 +70,7 @@ public class UntersuchungberichtEinstellenViewController extends AnchorPane {
     @FXML
     void zuMainView(ActionEvent event) throws IOException {
         updateuntersuchungbericht();
+        epaController.getEPA().getPatient(epaController.getCurrLoggedIn()).setNeuUntersuchung(false);
         mainStage.setScene(new Scene(new PatientMainViewController(mainStage,epaController)));
     }
 
@@ -85,13 +88,21 @@ public class UntersuchungberichtEinstellenViewController extends AnchorPane {
     private void updateuntersuchungbericht() throws IOException {
         Patient patient= epaController.getEPA().getPatient(epaController.getCurrLoggedIn());
         ArrayList<Untersuchungsbericht> untersuchungsberichtsList= patient.getUntersuchungList();
+        boolean changed=false;
         if(notempty){
             for(int i=0;i<berichtListeView.getChildren().size();i++){
                 UntersuchungBerichtWahlController uc= (UntersuchungBerichtWahlController)berichtListeView.getChildren().get(i);
-                if(uc.isChoosen()){untersuchungsberichtsList.get(i).setWeiterSchicken(true);}
-                else{untersuchungsberichtsList.get(i).setWeiterSchicken(false);}
+                if(uc.isChoosen()){
+                    if(untersuchungberichtInfoSave.get(i)==false){changed = true;}
+                    untersuchungsberichtsList.get(i).setWeiterSchicken(true);
+                }
+                else{
+                    if(untersuchungberichtInfoSave.get(i)==true){changed = true;}
+                    untersuchungsberichtsList.get(i).setWeiterSchicken(false);
+                }
             }
         }
+        if(changed==true){epaController.getEPA().getPatient(epaController.getCurrLoggedIn()).addToRevision(epaController.getTime()+" Sie haben Veranderungen zu ihrer Untersuchungberichtliste gemacht");}
         epaController.getIO().save();
     }
 }

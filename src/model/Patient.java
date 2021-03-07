@@ -34,7 +34,9 @@ public class Patient implements Serializable {
 
 	private String nameAltArzt;
 
-    private boolean isNeuDaten=false; // new data added ?
+    private boolean isNeuDaten=false; // new ueberweisung added ?
+
+	private boolean isNeuUntersuchung=false;
 
 	private String passwort;
 
@@ -158,13 +160,14 @@ public class Patient implements Serializable {
 	 * @param b
 	 */
 	public void setNeuDaten(boolean b){isNeuDaten=b;}// set if new Data added
+	public void setNeuUntersuchung(boolean b){isNeuUntersuchung=b;}
 
 	/**
 	 *
 	 * @return
 	 */
 	public boolean isNeuDaten(){return isNeuDaten;}
-
+	public boolean isNeuUntersuchung(){return  isNeuUntersuchung;}
 	/**
 	 *
 	 */
@@ -211,7 +214,12 @@ public class Patient implements Serializable {
 	 * @param u
 	 */
 	public void addUntersuchungsList(Untersuchungsbericht u) {
-        untersuchungsberichtsList.add(u);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		String formattedDateTime = LocalDateTime.now().format(formatter);
+		String s =formattedDateTime+"  Arzt(in) "+u.getBehandenderArzt()+" hat eine Untersuchungbericht gemacht"; // add revision with time and name of arzt
+		revision.add(s);
+		setNeuUntersuchung(true);
+		untersuchungsberichtsList.add(u);
 	}
 
 	/**

@@ -86,6 +86,10 @@ public class Arzt implements Serializable {
 	 * @param untersuchungsbericht the untersuchungsbericht
 	 */
 	public void addUntersuchungsberichrt(Untersuchungsbericht untersuchungsbericht)  {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		String formattedDateTime = LocalDateTime.now().format(formatter); // get String of time with formatter
+		String s= formattedDateTime+" Neue Untersuchungbericht von Patient mit Versicherungnummer: "+untersuchungsbericht.getPatientNum()+" wurde in ihre Untersuchungberichtliste hinzugefügt";
+		revision.add(s);
         untersuchungsList.add(untersuchungsbericht); // add untersuchungbericht to untersuchungbericht list
     }
 

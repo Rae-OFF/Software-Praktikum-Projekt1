@@ -108,7 +108,10 @@ public class UeberweisungsAnderungViewController extends ScrollPane {
         ArrayList<Untersuchungsbericht> berichtList=ueberweisung.getUntersuchungsbericht();
         Flow.getChildren().clear();
         for(int i=0; i<berichtList.size(); i++){
-            UntersuchungsWahlController uc= new UntersuchungsWahlController(berichtList.get(i));
+            UntersuchungBerichtWahlController uc= new UntersuchungBerichtWahlController(berichtList.get(i));
+            uc.setButtonChoosen();
+            uc.setPrefWidth(452.0);
+            uc.setPrefHeight(528.0);
             Flow.getChildren().add(uc);
         }
     }
@@ -119,17 +122,17 @@ public class UeberweisungsAnderungViewController extends ScrollPane {
      * @param event the event
      */
     @FXML
-    void AnderungenSpeichern(ActionEvent event) {
+    void AnderungenSpeichern(ActionEvent event) throws IOException {
         for(int i=0; i<Flow.getChildren().size();i++){
-            UntersuchungsWahlController uc= (UntersuchungsWahlController)Flow.getChildren().get(i);
-            if(uc.BerichtChoosen()){choosenUntersuchungsberichts.add(uc.getUntersuchung());}
+            UntersuchungBerichtWahlController uc= (UntersuchungBerichtWahlController)Flow.getChildren().get(i);
+            if(uc.isChoosen()){choosenUntersuchungsberichts.add(uc.getUntersuchung());}
         }
         ueberweisung.setUntersuchungsbericht(choosenUntersuchungsberichts);
         ueberweisung.setDatenStimmZu(true);
         Patient patient=epaController.getEPA().getPatient(epaController.getCurrLoggedIn());
         patient.addToRevision(epaController.getTime()+" Sie haben Veranderungen zur Überweisung am "+ueberweisung.getDate()+" gemacht");
         patient.updateDaten();
-        // System.out.println(patient.isNeuDaten());
+        epaController.getIO().save();
         mainStage.setScene(new Scene(new UeberweisungsChooseController(mainStage,epaController)));
     }
 
