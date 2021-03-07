@@ -205,8 +205,13 @@ public class Arzt implements Serializable {
 	 */
 	public String getPasswort(){return passWort;} // get passwort
 
+	/**
+	 * check every attributs of 2 Ärzten to find out if they are the same
+	 *
+	 * @return the string
+	 */
 
-	public boolean equals(Arzt arzt1){ // check every attributs of 2 arzt to find out if they are the same
+	public boolean equals(Arzt arzt1){
 		Arzt arzt = arzt1;
 		return(arzt.getVorname().equals(this.getVorname())&&arzt.getNachname().equals(this.getNachname())&&arzt.getFachrichtung().equals(this.getFachrichtung())&&arzt.getNum().equals(this.getNum())&&arzt.getPasswort().equals(this.getPasswort())&&arzt.getTel().equals(this.getTel()));
 	}

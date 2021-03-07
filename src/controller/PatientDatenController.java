@@ -18,10 +18,6 @@ import java.util.List;
 
 public class PatientDatenController {
 
-	/**
-	 *
-	 */
-
 	private EPAController ePAController;
 
 	/**
@@ -34,7 +30,7 @@ public class PatientDatenController {
 
 	}
 	/**
-	 * *Diese Methode ermauglicht die Daten eines schon existierend Patient zu bearbeiten
+	 * Diese Methode ermoeglicht die Daten eines schon existierend Patient zu bearbeiten
 	 * @param versicherungsnummer des Patienten
 	 * @param vorname Datum und Uhrzeit
 	 * @param nachname des Patienten
@@ -55,6 +51,12 @@ public class PatientDatenController {
 		patient.setPasswort(pass);
 		ePAController.getIO().save(); // save
 	}
+
+	/**
+	 * Diese Methode ermoeglicht einen Arzt als Hausarzt eines Patienten hinzuzufügen
+	 * @param versicherungsnummer des Patienten
+	 * @param arztID Datum und Uhrzeit
+	 */
 	public void patientSetArzt(String versicherungsnummer, String arztID) throws IOException {
 		EPA epa = ePAController.getEPA(); // get ePA
 		Patient patient = epa.getPatient(versicherungsnummer); // get patient
@@ -63,6 +65,13 @@ public class PatientDatenController {
 		arzt.addPatientToList(patient);
 		ePAController.getIO().save();// save
 	}
+
+	/**
+	 * Diese Methode gibt alle Untersuchungsbericht von Patient und Versicherungsnummern zwischen dem Start- und Enddatum zurück
+	 * @param startDate des Patienten
+	 * @param endDate Datum und Uhrzeit
+	 * @param versicherungsnummer des Patienten
+	 */
 	public ArrayList<Untersuchungsbericht> getUntersuchungbericht(LocalDateTime startDate, LocalDateTime endDate, String versicherungsnummer){ // return all untersuchungbericht of patient with versicherungnummer in between startdate and enddate
 		ArrayList<Untersuchungsbericht> untersuchungsberichtsList= ePAController.getEPA().getPatient(versicherungsnummer).getUntersuchungList(); // get unterscuhungberichtlist
 		ArrayList<Untersuchungsbericht> untersuchungsberichtsreturn=new ArrayList<Untersuchungsbericht>();
