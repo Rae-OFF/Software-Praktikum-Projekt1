@@ -18,6 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import model.Patient;
@@ -38,6 +39,17 @@ public class zusammenfassungsController extends SplitPane{
 
     @FXML
     private URL location;
+    @FXML
+    private TextFlow Vorname;
+
+    @FXML
+    private TextFlow Nachname;
+
+    @FXML
+    private TextFlow Geschlecht;
+
+    @FXML
+    private TextFlow Versicherungnummer;
 
     @FXML
     private Label pInfomation;
@@ -87,7 +99,7 @@ public class zusammenfassungsController extends SplitPane{
     private EPAController EPAControl;
     private Untersuchungsbericht Ub;
     private ArrayList<Untersuchungsbericht> berichtListe;
-
+    private String versicherungnummer;
     /**
      * Instantiates a new Zusammenfassungs controller.
      *
@@ -96,10 +108,11 @@ public class zusammenfassungsController extends SplitPane{
      * @param
      */
     //
-    public zusammenfassungsController(Stage primaryStage, EPAController EPAControl,ArrayList<Untersuchungsbericht> berichtListe) {
+    public zusammenfassungsController(Stage primaryStage, EPAController EPAControl,ArrayList<Untersuchungsbericht> berichtListe, String Versicherungnummer) {
         mainStage = primaryStage;
         this.EPAControl = EPAControl;
         this.berichtListe=berichtListe;
+        this.versicherungnummer=Versicherungnummer;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/zusammenfassungderBehandlungsschritt/Zusammenfassung.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -114,22 +127,23 @@ public class zusammenfassungsController extends SplitPane{
 
 
     private void init() throws IOException {
-        Patient p= EPAControl.getEPA().getPatient(EPAControl.getCurrLoggedIn());
+        Patient p= EPAControl.getEPA().getPatient(versicherungnummer);
         Image icon = SwingFXUtils.toFXImage(ImageIO.read(this.getClass().getClassLoader().getResource("view/image/patientimage.jpg")), null);
         PatientImage.setImage(icon);
-        pVorname.setText(p.getVorname());
-        pNachname.setText(p.getNachname());
-        pGeschlecht.setText(p.getGeschlecht());
+        Vorname.getChildren().add(new Text(p.getVorname()));
+        Nachname.getChildren().add(new Text(p.getNachname()));
+        Geschlecht.getChildren().add(new Text(p.getGeschlecht()));
+        Versicherungnummer.getChildren().add(new Text(versicherungnummer));
         anzahl.setText(String.valueOf(berichtListe.size()));
         anzahl.setVisible(true);
         if(berichtListe.size()!=0){Flow.getChildren().clear();}
         for(int i=0;i<berichtListe.size();i++){
-            Button button=new Button(i+1+". Untersuchungsbericht am "+berichtListe.get(i).getDatum().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))+" von Arzt(in) "+berichtListe.get(i).getBehandenderArzt());
+            Button button=new Button(i+1+". Untersuchungsbericht am "+berichtListe.get(i).getDatum().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))+" von Arzt(in) "+EPAControl.getEPA().getArzt(berichtListe.get(i).getBehandenderArzt()).getName());
             Untersuchungsbericht untersuchungsbericht=berichtListe.get(i);
             button.setOnAction(event -> {
                 mainStage.setScene(new Scene(new UntersuchungBerichtViewController(berichtListe,untersuchungsbericht, EPAControl, mainStage)));
             });
-            button.setPrefWidth(580.0);
+            button.setPrefWidth(635.0);
             button.setPrefHeight(90.0);
             Flow.getChildren().add(button);
         }

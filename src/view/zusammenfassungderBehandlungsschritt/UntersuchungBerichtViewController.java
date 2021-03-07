@@ -107,7 +107,7 @@ public class UntersuchungBerichtViewController extends AnchorPane {
 
     @FXML
     void zumZusammenfassung(ActionEvent event) {
-        mainStage.setScene(new Scene(new zusammenfassungsController(mainStage,epaController,berichtListe)));
+        mainStage.setScene(new Scene(new zusammenfassungsController(mainStage,epaController,berichtListe,untersuchungsbericht.getPatientVersicherungnum())));
     }
 
     /**

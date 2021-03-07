@@ -83,7 +83,7 @@ public class EingabeSeiteController extends AnchorPane {
             else{
                 berichtListe=EPAControll.getZusammenfassungsController().createZusammenfassungAlleAerzte(Versicherungsnum.getText(),icd);
             }
-            mainStage.setScene(new Scene(new zusammenfassungsController(mainStage,EPAControll,berichtListe)));
+            mainStage.setScene(new Scene(new zusammenfassungsController(mainStage,EPAControll,berichtListe,Versicherungsnum.getText())));
         }
     }
 
