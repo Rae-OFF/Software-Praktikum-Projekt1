@@ -10,7 +10,7 @@ import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 /**
- * einen neuen Benutzer anlegen der , Patient oder Arzt sein kann
+ * einen neuen Benutzer anlegen, der Patient oder Arzt sein kann
  */
 public class BenutzerAnlegenController {
 

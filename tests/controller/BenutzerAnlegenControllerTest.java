@@ -80,6 +80,9 @@ public class BenutzerAnlegenControllerTest {
         assert(epa.getPatient(num).equals(testPatient));
     }
 
+    /**
+     *
+     */
     @After
     public void tearDown(){
         epa.removeArzt(num);

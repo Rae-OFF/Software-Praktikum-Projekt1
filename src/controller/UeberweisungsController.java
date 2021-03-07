@@ -10,14 +10,12 @@ import java.util.ArrayList;
  */
 public class UeberweisungsController {
 
-    /**
- 	 * 
- 	 */
     private EPAController ePAController;
 
     /**
- 	 * 
- 	 */
+     * Instantiates a new Ueberweisung Construktur
+     * @param epaController epaController
+     */
 
     public UeberweisungsController(EPAController epaController) {
     	this.ePAController=epaController;
@@ -25,10 +23,12 @@ public class UeberweisungsController {
 
     /**
  	 *
+ 	 * neue Ueberweisung erstellen.
+
  	 *
      * create new ueberweisung
  	 * @return Ueberweisung
- 	 *
+ 	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 */
     public Ueberweisung createUeberweisung(String altArzt,String versicherungsNum, String neuArzt, String auftrag, ArrayList<Untersuchungsbericht> berichtListe,String time) {
         Ueberweisung ueberweisung=new Ueberweisung(); // create ueberweisung with empty constructor
@@ -37,8 +37,9 @@ public class UeberweisungsController {
     }
 
     /**
- 	 *
-     * add new ueberweisung to its patient / arzt list
+ 	 * add new ueberweisung to its patient / arzt list
+ 	 * @throws UnsupportedOperationException
+ 	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
  	 *
  	 *
  	 */

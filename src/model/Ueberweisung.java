@@ -24,26 +24,48 @@ public class Ueberweisung implements Serializable {
 
 	private boolean datenStimmZu=false;
 
+
+
 	/**
-	 * Instantiates a new Ueberweisung.
 	 *
-	 * @param
-	 * @param
-	 * @param
-	 * @param
-	 * @param
-	 * @param
+	 * @param patientnummer Patientnummer
+	 * @return Ueberweisung
 	 */
 	public Ueberweisung setPatientNummer(String patientnummer){this.patientnummer=patientnummer;return this;} // set attributes with setter
 
+	/**
+	 *
+	 * @param neuarztnummer neue Arztnummer
+	 * @return Ueberweisung
+	 */
 	public Ueberweisung setNeuArztNummer(String neuarztnummer){this.neuarztnummer=neuarztnummer;return this;}
 
+	/**
+	 *
+	 * @param altArztnummer alte Arztnummer
+	 * @return Ueberweisung
+	 */
 	public Ueberweisung setAltArztNummer(String altArztnummer){this.altArztnummer=altArztnummer;return this;}
 
+	/**
+	 *
+	 * @param untersuchungsList Untersuchungslist
+	 * @return Ueberweisung
+	 */
 	public Ueberweisung setUntersuchungberichtInit( ArrayList<Untersuchungsbericht> untersuchungsList){this.untersuchungsbericht=untersuchungsList;return this;}
 
+	/**
+	 *
+	 * @param auftrag Auftrag
+	 * @return Ueberweisung
+	 */
 	public Ueberweisung setAuftrag(String auftrag){this.auftrag=auftrag;return this;}
 
+	/**
+	 *
+	 * @param date Date
+	 * @return Ueberweisung
+	 */
 	public Ueberweisung setDate(String date){this.date=date;return this;}
 
 	/**

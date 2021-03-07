@@ -29,6 +29,7 @@ public class ZusammenfassungsController {
 	 * Add to zusammenfassung.
 	 *
 	 * @param untersuchungsbericht the untersuchungsbericht
+	 * @throws UnsupportedOperationException the unsupported operation exception
 	 */
 	public void addToZusammenfassung(Untersuchungsbericht untersuchungsbericht) throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Not Yet Implemented!");
@@ -101,13 +102,13 @@ public class ZusammenfassungsController {
 
 	/**
 	 *  check if 2 untersuchungbericht the same
-	 * @param untersuchungsbericht1
-	 * @param untersuchungsbericht2
+	 * @param untersuchungsbericht1 ein Untersuchungsbericht.
+	 * @param untersuchungsbericht2 ein andere Untersuchungsbericht.
 	 * @return true if 2 untersuchungbericht the same
 	 */
-    private boolean equalsBericht(Untersuchungsbericht untersuchungsbericht1, Untersuchungsbericht untersuchungsbericht2){ // check every attribut of 2 untersuchungbericht in parameter to find if 2 r the same
+	private boolean equalsBericht(Untersuchungsbericht untersuchungsbericht1, Untersuchungsbericht untersuchungsbericht2){ // check every attribut of 2 untersuchungbericht in parameter to find if 2 r the same
 		return untersuchungsbericht1.getBehandenderArzt().equals(untersuchungsbericht2.getBehandenderArzt())&&untersuchungsbericht1.getDatum().equals(untersuchungsbericht2.getDatum())&&untersuchungsbericht1.getICD().equals(untersuchungsbericht2.getICD())&&untersuchungsbericht1.getPatientVersicherungnum().equals(untersuchungsbericht2.getPatientVersicherungnum())
-		&&untersuchungsbericht1.getBehandlung().equals(untersuchungsbericht2.getBehandlung())&&untersuchungsbericht1.getDiagnose().equals(untersuchungsbericht2.getDiagnose())&&untersuchungsbericht1.getMed().equals(untersuchungsbericht2.getMed())&&untersuchungsbericht1.getNotes().equals(untersuchungsbericht2.getNotes());
+				&&untersuchungsbericht1.getBehandlung().equals(untersuchungsbericht2.getBehandlung())&&untersuchungsbericht1.getDiagnose().equals(untersuchungsbericht2.getDiagnose())&&untersuchungsbericht1.getMed().equals(untersuchungsbericht2.getMed())&&untersuchungsbericht1.getNotes().equals(untersuchungsbericht2.getNotes());
 
 	}
 }

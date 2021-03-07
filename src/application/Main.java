@@ -9,6 +9,10 @@ import view.StartView.LoginViewController;
  * The type Main.
  */
 public class Main extends Application {
+	/**
+	 *
+	 * @param primaryStage
+	 */
 
 	@Override
 	public void start(Stage primaryStage) {

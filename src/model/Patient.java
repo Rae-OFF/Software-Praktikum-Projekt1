@@ -40,13 +40,13 @@ public class Patient implements Serializable {
 
 	/**
 	 *
-	 * @param versicherungNum
-	 * @param vorName
-	 * @param nachName
-	 * @param address
-	 * @param geschlecht
-	 * @param birth
-	 * @param passWort
+	 * @param versicherungNum Versicherungsnummer des Patienten
+	 * @param vorName Vorname des Patienten
+	 * @param nachName Nachname des des Patienten
+	 * @param address Adresse des Patienten
+	 * @param geschlecht Geschlecht des Patienten
+	 * @param birth Geburtsdatum des Patienten
+	 * @param passWort Passwort des Patienten
 	 */
 	public Patient(String versicherungNum, String vorName,String nachName, String address, String geschlecht, String birth, String passWort) {
 		this.passwort=passWort; // create new patient with attributes given in parameter
@@ -63,7 +63,7 @@ public class Patient implements Serializable {
 
 	 /**
 	 *
-	 * @return
+	 * @return Versicherungsnummer
 	 */
 	public String getNum() {
 		return versicherungNum;
@@ -71,13 +71,13 @@ public class Patient implements Serializable {
 
 	/**
 	 *
-	 * @return
+	 * @return Geburtsdatum
 	 */
     public String getGesburtsDatum(){return gesburtsDatum;}
 
 	/**
 	 *
-	 * @param newRevision
+	 * @param newRevision die neue Revision
 	 */
 	public void addToRevision(String newRevision) {
         this.revision.add(newRevision);
@@ -85,7 +85,7 @@ public class Patient implements Serializable {
 
 	/**
 	 *
-	 * @param newVorname
+	 * @param newVorname der neue Vorname
 	 */
 	public void setVorname(String newVorname) {
         if(newVorname.equals(vorName)){}
@@ -97,7 +97,8 @@ public class Patient implements Serializable {
 
 	/**
 	 *
-	 * @param newNachname
+	 * @param newNachname der neue Nachname
+	 *
 	 */
 	public void setNachname(String newNachname) {
         if(newNachname.equals(nachName)){}
@@ -109,7 +110,8 @@ public class Patient implements Serializable {
 
 	/**
 	 *
-	 * @param newAddress
+	 * @param newAddress die neue Adresse
+	 *
 	 */
 	public void setAddress(String newAddress) {
 		if(newAddress.equals(address)){}
@@ -121,7 +123,7 @@ public class Patient implements Serializable {
 
 	/**
 	 *
-	 * @param newGeschlecht
+	 * @param newGeschlecht das neue Geschlecht
 	 */
 	public void setGeschlecht(String newGeschlecht) {
 		if(geschlecht.equals(newGeschlecht)){} // if newGeschlecht != geschlecht
@@ -132,7 +134,7 @@ public class Patient implements Serializable {
 	}
 	/**
 	 *
-	 * @param newPasswort
+	 * @param newPasswort das neue Passwort
 	 */
 	public void setPasswort(String newPasswort){
 		if(passwort.equals(newPasswort)){}// if newPasswort != passwort
@@ -143,7 +145,7 @@ public class Patient implements Serializable {
 	}
 	/**
 	 *
-	 * @param newBirth
+	 * @param newBirth das neue Geburtsdatum
 	 */
 	public void setBirth(String newBirth) {
         if(gesburtsDatum.equals(newBirth)){}
@@ -155,19 +157,20 @@ public class Patient implements Serializable {
 
 	/**
 	 *
-	 * @param neuDaten
+	 * @param neuDaten die neue Daten
 	 */
 	public void setNeuDaten(boolean neuDaten){isNeuDaten=neuDaten;}// set if new Data added
 	public void setNeuUntersuchung(boolean neuUntersuchung){isNeuUntersuchung=neuUntersuchung;}
 
 	/**
 	 *
-	 * @return
+	 * @return boolean
 	 */
 	public boolean isNeuDaten(){return isNeuDaten;}
 	public boolean isNeuUntersuchung(){return  isNeuUntersuchung;}
+
 	/**
-	 *
+	 * Daten erneuen
 	 */
 	public void updateDaten(){
 		int count=0; // check if all ueberweisung was confirmed
@@ -181,7 +184,7 @@ public class Patient implements Serializable {
 
 	/**
 	 *
-	 * @param ueberweisung
+	 * @param ueberweisung neue Ueberweisung hinzufuegen
 	 */
     public void addUeberweisungsList(Ueberweisung ueberweisung){
 		nameAltArzt= behandelnderArzt.getName();// get name from arzt that make the ueberweisung
@@ -195,13 +198,13 @@ public class Patient implements Serializable {
 
 	/**
 	 *
-	 * @return
+	 * @return ueberweisungsList
 	 */
     public ArrayList<Ueberweisung> getUeberweisungsList(){return ueberweisungsList;}
 
 	/**
 	 *
-	 * @return revision
+	 * @return Revision
 	 */
 	public ArrayList<String> getRevision() {
 		return revision;
@@ -209,7 +212,7 @@ public class Patient implements Serializable {
 
 	/**
 	 *
-	 * @param untersuchungsbericht
+	 * @param untersuchungsbericht Untersuchungsbericht
 	 */
 	public void addUntersuchungsList(Untersuchungsbericht untersuchungsbericht) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -222,7 +225,7 @@ public class Patient implements Serializable {
 
 	/**
 	 *
-	 * @return
+	 * @return Untersuchungslist
 	 */
 	public ArrayList<Untersuchungsbericht> getUntersuchungList() {
 		return untersuchungsberichtsList;
@@ -242,19 +245,19 @@ public class Patient implements Serializable {
 
 	/**
 	 *
-	 * @return
+	 * @return behandelnder Arzt
 	 */
 	public Arzt getBehandelnderArzt(){return behandelnderArzt;}
 
 	/**
 	 *
-	 * @return
+	 * @return Passwort
 	 */
     public String getPasswort(){return passwort;}
 
 	/**
 	 *
-	 * @return
+	 * @return Name
 	 */
 	public String getName() {
 		return vorName+" "+nachName;
@@ -262,25 +265,25 @@ public class Patient implements Serializable {
 
 	/**
 	 *
-	 * @return
+	 * @return Vorname
 	 */
 	public String getVorname(){return vorName;}
 
 	/**
 	 *
-	 * @return
+	 * @return Nachname
 	 */
 	public String getNachname(){return nachName;}
 
 	/**
 	 *
-	 * @return
+	 * @return Adresse
 	 */
 	public String getAddress(){return address;}
 
 	/**
 	 *
-	 * @return
+	 * @return Geschlecht
 	 */
 	public String getGeschlecht(){return geschlecht;}
 

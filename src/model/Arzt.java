@@ -35,11 +35,11 @@ public class Arzt implements Serializable {
 	/**
 	 * Instantiates a new Arzt.
 	 *
-	 * @param vorName  the vor name
-	 * @param nachName the nach name
+	 * @param vorName  the vorname
+	 * @param nachName the nachname
 	 * @param fach     the fach
-	 * @param idNum    the id num
-	 * @param passWort the pass wort
+	 * @param idNum    the idnum
+	 * @param passWort the passwort
 	 * @param tel      the tel
 	 */
 	public Arzt(String vorName,String nachName, String fach, String idNum, String passWort, String tel) {
@@ -139,7 +139,7 @@ public class Arzt implements Serializable {
 	 * Get untersuchungsberichte array list.
 	 *
 	 * @param versicherungsnummer the versicherungsnummer
-	 * @return the array list
+	 * @return untersuchungsberichte array list.
 	 */
 	public ArrayList<Untersuchungsbericht> getUntersuchungsberichte(String versicherungsnummer){ // return list of untersuchungbericht wirh versucherungsnummer == versicherungsnummer in parameter
         ArrayList<Untersuchungsbericht> berichtList= new ArrayList<Untersuchungsbericht>();
@@ -150,9 +150,9 @@ public class Arzt implements Serializable {
     }
 
 	/**
-	 * Gets num.
+	 * Gets id number of arzt
 	 *
-	 * @return the num
+	 * @return the id number of arzt.
 	 */
 	public String getNum()   {
         return idNum;
@@ -168,40 +168,40 @@ public class Arzt implements Serializable {
     } // get revision list
 
 	/**
-	 * Gets name.
+	 * Gets name of arzt.
 	 *
-	 * @return the name
+	 * @return the name of arzt
 	 */
 	public String getName()  {
         return vorName+" "+nachName;
     } // get name of arzt
 
 	/**
-	 * Get tel string.
+	 * Get telephone nummer of arzt.
 	 *
-	 * @return the string
+	 * @return telephone nummer of arzt
 	 */
 	public String getTel(){return tel;} // get telephone nummer of arzt
 
 
 	/**
-	 * Get vorname string.
+	 * Get vorname of arzt.
 	 *
-	 * @return the string
+	 * @return the vorname of arzt
 	 */
 	public String getVorname(){return vorName;} // get vorname of arzt
 
 	/**
-	 * Get nachname string.
+	 * Get nachname of arzt
 	 *
-	 * @return the string
+	 * @return the nachname of arzt
 	 */
 	public String getNachname(){return nachName;} // get nachname of arzt
 
 	/**
 	 * Get passwort string.
 	 *
-	 * @return the string
+	 * @return the passwort string.
 	 */
 	public String getPasswort(){return passWort;} // get passwort
 
