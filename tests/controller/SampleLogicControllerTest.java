@@ -5,14 +5,23 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-//This class is missing JavaDoc, causing the testdoc badge to complain!
+/**
+ * SampleLogicControllerTest
+ */
+
 public class SampleLogicControllerTest {
 
-
+	/**
+	 * setUp
+	 * @throws Exception exception
+	 */
 	@Before
 	public void setUp() throws Exception {
 	}
-	
+
+	/**
+	 * testConstructor
+	 */
 	@Test
 	public void testConstructor() {
 		//SampleLogicController sampleLogicController = new SampleLogicController();

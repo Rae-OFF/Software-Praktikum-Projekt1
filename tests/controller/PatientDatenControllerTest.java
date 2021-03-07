@@ -60,7 +60,7 @@ public class PatientDatenControllerTest {
     }
 
     /**
-     *
+     * tearDown
      * @throws Exception Exception
      */
     @After
@@ -89,7 +89,7 @@ public class PatientDatenControllerTest {
     }
 
     /**
-     *
+     * berichteAussuchen
      */
 
     @Test

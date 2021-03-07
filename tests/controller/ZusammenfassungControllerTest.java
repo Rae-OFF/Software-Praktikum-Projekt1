@@ -73,6 +73,10 @@ public class ZusammenfassungControllerTest {
             assertTrue(equalsBericht(untersuchungsberichts1.get(i),untersuchung[i]));
         }
     }
+
+    /**
+     * Test,  ob Zusammenfassung von unterschiedlichen Ärzten richtig erstellt wird .
+     */
     @Test
     public void createzusammenfassungAllerArzt2() {
         untersuchung[1].setWeiterSchicken(true);
@@ -83,6 +87,13 @@ public class ZusammenfassungControllerTest {
         }
         assertEquals(untersuchungsberichts2.size(),3);
     }
+
+    /**
+     *  Test, ob zwei gleiche Untersuchungsbericht unterschieden werden können.
+     * @param untersuchungsbericht1  untersuchungsbericht1
+     * @param untersuchungsbericht2  untersuchungsbericht2
+     * @return true or false
+     */
     private boolean equalsBericht(Untersuchungsbericht untersuchungsbericht1, Untersuchungsbericht untersuchungsbericht2){ // check every attribut of 2 untersuchungbericht in parameter to find if 2 r the same
         return untersuchungsbericht1.getBehandenderArzt().equals(untersuchungsbericht2.getBehandenderArzt())&&untersuchungsbericht1.getDatum().equals(untersuchungsbericht2.getDatum())&&untersuchungsbericht1.getICD().equals(untersuchungsbericht2.getICD())&&untersuchungsbericht1.getPatientVersicherungnum().equals(untersuchungsbericht2.getPatientVersicherungnum())
                 &&untersuchungsbericht1.getBehandlung().equals(untersuchungsbericht2.getBehandlung())&&untersuchungsbericht1.getDiagnose().equals(untersuchungsbericht2.getDiagnose());
