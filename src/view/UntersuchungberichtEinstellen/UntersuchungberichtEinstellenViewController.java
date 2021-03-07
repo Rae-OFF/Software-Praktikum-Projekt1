@@ -103,6 +103,7 @@ public class UntersuchungberichtEinstellenViewController extends AnchorPane {
             }
         }
         if(changed==true){epaController.getEPA().getPatient(epaController.getCurrLoggedIn()).addToRevision(epaController.getTime()+" Sie haben Veranderungen zu ihrer Untersuchungberichtliste gemacht");}
+        patient.setNeuUntersuchung(false);
         epaController.getIO().save();
     }
 }

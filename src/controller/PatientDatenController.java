@@ -65,12 +65,10 @@ public class PatientDatenController {
 	}
 	public ArrayList<Untersuchungsbericht> getUntersuchungbericht(LocalDateTime startDate, LocalDateTime endDate, String versicherungsnummer){ // return all untersuchungbericht of patient with versicherungnummer in between startdate and enddate
 		ArrayList<Untersuchungsbericht> untersuchungsberichtsList= ePAController.getEPA().getPatient(versicherungsnummer).getUntersuchungList(); // get unterscuhungberichtlist
-		for(int i=0; i<untersuchungsberichtsList.size();i++){// check every element in list
-			if(untersuchungsberichtsList.get(i).getDatum().isBefore(startDate)||untersuchungsberichtsList.get(i).getDatum().isAfter(endDate)){
-				untersuchungsberichtsList.remove(i); // if date of element before startdate || after enddate -> remove element from list
-			}
-		}
-		return untersuchungsberichtsList;
+		ArrayList<Untersuchungsbericht> untersuchungsberichtsreturn=new ArrayList<Untersuchungsbericht>();
+		untersuchungsberichtsreturn.addAll(untersuchungsberichtsList);
+		untersuchungsberichtsreturn.removeIf(Untersuchungsbericht->Untersuchungsbericht.getDatum().isBefore(startDate)||Untersuchungsbericht.getDatum().isAfter(endDate));
+		return untersuchungsberichtsreturn;
 	}
 
 

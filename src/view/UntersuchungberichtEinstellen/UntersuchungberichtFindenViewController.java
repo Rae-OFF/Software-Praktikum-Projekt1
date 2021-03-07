@@ -41,17 +41,16 @@ public class UntersuchungberichtFindenViewController extends AnchorPane {
     void BerichteSuchen(ActionEvent event) {
         if(StartDate.getValue()==null||EndDate.getValue()==null){}
         else{
+            berichtListeView.getChildren().clear();
             String versicherungnummer= epaController.getCurrLoggedIn();
             ArrayList<Untersuchungsbericht> untersuchungsberichtsList= epaController.getPatientDatenController().getUntersuchungbericht(StartDate.getValue().atStartOfDay(),EndDate.getValue().atStartOfDay(),versicherungnummer);
             if(untersuchungsberichtsList.size()!=0){
-                berichtListeView.getChildren().clear();
                 for(int i=0; i< untersuchungsberichtsList.size();i++){
                     UntersuchungBerichtWahlController uc = new UntersuchungBerichtWahlController(untersuchungsberichtsList.get(i));
                     berichtListeView.getChildren().add(uc);
                 }
             }
             else{
-                berichtListeView.getChildren().clear();
                 berichtListeView.getChildren().add(HiddenText);
             }
         }

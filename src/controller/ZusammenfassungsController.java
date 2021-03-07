@@ -45,13 +45,10 @@ public class ZusammenfassungsController {
 	public ArrayList<Untersuchungsbericht> createZusammenfassungEinArzt(String versicherungsnummer, String iCD){
 		EPA e= ePAController.getEPA();// get epa
 		Arzt a = e.getArzt(ePAController.getCurrLoggedIn());// get arzt with arzt id == login nummer
-		ArrayList<Untersuchungsbericht>berichtlist= a.getUntersuchungsberichte(versicherungsnummer); // get untersuchungberichtlist of arzt, save in berichtlist
+		ArrayList<Untersuchungsbericht>berichtlist=new ArrayList<Untersuchungsbericht>();
+		berichtlist.addAll(a.getUntersuchungsberichte(versicherungsnummer)); // get untersuchungberichtlist of arzt, save in berichtlist
 		if(!iCD.equals("leer")){ // wenn icd eingegeben wird
-			for(int i=0; i<berichtlist.size();i++){ // check every untersuchungbericht in berichlist
-				if(!berichtlist.get(i).getICD().equals(iCD)){ // if icd != icd in parameter
-					berichtlist.remove(i);// remove berichte that have icd != icd to find from list
-				}
-			}
+			berichtlist.removeIf(Untersuchungsbericht->!Untersuchungsbericht.getICD().equals(iCD));
 		}
 		return berichtlist; // return berichtlist
     }
@@ -74,7 +71,6 @@ public class ZusammenfassungsController {
 					for(int j=0;j<berichtlist.size();j++){ // check every untersuchungbericht in berichtlist
 						if(equalsBericht(berichtlist.get(j),a.getPatient(versicherungsnummer).getUntersuchungList().get(i) )){ // if duplicate
 							check=true; // check = true
-							break;
 						}
 					}
 					if(check==false){berichtlist.add(a.getPatient(versicherungsnummer).getUntersuchungList().get(i));}// not duplicate -> check == false and save in berichtlist
@@ -89,7 +85,6 @@ public class ZusammenfassungsController {
 						 for(int j=0;j<berichtlist.size();j++){
 							 if(equalsBericht(berichtlist.get(j), ue.get(i).getUntersuchungsbericht().get(k))){// if duplicate in berichtlist
 								 check=true; // check = true
-								 break;
 							 }
 						 }
 						 if(check==false){berichtlist.add(ue.get(i).getUntersuchungsbericht().get(k));}// not duplicate -> check == false and save in berichtlist
@@ -98,11 +93,7 @@ public class ZusammenfassungsController {
 			 }
 		 }
 		if(!iCD.equals("leer")){ // if ice was given
-			for(int i=0; i<berichtlist.size();i++){
-				if(!berichtlist.get(i).getICD().equals(iCD)){
-					berichtlist.remove(i);// remove untersuchungbericht in berichtlist that have icd != icd to find
-				}
-			}
+			berichtlist.removeIf(Untersuchungsbericht->!Untersuchungsbericht.getICD().equals(iCD));
 		}
          return berichtlist; // return berichtlist
     }

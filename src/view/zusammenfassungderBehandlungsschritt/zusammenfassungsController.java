@@ -63,6 +63,11 @@ public class zusammenfassungsController extends SplitPane{
     private FlowPane Flow;
     @FXML
     private ImageView PatientImage;
+    @FXML
+    private Text anzahl;
+
+    @FXML
+    private Text HiddenText;
     /**
      * Initialize.
      */
@@ -115,8 +120,11 @@ public class zusammenfassungsController extends SplitPane{
         pVorname.setText(p.getVorname());
         pNachname.setText(p.getNachname());
         pGeschlecht.setText(p.getGeschlecht());
+        anzahl.setText(String.valueOf(berichtListe.size()));
+        anzahl.setVisible(true);
+        if(berichtListe.size()!=0){Flow.getChildren().clear();}
         for(int i=0;i<berichtListe.size();i++){
-            Button button=new Button("Untersuchungsbericht am "+berichtListe.get(i).getDatum().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))+" von Arzt(in) "+berichtListe.get(i).getBehandenderArzt());
+            Button button=new Button(i+1+". Untersuchungsbericht am "+berichtListe.get(i).getDatum().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))+" von Arzt(in) "+berichtListe.get(i).getBehandenderArzt());
             Untersuchungsbericht untersuchungsbericht=berichtListe.get(i);
             button.setOnAction(event -> {
                 mainStage.setScene(new Scene(new UntersuchungBerichtViewController(berichtListe,untersuchungsbericht, EPAControl, mainStage)));

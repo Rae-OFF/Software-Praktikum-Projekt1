@@ -53,7 +53,10 @@
          <children>
             <ScrollPane prefHeight="255.0" prefWidth="598.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <content>
-                  <FlowPane fx:id="Flow" prefHeight="256.0" prefWidth="583.0" />
+                  <FlowPane fx:id="Flow" prefHeight="256.0" prefWidth="583.0">
+                     <children>
+                        <Text fx:id="HiddenText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Keine Untersuchungbericht gefunden" />
+                     </children></FlowPane>
                </content>
             </ScrollPane>
             <HBox layoutX="318.0" layoutY="259.0">
@@ -66,6 +69,8 @@
                   <Button fx:id="ZumEingabeSeite" mnemonicParsing="false" onAction="#ZumEingabeSeite" text="weitere Patienten aussuchen" />
                </children>
             </HBox>
+            <Text layoutX="14.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Anzahl gefundene Untersuchungberichte :" />
+            <Text fx:id="anzahl" layoutX="247.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" />
          </children></AnchorPane>
   </items>
 </fx:root>
