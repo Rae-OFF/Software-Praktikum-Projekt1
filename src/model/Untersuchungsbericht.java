@@ -137,11 +137,11 @@ public class Untersuchungsbericht implements Serializable {
 	 * Sets info.
 	 *
 	 * @param diagnose   the diagnose
-	 * @param Med        the med
-	 * @param Behandlung the behandlung
+	 * @param med        the med
+	 * @param behandlung the behandlung
 	 * @param icd        the icd
 	 */
-	public void setInfo(String diagnose, List<String> Med, String Behandlung, String icd) {
+	public void setInfo(String diagnose, List<String> med, String behandlung, String icd) {
 
 	}
 

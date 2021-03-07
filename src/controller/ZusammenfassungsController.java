@@ -77,17 +77,17 @@ public class ZusammenfassungsController {
 				}
 			}
 		 }else{ // if arzt != hausarzt
-			 ArrayList<Ueberweisung> ue=arzt.getPatient(versicherungsnummer).getUeberweisungsList();// get ueberweisungslist from patient with versicherungsnummer, save in ue
-			 for(int i=0; i<ue.size(); i++){ // check every ueberweisung in ue
-				 if(ue.get(i).getNeuarztnummer().equals(ePAController.getCurrLoggedIn())&&ue.get(i).isDatenStimmZu()) {// get ueberweisung in ue mit neuarztnum == this arztnum && derren Daten wurden schon zugestimmt
-					 for(int k=0; k<ue.get(i).getUntersuchungsbericht().size();k++){ // check every untersuchungbericht in untersuchungberichtlist of that ueberweisung
+			 ArrayList<Ueberweisung> ueberweisungsList=arzt.getPatient(versicherungsnummer).getUeberweisungsList();// get ueberweisungslist from patient with versicherungsnummer, save in ueberweisungsList
+			 for(int i=0; i<ueberweisungsList.size(); i++){ // check every ueberweisung in ueberweisungsList
+				 if(ueberweisungsList.get(i).getNeuarztnummer().equals(ePAController.getCurrLoggedIn())&&ueberweisungsList.get(i).isDatenStimmZu()) {// get ueberweisung in ueberweisungsList mit neuarztnum == this arztnum && derren Daten wurden schon zugestimmt
+					 for(int k=0; k<ueberweisungsList.get(i).getUntersuchungsbericht().size();k++){ // check every untersuchungbericht in untersuchungberichtlist of that ueberweisung
 						 boolean check=false;
 						 for(int j=0;j<berichtlist.size();j++){
-							 if(equalsBericht(berichtlist.get(j), ue.get(i).getUntersuchungsbericht().get(k))){// if duplicate in berichtlist
+							 if(equalsBericht(berichtlist.get(j), ueberweisungsList.get(i).getUntersuchungsbericht().get(k))){// if duplicate in berichtlist
 								 check=true; // check = true
 							 }
 						 }
-						 if(check==false){berichtlist.add(ue.get(i).getUntersuchungsbericht().get(k));}// not duplicate -> check == false and save in berichtlist
+						 if(check==false){berichtlist.add(ueberweisungsList.get(i).getUntersuchungsbericht().get(k));}// not duplicate -> check == false and save in berichtlist
 					 }
 				 }
 			 }

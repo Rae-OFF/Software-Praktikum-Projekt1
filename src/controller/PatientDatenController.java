@@ -55,10 +55,10 @@ public class PatientDatenController {
 		patient.setPasswort(pass);
 		ePAController.getIO().save(); // save
 	}
-	public void patientSetArzt(String versicherungsnummer, String ArztID) throws IOException {
+	public void patientSetArzt(String versicherungsnummer, String arztID) throws IOException {
 		EPA epa = ePAController.getEPA(); // get ePA
 		Patient patient = epa.getPatient(versicherungsnummer); // get patient
-		Arzt arzt=epa.getArzt(ArztID); // get arzt
+		Arzt arzt=epa.getArzt(arztID); // get arzt
 		patient.behandeldenArztAendern(arzt); // add arzt as patient hausarzt
 		arzt.addPatientToList(patient);
 		ePAController.getIO().save();// save

@@ -12,7 +12,7 @@ public class IOController {
 
     private  static final File SAVE= new File("SaveFile"); // File SAVE to save epa
 
-    private IOController iOController;
+    //private IOController iOController;
 
     private EPAController ePAController;
 
