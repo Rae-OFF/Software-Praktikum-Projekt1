@@ -50,9 +50,9 @@ public class EPAController {
 	/**
 	 * Setis arzt.
 	 *
-	 * @param b the b
+	 * @param setIsArzt the setisArzt
 	 */
-	public void setisArzt(boolean b){this.isArzt=b;}
+	public void setisArzt(boolean setIsArzt){this.isArzt=setIsArzt;}
 
 	/**
 	 * Is arzt boolean.

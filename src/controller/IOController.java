@@ -19,10 +19,10 @@ public class IOController {
 	/**
 	 * Instantiates a new Io controller.
 	 *
-	 * @param e the e
+	 * @param epaController the epaController
 	 */
-	public IOController(EPAController e) {
-        ePAController=e;
+	public IOController(EPAController epaController) {
+        ePAController=epaController;
     }
 
 	/**

@@ -22,24 +22,24 @@ public class BenutzerAnlegenController {
 	/**
 	 * Instantiates a new Benutzer anlegen controller.
 	 *
-	 * @param e the EPAController
+	 * @param epaController the EPAController
 	 */
-	public BenutzerAnlegenController(EPAController e) {
-    	this.ePAController = e ;
+	public BenutzerAnlegenController(EPAController epaController) {
+    	this.ePAController = epaController ;
     }
 
     /**
 	 * Diese Methode liegt einen neuen Arzt an
-	 * @param Vorname Vorname des Arztes
-	 * @param Nachname Nachname des Arztes
+	 * @param vorname vorname des Arztes
+	 * @param nachname nachname des Arztes
 	 * @param fach Fachrichtung des Arztes
 	 * @param num  ID des Arztes
 	 * @param passwort passowrt des Arztes
-	 * @param Tel Telefonnummmer des Arztes
+	 * @param tel Telefonnummmer des Arztes
  	 */
-    public void arztAnlegen(String Vorname, String Nachname, String fach, String num, String passwort, String Tel) throws IOException {
+    public void arztAnlegen(String vorname, String nachname, String fach, String num, String passwort, String tel) throws IOException {
 
-    	Arzt arzt = new Arzt(Vorname, Nachname, fach, num, passwort, Tel); // create new instance arzt
+    	Arzt arzt = new Arzt(vorname, nachname, fach, num, passwort, tel); // create new instance arzt
 		arzt.addToRevision(ePAController.getTime()+" Herzlich Willkommen");// add revision
 		ePAController.getEPA().addArzttToList(arzt);                      // add arzt to list
     	ePAController.getIO().save();                                    // save
@@ -49,18 +49,18 @@ public class BenutzerAnlegenController {
     /**
 	 *  Diese Methode liegt einen neuen Patient an
 	 * @param versicherungsnummer versicherungsnummer des Patienten
-	 * @param Vorname vorname Datum und Uhrzeit
-	 * @param Nachname nachname des Patienten
-	 * @param Address address des Patienten
+	 * @param vorname vorname Datum und Uhrzeit
+	 * @param nachname nachname des Patienten
+	 * @param address address des Patienten
 	 * @param geschlecht is the patient female?
-	 * @param Birth geburtstag des Patienten
+	 * @param birth geburtstag des Patienten
 	 * @param pass passwort des Patienten
 	 * @param hausarztid hausarzt id to set for patient
 	 */
-    public void patientAnlegen(String versicherungsnummer, String Vorname, String Nachname, String Address, boolean geschlecht, String Birth, String pass,String hausarztid) throws IOException {
+    public void patientAnlegen(String versicherungsnummer, String vorname, String nachname, String address, boolean geschlecht, String birth, String pass, String hausarztid) throws IOException {
 
     	String sex = geschlecht ? "f" : "m";  // geschlecht is female ?
-		Patient patient = new Patient(versicherungsnummer, Vorname, Nachname, Address, sex, Birth, pass) ;  // create new instance patient
+		Patient patient = new Patient(versicherungsnummer, vorname, nachname, address, sex, birth, pass) ;  // create new instance patient
 		patient.addToRevision(ePAController.getTime()+" Herzlich Willkommen");// add revision
 		if(!hausarztid.isEmpty()){patient.behandeldenArztAendern(ePAController.getEPA().getArzt(hausarztid));}  // hausarzt id not empty -> set hausarzt for patient
         ePAController.getEPA().addPatientToList(patient);  // add patient to list
