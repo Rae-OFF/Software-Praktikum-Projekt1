@@ -143,7 +143,7 @@ public class zusammenfassungsController extends SplitPane{
             button.setOnAction(event -> {
                 mainStage.setScene(new Scene(new UntersuchungBerichtViewController(berichtListe,untersuchungsbericht, EPAControl, mainStage)));
             });
-            button.setPrefWidth(580.0);
+            button.setPrefWidth(635.0);
             button.setPrefHeight(90.0);
             Flow.getChildren().add(button);
         }
