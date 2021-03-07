@@ -201,7 +201,7 @@ public class Patient implements Serializable {
 
 	/**
 	 *
-	 * @return
+	 * @return revision
 	 */
 	public ArrayList<String> getRevision() {
 		return revision;
@@ -285,10 +285,10 @@ public class Patient implements Serializable {
 	public String getGeschlecht(){return geschlecht;}
 
 	/**
-	 * Equals boolean.
+	 * Equals check ib 2 patient same
 	 *
-	 * @param patient1 the patient
-	 * @return the boolean
+	 * @param patient1 the patient to check
+	 * @return true if 2 patient the same
 	 */
 	@Override
 	public boolean equals(Object patient1) { // check if 2 patient are the same

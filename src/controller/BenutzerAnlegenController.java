@@ -49,7 +49,7 @@ public class BenutzerAnlegenController {
     /**
 	 *  Diese Methode liegt einen neuen Patient an
 	 * @param versicherungsnummer versicherungsnummer des Patienten
-	 * @param vorname vorname Datum und Uhrzeit
+	 * @param vorname vorname des Patienten
 	 * @param nachname nachname des Patienten
 	 * @param address address des Patienten
 	 * @param geschlecht is the patient female?
@@ -62,7 +62,10 @@ public class BenutzerAnlegenController {
     	String sex = geschlecht ? "f" : "m";  // geschlecht is female ?
 		Patient patient = new Patient(versicherungsnummer, vorname, nachname, address, sex, birth, pass) ;  // create new instance patient
 		patient.addToRevision(ePAController.getTime()+" Herzlich Willkommen");// add revision
-		if(!hausarztid.isEmpty()){patient.behandeldenArztAendern(ePAController.getEPA().getArzt(hausarztid));}  // hausarzt id not empty -> set hausarzt for patient
+		if(!hausarztid.isEmpty()){
+			patient.behandeldenArztAendern(ePAController.getEPA().getArzt(hausarztid));
+			ePAController.getEPA().getArzt(hausarztid).addPatientToList(patient);
+		}  // hausarzt id not empty -> set hausarzt for patient
         ePAController.getEPA().addPatientToList(patient);  // add patient to list
 		ePAController.getIO().save(); // save
 

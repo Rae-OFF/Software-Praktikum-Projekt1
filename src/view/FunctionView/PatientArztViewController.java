@@ -82,10 +82,10 @@ public class PatientArztViewController extends AnchorPane {
     /**
      * To main function.
      *
-     * @param a the a
+     * @param event the Action Event
      */
     @FXML
-    void toMainFunction(ActionEvent a){
+    void toMainFunction(ActionEvent event){
         mainStage.setScene(new Scene(new PatientMainViewController(mainStage,epaController)));
     }
 

@@ -81,6 +81,7 @@ public class DatenBearbeitenController extends ScrollPane {
         }
         else{pIsmale.setSelected(true);}
     }
+
     @FXML
     void InfoAndern(ActionEvent event) throws IOException {
         Patient patient= epaController.getEPA().getPatient(epaController.getCurrLoggedIn());

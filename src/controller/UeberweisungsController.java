@@ -25,10 +25,10 @@ public class UeberweisungsController {
 
     /**
  	 *
- 	 * TODO: create JavaDoc. 
-
+ 	 *
+     * create new ueberweisung
  	 * @return Ueberweisung
- 	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
+ 	 *
  	 */
     public Ueberweisung createUeberweisung(String altArzt,String versicherungsNum, String neuArzt, String auftrag, ArrayList<Untersuchungsbericht> berichtListe,String time) {
         Ueberweisung ueberweisung=new Ueberweisung(); // create ueberweisung with empty constructor
@@ -38,9 +38,9 @@ public class UeberweisungsController {
 
     /**
  	 *
-
- 	 * @throws UnsupportedOperationException
- 	 *	 	 	Diese Exception wird geworfen, fallsdie Methode noch nicht implementiert ist. 
+     * add new ueberweisung to its patient / arzt list
+ 	 *
+ 	 *
  	 */
     public void addUeberweisung( Ueberweisung ueberweisung) throws IOException {
         EPA epa= ePAController.getEPA(); // get epa

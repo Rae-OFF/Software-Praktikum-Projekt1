@@ -110,9 +110,9 @@ public class Arzt implements Serializable {
 
 
 	/**
-	 * Get patient patient.
+	 * Get patient patient with versicherungnummer == num.
 	 *
-	 * @param num the num
+	 * @param num the versicherungnummer
 	 * @return the patient
 	 */
 	public Patient getPatient(String num){ // get patient with versiucherungsnummer from list

@@ -133,41 +133,7 @@ public class Untersuchungsbericht implements Serializable {
 		return patientVersicherungnum;
 	}
 
-	/**
-	 * Sets info.
-	 *
-	 * @param diagnose   the diagnose
-	 * @param med        the med
-	 * @param behandlung the behandlung
-	 * @param icd        the icd
-	 */
-	public void setInfo(String diagnose, List<String> med, String behandlung, String icd) {
 
-	}
-
-	/**
-	 * todo: name
-	 * @return
-	 */
-	public String toString(){// return all atrributes as String
-		String ausgabe="";
-		ausgabe+="Name: "+""+"/n";
-		ausgabe+="Datum: "+datum  +"/n";
-		ausgabe+="Behandelnder Arzt: "+""+"/n";
-		ausgabe+="ICD: "+iCD+"/n";
-		ausgabe+="Diagnose: "+diagnose+"/n";
-		ausgabe+="verabreichte Medikamente:/n";
-		for (String x:med) {
-			ausgabe+="-"+x+"/n";
-		}
-		ausgabe+="/n";
-		ausgabe+="Behandlung: "+behandlung+"/n";
-		ausgabe+="Notizen:/n";
-		for (String y:notes) {
-			ausgabe+="-"+y+"/n";
-		}
-		return ausgabe;
-	}
 
 	/**
 	 * Gets patient versicherungnum.
