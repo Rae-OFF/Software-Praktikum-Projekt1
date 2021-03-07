@@ -27,7 +27,7 @@ public class Arzt implements Serializable {
 
     private ArrayList<String> revision;
 
-    //private ArrayList<Patient> patient;
+    private ArrayList<Patient> patient;
 
 
     private String passWort;
