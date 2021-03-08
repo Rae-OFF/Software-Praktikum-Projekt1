@@ -137,8 +137,8 @@ jacocoLogTestCoverage {
 
 shadowDistZip {
     into(project.name + "-shadow") {
-        //from 'additionalAssets'
-        include '*.pdf', '*.md'
+        from '.'
+        include '*.pdf'
     }
 }
 
