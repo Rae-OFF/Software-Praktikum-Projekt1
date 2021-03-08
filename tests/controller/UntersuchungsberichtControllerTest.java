@@ -2,6 +2,7 @@ package controller;
 
 import model.*;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -201,6 +202,12 @@ public class UntersuchungsberichtControllerTest {
         assertFalse(usController.felderLeer(testTime.format(formatterTime), versicherungsnummer, symptome, iCD, behandlung,medikamente));
         symptome=null;
         assertTrue(usController.felderLeer(testTime.format(formatterTime), versicherungsnummer, symptome, iCD, behandlung,medikamente));
+    }
+    @After
+    public void tearDown() throws IOException {
+        EPA epa= new EPA();
+        epaController.setEPA(epa);
+        epaController.getIO().save();
     }
 
 }

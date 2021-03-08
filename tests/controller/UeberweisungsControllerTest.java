@@ -3,6 +3,7 @@ package controller;
 import controller.EPAController;
 import controller.UeberweisungsController;
 import model.*;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -93,6 +94,12 @@ public class UeberweisungsControllerTest {
         assertEquals(epaController.getEPA().getArzt("5678").checkPatientValid("1234"),true);// test if new patient added to list
         assertEquals(epaController.getEPA().getArzt("1234").getRevision().size(),revision1+1);// test if new revision added, for arzt 1 revision with ueberweisung
         assertEquals(epaController.getEPA().getArzt("5678").getRevision().size(),revision2+2);// test if new revision added, for arzt 2 revision with ueberweisung and new patient in list
+    }
+    @After
+    public void tearDown() throws IOException {
+        EPA epa= new EPA();
+        epaController.setEPA(epa);
+        epaController.getIO().save();
     }
 
 

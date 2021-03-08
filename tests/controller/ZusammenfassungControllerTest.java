@@ -4,6 +4,7 @@ package controller;
 import controller.EPAController;
 import controller.UeberweisungsController;
 import model.*;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -98,6 +99,12 @@ public class ZusammenfassungControllerTest {
         return untersuchungsbericht1.getBehandenderArzt().equals(untersuchungsbericht2.getBehandenderArzt())&&untersuchungsbericht1.getDatum().equals(untersuchungsbericht2.getDatum())&&untersuchungsbericht1.getICD().equals(untersuchungsbericht2.getICD())&&untersuchungsbericht1.getPatientVersicherungnum().equals(untersuchungsbericht2.getPatientVersicherungnum())
                 &&untersuchungsbericht1.getBehandlung().equals(untersuchungsbericht2.getBehandlung())&&untersuchungsbericht1.getDiagnose().equals(untersuchungsbericht2.getDiagnose());
 
+    }
+    @After
+    public void tearDown() throws IOException {
+        EPA epa= new EPA();
+        epaController.setEPA(epa);
+        epaController.getIO().save();
     }
 }
 
