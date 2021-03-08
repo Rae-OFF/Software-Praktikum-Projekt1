@@ -1,5 +1,6 @@
 package controller;
 
+import model.Arzt;
 import model.EPA;
 import model.Patient;
 import org.junit.After;
@@ -18,6 +19,7 @@ public class PatientDatenControllerTest {
     private EPAController epaController;
 
     private Patient testPatient;
+    private Arzt testArzt;
 
     private BenutzerAnlegenController benutzerAnlegenController;
 
@@ -55,6 +57,9 @@ public class PatientDatenControllerTest {
         passwort = "1234";
         String hausarzt = "1248";
         testPatient = new Patient(num,vorname,nachname,adresse,testGeschlecht,birth,passwort);
+        testArzt=new Arzt(vorname,nachname,"leer",hausarzt,"1234","0000");
+        testPatient.behandeldenArztAendern(testArzt);
+        epa.addArzttToList(testArzt);
         benutzerAnlegenController.patientAnlegen(num,vorname,nachname,adresse,geschlecht,birth,passwort,hausarzt);
         patientDatenController = epaController.getPatientDatenController();
     }
@@ -88,11 +93,4 @@ public class PatientDatenControllerTest {
         }
     }
 
-    /**
-     * berichteAussuchen
-     */
-
-    @Test
-    public void berichteAussuchen() {
-    }
 }

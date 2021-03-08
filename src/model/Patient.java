@@ -296,7 +296,7 @@ public class Patient implements Serializable {
 	@Override
 	public boolean equals(Object patient1) { // check if 2 patient are the same
 		Patient patient = (Patient) patient1;
-		return(patient.getNum().equals(this.getNum())&&patient.getVorname().equals(this.getVorname())&&patient.getNachname().equals(this.getNachname())&&patient.getAddress().equals(this.getAddress())&&patient.getGeschlecht().equals(this.getGeschlecht())&&patient.getGesburtsDatum().equals(this.getGesburtsDatum())&&patient.getPasswort().equals(this.getPasswort())&&patient.getBehandelnderArzt().equals(this.getBehandelnderArzt()));
+		return(patient.getNum().equals(this.getNum())&&patient.getVorname().equals(this.getVorname())&&patient.getNachname().equals(this.getNachname())&&patient.getAddress().equals(this.getAddress())&&patient.getGeschlecht().equals(this.getGeschlecht())&&patient.getGesburtsDatum().equals(this.getGesburtsDatum())&&patient.getPasswort().equals(this.getPasswort())&&(patient.getBehandelnderArzt()==null&&this.getBehandelnderArzt()==null||patient.getBehandelnderArzt().equals(this.getBehandelnderArzt())));
 	}
 
 }

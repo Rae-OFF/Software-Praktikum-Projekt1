@@ -97,7 +97,6 @@ public class zusammenfassungsController extends SplitPane{
     //private ImageView PatientImage;
     private Stage mainStage;
     private EPAController EPAControl;
-    private Untersuchungsbericht Ub;
     private ArrayList<Untersuchungsbericht> berichtListe;
     private String versicherungnummer;
     /**
