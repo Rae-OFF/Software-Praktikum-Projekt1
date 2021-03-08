@@ -52,6 +52,7 @@ public class DatenBearbeitenController extends ScrollPane {
     @FXML
     private Button save;
 
+
     @FXML
     private Text HiddenText;
     private Stage mainStage;
@@ -81,11 +82,26 @@ public class DatenBearbeitenController extends ScrollPane {
         }
         else{pIsmale.setSelected(true);}
     }
+
     @FXML
     void InfoAndern(ActionEvent event) throws IOException {
         Patient patient= epaController.getEPA().getPatient(epaController.getCurrLoggedIn());
-        if(pSetpass.getText().isEmpty()){HiddenText.setText("Geben Sie bitte ihres Passwort ein");HiddenText.setVisible(true);}
-        else if(!pSetpass.getText().equals(patient.getPasswort())){HiddenText.setVisible(true);}
+        if(pSetpass.getText().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("");
+            alert.setHeaderText("Error");
+            String s ="Geben Sie bitte ihres Passwort ein";
+            alert.setContentText(s);
+            alert.show();
+        }
+        else if(!pSetpass.getText().equals(patient.getPasswort())){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("");
+            alert.setHeaderText("Error");
+            String s ="Sie haben das falsche Passwort eingegeben";
+            alert.setContentText(s);
+            alert.show();
+        }
         else{
             String s = pIsfemale.isSelected() ? "f" : "m";
             if(neuPass.getText().isEmpty()){

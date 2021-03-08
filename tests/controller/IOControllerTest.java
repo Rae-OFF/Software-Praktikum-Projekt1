@@ -11,6 +11,10 @@ import java.io.IOException;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import static org.junit.Assert.*;
+
+/**
+ * IOControllerTest
+ */
 public class IOControllerTest {
     EPAController epaController=new EPAController();
     /**
@@ -31,8 +35,13 @@ public class IOControllerTest {
         EPA epa2=epaController.getEPA();
         assertEquals(epa2.getArztList().size(),epa1.getArztList().size());
         assertEquals(epa2.getPatientList().size(),epa1.getPatientList().size());
-        // brauch noch methode um instanz in liste auf gleichtheit zu pruefen
 
+        for(int i=0; i<epa2.getArztList().size(); i++ ){
+            assertTrue(epa2.getArztList().get(i).equals(epa1.getArztList().get(i)));
+        }
+        for(int i=0; i<epa2.getArztList().size(); i++ ){
+            assertTrue(epa2.getPatientList().get(i).equals(epa1.getPatientList().get(i)));
+        }
     }
 
     /**
@@ -45,5 +54,12 @@ public class IOControllerTest {
         EPA epa2=epaController.getEPA();
         assertEquals(epa2.getArztList().size(),epa1.getArztList().size());
         assertEquals(epa2.getPatientList().size(),epa1.getPatientList().size());
+        for(int i=0; i<epa2.getArztList().size(); i++ ){
+            assertTrue(epa2.getArztList().get(i).equals(epa1.getArztList().get(i)));
+        }
+        for(int i=0; i<epa2.getArztList().size(); i++ ){
+            assertTrue(epa2.getPatientList().get(i).equals(epa1.getPatientList().get(i)));
+        }
     }
+
 }

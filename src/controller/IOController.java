@@ -12,7 +12,6 @@ public class IOController {
 
     private  static final File SAVE= new File("SaveFile"); // File SAVE to save epa
 
-    private IOController iOController;
 
     private EPAController ePAController;
 
@@ -22,14 +21,13 @@ public class IOController {
 	 * @param epaController the epaController
 	 */
 	public IOController(EPAController epaController) {
-        ePAController=epaController;
+        this.ePAController=epaController;
     }
 
 	/**
-	 * TODO: create JavaDoc.
+	 * load epa from save file
 	 *
-	 * @throws IOException            the io exception
-	 * @throws ClassNotFoundException the class not found exception
+	 * @throws IOException the io exception
 	 */
 	public void load() throws IOException, ClassNotFoundException {
 		if (!SAVE.exists()) { // no file
@@ -42,7 +40,7 @@ public class IOController {
 	}
 
 	/**
-	 * TODO: create JavaDoc.
+	 * save epa to save file
 	 *
 	 * @throws IOException the io exception
 	 */

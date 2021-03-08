@@ -129,10 +129,10 @@ public class UeberweisungsViewController extends ScrollPane {
     /**
      * To main view.
      *
-     * @param e the e
+     * @param event the event
      */
     @FXML
-    void ToMainView(ActionEvent e) throws IOException {
+    void ToMainView(ActionEvent event) throws IOException {
         // create new Ueberweisung with UeberweisungsController parameter ist atribute ()
         Ueberweisung ueberweisung =epaController.getUeberweisungsController().createUeberweisung(epaController.getCurrLoggedIn(),versicherungsNummmer,neuArzt,auftrag,berichtListe,time);
         epaController.getUeberweisungsController().addUeberweisung(ueberweisung);
@@ -142,10 +142,10 @@ public class UeberweisungsViewController extends ScrollPane {
     /**
      * To create ueberweisung.
      *
-     * @param e the e
+     * @param event the event
      */
     @FXML
-    void ToCreateUeberweisung(ActionEvent e){
+    void ToCreateUeberweisung(ActionEvent event){
         mainStage.setScene(new Scene(new UeberweisungCreateViewController(mainStage, epaController)));
     }
 

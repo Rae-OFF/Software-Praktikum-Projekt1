@@ -23,7 +23,7 @@ public class PatientDatenController {
 	/**
 	 * Instantiates a new Patient daten controller.
 	 *
-	 * @param ePAController the e pa controller
+	 * @param ePAController the epa controller
 	 */
 	public PatientDatenController(EPAController ePAController) {
 		this.ePAController = ePAController ;
@@ -32,9 +32,9 @@ public class PatientDatenController {
 	/**
 	 * Diese Methode ermoeglicht die Daten eines schon existierend Patient zu bearbeiten
 	 * @param versicherungsnummer des Patienten
-	 * @param vorname Datum und Uhrzeit
+	 * @param vorname des Patienten
 	 * @param nachname des Patienten
-	 * @param address -ikamente des Patienten
+	 * @param address des Patienten
 	 * @param geschlecht des Patienten
 	 * @param birth des Patienten
 	 * @param pass des Patienten
@@ -55,7 +55,7 @@ public class PatientDatenController {
 	/**
 	 * Diese Methode ermoeglicht einen Arzt als Hausarzt eines Patienten hinzuzufügen
 	 * @param versicherungsnummer des Patienten
-	 * @param arztID Datum und Uhrzeit
+	 * @param arztID des Arzt
 	 */
 	public void patientSetArzt(String versicherungsnummer, String arztID) throws IOException {
 		EPA epa = ePAController.getEPA(); // get ePA
@@ -68,8 +68,8 @@ public class PatientDatenController {
 
 	/**
 	 * Diese Methode gibt alle Untersuchungsbericht von Patient und Versicherungsnummern zwischen dem Start- und Enddatum zurück
-	 * @param startDate des Patienten
-	 * @param endDate Datum und Uhrzeit
+	 * @param startDate des Zeitraum
+	 * @param endDate des Zeitraum
 	 * @param versicherungsnummer des Patienten
 	 */
 	public ArrayList<Untersuchungsbericht> getUntersuchungbericht(LocalDateTime startDate, LocalDateTime endDate, String versicherungsnummer){ // return all untersuchungbericht of patient with versicherungnummer in between startdate and enddate

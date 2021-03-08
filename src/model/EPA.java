@@ -59,6 +59,7 @@ public class EPA implements Serializable {
 	} // get patient list
 
 	/**
+	 * Gets patient
 	 * @param num the num
 	 * @return Patient patient
 	 */
@@ -71,8 +72,9 @@ public class EPA implements Serializable {
 
 
 	/**
+	 * Gets Arzt
 	 * @param num the num
-	 * @return Arzt arzt
+	 * @return Arzt
 	 */
 	public Arzt getArzt(String num) { // get arzt wit arzt id == num in parameter
         for(int i=0; i< arztList.size(); i++){
@@ -82,8 +84,9 @@ public class EPA implements Serializable {
     }
 
 	/**
+	 * check number of arzt
 	 * @param num the num
-	 * @return boolean boolean
+	 * @return boolean
 	 */
 	public boolean checkNumArzt(String num)  { // check if there is arzt have id == num in arzt list
         for(int i=0; i< arztList.size(); i++){
@@ -93,8 +96,9 @@ public class EPA implements Serializable {
     }
 
 	/**
+	 * check number of Patient
 	 * @param num the num
-	 * @return boolean boolean
+	 * @return boolean
 	 */
 	public boolean checkNumPatient(String num)  { // check if there is patient with versiucherungsnummer == num in patient list
 		for(int i=0; i< patientList.size(); i++){

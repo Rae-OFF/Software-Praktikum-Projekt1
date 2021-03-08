@@ -59,6 +59,10 @@ public class PatientDatenControllerTest {
         patientDatenController = epaController.getPatientDatenController();
     }
 
+    /**
+     * tearDown
+     * @throws Exception Exception
+     */
     @After
     public void tearDown() throws Exception {
         epa.removePatient(num);
@@ -83,6 +87,10 @@ public class PatientDatenControllerTest {
             System.out.println("PatientenDatenUpdateTest fehler bei update");
         }
     }
+
+    /**
+     * berichteAussuchen
+     */
 
     @Test
     public void berichteAussuchen() {

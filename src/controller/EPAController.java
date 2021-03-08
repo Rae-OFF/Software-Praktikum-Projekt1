@@ -84,7 +84,7 @@ public class EPAController {
 	/**
 	 * Get time string.
 	 *
-	 * @return the string
+	 * @return the string of time.
 	 */
 	public String getTime(){ // get time, return with format yyyy-MM-dd HH:mm:ss
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -92,9 +92,9 @@ public class EPAController {
 	}
 
 	/**
-	 * Gets io.
+	 * Gets ioController.
 	 *
-	 * @return the io
+	 * @return the iOController.
 	 */
 	public IOController getIO()  {
         return iOController;
@@ -104,16 +104,16 @@ public class EPAController {
 	/**
 	 * Gets patient daten controller.
 	 *
-	 * @return the patient daten controller
+	 * @return the patient daten controller.
 	 */
 	public PatientDatenController getPatientDatenController()  {
         return patientDatencontroller;
     }
 
 	/**
-	 * Gets akt anlegen controller.
+	 * Gets AktAnlegenController.
 	 *
-	 * @return the akt anlegen controller
+	 * @return the AktAnlegenController.
 	 */
 	public BenutzerAnlegenController getAktAnlegenController()  {
         return  benutzerAnlegenController;
@@ -131,7 +131,7 @@ public class EPAController {
 	/**
 	 * Get ueberweisungs controller ueberweisungs controller.
 	 *
-	 * @return the ueberweisungs controller
+	 * @return the ueberweisungs controller.
 	 */
 	public UeberweisungsController getUeberweisungsController()
 	{
@@ -142,7 +142,7 @@ public class EPAController {
 	/**
 	 * Gets zusammenfassungs controller.
 	 *
-	 * @return the zusammenfassungs controller
+	 * @return the zusammenfassungs controller.
 	 */
 	public ZusammenfassungsController getZusammenfassungsController()
 	{
@@ -150,20 +150,20 @@ public class EPAController {
     }
 
 	/**
-	 * Set curr logged in.
+	 * Set current login number.
 	 *
-	 * @param num the num
+	 * @param num the current login number.
 	 */
 	public void setCurrLoggedIn(String num)
 	{
-		currLoggedIn=num;// set current loggin number
+		currLoggedIn=num;// set current login number
 	}
 
 
 	/**
-	 * Gets curr logged in.
+	 * Gets current login number.
 	 *
-	 * @return the curr logged in
+	 * @return the current login number.
 	 */
 	public String getCurrLoggedIn() throws UnsupportedOperationException
 	{
