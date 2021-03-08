@@ -135,5 +135,12 @@ jacocoLogTestCoverage {
     }
 }
 
+shadowDistZip {
+    into(project.name + "-shadow") {
+        from 'additionalAssets'
+        include '*.pdf', '*.md'
+    }
+}
+
 mainClassName = 'application.Runner'
 
