@@ -13,19 +13,28 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 /**
- * IOControllerTest
+ * The type Io controller test.
  */
 public class IOControllerTest {
-    EPAController epaController=new EPAController();
     /**
-     *Setup für gebraucht in den Tests.
+     * The Epa controller.
+     */
+    EPAController epaController=new EPAController();
+
+    /**
+     * Sets up.
+     *
+     * @throws Exception the exception
      */
     @Before
     public void setUp() throws Exception {
     }
 
     /**
-     *Test, ob ePA richtig gespeichert wird.
+     * Save.
+     *
+     * @throws IOException            the io exception
+     * @throws ClassNotFoundException the class not found exception
      */
     @Test
     public void save() throws IOException, ClassNotFoundException {
@@ -45,7 +54,10 @@ public class IOControllerTest {
     }
 
     /**
-     *Test, ob ePA richtig geladen wird.
+     * Load.
+     *
+     * @throws IOException            the io exception
+     * @throws ClassNotFoundException the class not found exception
      */
     @Test
     public void load() throws IOException, ClassNotFoundException {

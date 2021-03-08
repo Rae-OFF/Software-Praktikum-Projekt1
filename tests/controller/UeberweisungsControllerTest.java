@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 /**
- *Zur überpreufung der Klasse UeberweisungsConteoller.
+ * The type Ueberweisungs controller test.
  */
 public class UeberweisungsControllerTest {
     private EPAController epaController = new EPAController();
@@ -23,7 +23,9 @@ public class UeberweisungsControllerTest {
 
 
     /**
-     *Setup ,was in den Test gebraucht wird.
+     * Sets up.
+     *
+     * @throws Exception the exception
      */
     @Before
     public void setUp() throws Exception {
@@ -44,7 +46,7 @@ public class UeberweisungsControllerTest {
     }
 
     /**
-     *Test , ob Ueberweisung richtig erstellt wird .
+     * Create ueberweisung.
      */
     @Test
     public void createUeberweisung() {
@@ -58,7 +60,7 @@ public class UeberweisungsControllerTest {
     }
 
     /**
-     *Test , ob der Fehler mit falschen Parameter ausgegeben wird.
+     * Create ueberweisung 1.
      */
     @Test
     public void createUeberweisung1() {
@@ -72,7 +74,9 @@ public class UeberweisungsControllerTest {
     }
 
     /**
-     *Test , ob die Ueberwisung richtig hinzugefeugt wird.
+     * Add ueberweisung.
+     *
+     * @throws IOException the io exception
      */
     @Test
     public void addUeberweisung() throws IOException {

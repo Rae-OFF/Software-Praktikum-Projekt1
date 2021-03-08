@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 import java.io.IOException;
 
 /**
- *Zur überprüfung der Klasse PatientDatenController.
+ * The type Patient daten controller test.
  */
 public class PatientDatenControllerTest {
 
@@ -42,7 +42,9 @@ public class PatientDatenControllerTest {
     private String hausarzt;
 
     /**
-     *Setup für gebraucht in den Tests.
+     * Sets up.
+     *
+     * @throws Exception the exception
      */
     @Before
     public void setUp() throws Exception {
@@ -67,8 +69,9 @@ public class PatientDatenControllerTest {
     }
 
     /**
-     * tearDown
-     * @throws Exception Exception
+     * Tear down.
+     *
+     * @throws Exception the exception
      */
     @After
     public void tearDown() throws Exception {
@@ -79,7 +82,7 @@ public class PatientDatenControllerTest {
     }
 
     /**
-     *Test, ob Daten von Patient erneut werden.
+     * Patient daten update.
      */
     @Test
     public void patientDatenUpdate(){

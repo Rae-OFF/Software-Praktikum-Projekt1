@@ -8,8 +8,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+
 /**
- *Zur überprüfung der Klasse BenutzerAnlegenController.
+ * The type Benutzer anlegen controller test.
  */
 public class BenutzerAnlegenControllerTest {
 
@@ -38,7 +39,7 @@ public class BenutzerAnlegenControllerTest {
     private String birth;
 
     /**
-     *Setup für gebraucht in den Tests.
+     * Set up.
      */
     @Before
     public void setUp(){
@@ -61,7 +62,9 @@ public class BenutzerAnlegenControllerTest {
 
 
     /**
-     *Test, ob Arzt objekt richtig angelegt wird.
+     * Arzt anlegen.
+     *
+     * @throws IOException the io exception
      */
     @Test
     public void arztAnlegen() throws IOException {
@@ -71,7 +74,9 @@ public class BenutzerAnlegenControllerTest {
     }
 
     /**
-     *Test, ob Patient objekt richtig angelegt wird.
+     * Patient anlegen.
+     *
+     * @throws IOException the io exception
      */
     @Test
     public void patientAnlegen() throws IOException {
@@ -81,7 +86,7 @@ public class BenutzerAnlegenControllerTest {
     }
 
     /**
-     * tearDown
+     * Tear down.
      */
     @After
     public void tearDown(){

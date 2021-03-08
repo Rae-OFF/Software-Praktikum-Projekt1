@@ -16,7 +16,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 /**
- *Zur überprüfung der Klasse UntersuchungsberichtController.
+ * The type Untersuchungsbericht controller test.
  */
 public class UntersuchungsberichtControllerTest {
     private EPAController epaController;
@@ -39,10 +39,8 @@ public class UntersuchungsberichtControllerTest {
     private List<Patient> patientList;
 
 
-
-
     /**
-     *Setup ,was in den Test gebraucht wird.
+     * Sets up.
      */
     @Before
     public void setUp() {
@@ -124,7 +122,7 @@ public class UntersuchungsberichtControllerTest {
 
 
     /**
-     *Test,  ob Utersuchungsbericht richtig erstellt wird .
+     * Create untersuchungsbericht.
      */
     @Test
     public void createUntersuchungsbericht() {
@@ -143,7 +141,7 @@ public class UntersuchungsberichtControllerTest {
     }
 
     /**
-     *Test,  ob Utersuchungsbericht richtig hinzugefeugt wird.
+     * Add untersuchungbericht.
      */
     @Test
     public void addUntersuchungbericht() {
@@ -162,7 +160,7 @@ public class UntersuchungsberichtControllerTest {
     }
 
     /**
-     *Test, ob ICD richt überprüft wird.
+     * Cd ueberpruefen.
      */
     @Test
     public void iCDUeberpruefen() {
@@ -173,7 +171,7 @@ public class UntersuchungsberichtControllerTest {
     }
 
     /**
-     *Test, ob Versicherungsnummer richt überprüft wird.
+     * Versicherungsnummer ueberpruefen.
      */
     @Test
     public void versicherungsnummerUeberpruefen() {
@@ -183,7 +181,7 @@ public class UntersuchungsberichtControllerTest {
     }
 
     /**
-     *Test, ob Uhrzeit richt überprüft wird.
+     * Uhrzeit ueberpruefen.
      */
     @Test
     public void uhrzeitUeberpruefen() {
@@ -192,7 +190,7 @@ public class UntersuchungsberichtControllerTest {
     }
 
     /**
-     *Test, ob leere Felder richt überprüft wird.
+     * Felder leer.
      */
     @Test
     public void felderLeer(){
@@ -203,6 +201,12 @@ public class UntersuchungsberichtControllerTest {
         symptome=null;
         assertTrue(usController.felderLeer(testTime.format(formatterTime), versicherungsnummer, symptome, iCD, behandlung,medikamente));
     }
+
+    /**
+     * Tear down.
+     *
+     * @throws IOException the io exception
+     */
     @After
     public void tearDown() throws IOException {
         EPA epa= new EPA();

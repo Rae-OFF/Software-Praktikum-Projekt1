@@ -17,13 +17,22 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 /**
- *Zur überprüfung der Klasse ZusammenfassungController.
+ * The type Zusammenfassung controller test.
  */
 public class ZusammenfassungControllerTest {
-    EPAController epaController=new EPAController();
-    Untersuchungsbericht[] untersuchung=new Untersuchungsbericht[3];
     /**
-     *Setup ,was in den Test gebraucht wird.
+     * The Epa controller.
+     */
+    EPAController epaController=new EPAController();
+    /**
+     * The Untersuchung.
+     */
+    Untersuchungsbericht[] untersuchung=new Untersuchungsbericht[3];
+
+    /**
+     * Sets up.
+     *
+     * @throws Exception the exception
      */
     @Before
     public void setUp() throws Exception {
@@ -52,7 +61,7 @@ public class ZusammenfassungControllerTest {
     }
 
     /**
-     *Test,  ob Zusammenfassung von aktuell behandelndem Arzt richtig erstellt wird .
+     * Createzusammenfassung ein arzte.
      */
     @Test
     public void createzusammenfassungEinArzte() {
@@ -64,7 +73,7 @@ public class ZusammenfassungControllerTest {
     }
 
     /**
-     *Test,  ob Zusammenfassung von unterschiedlichen Ärzten richtig erstellt wird .
+     * Createzusammenfassung aller arzt.
      */
     @Test
     public void createzusammenfassungAllerArzt() {
@@ -76,7 +85,7 @@ public class ZusammenfassungControllerTest {
     }
 
     /**
-     * Test,  ob Zusammenfassung von unterschiedlichen Ärzten richtig erstellt wird .
+     * Createzusammenfassung aller arzt 2.
      */
     @Test
     public void createzusammenfassungAllerArzt2() {
@@ -89,17 +98,17 @@ public class ZusammenfassungControllerTest {
         assertEquals(untersuchungsberichts2.size(),3);
     }
 
-    /**
-     *  Test, ob zwei gleiche Untersuchungsbericht unterschieden werden können.
-     * @param untersuchungsbericht1  untersuchungsbericht1
-     * @param untersuchungsbericht2  untersuchungsbericht2
-     * @return true or false
-     */
     private boolean equalsBericht(Untersuchungsbericht untersuchungsbericht1, Untersuchungsbericht untersuchungsbericht2){ // check every attribut of 2 untersuchungbericht in parameter to find if 2 r the same
         return untersuchungsbericht1.getBehandenderArzt().equals(untersuchungsbericht2.getBehandenderArzt())&&untersuchungsbericht1.getDatum().equals(untersuchungsbericht2.getDatum())&&untersuchungsbericht1.getICD().equals(untersuchungsbericht2.getICD())&&untersuchungsbericht1.getPatientVersicherungnum().equals(untersuchungsbericht2.getPatientVersicherungnum())
                 &&untersuchungsbericht1.getBehandlung().equals(untersuchungsbericht2.getBehandlung())&&untersuchungsbericht1.getDiagnose().equals(untersuchungsbericht2.getDiagnose());
 
     }
+
+    /**
+     * Tear down.
+     *
+     * @throws IOException the io exception
+     */
     @After
     public void tearDown() throws IOException {
         EPA epa= new EPA();
