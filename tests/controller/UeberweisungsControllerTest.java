@@ -15,7 +15,6 @@ import static org.junit.Assert.*;
 /**
  *Zur überpreufung der Klasse UeberweisungsConteoller.
  */
-
 public class UeberweisungsControllerTest {
     private EPAController epaController = new EPAController();
     private Ueberweisung ueberweisung ;
@@ -26,7 +25,6 @@ public class UeberweisungsControllerTest {
     /**
      *Setup ,was in den Test gebraucht wird.
      */
-
     @Before
     public void setUp() throws Exception {
         EPA epa= epaController.getEPA();
@@ -44,10 +42,10 @@ public class UeberweisungsControllerTest {
         ueberweisung = new Ueberweisung();
         ueberweisung.setAltArztNummer("1234").setPatientNummer("1234").setNeuArztNummer("5678").setUntersuchungberichtInit(untersuchungslist).setAuftrag("test").setDate("1.1.2022");
     }
+
     /**
      *Test , ob Ueberweisung richtig erstellt wird .
      */
-
     @Test
     public void createUeberweisung() {
         Ueberweisung ueberweisung1 = ueberweisungsController.createUeberweisung("1234","1234","5678","test",untersuchungslist,"1.1.2022");
@@ -76,7 +74,6 @@ public class UeberweisungsControllerTest {
     /**
      *Test , ob die Ueberwisung richtig hinzugefeugt wird.
      */
-
     @Test
     public void addUeberweisung() throws IOException {
         Ueberweisung ueberweisung2 = new Ueberweisung().setAltArztNummer("1234").setPatientNummer("1234").setNeuArztNummer("5678").setUntersuchungberichtInit(untersuchungslist).setAuftrag("test").setDate("20.1.2022");
@@ -95,6 +92,12 @@ public class UeberweisungsControllerTest {
         assertEquals(epaController.getEPA().getArzt("1234").getRevision().size(),revision1+1);// test if new revision added, for arzt 1 revision with ueberweisung
         assertEquals(epaController.getEPA().getArzt("5678").getRevision().size(),revision2+2);// test if new revision added, for arzt 2 revision with ueberweisung and new patient in list
     }
+
+    /**
+     * Tear down.
+     *
+     * @throws IOException the io exception
+     */
     @After
     public void tearDown() throws IOException {
         EPA epa= new EPA();
