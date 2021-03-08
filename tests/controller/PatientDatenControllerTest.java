@@ -39,6 +39,8 @@ public class PatientDatenControllerTest {
 
     private String passwort;
 
+    private String hausarzt;
+
     /**
      *Setup für gebraucht in den Tests.
      */
@@ -47,7 +49,7 @@ public class PatientDatenControllerTest {
         epaController = new EPAController();
         benutzerAnlegenController = epaController.getAktAnlegenController();
         epa = epaController.getEPA();
-        num = "1248";
+        num = "8421";
         vorname="Mark";
         nachname = "Ammermüller";
         adresse = "Lingusterweg";
@@ -55,7 +57,7 @@ public class PatientDatenControllerTest {
         boolean geschlecht = false;
         birth = "20.05.01";
         passwort = "1234";
-        String hausarzt = "1248";
+        hausarzt = "1357";
         testPatient = new Patient(num,vorname,nachname,adresse,testGeschlecht,birth,passwort);
         testArzt=new Arzt(vorname,nachname,"leer",hausarzt,"1234","0000");
         testPatient.behandeldenArztAendern(testArzt);
@@ -71,6 +73,9 @@ public class PatientDatenControllerTest {
     @After
     public void tearDown() throws Exception {
         epa.removePatient(num);
+        epa.removeArzt(hausarzt);
+        testPatient=null;
+        testArzt=null;
     }
 
     /**

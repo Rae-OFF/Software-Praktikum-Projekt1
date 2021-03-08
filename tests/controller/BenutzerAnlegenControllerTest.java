@@ -53,8 +53,9 @@ public class BenutzerAnlegenControllerTest {
         EPAController epaController = new EPAController();
         epa = epaController.getEPA();
         testArzt = new Arzt(vorname, nachname, fach, num,passwort, tel);
+        epa.addArzttToList(testArzt);
         testPatient = new Patient(num,vorname,nachname,adresse,"m",birth,passwort);
-        testPatient.behandeldenArztAendern(testArzt);
+        testPatient.behandeldenArztAendern(epa.getArzt(num));
         benutzerAnlegenController= epaController.getAktAnlegenController();
     }
 
@@ -74,15 +75,8 @@ public class BenutzerAnlegenControllerTest {
      */
     @Test
     public void patientAnlegen() throws IOException {
-        System.out.println(testPatient.getBehandelnderArzt());
         //test2:
         benutzerAnlegenController.patientAnlegen(num, vorname, nachname, adresse, false, birth, passwort,num);
-        System.out.println(epa.getPatient(num).getName()+" "+testPatient.getName());
-        System.out.println(epa.getPatient(num).getAddress()+" "+testPatient.getAddress());
-        System.out.println(epa.getPatient(num).getGeschlecht()+" "+testPatient.getGeschlecht());
-        System.out.println(epa.getPatient(num).getGesburtsDatum()+" "+testPatient.getGesburtsDatum());
-        System.out.println(epa.getPatient(num).getPasswort()+" "+testPatient.getPasswort());
-        System.out.println(epa.getPatient(num).getBehandelnderArzt()+" "+testPatient.getBehandelnderArzt());
         assert(epa.getPatient(num).equals(testPatient));
     }
 
@@ -93,6 +87,7 @@ public class BenutzerAnlegenControllerTest {
     public void tearDown(){
         epa.removeArzt(num);
         epa.removePatient(num);
-
+        testArzt=null;
+        testPatient=null;
     }
 }
