@@ -44,7 +44,6 @@ public class IOControllerTest {
         EPA epa2=epaController.getEPA();
         assertEquals(epa2.getArztList().size(),epa1.getArztList().size());
         assertEquals(epa2.getPatientList().size(),epa1.getPatientList().size());
-
         for(int i=0; i<epa2.getArztList().size(); i++ ){
             assertTrue(epa2.getArztList().get(i).equals(epa1.getArztList().get(i)));
         }

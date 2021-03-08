@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class ZusammenfassungsController {
 
-    private EPAController ePAController;
+	private EPAController ePAController;
 
 	/**
 	 * Instantiates a new Zusammenfassungs controller.
@@ -22,8 +22,8 @@ public class ZusammenfassungsController {
 	 * @param epaController the epaController
 	 */
 	public ZusammenfassungsController(EPAController epaController) {
-    	ePAController=epaController;
-    }
+		ePAController = epaController;
+	}
 
 	/**
 	 * Add to zusammenfassung.
@@ -32,8 +32,8 @@ public class ZusammenfassungsController {
 	 * @throws UnsupportedOperationException the unsupported operation exception
 	 */
 	public void addToZusammenfassung(Untersuchungsbericht untersuchungsbericht) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not Yet Implemented!");
-    }
+		throw new UnsupportedOperationException("Not Yet Implemented!");
+	}
 
 	/**
 	 * Create zusammenfassung ein arzt
@@ -42,16 +42,17 @@ public class ZusammenfassungsController {
 	 * @param iCD                 the icd
 	 * @return the array list of untersuchungbericht
 	 */
-	public ArrayList<Untersuchungsbericht> createZusammenfassungEinArzt(String versicherungsnummer, String iCD){
-		EPA epa= ePAController.getEPA();// get epa
+	public ArrayList<Untersuchungsbericht> createZusammenfassungEinArzt(String versicherungsnummer, String iCD) {
+		EPA epa = ePAController.getEPA();// get epa
 		Arzt arzt = epa.getArzt(ePAController.getCurrLoggedIn());// get arzt with arzt id == login nummer
-		ArrayList<Untersuchungsbericht>berichtlist=new ArrayList<Untersuchungsbericht>();
+		ArrayList<Untersuchungsbericht> berichtlist = new ArrayList<Untersuchungsbericht>();
 		berichtlist.addAll(arzt.getUntersuchungsberichte(versicherungsnummer)); // get untersuchungberichtlist of arzt, save in berichtlist
-		if(!iCD.equals("leer")){ // wenn icd eingegeben wird
-			berichtlist.removeIf(Untersuchungsbericht->!Untersuchungsbericht.getICD().equals(iCD));
+		if (!iCD.equals("leer")) { // wenn icd eingegeben wird
+			berichtlist.removeIf(Untersuchungsbericht -> !Untersuchungsbericht.getICD().equals(iCD));
 		}
 		return berichtlist; // return berichtlist
-    }
+	}
+
 
 	/**
 	 * Create zusammenfassung alle aerzte
@@ -61,9 +62,9 @@ public class ZusammenfassungsController {
 	 * @return the array list of untersuchungbericht
 	 */
 	public ArrayList<Untersuchungsbericht> createZusammenfassungAlleAerzte(String versicherungsnummer, String iCD){
-         EPA epa= ePAController.getEPA(); // get epa
-         Arzt arzt = epa.getArzt(ePAController.getCurrLoggedIn());// get arzt with arzt id == login nummer
-		 ArrayList<Untersuchungsbericht>berichtlist= createZusammenfassungEinArzt(versicherungsnummer,iCD); // get untersuchungberichtlist of this arzt, save in berichtlist
+		EPA epa= ePAController.getEPA(); // get epa
+		Arzt arzt = epa.getArzt(ePAController.getCurrLoggedIn());// get arzt with arzt id == login nummer
+		ArrayList<Untersuchungsbericht>berichtlist= createZusammenfassungEinArzt(versicherungsnummer,iCD); // get untersuchungberichtlist of this arzt, save in berichtlist
 		if(arzt.checkPatientValid(versicherungsnummer)){
 			if(arzt.getFachrichtung().equals("Hausarzt")){ // if arzt is hausarzt
 				for(int i=0; i<arzt.getPatient(versicherungsnummer).getUntersuchungList().size();i++){ // check every untersuchungbericht in untersuchungberichtlist of patient with versicherungsnummer in patient list of arzt
@@ -97,18 +98,21 @@ public class ZusammenfassungsController {
 		if(!iCD.equals("leer")){ // if ice was given
 			berichtlist.removeIf(Untersuchungsbericht->!Untersuchungsbericht.getICD().equals(iCD));
 		}
-         return berichtlist; // return berichtlist
-    }
+		return berichtlist; // return berichtlist
+	}
 
 	/**
-	 *  check if 2 untersuchungbericht the same
+	 * check if 2 untersuchungbericht the same
+	 *
 	 * @param untersuchungsbericht1 ein Untersuchungsbericht.
 	 * @param untersuchungsbericht2 ein andere Untersuchungsbericht.
 	 * @return true if 2 untersuchungbericht the same
 	 */
-	private boolean equalsBericht(Untersuchungsbericht untersuchungsbericht1, Untersuchungsbericht untersuchungsbericht2){ // check every attribut of 2 untersuchungbericht in parameter to find if 2 r the same
-		return untersuchungsbericht1.getBehandenderArzt().equals(untersuchungsbericht2.getBehandenderArzt())&&untersuchungsbericht1.getDatum().equals(untersuchungsbericht2.getDatum())&&untersuchungsbericht1.getICD().equals(untersuchungsbericht2.getICD())&&untersuchungsbericht1.getPatientVersicherungnum().equals(untersuchungsbericht2.getPatientVersicherungnum())
-				&&untersuchungsbericht1.getBehandlung().equals(untersuchungsbericht2.getBehandlung())&&untersuchungsbericht1.getDiagnose().equals(untersuchungsbericht2.getDiagnose())&&untersuchungsbericht1.getMed().equals(untersuchungsbericht2.getMed())&&untersuchungsbericht1.getNotes().equals(untersuchungsbericht2.getNotes());
+	private boolean equalsBericht(Untersuchungsbericht untersuchungsbericht1, Untersuchungsbericht untersuchungsbericht2) { // check every attribut of 2 untersuchungbericht in parameter to find if 2 r the same
+		return untersuchungsbericht1.getBehandenderArzt().equals(untersuchungsbericht2.getBehandenderArzt()) && untersuchungsbericht1.getDatum().equals(untersuchungsbericht2.getDatum()) && untersuchungsbericht1.getICD().equals(untersuchungsbericht2.getICD()) && untersuchungsbericht1.getPatientVersicherungnum().equals(untersuchungsbericht2.getPatientVersicherungnum())
+				&& untersuchungsbericht1.getBehandlung().equals(untersuchungsbericht2.getBehandlung()) && untersuchungsbericht1.getDiagnose().equals(untersuchungsbericht2.getDiagnose()) && untersuchungsbericht1.getMed().equals(untersuchungsbericht2.getMed()) && untersuchungsbericht1.getNotes().equals(untersuchungsbericht2.getNotes());
 
 	}
 }
+
+

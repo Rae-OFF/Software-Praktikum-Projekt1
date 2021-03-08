@@ -32,13 +32,8 @@ public class Arzt implements Serializable {
 	/**
 	 * Instantiates a new Arzt.
 	 *
-	 * @param vorName  the vorname
-	 * @param nachName the nachname
-	 * @param fach     the fach
-	 * @param idNum    the idnum
-	 * @param passWort the passwort
-	 * @param tel      the tel
 	 */
+
 	public Arzt(String vorName,String nachName, String fach, String idNum, String passWort, String tel) {
     	this.passWort= passWort; // init arzt
     	this.idNum=idNum;

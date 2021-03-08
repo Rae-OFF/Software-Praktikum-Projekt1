@@ -49,9 +49,6 @@ public class UntersuchungsberichtControllerTest {
         usController= epaController.getUntersuchungsberichtcontroller();
         epa=epaController.getEPA();
         epaController.setCurrLoggedIn("1234");
-
-
-
         ArrayList<Untersuchungsbericht> untersuchungslist=new ArrayList<Untersuchungsbericht>();
         Arzt testArzt1 =new Arzt("hai","nguyen","unknown","1234","1234","1900");
         Arzt testArzt2 = new Arzt("tram","la","unknown","5678","5678","1090");
@@ -59,7 +56,6 @@ public class UntersuchungsberichtControllerTest {
         ArrayList<String> medikamente= new ArrayList<>() ;
         medikamente.add("med1");
         medikamente.add("med2");
-
         ArrayList<String> notiz= new ArrayList<String>() ;
         notiz.add("notiz1");
         notiz.add("notiz2");
