@@ -48,7 +48,7 @@ public class BenutzerAnlegenControllerTest {
         num = "1248";
         passwort = "1234";
         tel = "0208 123456789";
-        adresse = "Linguster weg";
+        adresse = "Lingusterweg";
         birth = "20.05.01";
         EPAController epaController = new EPAController();
         epa = epaController.getEPA();
@@ -76,7 +76,13 @@ public class BenutzerAnlegenControllerTest {
     public void patientAnlegen() throws IOException {
         System.out.println(testPatient.getBehandelnderArzt());
         //test2:
-        benutzerAnlegenController.patientAnlegen(num, vorname, nachname, adresse, false, birth, passwort,"1248");
+        benutzerAnlegenController.patientAnlegen(num, vorname, nachname, adresse, false, birth, passwort,num);
+        System.out.println(epa.getPatient(num).getName()+" "+testPatient.getName());
+        System.out.println(epa.getPatient(num).getAddress()+" "+testPatient.getAddress());
+        System.out.println(epa.getPatient(num).getGeschlecht()+" "+testPatient.getGeschlecht());
+        System.out.println(epa.getPatient(num).getGesburtsDatum()+" "+testPatient.getGesburtsDatum());
+        System.out.println(epa.getPatient(num).getPasswort()+" "+testPatient.getPasswort());
+        System.out.println(epa.getPatient(num).getBehandelnderArzt()+" "+testPatient.getBehandelnderArzt());
         assert(epa.getPatient(num).equals(testPatient));
     }
 
